@@ -11,6 +11,8 @@ public class TeleporterScript : MonoBehaviour {
     public float lineStep;
     public float gravityMultiplier;
 
+    public int maxDistance;
+
     private Rigidbody _rigidbody;
     private LineRenderer _lineRendererLeft;
     private LineRenderer _lineRendererRight;
@@ -95,7 +97,6 @@ public class TeleporterScript : MonoBehaviour {
 
         Vector3 startingPos;
         Vector3 lineDirection;
-        Vector3 gravity = new Vector3(0, -1f * gravityMultiplier, 0);
 
         if(isLeft) {
             startingPos = leftHandAnchor.position;
@@ -109,10 +110,22 @@ public class TeleporterScript : MonoBehaviour {
 
         vecArray[0] = startingPos;
 
-        Vector3 previousPoint = startingPos;
-        Vector3 velocity = lineDirection * lineStep;
+        Vector3 previousPoint = vecArray[0];
+        Vector3 velocity = lineDirection;
+        Vector3 gravity = new Vector3(0, -0.03f / (float)maxDistance, 0);
 
-        for(int i = 1; i < lineResolution; i++) {
+        for (int i = 1; i < maxDistance; i++) {
+            velocity = velocity + gravity;
+            Vector3 currentPoint = previousPoint + velocity;
+
+            vecArray[i] = currentPoint;
+            previousPoint = currentPoint;
+        }
+
+        velocity = lineDirection * lineStep;
+        gravity = new Vector3(0, -1f * gravityMultiplier, 0);
+        
+        for (int i = maxDistance; i < lineResolution; i++) {
             velocity = velocity + gravity;
             Vector3 currentPoint = previousPoint + velocity;
 
@@ -137,6 +150,8 @@ public class TeleporterScript : MonoBehaviour {
                 //teleport
                 transform.position = new Vector3(hit.point.x, hit.point.y + transform.position.y, hit.point.z);
                 return;
+            } else {
+                //raycast from the last point down
             }
         }
     }
