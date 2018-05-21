@@ -6,5 +6,11 @@
     Waiting, //companion waits for the player do so something and provides reinforcement
     Instructing, //compansion tells the player about something
     Transforming, //companion is transformed into the vacuum gun
-    Useable //companion can be picked up
+    Useable, //companion can be picked up
+    Grabbed //companion is picked up
+}
+
+public enum CompanionObjectiveType {
+    Main, //Main objective
+    Side //Side objective
 }
