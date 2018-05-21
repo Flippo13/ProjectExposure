@@ -11,7 +11,7 @@ public class Cable : MonoBehaviour {
     private LineRenderer _lineRenderer;
     private SpringJoint _springJoint; 
 
-    public List<Vector3> cableNodesList = new List<Vector3>(); 
+    public List<GameObject> cableNodesList = new List<GameObject>(); 
 
     //Info for each point of the cable (mass is from the rigidbody)
     private Vector3[] positions;
@@ -21,33 +21,35 @@ public class Cable : MonoBehaviour {
     private float[] accelerations;
     private float[] velocitys; 
 
-    //Info for the Hookes Law Formula F = -K*(x-d) 
-    const float springConstant = 0.04f;
+    //Info for the Hookes Law Formula F = -K*(|x| - d) (x/|x|) - bv 
+    public float springConstant = 0.7f;
     public float desiredDistance;
+    public float damping;
 
 
     //Cable info
     public float ropeLength;
     public float minRopeLength;
     public float maxRopeLength;
-    public float winchSpeed; 
+    public float winchSpeed;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Awake () {
         _lineRenderer = GetComponent<LineRenderer>();
         _springJoint = cableStart.GetComponent<SpringJoint>();
-        UpdateCableV2(); 
-
-        //SetUpCable(10);
+        // UpdateCableV2(); 
+        //cableNodesList.Add(cableStart);
+       // cableNodesList.Add(cableEnd);
+       // SetUpCable(2);
 
     }
 	
 	// Update is called once per frame
-	void Update () {
-        // UpdateCable();
-        UpdateWinch(); 
-        DisplayCable(); 
+	void FixedUpdate () {
+         UpdateCable();
+       // UpdateWinch(); 
+       // DisplayCable(); 
 	}
 
     private void SetUpCable(float pLength)
@@ -64,6 +66,7 @@ public class Cable : MonoBehaviour {
         for (int i = 0; i < nodeCount; i++)
         {
             float steps = cableNodes * i;
+            print(steps);
             xPositions[i] = Mathf.Lerp(cableStart.transform.position.x, cableEnd.transform.position.x, steps);
             yPositions[i] = Mathf.Lerp(cableStart.transform.position.y, cableEnd.transform.position.y, steps);
             zPositions[i] = Mathf.Lerp(cableStart.transform.position.z, cableEnd.transform.position.z, steps);
@@ -73,21 +76,23 @@ public class Cable : MonoBehaviour {
 
             GameObject realCableNode =  Instantiate(cableNode, positions[i], Quaternion.identity, this.transform);
 
-           // cableNodesList.Add(realCableNode); 
+            cableNodesList.Add(realCableNode); 
         }
     }
 
     private void UpdateCable()
     {
-        for (int i = 0; i < xPositions.Length; i++)
+        for (int i = 0; i < cableNodesList.Count - 1; i++)
         {
-           // float force = -springConstant *  (((cableNodesList[i].transform.position - positions[i]).magnitude + velocitys[i]) - desiredDistance);
-           // accelerations[i] = -force;
-           // xPositions[i] += velocitys[i];
-           // yPositions[i] += velocitys[i];
-           // zPositions[i] += velocitys[i]; 
-           // velocitys[i] += force;
-            //cableNodesList[i].transform.position = new Vector3(xPositions[i], yPositions[i], zPositions[i]); 
+            Vector3 distance = cableNodesList[i].transform.position - cableNodesList[i + 1].transform.position;
+            Vector3 rVel = cableNodesList[i].GetComponent<Rigidbody>().velocity - cableNodesList[i + 1].GetComponent<Rigidbody>().velocity;
+
+            Vector3 force = -springConstant * (distance.magnitude - desiredDistance) * Vector3.Normalize(distance) - damping * rVel;
+
+            print("node: " + i + " force " + force);
+
+            cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
+            cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
         }
     }
 
@@ -132,13 +137,13 @@ public class Cable : MonoBehaviour {
         Vector3 B = A + cableStart.transform.up * (-(A - D).magnitude * 0.1f);
         Vector3 C = D + cableEnd.transform.up * ((A - D).magnitude * 0.5f);
 
-        BezierCurve.GetBezierCurve(A, B, C, D, cableNodesList);
+       // BezierCurve.GetBezierCurve(A, B, C, D, cableNodesList.transform.position);
 
         Vector3[] positions = new Vector3[cableNodesList.Count];
 
         for (int i = 0; i < cableNodesList.Count; i++)
         {
-            positions[i] = cableNodesList[i]; 
+            positions[i] = cableNodesList[i].transform.position; 
         }
 
 
