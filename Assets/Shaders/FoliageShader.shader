@@ -33,7 +33,7 @@ Shader "ProjectExposure/FoliageShader" {
 
 	SubShader{
 	Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" }
-	LOD 1
+	LOD 100
 
 	//ZWrite Off
 	Blend SrcAlpha OneMinusSrcAlpha
