@@ -1,0 +1,243 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+//state machine of the robot containing its behaviour
+public class CompanionAI : MonoBehaviour {
+
+    public Transform player;
+    public Transform companionAnchor;
+
+    public float interactionRadius;
+    public float scanRadius;
+
+    private CompanionState _currentState;
+    private List<CompanionState> _stateQueue;
+
+    private CompanionControls _controls;
+    private CompanionNavigator _navigator;
+    private CompanionObjectiveTracker _tracker;
+    private CompanionDebug _debug;
+
+    public void Awake() {
+        _stateQueue = new List<CompanionState>();
+
+        _controls = GetComponent<CompanionControls>();
+        _navigator = GetComponent<CompanionNavigator>();
+        _tracker = GetComponent<CompanionObjectiveTracker>();
+        _debug = GetComponent<CompanionDebug>();
+
+        //if first boat scene: Inactive, otherwise: Following
+        EnterState(CompanionState.Following);
+    }
+
+    public void Update() {
+        UpdateState();
+    }
+
+    private void SetState(CompanionState newState) {
+        ExitState(_currentState);
+        EnterState(newState);
+    }
+
+    private void QueueState(CompanionState nextState) {
+        _stateQueue.Add(nextState);
+    }
+
+    private bool CheckQueueState() {
+        if (_stateQueue.Count == 0) return false;
+
+        SetState(_stateQueue[0]); //clean enter new state
+        _stateQueue.RemoveAt(0); //remove front state of the queue
+
+        return true;
+    }
+
+    private void ClearQueue() {
+        _stateQueue.Clear();
+    }
+
+    private bool InInterationRange() {
+        Vector3 deltaVec = player.transform.position - transform.position;
+
+        return deltaVec.magnitude <= interactionRadius; //returns true, if the companion is in the interaction range of the player
+    }
+
+    private bool CheckForCompanionCall() {
+        if (_controls.CallButtonDown()) {
+            //call the companion and let it transform into the vacuum gun
+            if (InInterationRange()) {
+                //in range
+                ClearQueue();
+                SetState(CompanionState.Transforming);
+                QueueState(CompanionState.Useable);
+            } else {
+                //not in range yet
+                ClearQueue();
+                SetState(CompanionState.Following);
+                QueueState(CompanionState.Transforming);
+                QueueState(CompanionState.Useable);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool CheckForObjectives() {
+        CompanionObjective mainObjective = _tracker.GetNextMainObjective();
+        CompanionObjective sideObjective = _tracker.GetClosestSideObjective();
+
+        float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
+        float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
+
+        float closest = Mathf.Min(mainDistance, sideDistance);
+
+        if(closest == mainDistance && mainDistance < scanRadius) {
+            //if it is closer than the side objective and in scan radius
+            _tracker.SetCurrentObjective(mainObjective);
+            SetState(CompanionState.Traveling);
+
+            return true;
+        } else if(closest == sideDistance && sideDistance < scanRadius) {
+            //if it is closer than the main objective and in scan radius
+            _tracker.SetCurrentObjective(sideObjective);
+            SetState(CompanionState.Roaming);
+
+            return true;
+        }
+
+        //nothing in scan radius
+        return false;
+    }
+
+    private void EnterState(CompanionState state) {
+        Debug.Log("Entering state " + state);
+
+        switch (state) {
+            default:
+                break;
+        }
+
+        _currentState = state;
+        _debug.ApplyState(_currentState);
+    }
+
+    private void ExitState(CompanionState state) {
+        Debug.Log("Leaving state " + state);
+
+        switch (state) {
+            default:
+                break;
+        }
+    }
+
+    //maybe split this up into different functions or even classes if it becomes to much
+    private void UpdateState() {
+        switch(_currentState) {
+            case CompanionState.Inactive:
+                //activate the companion
+                if (_controls.CallButtonDown() && InInterationRange()) {
+                    SetState(CompanionState.Instructing);
+                }
+                break;
+
+            case CompanionState.Following:
+                //idle/main state of the companion
+
+                if (CheckForCompanionCall()) return; //prioritise calling
+
+                if(!CheckQueueState()) { //only continue if the queue is empty
+                    if (!CheckForObjectives() && !InInterationRange()) { //if there is no objective in range and the player is out of range
+                        //move to the player
+                        Vector3 deltaVec = transform.position - player.transform.position;
+                        Vector3 destination = player.transform.position + deltaVec.normalized * (interactionRadius - 1f / interactionRadius);
+
+                        _navigator.SetDestination(destination);
+                    }
+                }
+
+                break;
+
+            case CompanionState.Traveling:
+                //travel to main objective
+                if (CheckForCompanionCall()) return;
+
+                _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
+
+                break;
+
+            case CompanionState.Roaming:
+                //roam to side objective
+                if (CheckForCompanionCall()) return;
+
+                _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
+
+                break;
+
+            case CompanionState.Waiting:
+                //wait and reinforce the player for objective
+                break;
+
+            case CompanionState.Instructing:
+                //instruct the player about objective
+                break;
+
+            case CompanionState.Transforming:
+                //tranform companion into gun or back to robot
+                CheckQueueState(); //either go to vacuum gun or follow state
+
+                break;
+
+            case CompanionState.Useable:
+                //ready to be used as vacuum gun
+
+                if(_controls.GrabButtonPressed()) {
+                    transform.parent = companionAnchor;
+                    _debug.SetRendererStatus(false);
+                    _navigator.SetAgentStatus(false);
+
+                    transform.localPosition = Vector3.zero;
+                    transform.localRotation = Quaternion.identity;
+
+                    SetState(CompanionState.Grabbed);
+                }
+
+                if(_controls.CallButtonDown()) {
+                    //transform companion back
+                    ClearQueue();
+                    SetState(CompanionState.Transforming);
+                    QueueState(CompanionState.Following);
+                }
+
+                break;
+
+            case CompanionState.Grabbed:
+                //currently used a vacuum gun
+
+                if (!_controls.GrabButtonPressed()) {
+                    transform.parent = null;
+                    _debug.SetRendererStatus(true);
+                    _navigator.SetAgentStatus(true);
+
+                    transform.position = new Vector3(companionAnchor.position.x, 0.5f, companionAnchor.position.z);
+                    transform.rotation = Quaternion.identity;
+
+                    SetState(CompanionState.Useable);
+                }
+
+                //use vacuum gun
+                if (_controls.UseButtonPressed()) {
+                    _controls.UseVacuum(); //using Felix' vaccum gun script
+                }
+
+                break;
+
+            default:
+                break;
+        }
+    }
+
+}
