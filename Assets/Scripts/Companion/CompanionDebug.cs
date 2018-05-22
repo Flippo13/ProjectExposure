@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 //helpoer debug component for the companion
 public class CompanionDebug : MonoBehaviour {
@@ -14,6 +15,8 @@ public class CompanionDebug : MonoBehaviour {
 
     public void Awake() {
         _renderer = GetComponent<Renderer>();
+
+        Debug.Log(XRDevice.model + " loaded");
     }
 
     public void ApplyState(CompanionState state) {

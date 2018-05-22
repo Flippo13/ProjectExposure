@@ -79,7 +79,7 @@ public class TeleporterScript : MonoBehaviour {
                 ray = new Ray(arcArray[i], Vector3.down);
 
                 if(Physics.Raycast(ray, out hit)) {
-                    _teleportPoint = new Vector3(hit.point.x, hit.point.y + transform.position.y, hit.point.z);
+                    _teleportPoint = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z); //+1 for the player y offset
 
                     _indicatorInstance.transform.position = hit.point;
 
