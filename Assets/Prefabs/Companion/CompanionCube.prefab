@@ -39,6 +39,8 @@ GameObject:
   - component: {fileID: 33744355025066108}
   - component: {fileID: 23026627288684412}
   - component: {fileID: 136530878985814794}
+  - component: {fileID: 65730746456264034}
+  - component: {fileID: 54255570498593552}
   - component: {fileID: 195029515637240054}
   - component: {fileID: 114777840821677492}
   - component: {fileID: 114924124450073466}
@@ -170,6 +172,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241325418213258}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54255570498593552
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241325418213258}
+  serializedVersion: 2
+  m_Mass: 9.49
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65730746456264034
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241325418213258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114075422003605136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d74402b7024f0347b023c5736513d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightGrabCollider: {fileID: 0}
 --- !u!114 &114323477499243486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,7 +294,10 @@ MonoBehaviour:
   player: {fileID: 0}
   companionAnchor: {fileID: 0}
   interactionRadius: 3
+  grabRadius: 1
+  transformationRadius: 5
   scanRadius: 30
+  debug: 1
 --- !u!136 &136530878985814794
 CapsuleCollider:
   m_ObjectHideFlags: 1

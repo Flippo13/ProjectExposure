@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class TeleporterScript : MonoBehaviour {
 
     public Transform leftHandAnchor;
     public GameObject indicatorPrefab;
+    public GameObject projectilePrefab;
 
     public int lineResolution;
     public float lineStep;
@@ -17,9 +19,12 @@ public class TeleporterScript : MonoBehaviour {
     private Material _lineRendererMat;
 
     private Vector3 _teleportPoint;
+    private List<Vector3> _teleportPath;
     private GameObject _indicatorInstance;
 
     private bool _blockedTeleport;
+    private bool _allowTeleport;
+    private bool _triggerPressed;
 
     public void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
@@ -34,22 +39,39 @@ public class TeleporterScript : MonoBehaviour {
         _lineRenderer = leftHandAnchor.GetComponent<LineRenderer>();
         _lineRendererMat = _lineRenderer.material;
 
+        _teleportPath = new List<Vector3>();
+
         _blockedTeleport = false;
+        _allowTeleport = false;
+        _triggerPressed = false;
     }
 
     public void Update() {
         if(OVRInput.Get(OVRInput.Button.Three) || Input.GetMouseButton(0)) {
             DrawTeleportationLine();
+            _allowTeleport = true;
         }
 
         if (OVRInput.GetUp(OVRInput.Button.Three) || Input.GetMouseButtonUp(0)) {
-            //teleport
-            if(!_blockedTeleport) {
-                transform.position = _teleportPoint;
-            }
-
+            //disable indicator
             _indicatorInstance.SetActive(false);
             _lineRenderer.enabled = false;
+            _allowTeleport = false;
+        }
+
+        if((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) != 0 && !_triggerPressed) || Input.GetKeyDown(KeyCode.E)) {
+            //pressed
+            _triggerPressed = true;
+
+            //teleport
+            if (!_blockedTeleport && _allowTeleport) {
+                TraceTeleportationLine();
+            }
+        }
+
+        if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) == 0 && _triggerPressed) {
+            //released
+            _triggerPressed = false;
         }
     }
 
@@ -59,15 +81,21 @@ public class TeleporterScript : MonoBehaviour {
         _lineRenderer.enabled = true;
         _lineRenderer.SetPositions(arcArray);
 
+        _teleportPath.Clear();
+        _teleportPath.Add(arcArray[0]); // first point
+
         //bad for performance to raycast that often each frame, think of a better solution
         for (int i = 1; i < arcArray.Length; i++) {
             Vector3 deltaVec = arcArray[i] - arcArray[i - 1];
             Ray ray = new Ray(arcArray[i - 1], deltaVec);
             RaycastHit hit;
 
+            _teleportPath.Add(arcArray[i]); //add point to the list which can be traced by the projectile
+
             if(Physics.Raycast(ray, out hit, deltaVec.magnitude)) {
                 _teleportPoint = new Vector3(hit.point.x, hit.point.y + transform.position.y, hit.point.z);
-                
+                _teleportPath.Add(_teleportPoint); //add last teleport point to the list to trace
+
                 _indicatorInstance.transform.position = hit.point;
 
                 CheckValidTeleport(hit);
@@ -80,6 +108,7 @@ public class TeleporterScript : MonoBehaviour {
 
                 if(Physics.Raycast(ray, out hit)) {
                     _teleportPoint = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z); //+1 for the player y offset
+                    _teleportPath.Add(_teleportPoint); //add last teleport point to the list to trace
 
                     _indicatorInstance.transform.position = hit.point;
 
@@ -143,5 +172,12 @@ public class TeleporterScript : MonoBehaviour {
             _indicatorInstance.SetActive(true);
             _blockedTeleport = false;
         }
+    }
+
+    private void TraceTeleportationLine() {
+        GameObject projectile = Instantiate(projectilePrefab);
+        ProjectileScript projectileScript = projectile.GetComponent<ProjectileScript>();
+
+        projectileScript.Trace(_teleportPath, transform);
     }
 }

@@ -10,9 +10,14 @@ public class CompanionAI : MonoBehaviour {
     public Transform companionAnchor;
 
     public float interactionRadius;
+    public float grabRadius;
+    public float transformationRadius;
     public float scanRadius;
 
-    private CompanionState _currentState;
+    public bool debug;
+
+    private CompanionState _aiState;
+    private TransformationState _transformationState;
     private List<CompanionState> _stateQueue;
 
     private CompanionControls _controls;
@@ -30,6 +35,8 @@ public class CompanionAI : MonoBehaviour {
 
         //if first boat scene: Inactive, otherwise: Following
         EnterState(CompanionState.Following);
+        _transformationState = TransformationState.None;
+        _debug.SetRendererStatus(debug);
     }
 
     public void Update() {
@@ -37,7 +44,7 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private void SetState(CompanionState newState) {
-        ExitState(_currentState);
+        ExitState(_aiState);
         EnterState(newState);
     }
 
@@ -67,18 +74,9 @@ public class CompanionAI : MonoBehaviour {
     private bool CheckForCompanionCall() {
         if (_controls.CallButtonDown()) {
             //call the companion and let it transform into the vacuum gun
-            if (InInterationRange()) {
-                //in range
-                ClearQueue();
-                SetState(CompanionState.Transforming);
-                QueueState(CompanionState.Useable);
-            } else {
-                //not in range yet
-                ClearQueue();
-                SetState(CompanionState.Following);
-                QueueState(CompanionState.Transforming);
-                QueueState(CompanionState.Useable);
-            }
+            ClearQueue();
+            SetState(CompanionState.Transforming);
+            QueueState(CompanionState.Useable);
 
             return true;
         }
@@ -113,22 +111,78 @@ public class CompanionAI : MonoBehaviour {
         return false;
     }
 
+    private void TransformToVacuum() {
+        Vector3 deltaVec = companionAnchor.transform.position - transform.position;
+
+        if(deltaVec.magnitude <= transformationRadius) {
+            //play transformation animation
+        }
+
+        if(deltaVec.magnitude > grabRadius) {
+            //travel to the hand
+            transform.Translate(deltaVec.normalized / 2f); 
+        } else {
+            //destination reached
+            _transformationState = TransformationState.None;
+        }
+    }
+
+    private void TransformToRobot() {
+        //play transformation animation
+
+        //when done
+        _transformationState = TransformationState.None;
+    }
+
     private void EnterState(CompanionState state) {
         Debug.Log("Entering state " + state);
 
         switch (state) {
+
+            case CompanionState.Transforming:
+                //preparing the correct transformation
+                if(_stateQueue.Count > 0) {
+                    if(_stateQueue[0] == CompanionState.Useable) {
+                        _transformationState = TransformationState.Vacuum;
+                    } else if(_stateQueue[0] == CompanionState.Following) {
+                        _transformationState = TransformationState.Robot;
+                    }
+                }
+
+                break;
+
+            case CompanionState.Grabbed:
+                transform.parent = companionAnchor;
+                _debug.SetRendererStatus(debug);
+                _navigator.SetAgentStatus(false);
+
+                transform.localPosition = Vector3.zero;
+                transform.localRotation = Quaternion.identity;
+                
+                break;
+
             default:
                 break;
         }
 
-        _currentState = state;
-        _debug.ApplyState(_currentState);
+        _aiState = state;
+        _debug.ApplyState(_aiState);
     }
 
     private void ExitState(CompanionState state) {
         Debug.Log("Leaving state " + state);
 
         switch (state) {
+            case CompanionState.Grabbed:
+                transform.parent = null;
+                _debug.SetRendererStatus(debug);
+                _navigator.SetAgentStatus(true);
+
+                transform.position = new Vector3(companionAnchor.position.x, 0.5f, companionAnchor.position.z);
+                transform.rotation = Quaternion.identity;
+
+                break;
+
             default:
                 break;
         }
@@ -136,7 +190,7 @@ public class CompanionAI : MonoBehaviour {
 
     //maybe split this up into different functions or even classes if it becomes to much
     private void UpdateState() {
-        switch(_currentState) {
+        switch(_aiState) {
             case CompanionState.Inactive:
                 //activate the companion
                 if (_controls.CallButtonDown() && InInterationRange()) {
@@ -149,14 +203,12 @@ public class CompanionAI : MonoBehaviour {
 
                 if (CheckForCompanionCall()) return; //prioritise calling
 
-                if(!CheckQueueState()) { //only continue if the queue is empty
-                    if (!CheckForObjectives() && !InInterationRange()) { //if there is no objective in range and the player is out of range
-                        //move to the player
-                        Vector3 deltaVec = transform.position - player.transform.position;
-                        Vector3 destination = player.transform.position + deltaVec.normalized * (interactionRadius - 1f / interactionRadius);
+                if (!CheckForObjectives() && !InInterationRange()) { //if there is no objective in range and the player is out of range
+                    //move to the player
+                    Vector3 deltaVec = transform.position - player.transform.position;
+                    Vector3 destination = player.transform.position + deltaVec.normalized * (interactionRadius - 1f / interactionRadius);
 
-                        _navigator.SetDestination(destination);
-                    }
+                    _navigator.SetDestination(destination);
                 }
 
                 break;
@@ -187,29 +239,28 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Transforming:
                 //tranform companion into gun or back to robot
-                CheckQueueState(); //either go to vacuum gun or follow state
+
+                switch(_transformationState) {
+                    case TransformationState.Vacuum:
+                        TransformToVacuum();
+                        break;
+
+                    case TransformationState.Robot:
+                        TransformToRobot();
+                        break;
+
+                    default:
+                        CheckQueueState(); //either go to vacuum gun or follow state
+                        break;
+                }
 
                 break;
 
             case CompanionState.Useable:
                 //ready to be used as vacuum gun
 
-                if(_controls.GrabButtonPressed()) {
-                    transform.parent = companionAnchor;
-                    _debug.SetRendererStatus(false);
-                    _navigator.SetAgentStatus(false);
-
-                    transform.localPosition = Vector3.zero;
-                    transform.localRotation = Quaternion.identity;
-
+                if(_controls.GrabButtonPressed() && _controls.InCollider()) {
                     SetState(CompanionState.Grabbed);
-                }
-
-                if(_controls.CallButtonDown()) {
-                    //transform companion back
-                    ClearQueue();
-                    SetState(CompanionState.Transforming);
-                    QueueState(CompanionState.Following);
                 }
 
                 break;
@@ -218,14 +269,12 @@ public class CompanionAI : MonoBehaviour {
                 //currently used a vacuum gun
 
                 if (!_controls.GrabButtonPressed()) {
-                    transform.parent = null;
-                    _debug.SetRendererStatus(true);
-                    _navigator.SetAgentStatus(true);
+                    _navigator.Push(OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch), 1f); //try to get the controller acceleration
 
-                    transform.position = new Vector3(companionAnchor.position.x, 0.5f, companionAnchor.position.z);
-                    transform.rotation = Quaternion.identity;
-
-                    SetState(CompanionState.Useable);
+                    //transform back
+                    ClearQueue();
+                    SetState(CompanionState.Transforming);
+                    QueueState(CompanionState.Following);
                 }
 
                 //use vacuum gun

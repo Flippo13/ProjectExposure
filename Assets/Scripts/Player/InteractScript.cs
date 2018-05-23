@@ -11,7 +11,7 @@ public class InteractScript : MonoBehaviour {
     private float suckTime; 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         grabCollider = GetComponent<BoxCollider>(); 
 	}
 	

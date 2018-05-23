@@ -10,6 +10,12 @@
     Grabbed //companion is picked up
 }
 
+public enum TransformationState {
+    None, //not transforming 
+    Vacuum, //transforming into the vacuum
+    Robot //trasnforming into the robot
+}
+
 public enum CompanionObjectiveType {
     Main, //Main objective
     Side //Side objective

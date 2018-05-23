@@ -6,6 +6,8 @@ using UnityEngine.AI;
 //helper class to check for certain controlls
 public class CompanionControls : MonoBehaviour {
 
+    public GrabColliderScript rightGrabCollider;
+
     private InteractScript _interact;
     private bool _triggerPressed;
 
@@ -39,6 +41,11 @@ public class CompanionControls : MonoBehaviour {
         }
         
         return state;
+    }
+
+    //returns true, as long as the grab collider collides with the companion collider
+    public bool InCollider() {
+        return rightGrabCollider.InCollider();
     }
 
     //use the vacuum mechanic of the companion
