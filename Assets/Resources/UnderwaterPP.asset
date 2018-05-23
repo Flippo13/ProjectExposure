@@ -44,7 +44,7 @@ MonoBehaviour:
     m_Settings:
       intensity: 1.77
       radius: 0.3
-      sampleCount: 6
+      sampleCount: 16
       downsampling: 0
       forceForwardCompatibility: 1
       ambientOnly: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
       sampleCount: 10
       frameBlending: 0
   eyeAdaptation:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       lowPercent: 45
       highPercent: 95
@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 1.6
+        intensity: 3.46
         threshold: 1.1
         softKnee: 0.5
         radius: 4.03
@@ -113,8 +113,8 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0.01
-        neutralWhiteIn: 8.84
+        neutralBlackIn: -0.0148
+        neutralWhiteIn: 12.21
         neutralBlackOut: 0
         neutralWhiteOut: 10
         neutralWhiteLevel: 13.1
