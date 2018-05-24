@@ -75,8 +75,8 @@ public class CompanionAI : MonoBehaviour {
         if (_controls.CallButtonDown()) {
             //call the companion and let it transform into the vacuum gun
             ClearQueue();
-            SetState(CompanionState.Transforming);
             QueueState(CompanionState.Useable);
+            SetState(CompanionState.Transforming);
 
             return true;
         }
@@ -282,8 +282,8 @@ public class CompanionAI : MonoBehaviour {
 
                     //transform back
                     ClearQueue();
-                    SetState(CompanionState.Transforming);
                     QueueState(CompanionState.Following);
+                    SetState(CompanionState.Transforming);
                 }
 
                 //use vacuum gun
