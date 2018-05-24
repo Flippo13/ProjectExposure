@@ -113,20 +113,20 @@ public class CompanionAI : MonoBehaviour {
 
     private void TransformToVacuum() {
         Vector3 deltaVec = companionAnchor.transform.position - transform.position;
-        _navigator.SetAgentStatus(false);
-
-        Debug.Log("Transform to Vacuum");
 
         if(deltaVec.magnitude <= transformationRadius) {
             //play transformation animation
         }
 
-        if(deltaVec.magnitude > 0) {
+        if(deltaVec.magnitude > grabRadius) {
             //travel to the hand
-            Debug.Log("moving");
-            transform.Translate(deltaVec.normalized / 10f); 
+            _navigator.SetSpeed(50f);
+            _navigator.SetAcceleration(50f);
+            _navigator.SetDestination(companionAnchor.transform.position);
         } else {
             //destination reached
+            _navigator.SetSpeed(3.5f);
+            _navigator.SetAcceleration(8f);
             _transformationState = TransformationState.None;
         }
     }
@@ -153,14 +153,12 @@ public class CompanionAI : MonoBehaviour {
                     } else if(_stateQueue[0] == CompanionState.Following) {
                         _transformationState = TransformationState.Robot;
                     }
-
-                    Debug.Log("Transformation state: " + _transformationState);
                 }
 
                 break;
 
             case CompanionState.Grabbed:
-                transform.parent = companionAnchor;
+                //transform.parent = companionAnchor;
                 _debug.SetRendererStatus(false);
                 _navigator.SetAgentStatus(false);
 
@@ -182,11 +180,11 @@ public class CompanionAI : MonoBehaviour {
 
         switch (state) {
             case CompanionState.Grabbed:
-                transform.parent = null;
+                //transform.parent = null;
                 _debug.SetRendererStatus(debug);
                 _navigator.SetAgentStatus(true);
 
-                transform.position = new Vector3(companionAnchor.position.x, 0.5f, companionAnchor.position.z);
+                //transform.position = new Vector3(companionAnchor.position.x, 0.5f, companionAnchor.position.z);
                 transform.rotation = Quaternion.identity;
 
                 break;
@@ -278,8 +276,6 @@ public class CompanionAI : MonoBehaviour {
                 //currently used a vacuum gun
 
                 if (!_controls.GrabButtonPressed()) {
-                    _navigator.Push(OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch), 1f); //try to get the controller acceleration
-
                     //transform back
                     ClearQueue();
                     QueueState(CompanionState.Following);
