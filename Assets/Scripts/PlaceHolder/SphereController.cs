@@ -57,7 +57,7 @@ public class SphereController : MonoBehaviour {
             //raycast for trash
             if (hitObject != null)
             {
-                if (hitObject.tag == "TurbinePart")
+                if (hitObject.tag == "TurbinePart" || hitObject.tag == "CablePlug")
                 {
                     _turbinePart = hitObject; 
                     _turbinePart.transform.position = hand.transform.position;

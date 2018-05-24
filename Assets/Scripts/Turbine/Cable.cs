@@ -89,10 +89,13 @@ public class Cable : MonoBehaviour {
 
             Vector3 force = -springConstant * (distance.magnitude - desiredDistance) * Vector3.Normalize(distance) - damping * rVel;
 
-            print("node: " + i + " force " + force);
+//            print("node: " + i + " force " + force);
 
-            cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
+            if (i != cableNodesList.Count - 1)
+                cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
+            if (i + 1 != cableNodesList.Count-1)
             cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
+            //no says anna
         }
     }
 
