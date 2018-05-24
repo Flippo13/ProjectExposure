@@ -113,12 +113,13 @@ public class CompanionAI : MonoBehaviour {
 
     private void TransformToVacuum() {
         Vector3 deltaVec = companionAnchor.transform.position - transform.position;
+        _navigator.SetAgentStatus(false);
 
         if(deltaVec.magnitude <= transformationRadius) {
             //play transformation animation
         }
 
-        if(deltaVec.magnitude > grabRadius) {
+        if(deltaVec.magnitude > 0) {
             //travel to the hand
             transform.Translate(deltaVec.normalized / 2f); 
         } else {
@@ -128,6 +129,8 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private void TransformToRobot() {
+        _navigator.SetAgentStatus(false);
+
         //play transformation animation
 
         //when done
@@ -250,6 +253,7 @@ public class CompanionAI : MonoBehaviour {
                         break;
 
                     default:
+                        _navigator.SetAgentStatus(true);
                         CheckQueueState(); //either go to vacuum gun or follow state
                         break;
                 }
