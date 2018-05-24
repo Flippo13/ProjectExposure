@@ -158,7 +158,7 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.Grabbed:
-                //transform.parent = companionAnchor;
+                transform.parent = companionAnchor;
                 _debug.SetRendererStatus(false);
                 _navigator.SetAgentStatus(false);
 
@@ -180,11 +180,11 @@ public class CompanionAI : MonoBehaviour {
 
         switch (state) {
             case CompanionState.Grabbed:
-                //transform.parent = null;
+                transform.parent = null;
                 _debug.SetRendererStatus(debug);
                 _navigator.SetAgentStatus(true);
 
-                //transform.position = new Vector3(companionAnchor.position.x, 0.5f, companionAnchor.position.z);
+                transform.position = new Vector3(companionAnchor.position.x, 0.5f, companionAnchor.position.z);
                 transform.rotation = Quaternion.identity;
 
                 break;
