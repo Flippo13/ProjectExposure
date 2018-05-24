@@ -41,7 +41,6 @@ public class ProjectileScript : MonoBehaviour {
             //last point
             TeleportPlayer(_pointIndex);
         } else {
-            Debug.Log("yolo");
             //adjust path if you overshoot and trace the next point
             transform.position = _tracingPoints[_pointIndex];
             _pointIndex++; //next point
