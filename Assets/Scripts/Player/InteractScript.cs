@@ -50,8 +50,8 @@ public class InteractScript : MonoBehaviour {
 
         for (int i = 0; i < vacuumArea.suckableObjectsList.Count; i++)
         {
-            print(vacuumArea.suckableObjectsList[i].position);
-            print(transform.position);
+            //print(vacuumArea.suckableObjectsList[i].position);
+            //print(transform.position);
             Vector3 suckDir = ( transform.position - vacuumArea.suckableObjectsList[i].position ).normalized;
             //Vector3 suckDist = vacuumArea.suckableObjectsList[i].position - transform.position; 
             vacuumArea.suckableObjectsList[i].position += suckDir / 10; 
@@ -68,7 +68,7 @@ public class InteractScript : MonoBehaviour {
         Vector3 center = transform.position + grabCollider.center;
         Vector3 halfExtends = grabCollider.bounds.extents;
         Collider[] grabbableObjects = Physics.OverlapBox(center, halfExtends, Quaternion.identity,suckableLayer);
-        print(grabbableObjects.Length); 
+        //print(grabbableObjects.Length); 
         for (int i = 0; i < grabbableObjects.Length; i++)
         {
             Destroy(grabbableObjects[i].gameObject);

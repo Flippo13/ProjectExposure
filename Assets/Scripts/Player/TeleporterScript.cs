@@ -93,7 +93,7 @@ public class TeleporterScript : MonoBehaviour {
             _teleportPath.Add(arcArray[i]); //add point to the list which can be traced by the projectile
 
             if(Physics.Raycast(ray, out hit, deltaVec.magnitude)) {
-                _teleportPoint = new Vector3(hit.point.x, hit.point.y + transform.position.y, hit.point.z);
+                _teleportPoint = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z);
                 _teleportPath.Add(_teleportPoint); //add last teleport point to the list to trace
 
                 _indicatorInstance.transform.position = hit.point;

@@ -113,7 +113,7 @@ public class CompanionAI : MonoBehaviour {
 
     private void TransformToVacuum() {
         Vector3 deltaVec = companionAnchor.transform.position - transform.position;
-        _navigator.SetAgentStatus(false);
+        //_navigator.SetAgentStatus(false);
 
         if(deltaVec.magnitude <= transformationRadius) {
             //play transformation animation
@@ -121,7 +121,8 @@ public class CompanionAI : MonoBehaviour {
 
         if(deltaVec.magnitude > 0) {
             //travel to the hand
-            transform.Translate(deltaVec.normalized / 2f); 
+            //transform.Translate(deltaVec.normalized / 2f); 
+            _navigator.SetDestination(companionAnchor.transform.position);
         } else {
             //destination reached
             _transformationState = TransformationState.None;
@@ -156,7 +157,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Grabbed:
                 transform.parent = companionAnchor;
-                _debug.SetRendererStatus(debug);
+                _debug.SetRendererStatus(false);
                 _navigator.SetAgentStatus(false);
 
                 transform.localPosition = Vector3.zero;
