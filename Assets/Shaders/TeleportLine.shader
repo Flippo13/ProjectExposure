@@ -36,7 +36,7 @@
 		UNITY_INSTANCING_BUFFER_END(Props)
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-			IN.uv_MainTex.x += _Time.x * _Speed;
+			IN.uv_MainTex.x -= _Time.x * _Speed;
 			fixed4 c;
 			if(_Blocked)
 				c = tex2D(_MainTex, IN.uv_MainTex) * _BlockedColor;

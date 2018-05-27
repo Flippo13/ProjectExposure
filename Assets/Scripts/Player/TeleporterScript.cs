@@ -14,6 +14,8 @@ public class TeleporterScript : MonoBehaviour {
     public float gravityMultiplier;
     public int maxDistance;
 
+    public bool disableLineOnTeleport;
+
     private Rigidbody _rigidbody;
     private LineRenderer _lineRenderer;
     private Material _lineRendererMat;
@@ -21,9 +23,11 @@ public class TeleporterScript : MonoBehaviour {
     private Vector3 _teleportPoint;
     private List<Vector3> _teleportPath;
     private GameObject _indicatorInstance;
+    private ProjectileScript _projectileScript;
 
     private bool _blockedTeleport;
     private bool _allowTeleport;
+    private bool _drawIndicator;
     private bool _triggerPressed;
 
     public void Awake() {
@@ -36,6 +40,8 @@ public class TeleporterScript : MonoBehaviour {
         _indicatorInstance = Instantiate(indicatorPrefab);
         _indicatorInstance.SetActive(false);
 
+        _projectileScript = null;
+
         _lineRenderer = leftHandAnchor.GetComponent<LineRenderer>();
         _lineRendererMat = _lineRenderer.material;
 
@@ -43,12 +49,22 @@ public class TeleporterScript : MonoBehaviour {
 
         _blockedTeleport = false;
         _allowTeleport = false;
+        _drawIndicator = true;
         _triggerPressed = false;
     }
 
     public void Update() {
+        if(disableLineOnTeleport && (OVRInput.GetUp(OVRInput.Button.Three) || Input.GetMouseButtonUp(0))) {
+            _drawIndicator = true;
+        }
+
         if(OVRInput.Get(OVRInput.Button.Three) || Input.GetMouseButton(0)) {
-            DrawTeleportationLine();
+            if(disableLineOnTeleport) {
+                if (_drawIndicator) DrawTeleportationLine();
+            } else {
+                DrawTeleportationLine();
+            }
+            
             _allowTeleport = true;
         }
 
@@ -64,14 +80,36 @@ public class TeleporterScript : MonoBehaviour {
             _triggerPressed = true;
 
             //teleport
-            if (!_blockedTeleport && _allowTeleport) {
-                TraceTeleportationLine();
+            if(disableLineOnTeleport) {
+                if (!_blockedTeleport && _allowTeleport && _drawIndicator && _projectileScript == null) {
+                    TraceTeleportationLine();
+
+                    //disable line renderer 
+                    _indicatorInstance.SetActive(false);
+                    _lineRenderer.enabled = false;
+                    _allowTeleport = false;
+                    if (disableLineOnTeleport) _drawIndicator = false;
+                }
+            } else {
+                if (!_blockedTeleport && _allowTeleport && _projectileScript == null) {
+                    TraceTeleportationLine();
+
+                    //disable line renderer 
+                    _indicatorInstance.SetActive(false);
+                    _lineRenderer.enabled = false;
+                    _allowTeleport = false;
+                }
             }
         }
 
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) == 0 && _triggerPressed) {
             //released
             _triggerPressed = false;
+        }
+
+        if(_projectileScript != null && _projectileScript.IsTeleported()) {
+            Destroy(_projectileScript.gameObject);
+            _projectileScript = null;
         }
     }
 
@@ -176,8 +214,8 @@ public class TeleporterScript : MonoBehaviour {
 
     private void TraceTeleportationLine() {
         GameObject projectile = Instantiate(projectilePrefab);
-        ProjectileScript projectileScript = projectile.GetComponent<ProjectileScript>();
+        _projectileScript = projectile.GetComponent<ProjectileScript>();
 
-        projectileScript.Trace(_teleportPath, transform);
+        _projectileScript.Trace(_teleportPath, transform);
     }
 }

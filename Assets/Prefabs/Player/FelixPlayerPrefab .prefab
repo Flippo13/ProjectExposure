@@ -4064,10 +4064,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553ca3bfe0409a043a5706e12df93b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 5
-  angle: 45
-  resolution: 10
   leftHandAnchor: {fileID: 4559542507106708}
+  indicatorPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  lineResolution: 0
+  lineStep: 0
+  gravityMultiplier: 0
+  maxDistance: 0
+  disableLineOnTeleport: 0
 --- !u!114 &114444321513884406
 MonoBehaviour:
   m_ObjectHideFlags: 1

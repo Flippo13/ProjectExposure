@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextureVR : Texture {
+public class CompanionAnimation : MonoBehaviour {
 
-    public TextureVR() {
-
-    }
-
+	//TODO
 }

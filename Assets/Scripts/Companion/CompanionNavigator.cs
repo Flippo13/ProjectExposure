@@ -33,4 +33,8 @@ public class CompanionNavigator : MonoBehaviour {
     public void SetSpeed(float speed) {
         _navAgent.speed = speed;
     }
+
+    public bool ReachedDestinaton() {
+        return _navAgent.remainingDistance <= 0.1f;
+    }
 }

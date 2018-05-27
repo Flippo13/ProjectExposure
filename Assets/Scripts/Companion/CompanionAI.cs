@@ -22,21 +22,28 @@ public class CompanionAI : MonoBehaviour {
 
     private CompanionControls _controls;
     private CompanionNavigator _navigator;
+    private CompanionAudio _audio;
+    private CompanionAnimation _animation;
     private CompanionObjectiveTracker _tracker;
     private CompanionDebug _debug;
+
+    private float _reinforcementTimer;
 
     public void Awake() {
         _stateQueue = new List<CompanionState>();
 
         _controls = GetComponent<CompanionControls>();
         _navigator = GetComponent<CompanionNavigator>();
+        _audio = GetComponent<CompanionAudio>();
+        _animation = GetComponent<CompanionAnimation>();
         _tracker = GetComponent<CompanionObjectiveTracker>();
         _debug = GetComponent<CompanionDebug>();
 
         //if first boat scene: Inactive, otherwise: Following
-        EnterState(CompanionState.Following);
-        _transformationState = TransformationState.None;
+        _debug.Init();
         _debug.SetRendererStatus(debug);
+        EnterState(CompanionState.Inactive);
+        _transformationState = TransformationState.None;
     }
 
     public void Update() {
@@ -120,8 +127,8 @@ public class CompanionAI : MonoBehaviour {
 
         if(deltaVec.magnitude > grabRadius) {
             //travel to the hand
-            _navigator.SetSpeed(50f);
-            _navigator.SetAcceleration(50f);
+            _navigator.SetSpeed(100f);
+            _navigator.SetAcceleration(500f);
             _navigator.SetDestination(companionAnchor.transform.position);
         } else {
             //destination reached
@@ -144,6 +151,25 @@ public class CompanionAI : MonoBehaviour {
         Debug.Log("Entering state " + state);
 
         switch (state) {
+            case CompanionState.Traveling:
+                _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
+
+                break;
+
+            case CompanionState.Roaming:
+                _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
+
+                break;
+
+            case CompanionState.Waiting:
+                _reinforcementTimer = 0f;
+
+                break;
+
+            case CompanionState.Instructing:
+                _audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice);
+
+                break;
 
             case CompanionState.Transforming:
                 //preparing the correct transformation
@@ -223,7 +249,7 @@ public class CompanionAI : MonoBehaviour {
                 //travel to main objective
                 if (CheckForCompanionCall()) return;
 
-                _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
+                if (_navigator.ReachedDestinaton()) SetState(CompanionState.Waiting);
 
                 break;
 
@@ -231,16 +257,39 @@ public class CompanionAI : MonoBehaviour {
                 //roam to side objective
                 if (CheckForCompanionCall()) return;
 
-                _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
+                if (_navigator.ReachedDestinaton()) SetState(CompanionState.Waiting);
 
                 break;
 
             case CompanionState.Waiting:
-                //wait and reinforce the player for objective
+                if (CheckForCompanionCall()) return;
+                
+                if(InInterationRange()) {
+                    //if the player is close enough, start instructing
+                    SetState(CompanionState.Instructing);
+                    return;
+                } else if(_reinforcementTimer >= _tracker.GetCurrentObjective().reinforcementInterval) { //maybe cache the current objective
+                    //wait and reinforce the player for objective
+                    _reinforcementTimer = 0f;
+                    _audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice);
+                    _audio.PlayAudioSource(AudioSourceType.Voice);
+                }
+
+                _reinforcementTimer += Time.deltaTime;
+
                 break;
 
             case CompanionState.Instructing:
                 //instruct the player about objective
+
+                if(!_audio.IsPlaying(AudioSourceType.Voice)) {
+                    //instructions are done, so either start the objective, reinforce the objective or follow
+
+                    //debug: complete current task and go back to the following state
+                    _tracker.GetCurrentObjective().Complete();
+                    SetState(CompanionState.Following);
+                }
+
                 break;
 
             case CompanionState.Transforming:

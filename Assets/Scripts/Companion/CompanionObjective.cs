@@ -5,7 +5,10 @@ using UnityEngine;
 //objective information container
 public class CompanionObjective : MonoBehaviour {
 
-    public CompanionObjectiveType objectiveType;
+    public ObjectiveType objectiveType;
+    public AudioClip instructionClip;
+    public AudioClip reinforcementClip;
+    public float reinforcementInterval;
 
     private bool _completed;
 
