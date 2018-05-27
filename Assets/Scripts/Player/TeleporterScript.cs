@@ -200,7 +200,7 @@ public class TeleporterScript : MonoBehaviour {
     }
 
     private void CheckValidTeleport(RaycastHit hit) {
-        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("IgnoreTeleport")) {
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("IgnoreTeleport") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Suckable")) {
             //if we hit a collider that should not allow teleporting
             _lineRendererMat.SetFloat("_Blocked", 1f);
             _indicatorInstance.SetActive(false);
