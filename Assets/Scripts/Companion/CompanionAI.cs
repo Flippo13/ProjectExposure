@@ -168,6 +168,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Instructing:
                 _audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice);
+                _audio.PlayAudioSource(AudioSourceType.Voice);
 
                 break;
 
@@ -226,7 +227,7 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Inactive:
                 //activate the companion
                 if (_controls.CallButtonDown() && InInterationRange()) {
-                    SetState(CompanionState.Instructing);
+                    SetState(CompanionState.Following);
                 }
                 break;
 
