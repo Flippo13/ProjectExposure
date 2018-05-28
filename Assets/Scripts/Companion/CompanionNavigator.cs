@@ -26,10 +26,15 @@ public class CompanionNavigator : MonoBehaviour {
         _navAgent.enabled = status;
     }
 
-    //push into the given direction and force
-    public void Push(Vector3 direction, float force) {
-        _rigidbody.isKinematic = false;
-        _rigidbody.AddForce(direction.normalized * force);
-        _rigidbody.isKinematic = true;
+    public void SetAcceleration(float acceleration) {
+        _navAgent.acceleration = acceleration;
+    }
+
+    public void SetSpeed(float speed) {
+        _navAgent.speed = speed;
+    }
+
+    public bool ReachedDestinaton() {
+        return _navAgent.remainingDistance <= 0.1f;
     }
 }

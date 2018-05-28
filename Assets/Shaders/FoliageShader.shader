@@ -7,7 +7,7 @@ Shader "ProjectExposure/FoliageShader" {
 		_AlphaCutOff("Alpha Cutoff", float) = 1.0
 
 		[Header(Global Settings)]
-	[Toggle]_Tide("Tide", float) = 1.0
+		[Toggle]_Tide("Tide", float) = 1.0
 		_TideX("Tide X", Range(-1, 1)) = 0
 		_TideZ("Tide Z", Range(-1, 1)) = 0
 		_TideAmount("Tide Amount", Range(0, 1)) = 0
@@ -31,19 +31,21 @@ Shader "ProjectExposure/FoliageShader" {
 	}
 
 
-		SubShader{
-		Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" }
-		LOD 100
+SubShader{
+Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" "DisableBatching" = "True"}
+	LOD 100
 
-		Cull Off
+			
 
-		//ZWrite Off
-		Blend SrcAlpha OneMinusSrcAlpha
+	Cull Off
 
-		CGPROGRAM
+	//ZWrite Off
+	Blend SrcAlpha OneMinusSrcAlpha
+
+CGPROGRAM
 #pragma surface surf Lambert vertex:vert addshadow fullforwardshadows 
 #pragma target 3.0
-		//#include "AutoLight.cginc"
+//#include "AutoLight.cginc"
 
 		sampler2D _MainTex;
 	float4 _Color;
@@ -89,7 +91,7 @@ Shader "ProjectExposure/FoliageShader" {
 		if (v.vertex.y > _BranchMinimum) {
 			if (_Tide) {
 				v.vertex.x += _TideX * (v.vertex.y * sin(v.vertex.y + _Time.y * _TideSpeed)) * (_TideAmount / 10);
-				v.vertex.z += _TideZ *(v.vertex.y * sin(v.vertex.y + _Time.y * _TideSpeed)) * (_TideAmount / 10);
+				v.vertex.z += _TideZ * (v.vertex.y * sin(v.vertex.y + _Time.y * _TideSpeed)) * (_TideAmount / 10);
 			};
 			if (_YAxis)
 				v.vertex.y += sin(worldPos.y * (_Time.x * (_YSpeed * _SpeedMultiplier))) * _YScale * v.vertex.y;

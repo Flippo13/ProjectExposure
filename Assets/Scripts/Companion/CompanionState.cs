@@ -16,7 +16,12 @@ public enum TransformationState {
     Robot //trasnforming into the robot
 }
 
-public enum CompanionObjectiveType {
+public enum AudioSourceType {
+    Effects, //general companion sounds
+    Voice //voiceovers
+}
+
+public enum ObjectiveType {
     Main, //Main objective
     Side //Side objective
 }

@@ -11,11 +11,19 @@ public class ProjectileScript : MonoBehaviour {
     private TrailRenderer _trail;
     private Transform _player;
 
+    private float _incrementor;
+    private float _step;
+    private Vector3 _startPos;
+
+    private bool _teleported;
+
     public void Awake() {
         _trail = GetComponent<TrailRenderer>();
+        _trail.enabled = false;
         
         _tracingPoints = null;
-        _pointIndex = 0;
+
+        _teleported = false;
     }
 
     public void Update() {
@@ -23,35 +31,54 @@ public class ProjectileScript : MonoBehaviour {
     }
 
     public void Trace(List<Vector3> points, Transform playerTransform) {
-        _tracingPoints = new List<Vector3>(points); //should copy the list instead of passing the reference
+        _tracingPoints = new List<Vector3>(points); //copy the list instead of passing the reference
         _player = playerTransform;
+        _trail.enabled = true;
 
         transform.position = _tracingPoints[0]; //start from the first point in the path
         _pointIndex = 1;
+
+        //initialize first point
+        _startPos = _tracingPoints[0];
+        Vector3 direction = _tracingPoints[_pointIndex] - _startPos;
+        _step = speed / direction.magnitude;
+        _incrementor = 0f;
     }
 
     private void FollowPath() {
-        if (_tracingPoints == null || _pointIndex >= _tracingPoints.Count) return;
+        if (_tracingPoints == null || _pointIndex >= _tracingPoints.Count || _teleported) return;
 
-        Vector3 direction = _tracingPoints[_pointIndex] - transform.position;
+        if (_pointIndex >= _tracingPoints.Count - 1) {
+            //last point in the list
+            TeleportPlayer();
+        } else if (_incrementor >= 1f) {
+            //next point
+            _startPos = _tracingPoints[_pointIndex];
+            transform.position = _startPos;
+            _pointIndex++;
+            Vector3 direction = _tracingPoints[_pointIndex] - _startPos;
 
-        if (direction.magnitude > 0.1f) {
-            transform.Translate(direction.normalized * speed);
-        } else if (_pointIndex == _tracingPoints.Count - 1) {
-            //last point
-            TeleportPlayer(_pointIndex);
+            _step = speed / direction.magnitude;
+            _incrementor = 0;
         } else {
-            //adjust path if you overshoot and trace the next point
-            transform.position = _tracingPoints[_pointIndex];
-            _pointIndex++; //next point
+            //linearly interpolate between two points
+            _incrementor += _step;
+            _incrementor = Mathf.Clamp01(_incrementor);
+
+            transform.position = Vector3.Lerp(_startPos, _tracingPoints[_pointIndex], _incrementor);
         }
-   
+
     }
 
-    private void TeleportPlayer(int pointIndex) {
-        //teleport the player and destroy the projectile
+    private void TeleportPlayer() {
+        //teleport the player and flag the projectile
         _player.position = _tracingPoints[_tracingPoints.Count - 1];
         _trail.enabled = false;
-        Destroy(gameObject);
+
+        _teleported = true;
+    }
+
+    public bool IsTeleported() {
+        return _teleported;
     }
 }

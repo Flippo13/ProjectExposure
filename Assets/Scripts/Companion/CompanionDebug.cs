@@ -8,19 +8,20 @@ public class CompanionDebug : MonoBehaviour {
 
     public Material inactiveMaterial;
     public Material activeMaterial;
+    public Material waitingMaterial;
     public Material busyMaterial;
     public Material gunMaterial;
 
     private Renderer _renderer;
 
-    public void Awake() {
-        _renderer = GetComponent<Renderer>();
+    public void Init() {
+        if (XRDevice.model != "") Debug.Log(XRDevice.model + " loaded");
 
-        Debug.Log(XRDevice.model + " loaded");
+        _renderer = GetComponent<Renderer>();
     }
 
     public void ApplyState(CompanionState state) {
-        if (!_renderer.enabled || _renderer == null) return;
+        if (_renderer == null || !_renderer.enabled) return;
 
         switch(state) {
             case CompanionState.Inactive:
@@ -35,6 +36,10 @@ public class CompanionDebug : MonoBehaviour {
                 _renderer.material = busyMaterial;
                 break;
 
+            case CompanionState.Waiting:
+                _renderer.material = waitingMaterial;
+                break;
+
             case CompanionState.Useable:
                 _renderer.material = gunMaterial;
                 break;
@@ -46,6 +51,6 @@ public class CompanionDebug : MonoBehaviour {
     }
 
     public void SetRendererStatus(bool status) {
-        _renderer.enabled = status;
+        if(_renderer != null) _renderer.enabled = status;
     }
 }

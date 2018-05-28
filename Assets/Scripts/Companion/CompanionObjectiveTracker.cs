@@ -26,8 +26,8 @@ public class CompanionObjectiveTracker : MonoBehaviour {
 
         //sorting out objectives
         for(int i = 0; i < allObjectives.Length; i++) {
-            if (allObjectives[i].objectiveType == CompanionObjectiveType.Main) _mainObjectives.Add(allObjectives[i]);
-            else if (allObjectives[i].objectiveType == CompanionObjectiveType.Side) _sideObjectives.Add(allObjectives[i]);
+            if (allObjectives[i].objectiveType == ObjectiveType.Main) _mainObjectives.Add(allObjectives[i]);
+            else if (allObjectives[i].objectiveType == ObjectiveType.Side) _sideObjectives.Add(allObjectives[i]);
         }
 
         _currentObjective = _mainObjectives[_activeMainObjectiveIndex];
