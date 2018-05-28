@@ -6,20 +6,19 @@ public class Cable : MonoBehaviour {
 
     public GameObject cableStart;
     public GameObject cableEnd;
-    public GameObject cableNode; 
+    public GameObject cableNode;
+    public Transform cablePartTrans;
 
+    private GameObject cylinder; 
+
+    private Collider _cablePartCollider; 
     private LineRenderer _lineRenderer;
     private SpringJoint _springJoint; 
 
-    public List<GameObject> cableNodesList = new List<GameObject>(); 
+    private List<GameObject> cableNodesList = new List<GameObject>();
+    private List<GameObject> cylinders = new List<GameObject>(); 
+    public int nodeAmount; 
 
-    //Info for each point of the cable (mass is from the rigidbody)
-    private Vector3[] positions;
-    private float[] xPositions;
-    private float[] yPositions;
-    private float[] zPositions; 
-    private float[] accelerations;
-    private float[] velocitys; 
 
     //Info for the Hookes Law Formula F = -K*(|x| - d) (x/|x|) - bv 
     public float springConstant = 0.7f;
@@ -34,50 +33,77 @@ public class Cable : MonoBehaviour {
     public float winchSpeed;
 
 
+    private Vector3 _startPos; 
+
     // Use this for initialization
     void Awake () {
         _lineRenderer = GetComponent<LineRenderer>();
         _springJoint = cableStart.GetComponent<SpringJoint>();
-        // UpdateCableV2(); 
-        //cableNodesList.Add(cableStart);
-       // cableNodesList.Add(cableEnd);
-       // SetUpCable(2);
-
+        SetUpCable();
+        SetupCableDisplay(cablePartTrans);
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-         UpdateCable();
-       // UpdateWinch(); 
-       // DisplayCable(); 
-	}
 
-    private void SetUpCable(float pLength)
-    {
-        int nodeCount = Mathf.RoundToInt(pLength);
-        float cableNodes = 1 / pLength;
-        positions = new Vector3[nodeCount]; 
-        xPositions = new float[nodeCount];
-        yPositions = new float[nodeCount];
-        zPositions = new float[nodeCount];
-        velocitys = new float[nodeCount];
-        accelerations = new float[nodeCount]; 
-
-        for (int i = 0; i < nodeCount; i++)
+    // Update is called once per frame
+    void FixedUpdate () {
+        UpdateCable();
+        foreach (GameObject cylinder in cylinders)
         {
-            float steps = cableNodes * i;
-            print(steps);
-            xPositions[i] = Mathf.Lerp(cableStart.transform.position.x, cableEnd.transform.position.x, steps);
-            yPositions[i] = Mathf.Lerp(cableStart.transform.position.y, cableEnd.transform.position.y, steps);
-            zPositions[i] = Mathf.Lerp(cableStart.transform.position.z, cableEnd.transform.position.z, steps);
-            positions[i] = new Vector3(xPositions[i], yPositions[i], zPositions[i]); 
+            for (int i = 0; i < cableNodesList.Count; i++)
+            {
+                Vector3 startPos = cableNodesList[i].transform.position;
+                Vector3 endPos = cableNodesList[i+1].transform.position;
+                UpdateCableDisplay(cylinder,startPos,endPos);
 
-            //Vector3 nodePos = Vector3.Lerp(cableStart.transform.position, cableEnd.transform.position, steps);
-
-            GameObject realCableNode =  Instantiate(cableNode, positions[i], Quaternion.identity, this.transform);
-
-            cableNodesList.Add(realCableNode); 
+            }
         }
+    }
+
+    private void SetUpCable()
+    {
+        cableNodesList.Add(cableStart);
+        _startPos = cableEnd.transform.position; 
+
+        float nodeDistance = 1.0f / nodeAmount;
+        for (int i = 1; i <= nodeAmount; i++)
+        {
+            float steps = nodeDistance * i;
+            Vector3 nodePos = Vector3.Lerp(cableStart.transform.position, cableEnd.transform.position, steps);
+            GameObject realCableNode = Instantiate(cableNode, nodePos, Quaternion.identity, this.transform);
+            cableNodesList.Add(realCableNode);
+        }
+        cableNodesList.Add(cableEnd);
+
+        
+    }
+
+    private void SetupCableDisplay(Transform cylinderPrefab)
+    {
+        for (int i = 0; i < cableNodesList.Count - 1; i++)
+        {
+            Vector3 startPos = cableNodesList[i].transform.position;
+            Vector3 endPos = cableNodesList[i + 1].transform.position;
+
+            startPos = cableNodesList[i].transform.position;
+            endPos = cableNodesList[i + 1].transform.position;
+
+            cylinder = Instantiate<GameObject>(cylinderPrefab.gameObject, Vector3.zero, Quaternion.identity, this.transform);
+            cylinders.Add(cylinder); 
+            UpdateCableDisplay(cylinder, startPos, endPos);
+        }
+    }
+
+    private void UpdateCableDisplay(GameObject cylinder, Vector3 startPos, Vector3 endPos)
+    {
+            Vector3 offset = endPos - startPos;
+            Vector3 newPosition = startPos + (offset / 2.0f);
+
+            cylinder.transform.position = newPosition;
+            cylinder.transform.LookAt(startPos);
+            cylinder.transform.up = cylinder.transform.forward;
+            Vector3 localScale = cylinder.transform.localScale;
+            localScale.y = (endPos - startPos).magnitude;
+            cylinder.transform.localScale = localScale;
+            
     }
 
     private void UpdateCable()
@@ -89,14 +115,22 @@ public class Cable : MonoBehaviour {
 
             Vector3 force = -springConstant * (distance.magnitude - desiredDistance) * Vector3.Normalize(distance) - damping * rVel;
 
-//            print("node: " + i + " force " + force);
-
             if (i != cableNodesList.Count - 1)
                 cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
             if (i + 1 != cableNodesList.Count-1)
             cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
-            //no says anna
         }
+
+        float currentRopeLength = Vector3.Distance(cableStart.transform.position, cableEnd.transform.position);
+
+        if (currentRopeLength > maxRopeLength)
+        {
+            cableEnd.transform.position = _startPos;
+
+            cableEnd.transform.parent = null; 
+        }
+
+        Vector3[] positions = new Vector3[cableNodesList.Count];
     }
 
     private void SetUpCableV2()
