@@ -6,21 +6,28 @@ using UnityEngine;
 public class CompanionObjective : MonoBehaviour {
 
     public ObjectiveType objectiveType;
+    public ObjectiveTask objectiveTask;
     public AudioClip instructionClip;
     public AudioClip reinforcementClip;
     public float reinforcementInterval;
 
-    private bool _completed;
+    public int trashAmount;
+
+    private ObjectiveStatus _status;
 
     public void Awake() {
-        _completed = false;
+        _status = ObjectiveStatus.Incomplete;
     }
 
-    public void Complete() {
-        _completed = true;
+    public void SetStatus(ObjectiveStatus status) {
+        _status = status;
     }
 
     public bool IsCompleted() {
-        return _completed;
+        return _status == ObjectiveStatus.Complete;
+    }
+
+    public bool IsActive() {
+        return _status == ObjectiveStatus.Active;
     }
 }

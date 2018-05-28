@@ -58,6 +58,12 @@ public class CompanionControls : MonoBehaviour {
         _interact.SetSuckTime(0);
     }
 
+
+    //return amount of sucked trash
+    public int GetTrashCount() {
+        return _interact.GetTrashCount();
+    }
+
     //check if the trigger state has to be updated
     private void UpdateTriggerState() {
         if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) == 0 && _triggerPressed) {

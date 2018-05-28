@@ -8,11 +8,14 @@ public class InteractScript : MonoBehaviour {
     public LayerMask suckableLayer; 
     private BoxCollider grabCollider; 
     public float suckSpeed;
-    private float suckTime; 
+    private float suckTime;
+
+    private int _trashCount;
 
 	// Use this for initialization
 	void Awake () {
-        grabCollider = GetComponent<BoxCollider>(); 
+        grabCollider = GetComponent<BoxCollider>();
+        _trashCount = 0;
 	}
 	
 	// Update is called once per frame
@@ -63,6 +66,10 @@ public class InteractScript : MonoBehaviour {
         suckTime = time;
     }
 
+    public int GetTrashCount() {
+        return _trashCount;
+    }
+
     private void CheckToSuck()
     {
         Vector3 center = transform.position + grabCollider.center;
@@ -71,6 +78,7 @@ public class InteractScript : MonoBehaviour {
         //print(grabbableObjects.Length); 
         for (int i = 0; i < grabbableObjects.Length; i++)
         {
+            _trashCount++;
             Destroy(grabbableObjects[i].gameObject);
         }
     }

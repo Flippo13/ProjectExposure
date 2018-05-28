@@ -12,15 +12,11 @@ public class CompanionObjectiveTracker : MonoBehaviour {
 
     private CompanionObjective _currentObjective;
 
-    private int _activeMainObjectiveIndex;
-
     public void Awake() {
         if (objectiveLog == null) Debug.LogWarning("WARNING: ObjectiveLog reference in CompanionObjectiveTracker is missing!");
 
         _mainObjectives = new List<CompanionObjective>();
         _sideObjectives = new List<CompanionObjective>();
-
-        _activeMainObjectiveIndex = 0;
 
         CompanionObjective[] allObjectives = objectiveLog.GetComponentsInChildren<CompanionObjective>();
 
@@ -30,7 +26,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
             else if (allObjectives[i].objectiveType == ObjectiveType.Side) _sideObjectives.Add(allObjectives[i]);
         }
 
-        _currentObjective = _mainObjectives[_activeMainObjectiveIndex];
+        _currentObjective = _mainObjectives[0];
     }
 
     public void SetCurrentObjective(CompanionObjective objective) {
@@ -42,7 +38,17 @@ public class CompanionObjectiveTracker : MonoBehaviour {
     }
 
     public CompanionObjective GetNextMainObjective() {
-        return _mainObjectives[_activeMainObjectiveIndex];
+        CompanionObjective mainObjective = null;
+
+        //get the next uncompleted main objective
+        for(int i = 0; i < _mainObjectives.Count; i++) {
+            if(!_mainObjectives[i].IsCompleted()) {
+                mainObjective = _mainObjectives[i];
+                break;
+            }
+        }
+
+        return mainObjective;
     }
 
     public CompanionObjective GetClosestSideObjective() {
@@ -66,5 +72,34 @@ public class CompanionObjectiveTracker : MonoBehaviour {
 
     public float GetObjectiveDistance(CompanionObjective objective) {
         return (objective.transform.position - transform.position).magnitude;
+    }
+
+    //execute the minigame behaviour (track it)
+    public bool TrackObjective(int trashCount) {
+        switch (_currentObjective.objectiveTask) {
+
+            case ObjectiveTask.Cleanup:
+
+                if (trashCount >= _currentObjective.trashAmount) return false;
+
+                break;
+
+            case ObjectiveTask.Place:
+
+                break;
+
+            case ObjectiveTask.PowerOn:
+
+                break;
+
+            case ObjectiveTask.SideTask:
+
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
     }
 }

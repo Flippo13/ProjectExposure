@@ -16,6 +16,20 @@ public enum TransformationState {
     Robot //trasnforming into the robot
 }
 
+public enum ObjectiveStatus {
+    Incomplete, //not complete yet
+    Active, //currently active
+    Complete //complete objective
+}
+
+public enum ObjectiveTask {
+    Cleanup, //clean trash
+    Place, //place turbine
+    PowerOn, //power on turbine
+    SideTask //points of interest
+    //more
+}
+
 public enum AudioSourceType {
     Effects, //general companion sounds
     Voice //voiceovers
