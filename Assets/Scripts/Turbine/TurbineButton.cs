@@ -10,11 +10,10 @@ public class TurbineButton : MonoBehaviour {
     [SerializeField]
     private UnityEvent _turbineButtonEvent;
 
-    private TubineButtonActivate _turbineButtonPressed; 
+    public TubineButtonActivate _turbineButtonPressed; 
 
 	// Use this for initialization
 	void Start () {
-        _turbineButtonPressed = GetComponentInChildren<TubineButtonActivate>(); 		
     }
 	
 	// Update is called once per frame
