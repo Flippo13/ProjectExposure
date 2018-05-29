@@ -8,27 +8,27 @@ public class TurbineButton : MonoBehaviour {
     public SpringJoint _springJoint;
 
     [SerializeField]
-    private UnityEvent _turbineButtonEvent; 
+    private UnityEvent _turbineButtonEvent;
+
+    private TubineButtonActivate _turbineButtonPressed; 
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        _turbineButtonPressed = GetComponentInChildren<TubineButtonActivate>(); 		
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        CheckButtonForce(); 
 	}
 
-    private void CheckButtonForce()
+   private void OnCollisionStay(Collision other)
     {
-        float pressForce = _springJoint.currentForce.magnitude; 
-        print(_springJoint.currentForce);
-        print(pressForce);
-        if (pressForce > 1)
+        if (other.collider.tag == "Player")
         {
-            Debug.Log("HEY IT WORKS");
-            _turbineButtonEvent.Invoke(); 
+            if (_turbineButtonPressed.Active)
+                _turbineButtonEvent.Invoke(); 
         }
     }
+
+
 }
