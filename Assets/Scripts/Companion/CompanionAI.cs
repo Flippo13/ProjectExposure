@@ -44,7 +44,7 @@ public class CompanionAI : MonoBehaviour {
         //if first boat scene: Inactive, otherwise: Following
         _debug.Init();
         _debug.SetRendererStatus(debug);
-        EnterState(CompanionState.Inactive);
+        EnterState(CompanionState.Following);
         _transformationState = TransformationState.None;
     }
 
@@ -121,13 +121,25 @@ public class CompanionAI : MonoBehaviour {
             }
         } else {
             if(mainObjective == null && sideObjective != null) {
-                _tracker.SetCurrentObjective(sideObjective);
+                float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
 
-                return true;
+                if(sideDistance < scanRadius) {
+                    _tracker.SetCurrentObjective(sideObjective);
+                    SetState(CompanionState.Roaming);
+
+                    return true;
+                }
+                
             } else if(sideObjective == null && mainObjective != null) {
-                _tracker.SetCurrentObjective(mainObjective);
+                float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
 
-                return true;
+                if(mainDistance < scanRadius) {
+                    _tracker.SetCurrentObjective(mainObjective);
+                    SetState(CompanionState.Traveling);
+
+                    return true;
+                }
+                
             }
         }
 
@@ -216,9 +228,10 @@ public class CompanionAI : MonoBehaviour {
                 _debug.SetRendererStatus(false);
                 _navigator.SetAgentStatus(false);
                 _model.ActivateVacuum();
+                _controls.SetGrabbableStatus(true);
 
-                //transform.localPosition = Vector3.zero;
-                //transform.localRotation = Quaternion.identity;
+                transform.position = companionDestination.position;
+                transform.rotation = Quaternion.identity;
                 
                 break;
 
@@ -236,11 +249,12 @@ public class CompanionAI : MonoBehaviour {
         switch (state) {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
-                _navigator.SetAgentStatus(true);
+                //_navigator.SetAgentStatus(true);
                 _model.ActivateRobot();
+                _controls.SetGrabbableStatus(false);
 
-                //transform.position = new Vector3(companionDestination.position.x, 0.5f, companionDestination.position.z);
-                //transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(companionDestination.position.x, 0.5f, companionDestination.position.z);
+                transform.rotation = Quaternion.identity;
 
                 break;
 
@@ -271,6 +285,7 @@ public class CompanionAI : MonoBehaviour {
                     Vector3 destination = player.transform.position + deltaVec.normalized * (interactionRadius - 1f / interactionRadius);
 
                     _navigator.SetDestination(destination);
+                    Debug.Log("Follow");
                 }
 
                 break;
