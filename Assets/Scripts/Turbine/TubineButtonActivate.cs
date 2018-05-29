@@ -25,13 +25,7 @@ public class TubineButtonActivate : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "TurbineButton")
-        {
-            _active = false; 
-        }
-    }
+    
 
     public bool Active
     {

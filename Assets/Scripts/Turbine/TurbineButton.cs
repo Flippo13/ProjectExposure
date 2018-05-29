@@ -25,8 +25,12 @@ public class TurbineButton : MonoBehaviour {
     {
         if (other.collider.tag == "Player")
         {
+            Debug.Log("Is being Pressed");
             if (_turbineButtonPressed.Active)
-                _turbineButtonEvent.Invoke(); 
+            {
+                _turbineButtonEvent.Invoke();
+                Debug.Log("Invoke Event");
+            }
         }
     }
 
