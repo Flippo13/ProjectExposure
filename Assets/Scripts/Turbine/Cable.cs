@@ -46,16 +46,6 @@ public class Cable : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
         UpdateCable();
-        foreach (GameObject cylinder in cylinders)
-        {
-            for (int i = 0; i < cableNodesList.Count; i++)
-            {
-                Vector3 startPos = cableNodesList[i].transform.position;
-                Vector3 endPos = cableNodesList[i+1].transform.position;
-                UpdateCableDisplay(cylinder,startPos,endPos);
-
-            }
-        }
     }
 
     private void SetUpCable()
@@ -72,38 +62,22 @@ public class Cable : MonoBehaviour {
             cableNodesList.Add(realCableNode);
         }
         cableNodesList.Add(cableEnd);
-
-        
     }
 
     private void SetupCableDisplay(Transform cylinderPrefab)
     {
-        for (int i = 0; i < cableNodesList.Count - 1; i++)
+       
+    }
+
+    private void UpdateCableDisplay(Transform cylinder)
+    {
+        for (int i = 0; i < cableNodesList.Count; i++)
         {
             Vector3 startPos = cableNodesList[i].transform.position;
             Vector3 endPos = cableNodesList[i + 1].transform.position;
 
-            startPos = cableNodesList[i].transform.position;
-            endPos = cableNodesList[i + 1].transform.position;
-
-            cylinder = Instantiate<GameObject>(cylinderPrefab.gameObject, Vector3.zero, Quaternion.identity, this.transform);
-            cylinders.Add(cylinder); 
-            UpdateCableDisplay(cylinder, startPos, endPos);
+            Vector3 offset = (endPos - startPos) / 2;
         }
-    }
-
-    private void UpdateCableDisplay(GameObject cylinder, Vector3 startPos, Vector3 endPos)
-    {
-            Vector3 offset = endPos - startPos;
-            Vector3 newPosition = startPos + (offset / 2.0f);
-
-            cylinder.transform.position = newPosition;
-            cylinder.transform.LookAt(startPos);
-            cylinder.transform.up = cylinder.transform.forward;
-            Vector3 localScale = cylinder.transform.localScale;
-            localScale.y = (endPos - startPos).magnitude;
-            cylinder.transform.localScale = localScale;
-            
     }
 
     private void UpdateCable()
@@ -131,6 +105,16 @@ public class Cable : MonoBehaviour {
         }
 
         Vector3[] positions = new Vector3[cableNodesList.Count];
+
+        for (int i = 0; i < cableNodesList.Count; i++)
+        {
+            positions[i] = cableNodesList[i].transform.position;
+        }
+
+
+        _lineRenderer.positionCount = positions.Length;
+
+        _lineRenderer.SetPositions(positions); 
     }
 
     private void SetUpCableV2()
