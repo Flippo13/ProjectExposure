@@ -11,12 +11,12 @@ public class GrabColliderScript : MonoBehaviour {
     }
 
     public void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag != Tags.Companion) return;
+        if (other.gameObject.tag != Tags.Companion && other is CapsuleCollider) return;
         _inCollider = true;
     }
 
     public void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag != Tags.Companion) return;
+        if (other.gameObject.tag != Tags.Companion && other is CapsuleCollider) return;
         _inCollider = false;
     }
 

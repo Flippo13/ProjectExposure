@@ -9,11 +9,15 @@ public class CompanionControls : MonoBehaviour {
     public GrabColliderScript rightGrabCollider;
 
     private InteractScript _interact;
+    private OVRGrabbable _grabbable;
     private bool _triggerPressed;
 
     public void Awake() {
         _interact = GetComponent<InteractScript>();
+        _grabbable = GetComponent<OVRGrabbable>();
         _triggerPressed = false;
+
+        SetGrabbableStatus(false);
     }
 
     public void Update() {
@@ -62,6 +66,10 @@ public class CompanionControls : MonoBehaviour {
     //return amount of sucked trash
     public int GetTrashCount() {
         return _interact.GetTrashCount();
+    }
+
+    public void SetGrabbableStatus(bool status) {
+        _grabbable.enabled = status;
     }
 
     //check if the trigger state has to be updated
