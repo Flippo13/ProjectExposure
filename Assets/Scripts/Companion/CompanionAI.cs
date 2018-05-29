@@ -8,7 +8,6 @@ public class CompanionAI : MonoBehaviour {
 
     public Transform player;
     public Transform companionDestination;
-    public Transform companionAnchor;
 
     public float interactionRadius;
     public float grabRadius;
@@ -23,6 +22,7 @@ public class CompanionAI : MonoBehaviour {
 
     private CompanionControls _controls;
     private CompanionNavigator _navigator;
+    private CompanionModel _model;
     private CompanionAudio _audio;
     private CompanionAnimation _animation;
     private CompanionObjectiveTracker _tracker;
@@ -35,6 +35,7 @@ public class CompanionAI : MonoBehaviour {
 
         _controls = GetComponent<CompanionControls>();
         _navigator = GetComponent<CompanionNavigator>();
+        _model = GetComponent<CompanionModel>();
         _audio = GetComponent<CompanionAudio>();
         _animation = GetComponent<CompanionAnimation>();
         _tracker = GetComponent<CompanionObjectiveTracker>();
@@ -48,6 +49,7 @@ public class CompanionAI : MonoBehaviour {
     }
 
     public void Update() {
+        UpdateTracker();
         UpdateState();
     }
 
@@ -93,6 +95,8 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private bool CheckForObjectives() {
+        if (_tracker.GetCurrentObjective().IsActive()) return false; //if there is already an active quest, dont look for a new one
+
         CompanionObjective mainObjective = _tracker.GetNextMainObjective();
         CompanionObjective sideObjective = _tracker.GetClosestSideObjective();
 
@@ -160,6 +164,17 @@ public class CompanionAI : MonoBehaviour {
         _transformationState = TransformationState.None;
     }
 
+    private void UpdateTracker() {
+        if (_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) {
+            //track progress
+            if (!_tracker.TrackObjective(_controls.GetTrashCount())) {
+                //if the objective is completed
+                _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Complete);
+                CheckForObjectives(); //get next objective
+            }
+        }
+    }
+
     private void EnterState(CompanionState state) {
         Debug.Log("Entering state " + state);
 
@@ -175,7 +190,7 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.Waiting:
-                _reinforcementTimer = 0f;
+                _reinforcementTimer = float.MaxValue;
 
                 break;
 
@@ -198,12 +213,12 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.Grabbed:
-                transform.parent = companionAnchor;
                 _debug.SetRendererStatus(false);
                 _navigator.SetAgentStatus(false);
+                _model.ActivateVacuum();
 
-                transform.localPosition = Vector3.zero;
-                transform.localRotation = Quaternion.identity;
+                //transform.localPosition = Vector3.zero;
+                //transform.localRotation = Quaternion.identity;
                 
                 break;
 
@@ -220,12 +235,12 @@ public class CompanionAI : MonoBehaviour {
 
         switch (state) {
             case CompanionState.Grabbed:
-                transform.parent = null;
                 _debug.SetRendererStatus(debug);
                 _navigator.SetAgentStatus(true);
+                _model.ActivateRobot();
 
-                transform.position = new Vector3(companionAnchor.position.x, 0.5f, companionAnchor.position.z);
-                transform.rotation = Quaternion.identity;
+                //transform.position = new Vector3(companionDestination.position.x, 0.5f, companionDestination.position.z);
+                //transform.rotation = Quaternion.identity;
 
                 break;
 
@@ -236,13 +251,6 @@ public class CompanionAI : MonoBehaviour {
 
     //maybe split this up into different functions or even classes if it becomes to much
     private void UpdateState() {
-        if(_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) {
-            //track progress
-            if(_tracker.TrackObjective(_controls.GetTrashCount())) {
-                _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Complete);
-                CheckForObjectives(); //get next objective
-            }
-        }
 
         switch(_aiState) {
             case CompanionState.Inactive:
@@ -294,8 +302,6 @@ public class CompanionAI : MonoBehaviour {
                     //wait and reinforce the player for objective
                     _reinforcementTimer = 0f;
                     _audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice);
-
-                    CheckForObjectives();
                     _audio.PlayAudioSource(AudioSourceType.Voice);
                 }
 
@@ -309,8 +315,9 @@ public class CompanionAI : MonoBehaviour {
                 if(!_audio.IsPlaying(AudioSourceType.Voice)) {
                     //instructions are done, so either start the objective, reinforce the objective or follow
 
-                    //debug: complete current task and go back to the following state
+                    //activate the current task and go back to the following state
                     _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Active);
+                    _tracker.StartTracking(_controls.GetTrashCount());
                     SetState(CompanionState.Following);
                 }
 
