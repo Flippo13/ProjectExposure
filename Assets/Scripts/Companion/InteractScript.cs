@@ -18,6 +18,7 @@ public class InteractScript : MonoBehaviour {
         _trashCount = 0;
 	}
 	
+    /*
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.F))
@@ -37,6 +38,7 @@ public class InteractScript : MonoBehaviour {
             suckTime = 0; 
         }
 	}
+    */
 
     public void Suck()
     {

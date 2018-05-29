@@ -228,10 +228,6 @@ public class CompanionAI : MonoBehaviour {
                 _debug.SetRendererStatus(false);
                 _navigator.SetAgentStatus(false);
                 _model.ActivateVacuum();
-                _controls.SetGrabbableStatus(true);
-
-                //transform.position = companionDestination.position;
-                //transform.rotation = Quaternion.identity;
                 
                 break;
 
@@ -249,12 +245,8 @@ public class CompanionAI : MonoBehaviour {
         switch (state) {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
-                //_navigator.SetAgentStatus(true);
+                _navigator.SetAgentStatus(true);
                 _model.ActivateRobot();
-                _controls.SetGrabbableStatus(false);
-
-                //transform.position = new Vector3(companionDestination.position.x, 0.5f, companionDestination.position.z);
-                //transform.rotation = Quaternion.identity;
 
                 break;
 
@@ -350,7 +342,7 @@ public class CompanionAI : MonoBehaviour {
                         break;
 
                     default:
-                        //_navigator.SetAgentStatus(true);
+                        _navigator.SetAgentStatus(true);
                         CheckQueueState(); //either go to vacuum gun or follow state
                         break;
                 }

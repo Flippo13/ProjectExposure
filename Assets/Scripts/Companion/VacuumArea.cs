@@ -33,8 +33,6 @@ public class VacuumArea : MonoBehaviour {
         Vector3 colliderStart = col.bounds.min;
         Vector3 colliderEnd = col.bounds.max;
         float colliderRaduis = col.radius;
-        //print("colliderStart " + colliderStart);
-        //print("colliderEnd " + colliderEnd); 
         Collider[] objectsInArea = Physics.OverlapCapsule(colliderStart, colliderEnd, colliderRaduis,suckableLayer);
         for (int i = 0; i < objectsInArea.Length; i++)
         {

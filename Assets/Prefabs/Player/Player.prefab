@@ -1413,7 +1413,7 @@ GameObject:
   - component: {fileID: 4154815646678618}
   - component: {fileID: 114905238894292680}
   - component: {fileID: 54849013242498438}
-  - component: {fileID: 114801109328077812}
+  - component: {fileID: 114624702429693224}
   - component: {fileID: 135465230538883066}
   - component: {fileID: 135034747763148508}
   - component: {fileID: 114523795588147518}
@@ -4098,6 +4098,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9990c07ab70ed41a68105f9e34f705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114624702429693224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964628313940036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b068c78237b84dade3b727c12eedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabBegin: 0.55
+  grabEnd: 0.35
+  m_parentHeldObject: 0
+  m_gripTransform: {fileID: 4154815646678618}
+  m_grabVolumes:
+  - {fileID: 135465230538883066}
+  m_controller: 2
+  m_parentTransform: {fileID: 0}
 --- !u!114 &114659865730765304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4157,25 +4176,6 @@ MonoBehaviour:
   useIPDInPositionTracking: 1
   resetTrackerOnLoad: 0
   AllowRecenter: 1
---- !u!114 &114801109328077812
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1964628313940036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd425c2d06f39bf4899d07c05d0f10eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabBegin: 0.55
-  grabEnd: 0.35
-  m_parentHeldObject: 0
-  m_gripTransform: {fileID: 4154815646678618}
-  m_grabVolumes:
-  - {fileID: 135465230538883066}
-  m_controller: 2
-  m_parentTransform: {fileID: 0}
 --- !u!114 &114905238894292680
 MonoBehaviour:
   m_ObjectHideFlags: 1
