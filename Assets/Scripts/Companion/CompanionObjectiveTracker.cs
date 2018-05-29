@@ -12,6 +12,8 @@ public class CompanionObjectiveTracker : MonoBehaviour {
 
     private CompanionObjective _currentObjective;
 
+    private int _startTrash;
+
     public void Awake() {
         if (objectiveLog == null) Debug.LogWarning("WARNING: ObjectiveLog reference in CompanionObjectiveTracker is missing!");
 
@@ -74,13 +76,16 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         return (objective.transform.position - transform.position).magnitude;
     }
 
+    public void StartTracking(int trashCount) {
+        _startTrash = trashCount;
+    }
+
     //execute the minigame behaviour (track it)
     public bool TrackObjective(int trashCount) {
         switch (_currentObjective.objectiveTask) {
 
             case ObjectiveTask.Cleanup:
-
-                if (trashCount >= _currentObjective.trashAmount) return false;
+                if (trashCount - _startTrash >= _currentObjective.trashAmount) return false;
 
                 break;
 
