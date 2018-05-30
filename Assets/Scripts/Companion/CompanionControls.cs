@@ -38,7 +38,6 @@ public class CompanionControls : MonoBehaviour {
         if (state && !_triggerPressed) {
             //first frame of pressing
             _triggerPressed = true;
-            ResetSuckTime();
         }
         
         return state;
@@ -53,12 +52,6 @@ public class CompanionControls : MonoBehaviour {
     public void UseVacuum() {
         interact.Suck();
     }
-
-    //reset sucking time
-    public void ResetSuckTime() {
-        interact.SetSuckTime(0);
-    }
-
 
     //return amount of sucked trash
     public int GetTrashCount() {

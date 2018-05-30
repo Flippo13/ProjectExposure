@@ -5,47 +5,37 @@ using UnityEngine;
 public class InteractScript : MonoBehaviour {
 
     public VacuumArea vacuumArea;
-    public LayerMask suckableLayer; 
     public float suckSpeed;
-    private float suckTime;
 
     private int _trashCount;
 
-	// Use this for initialization
-	void Awake () {
+    private List<Transform> _destroyedObjects;
+
+    // Use this for initialization
+    void Awake() {
+        _destroyedObjects = new List<Transform>();
         _trashCount = 0;
-	}
+    }
 
     public void OnTriggerEnter(Collider other) {
-        if(other.gameObject.layer == suckableLayer) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Suckable") && !_destroyedObjects.Contains(other.transform)) {
             _trashCount++;
-            vacuumArea.RemoveTransfromFromList(other.transform);
-            Destroy(other.gameObject);
+            _destroyedObjects.Add(other.transform);
         }
     }
 
-    public void Suck()
-    {
-        Debug.Log("Suck");
-        suckTime += 0.25f * Time.deltaTime;
-        if(suckTime > 1)
-        {
-            suckTime = 0; 
-        }
-        if(suckTime < 0)
-        {
-            suckTime = 1; 
+    public void Suck() {
+        for (int i = 0; i < vacuumArea.suckableObjectsList.Count; i++) {
+            Vector3 suckDir = (transform.position - vacuumArea.suckableObjectsList[i].position).normalized;
+            vacuumArea.suckableObjectsList[i].Translate(suckDir * suckSpeed);
         }
 
-        for (int i = 0; i < vacuumArea.suckableObjectsList.Count; i++)
-        {
-            Vector3 suckDir = ( transform.position - vacuumArea.suckableObjectsList[i].position ).normalized;
-            vacuumArea.suckableObjectsList[i].Translate(suckDir * 0.1f);
+        for(int i = 0; i < _destroyedObjects.Count; i++) {
+            vacuumArea.RemoveTransfromFromList(_destroyedObjects[i]);
+            Destroy(_destroyedObjects[i].gameObject);
         }
-    }
 
-    public void SetSuckTime(float time) {
-        suckTime = time;
+        _destroyedObjects.Clear();
     }
 
     public int GetTrashCount() {
