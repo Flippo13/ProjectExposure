@@ -543,6 +543,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1309280969604922
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4508990133524350}
+  - component: {fileID: 114184685497781592}
+  - component: {fileID: 136068163222492536}
+  m_Layer: 2
+  m_Name: VacuumArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1326799869945536
 GameObject:
   m_ObjectHideFlags: 1
@@ -710,12 +727,10 @@ GameObject:
   - component: {fileID: 4990841100187762}
   - component: {fileID: 33186275837802142}
   - component: {fileID: 23666896046485382}
-  - component: {fileID: 136683949524700310}
   - component: {fileID: 65260604547441090}
-  - component: {fileID: 114578825694964784}
   - component: {fileID: 114939523589656036}
   m_Layer: 2
-  m_Name: Vacuum
+  m_Name: VacuumGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2064,6 +2079,19 @@ Transform:
   m_Father: {fileID: 4983465989090964}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4508990133524350
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309280969604922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4990841100187762}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4513800743673620
 Transform:
   m_ObjectHideFlags: 1
@@ -2734,7 +2762,8 @@ Transform:
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: -0.0706, z: 0.1384}
   m_LocalScale: {x: 0.0035, y: 0.0035, z: 0.0035}
-  m_Children: []
+  m_Children:
+  - {fileID: 4508990133524350}
   m_Father: {fileID: 4154815646678618}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -4148,6 +4177,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114184685497781592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309280969604922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5566c12cd32c9614baf4516d4f359bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suckableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  suckableObjectsList: []
 --- !u!114 &114211841660868774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4209,21 +4253,6 @@ MonoBehaviour:
   fadeOnStart: 1
   renderQueue: 5000
   maxAlpha: 0.7
---- !u!114 &114578825694964784
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1456579725228654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5566c12cd32c9614baf4516d4f359bc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  suckableLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  suckableObjectsList: []
 --- !u!114 &114624702429693224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4337,7 +4366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e27b50b6f3d814bbe64fcbb1e8d290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vacuumArea: {fileID: 114578825694964784}
+  vacuumArea: {fileID: 0}
   suckableLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -4501,12 +4530,12 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136683949524700310
+--- !u!136 &136068163222492536
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1456579725228654}
+  m_GameObject: {fileID: 1309280969604922}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1

@@ -6,7 +6,6 @@ public class InteractScript : MonoBehaviour {
 
     public VacuumArea vacuumArea;
     public LayerMask suckableLayer; 
-    private BoxCollider grabCollider; 
     public float suckSpeed;
     private float suckTime;
 
@@ -14,14 +13,20 @@ public class InteractScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        grabCollider = GetComponent<BoxCollider>();
         _trashCount = 0;
 	}
+
+    public void OnTriggerEnter(Collider other) {
+        if(other.gameObject.layer == suckableLayer) {
+            _trashCount++;
+            vacuumArea.RemoveTransfromFromList(other.transform);
+            Destroy(other.gameObject);
+        }
+    }
 
     public void Suck()
     {
         suckTime += 0.25f * Time.deltaTime;
-       // print(suckTime); 
         if(suckTime > 1)
         {
             suckTime = 0; 
@@ -33,13 +38,9 @@ public class InteractScript : MonoBehaviour {
 
         for (int i = 0; i < vacuumArea.suckableObjectsList.Count; i++)
         {
-            //print(vacuumArea.suckableObjectsList[i].position);
-            //print(transform.position);
             Vector3 suckDir = ( transform.position - vacuumArea.suckableObjectsList[i].position ).normalized;
-            //Vector3 suckDist = vacuumArea.suckableObjectsList[i].position - transform.position; 
-            vacuumArea.suckableObjectsList[i].position += suckDir / 10; 
+            vacuumArea.suckableObjectsList[i].Translate(suckDir * 0.1f);
         }
-        CheckToSuck(); 
     }
 
     public void SetSuckTime(float time) {
@@ -48,18 +49,5 @@ public class InteractScript : MonoBehaviour {
 
     public int GetTrashCount() {
         return _trashCount;
-    }
-
-    private void CheckToSuck()
-    {
-        Vector3 center = transform.position + grabCollider.center;
-        Vector3 halfExtends = grabCollider.bounds.extents;
-        Collider[] grabbableObjects = Physics.OverlapBox(center, halfExtends, Quaternion.identity,suckableLayer);
-        //print(grabbableObjects.Length); 
-        for (int i = 0; i < grabbableObjects.Length; i++)
-        {
-            _trashCount++;
-            Destroy(grabbableObjects[i].gameObject);
-        }
     }
 }

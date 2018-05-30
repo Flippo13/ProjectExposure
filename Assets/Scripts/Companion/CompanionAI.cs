@@ -158,7 +158,7 @@ public class CompanionAI : MonoBehaviour {
             //travel to the hand
             _navigator.SetSpeed(100f);
             _navigator.SetAcceleration(500f);
-            _navigator.SetDestination(companionDestination.transform.position);
+            _navigator.SetDestination(companionDestination.transform.position - deltaVec.normalized); //slight offset
         } else {
             //destination reached
             _navigator.SetSpeed(3.5f);
@@ -370,6 +370,7 @@ public class CompanionAI : MonoBehaviour {
                     ClearQueue();
                     QueueState(CompanionState.Following);
                     SetState(CompanionState.Transforming);
+                    return;
                 }
 
                 //use vacuum gun
