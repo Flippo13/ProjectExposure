@@ -26,6 +26,7 @@ public class InteractScript : MonoBehaviour {
 
     public void Suck()
     {
+        Debug.Log("Suck");
         suckTime += 0.25f * Time.deltaTime;
         if(suckTime > 1)
         {
