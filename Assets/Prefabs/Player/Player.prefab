@@ -1209,10 +1209,11 @@ GameObject:
   - component: {fileID: 4639282920823770}
   - component: {fileID: 81055903478428020}
   - component: {fileID: 20293998473775230}
-  - component: {fileID: 114925610091545014}
+  - component: {fileID: 114531622963692648}
+  - component: {fileID: 114932397217762508}
   m_Layer: 2
   m_Name: CenterEyeAnchor
-  m_TagString: Player
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4069,6 +4070,7 @@ MonoBehaviour:
     type: 2}
   projectilePrefab: {fileID: 1340138878196046, guid: 41ce8e842d65f4a40a5de00e3eb28b02,
     type: 2}
+  mainCamera: {fileID: 0}
   lineResolution: 15
   lineStep: 0.2
   gravityMultiplier: 0.1
@@ -4098,6 +4100,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9990c07ab70ed41a68105f9e34f705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114531622963692648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1839673649375956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f6a999cfede664aaa2898cbaa44bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 0.5
+  fadeColor: {r: 0.01, g: 0.01, b: 0.01, a: 1}
+  fadeOnStart: 1
+  renderQueue: 5000
 --- !u!114 &114624702429693224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4188,7 +4205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 2
---- !u!114 &114925610091545014
+--- !u!114 &114932397217762508
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -4196,13 +4213,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1839673649375956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df8e1d778abf442e4bec449c360e9e1c, type: 3}
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 2
-  fadeColor: {r: 0.01, g: 0.01, b: 0.01, a: 1}
-  fadeOnStart: 1
-  renderQueue: 5000
+  profile: {fileID: 0}
 --- !u!114 &114988574094174198
 MonoBehaviour:
   m_ObjectHideFlags: 1
