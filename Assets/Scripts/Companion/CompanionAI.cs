@@ -182,6 +182,7 @@ public class CompanionAI : MonoBehaviour {
             if (!_tracker.TrackObjective(_controls.GetTrashCount())) {
                 //if the objective is completed
                 _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Complete);
+                Debug.Log("Objective complete");
                 CheckForObjectives(); //get next objective
             }
         }

@@ -17,28 +17,6 @@ public class InteractScript : MonoBehaviour {
         grabCollider = GetComponent<BoxCollider>();
         _trashCount = 0;
 	}
-	
-    /*
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            suckTime = 0; 
-        }
-		if (Input.GetKey(KeyCode.F))
-        {
-            Suck(); 
-        }
-        if (OVRInput.Get(OVRInput.Button.One))
-        {
-            Suck(); 
-        }
-        if(OVRInput.GetDown(OVRInput.Button.One))
-        {
-            suckTime = 0; 
-        }
-	}
-    */
 
     public void Suck()
     {

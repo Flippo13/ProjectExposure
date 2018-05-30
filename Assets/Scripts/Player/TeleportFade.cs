@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class TeleportFade : OVRScreenFade {
 
+    public float maxAlpha;
+
     private bool _secondFade;
 
     public void StartTeleportFade() {
         _secondFade = false;
-        StartCoroutine(FadeTeleport(0, 1)); //first fade out
+        StartCoroutine(FadeTeleport(0, maxAlpha)); //first fade out
     }
 
     IEnumerator FadeTeleport(float startAlpha, float endAlpha) {
@@ -19,9 +21,8 @@ public class TeleportFade : OVRScreenFade {
             SetMaterialAlpha();
 
             if(elapsedTime >= fadeTime && !_secondFade) {
-                Debug.Log("Start fade out");
                 _secondFade = true;
-                StartCoroutine(FadeTeleport(1, 0)); //fade in when done with fading out
+                StartCoroutine(FadeTeleport(maxAlpha, 0)); //fade in when done with fading out
             }
             yield return new WaitForEndOfFrame();
         }

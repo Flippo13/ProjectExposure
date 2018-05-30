@@ -13,7 +13,7 @@ public class CompanionControls : MonoBehaviour {
     private bool _triggerPressed;
 
     public void Awake() {
-        _interact = GetComponent<InteractScript>();
+        _interact = GetComponentInChildren<InteractScript>();
         _grabbable = GetComponent<OVRGrabbable>();
         _triggerPressed = false;
 
