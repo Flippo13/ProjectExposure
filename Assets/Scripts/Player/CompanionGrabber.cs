@@ -62,4 +62,12 @@ public class CompanionGrabber : OVRGrabber {
         }
 
     }
+
+    public void RemoveGrabCandidate(Transform grabbableTransform) {
+        OVRGrabbable grabbable = grabbableTransform.GetComponent<OVRGrabbable>();
+
+        if (grabbable == null) return;
+
+        if (m_grabCandidates.ContainsKey(grabbable)) m_grabCandidates.Remove(grabbable);
+    }
 }

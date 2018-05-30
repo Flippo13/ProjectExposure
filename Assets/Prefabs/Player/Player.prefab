@@ -4365,6 +4365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vacuumArea: {fileID: 114184685497781592}
   suckSpeed: 0.1
+  grabber: {fileID: 114624702429693224}
 --- !u!114 &114988574094174198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4533,10 +4534,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 100
-  m_Height: 500
+  m_Radius: 150
+  m_Height: 1200
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -151.2}
+  m_Center: {x: 0, y: 0, z: -380}
 --- !u!136 &136736876886905100
 CapsuleCollider:
   m_ObjectHideFlags: 1

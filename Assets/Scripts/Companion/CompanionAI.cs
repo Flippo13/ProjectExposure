@@ -139,7 +139,6 @@ public class CompanionAI : MonoBehaviour {
 
                     return true;
                 }
-                
             }
         }
 

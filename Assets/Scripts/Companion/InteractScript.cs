@@ -6,6 +6,7 @@ public class InteractScript : MonoBehaviour {
 
     public VacuumArea vacuumArea;
     public float suckSpeed;
+    public CompanionGrabber grabber;
 
     private int _trashCount;
 
@@ -32,7 +33,9 @@ public class InteractScript : MonoBehaviour {
 
         for(int i = 0; i < _destroyedObjects.Count; i++) {
             vacuumArea.RemoveTransfromFromList(_destroyedObjects[i]);
+            grabber.RemoveGrabCandidate(_destroyedObjects[i]);
             Destroy(_destroyedObjects[i].gameObject);
+            //_destroyedObjects[i].gameObject.SetActive(false); //try to disable instead of destroying the object
         }
 
         _destroyedObjects.Clear();
