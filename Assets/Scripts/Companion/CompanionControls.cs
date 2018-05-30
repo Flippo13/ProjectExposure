@@ -7,13 +7,13 @@ using UnityEngine.AI;
 public class CompanionControls : MonoBehaviour {
 
     public GrabColliderScript rightGrabCollider;
+    public InteractScript interact;
 
-    private InteractScript _interact;
     private OVRGrabbable _grabbable;
     private bool _triggerPressed;
 
     public void Awake() {
-        _interact = GetComponentInChildren<InteractScript>();
+        interact = GetComponentInChildren<InteractScript>();
         _grabbable = GetComponent<OVRGrabbable>();
         _triggerPressed = false;
 
@@ -54,18 +54,18 @@ public class CompanionControls : MonoBehaviour {
 
     //use the vacuum mechanic of the companion
     public void UseVacuum() {
-        _interact.Suck();
+        interact.Suck();
     }
 
     //reset sucking time
     public void ResetSuckTime() {
-        _interact.SetSuckTime(0);
+        interact.SetSuckTime(0);
     }
 
 
     //return amount of sucked trash
     public int GetTrashCount() {
-        return _interact.GetTrashCount();
+        return interact.GetTrashCount();
     }
 
     public void SetGrabbableStatus(bool status) {
