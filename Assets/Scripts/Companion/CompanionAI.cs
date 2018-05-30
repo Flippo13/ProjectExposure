@@ -158,7 +158,7 @@ public class CompanionAI : MonoBehaviour {
             //travel to the hand
             _navigator.SetSpeed(100f);
             _navigator.SetAcceleration(500f);
-            _navigator.SetDestination(companionDestination.transform.position);
+            _navigator.SetDestination(companionDestination.transform.position - deltaVec.normalized); //slight offset
         } else {
             //destination reached
             _navigator.SetSpeed(3.5f);
@@ -182,6 +182,7 @@ public class CompanionAI : MonoBehaviour {
             if (!_tracker.TrackObjective(_controls.GetTrashCount())) {
                 //if the objective is completed
                 _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Complete);
+                Debug.Log("Objective complete");
                 CheckForObjectives(); //get next objective
             }
         }
@@ -228,10 +229,6 @@ public class CompanionAI : MonoBehaviour {
                 _debug.SetRendererStatus(false);
                 _navigator.SetAgentStatus(false);
                 _model.ActivateVacuum();
-                _controls.SetGrabbableStatus(true);
-
-                transform.position = companionDestination.position;
-                transform.rotation = Quaternion.identity;
                 
                 break;
 
@@ -249,12 +246,8 @@ public class CompanionAI : MonoBehaviour {
         switch (state) {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
-                //_navigator.SetAgentStatus(true);
+                _navigator.SetAgentStatus(true);
                 _model.ActivateRobot();
-                _controls.SetGrabbableStatus(false);
-
-                transform.position = new Vector3(companionDestination.position.x, 0.5f, companionDestination.position.z);
-                transform.rotation = Quaternion.identity;
 
                 break;
 
@@ -285,7 +278,6 @@ public class CompanionAI : MonoBehaviour {
                     Vector3 destination = player.transform.position + deltaVec.normalized * (interactionRadius - 1f / interactionRadius);
 
                     _navigator.SetDestination(destination);
-                    Debug.Log("Follow");
                 }
 
                 break;
@@ -378,6 +370,7 @@ public class CompanionAI : MonoBehaviour {
                     ClearQueue();
                     QueueState(CompanionState.Following);
                     SetState(CompanionState.Transforming);
+                    return;
                 }
 
                 //use vacuum gun

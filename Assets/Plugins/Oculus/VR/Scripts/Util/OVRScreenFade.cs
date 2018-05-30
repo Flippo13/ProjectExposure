@@ -47,7 +47,7 @@ public class OVRScreenFade : MonoBehaviour
 	private Material fadeMaterial = null;
     private bool isFading = false;
 
-    public float currentAlpha { get; private set; }
+    public float currentAlpha { get; protected set; }
 
 	void Awake()
 	{
@@ -113,11 +113,10 @@ public class OVRScreenFade : MonoBehaviour
         StartCoroutine(Fade(0,1));
     }
 
-
-	/// <summary>
-	/// Starts a fade in when a new level is loaded
-	/// </summary>
-	void OnLevelFinishedLoading(int level)
+    /// <summary>
+    /// Starts a fade in when a new level is loaded
+    /// </summary>
+    void OnLevelFinishedLoading(int level)
 	{
 		StartCoroutine(Fade(1,0));
 	}
@@ -193,7 +192,7 @@ public class OVRScreenFade : MonoBehaviour
     /// Update material alpha. UI fade and the current fade due to fade in/out animations (or explicit control)
     /// both affect the fade. (The max is taken) 
     /// </summary>
-    private void SetMaterialAlpha()
+    protected void SetMaterialAlpha()
     {
 		Color color = fadeColor;
         color.a = Mathf.Max(currentAlpha, uiFadeAlpha);

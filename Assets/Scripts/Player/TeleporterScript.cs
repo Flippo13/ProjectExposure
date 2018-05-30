@@ -30,6 +30,8 @@ public class TeleporterScript : MonoBehaviour {
     private bool _drawIndicator;
     private bool _triggerPressed;
 
+    private TeleportFade _fade;
+
     public void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
 
@@ -51,6 +53,8 @@ public class TeleporterScript : MonoBehaviour {
         _allowTeleport = false;
         _drawIndicator = true;
         _triggerPressed = false;
+
+        _fade = Camera.main.GetComponent<TeleportFade>();
     }
 
     public void Update() {
@@ -108,6 +112,7 @@ public class TeleporterScript : MonoBehaviour {
         }
 
         if(_projectileScript != null && _projectileScript.IsTeleported()) {
+            _fade.StartTeleportFade();
             Destroy(_projectileScript.gameObject);
             _projectileScript = null;
         }
