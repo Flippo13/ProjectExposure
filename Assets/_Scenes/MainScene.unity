@@ -205,7 +205,7 @@ Transform:
   - {fileID: 1930366269}
   - {fileID: 1045048657}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &166304068
 GameObject:
@@ -373,16 +373,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114075422003605136, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
-        type: 2}
-      propertyPath: rightGrabCollider
-      value: 
-      objectReference: {fileID: 771854881}
-    - target: {fileID: 114730599303197376, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
-        type: 2}
-      propertyPath: objectiveLog
-      value: 
-      objectReference: {fileID: 1995770532}
     - target: {fileID: 114924124450073466, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
         type: 2}
       propertyPath: player
@@ -393,9 +383,17 @@ Prefab:
       propertyPath: companionDestination
       value: 
       objectReference: {fileID: 771854882}
-    m_RemovedComponents:
-    - {fileID: 65730746456264034, guid: acd9ac6147ecf2f4c884d7a2d3f83885, type: 2}
-    - {fileID: 114823898562170750, guid: acd9ac6147ecf2f4c884d7a2d3f83885, type: 2}
+    - target: {fileID: 114730599303197376, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
+        type: 2}
+      propertyPath: objectiveLog
+      value: 
+      objectReference: {fileID: 1995770532}
+    - target: {fileID: 114075422003605136, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
+        type: 2}
+      propertyPath: rightGrabCollider
+      value: 
+      objectReference: {fileID: 771854881}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acd9ac6147ecf2f4c884d7a2d3f83885, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &361008889

@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 33744355025066108}
   - component: {fileID: 23026627288684412}
   - component: {fileID: 135039226231573524}
-  - component: {fileID: 65730746456264034}
   - component: {fileID: 54255570498593552}
   - component: {fileID: 195029515637240054}
   - component: {fileID: 82706396487250292}
@@ -52,7 +51,6 @@ GameObject:
   - component: {fileID: 114639591843888770}
   - component: {fileID: 114662176903652410}
   - component: {fileID: 114928323724228590}
-  - component: {fileID: 114823898562170750}
   - component: {fileID: 114200044606833834}
   m_Layer: 2
   m_Name: CompanionCube
@@ -286,18 +284,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 150, y: 150, z: 150}
   m_Center: {x: 0, y: 3, z: 0}
---- !u!65 &65730746456264034
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1241325418213258}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82706396487250292
 AudioSource:
   m_ObjectHideFlags: 1
@@ -527,8 +513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
+  m_snapPosition: 1
+  m_snapOrientation: 1
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
 --- !u!114 &114323477499243486
@@ -611,22 +597,6 @@ MonoBehaviour:
   waitingMaterial: {fileID: 2100000, guid: 2df7ebc0bea8a274e93029665fa564ed, type: 2}
   busyMaterial: {fileID: 2100000, guid: 96f0838ab8266e24ab4ada4a88dd93b9, type: 2}
   gunMaterial: {fileID: 2100000, guid: 13294ad5e51fe6146849ec948bf61381, type: 2}
---- !u!114 &114823898562170750
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1241325418213258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90e27b50b6f3d814bbe64fcbb1e8d290, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vacuumArea: {fileID: 114146717322603986}
-  suckableLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  suckSpeed: 1
 --- !u!114 &114924124450073466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -666,7 +636,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.47
+  m_Radius: 0.7
   m_Center: {x: 0, y: 1.06, z: 0}
 --- !u!136 &136590324507661268
 CapsuleCollider:
