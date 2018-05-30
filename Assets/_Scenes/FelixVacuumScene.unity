@@ -238,6 +238,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114988574094174198, guid: 056bef30e01acd749a994dc39334eaad,
+        type: 2}
+      propertyPath: m_grabVolumes.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4100259400169420, guid: 056bef30e01acd749a994dc39334eaad, type: 2}
       propertyPath: m_LocalPosition.x
       value: -38.01
@@ -466,7 +471,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 268695101}
   m_LocalRotation: {x: -0, y: -0.0027836133, z: -0, w: 0.9999961}
-  m_LocalPosition: {x: 0, y: -0.45, z: -6.17}
+  m_LocalPosition: {x: -5.82, y: -0.66, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 303125711}
@@ -541,6 +546,91 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1 &292914879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 292914883}
+  - component: {fileID: 292914882}
+  - component: {fileID: 292914881}
+  - component: {fileID: 292914880}
+  m_Layer: 0
+  m_Name: Cube (12)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &292914880
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 292914879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &292914881
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 292914879}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &292914882
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 292914879}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &292914883
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 292914879}
+  m_LocalRotation: {x: -0.24077559, y: -0, z: -0, w: 0.9705808}
+  m_LocalPosition: {x: -30.352749, y: 3.09, z: -22.93}
+  m_LocalScale: {x: 4.406163, y: 0.14617385, z: 10.615429}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: -27.865002, y: 0, z: 0}
 --- !u!1 &303125709
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,14 +770,15 @@ MonoBehaviour:
   cableEnd: {fileID: 1899521496}
   cableNode: {fileID: 1042504671}
   cablePartTrans: {fileID: 940680201}
-  nodeAmount: 12
-  springConstant: 22
-  desiredDistance: 0.01
-  damping: 2
+  nodeAmount: 50
+  springConstant: 10
+  desiredDistance: 0.3
+  damping: 5
   ropeLength: 0.2
   minRopeLength: 0.2
-  maxRopeLength: 2000
+  maxRopeLength: 34
   winchSpeed: 2
+  maxLengthBetweenNodes: 0.5
 --- !u!1 &359796175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1279,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 504540725}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2320,9 +2411,9 @@ GameObject:
   - component: {fileID: 1042504676}
   - component: {fileID: 1042504675}
   - component: {fileID: 1042504674}
-  - component: {fileID: 1042504673}
   - component: {fileID: 1042504672}
-  m_Layer: 0
+  - component: {fileID: 1042504673}
+  m_Layer: 10
   m_Name: CableNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2336,7 +2427,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1042504671}
   serializedVersion: 2
-  m_Mass: 5
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -2344,8 +2435,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1042504673
-CapsuleCollider:
+--- !u!135 &1042504673
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -2353,9 +2444,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 0.07
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1042504674
 MeshRenderer:
@@ -2398,7 +2488,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1042504671}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1042504676
 Transform:
   m_ObjectHideFlags: 0
@@ -4410,6 +4500,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _turbineButtonPressed: {fileID: 214989413}
 --- !u!54 &1837468242
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4506,7 +4597,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1899521496}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11, y: -0.53, z: -8.51}
+  m_LocalPosition: {x: -4.27, y: -0.59, z: -8.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 303125711}
@@ -4577,7 +4668,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
