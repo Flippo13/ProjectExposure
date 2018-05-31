@@ -217,8 +217,12 @@ public class CompanionAI : MonoBehaviour {
                 if(_stateQueue.Count > 0) {
                     if(_stateQueue[0] == CompanionState.Useable) {
                         _transformationState = TransformationState.Vacuum;
+                        _model.ActivateTransformation();
+                        _animation.SetVaccumState(true);
                     } else if(_stateQueue[0] == CompanionState.Following) {
                         _transformationState = TransformationState.Robot;
+                        _model.ActivateTransformation();
+                        _animation.SetVaccumState(false);
                     }
                 }
 
@@ -247,6 +251,8 @@ public class CompanionAI : MonoBehaviour {
                 _debug.SetRendererStatus(debug);
                 _navigator.SetAgentStatus(true);
                 _model.ActivateRobot();
+
+                transform.position = companionDestination.transform.position + companionDestination.forward.normalized;
 
                 break;
 

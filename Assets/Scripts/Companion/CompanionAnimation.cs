@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class CompanionAnimation : MonoBehaviour {
 
-	//TODO
+    public Animator rigAnimator;
+    public Animator transformationAnimation;
+
+	public void SetVaccumState(bool state) {
+        transformationAnimation.SetBool("Vacuum_state", state);
+    }
 }
