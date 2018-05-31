@@ -24,6 +24,7 @@ public class CompanionNavigator : MonoBehaviour {
     //enable or disable the navmesh agent
     public void SetAgentStatus(bool status) {
         _navAgent.enabled = status;
+        _rigidbody.isKinematic = status;
     }
 
     public void SetAcceleration(float acceleration) {
@@ -36,5 +37,9 @@ public class CompanionNavigator : MonoBehaviour {
 
     public bool ReachedDestinaton() {
         return _navAgent.remainingDistance <= 0.1f;
+    }
+
+    public bool OnNavMesh() {
+        return _navAgent.isOnNavMesh;
     }
 }

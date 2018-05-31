@@ -4086,7 +4086,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!82 &82706396487250292
 AudioSource:
@@ -4391,6 +4391,7 @@ MonoBehaviour:
   grabRadius: 1
   transformationRadius: 5
   scanRadius: 30
+  maxIdleTime: 10
   debug: 1
 --- !u!114 &114928323724228590
 MonoBehaviour:

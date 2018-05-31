@@ -14,6 +14,8 @@ public class CompanionAI : MonoBehaviour {
     public float transformationRadius;
     public float scanRadius;
 
+    public float maxIdleTime;
+
     public bool debug;
 
     private CompanionState _aiState;
@@ -28,7 +30,7 @@ public class CompanionAI : MonoBehaviour {
     private CompanionObjectiveTracker _tracker;
     private CompanionDebug _debug;
 
-    private float _reinforcementTimer;
+    private float _timer;
 
     public void Awake() {
         _stateQueue = new List<CompanionState>();
@@ -163,9 +165,8 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private void TransformToRobot() {
-        _navigator.SetAgentStatus(false);
-
-        if(_animation.TransformedBack()) {
+        //if the animation is done and the navigator is on the ground again
+        if(_animation.TransformedBack() && _navigator.OnNavMesh()) {
             //when done
             _transformationState = TransformationState.None;
         }
@@ -190,6 +191,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Following:
                 _model.ActivateRobot();
+                _navigator.SetAgentStatus(true);
                 break;
 
             case CompanionState.Traveling:
@@ -203,7 +205,7 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.Waiting:
-                _reinforcementTimer = float.MaxValue;
+                _timer = float.MaxValue;
 
                 break;
 
@@ -224,14 +226,19 @@ public class CompanionAI : MonoBehaviour {
                         _transformationState = TransformationState.Robot;
                         _model.ActivateTransformation();
                         _animation.SetVacuumState(false);
+                        _navigator.SetAgentStatus(false);
                     }
                 }
 
                 break;
 
+            case CompanionState.Useable:
+                _timer = 0f;
+
+                break;
+
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(false);
-                _navigator.SetAgentStatus(false);
                 _model.ActivateVacuum();
                 
                 break;
@@ -250,7 +257,8 @@ public class CompanionAI : MonoBehaviour {
         switch (state) {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
-                _navigator.SetAgentStatus(true);
+
+                Debug.Log("On Nav mesh: " + _navigator.OnNavMesh());
 
                 transform.position = companionDestination.transform.position + companionDestination.forward.normalized;
 
@@ -310,14 +318,14 @@ public class CompanionAI : MonoBehaviour {
                     //if the player is close enough, start instructing
                     SetState(CompanionState.Instructing);
                     return;
-                } else if(_reinforcementTimer >= _tracker.GetCurrentObjective().reinforcementInterval) { //maybe cache the current objective
+                } else if(_timer >= _tracker.GetCurrentObjective().reinforcementInterval) { //maybe cache the current objective
                     //wait and reinforce the player for objective
-                    _reinforcementTimer = 0f;
+                    _timer = 0f;
                     _audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice);
                     _audio.PlayAudioSource(AudioSourceType.Voice);
                 }
 
-                _reinforcementTimer += Time.deltaTime;
+                _timer += Time.deltaTime;
 
                 break;
 
@@ -348,7 +356,6 @@ public class CompanionAI : MonoBehaviour {
                         break;
 
                     default:
-                        _navigator.SetAgentStatus(true);
                         CheckQueueState(); //either go to vacuum gun or follow state
                         break;
                 }
@@ -360,10 +367,13 @@ public class CompanionAI : MonoBehaviour {
 
                 if(_controls.GrabButtonPressed() && _controls.InCollider()) {
                     SetState(CompanionState.Grabbed);
-                } else if (_controls.CallButtonDown()) {
+                } else if (_controls.CallButtonDown() || _timer >= maxIdleTime) {
+                    //if the call button was pressed again or the companion remained idle for too long
                     QueueState(CompanionState.Following);
                     SetState(CompanionState.Transforming);
                 }
+
+                _timer += Time.deltaTime;
 
                 break;
 
