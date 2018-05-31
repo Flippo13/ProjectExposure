@@ -149,19 +149,15 @@ public class CompanionAI : MonoBehaviour {
     private void TransformToVacuum() {
         Vector3 deltaVec = companionDestination.transform.position - transform.position;
 
-        if(deltaVec.magnitude <= transformationRadius) {
-            //play transformation animation
-        }
-
         if(deltaVec.magnitude > grabRadius) {
             //travel to the hand
-            _navigator.SetSpeed(100f);
-            _navigator.SetAcceleration(500f);
+            _navigator.SetSpeed(50f);
+            _navigator.SetAcceleration(300f);
             _navigator.SetDestination(companionDestination.transform.position - deltaVec.normalized); //slight offset
         } else {
             //destination reached
-            _navigator.SetSpeed(3.5f);
-            _navigator.SetAcceleration(8f);
+            _navigator.SetSpeed(5f);
+            _navigator.SetAcceleration(12f);
             _transformationState = TransformationState.None;
         }
     }
@@ -169,10 +165,10 @@ public class CompanionAI : MonoBehaviour {
     private void TransformToRobot() {
         _navigator.SetAgentStatus(false);
 
-        //play transformation animation
-
-        //when done
-        _transformationState = TransformationState.None;
+        if(_animation.TransformedBack()) {
+            //when done
+            _transformationState = TransformationState.None;
+        }
     }
 
     private void UpdateTracker() {
@@ -191,6 +187,11 @@ public class CompanionAI : MonoBehaviour {
         Debug.Log("Entering state " + state);
 
         switch (state) {
+
+            case CompanionState.Following:
+                _model.ActivateRobot();
+                break;
+
             case CompanionState.Traveling:
                 _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
 
@@ -218,11 +219,11 @@ public class CompanionAI : MonoBehaviour {
                     if(_stateQueue[0] == CompanionState.Useable) {
                         _transformationState = TransformationState.Vacuum;
                         _model.ActivateTransformation();
-                        _animation.SetVaccumState(true);
+                        _animation.SetVacuumState(true);
                     } else if(_stateQueue[0] == CompanionState.Following) {
                         _transformationState = TransformationState.Robot;
                         _model.ActivateTransformation();
-                        _animation.SetVaccumState(false);
+                        _animation.SetVacuumState(false);
                     }
                 }
 
@@ -250,7 +251,6 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
                 _navigator.SetAgentStatus(true);
-                _model.ActivateRobot();
 
                 transform.position = companionDestination.transform.position + companionDestination.forward.normalized;
 

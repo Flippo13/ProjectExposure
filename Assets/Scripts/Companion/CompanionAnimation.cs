@@ -7,7 +7,11 @@ public class CompanionAnimation : MonoBehaviour {
     public Animator rigAnimator;
     public Animator transformationAnimation;
 
-	public void SetVaccumState(bool state) {
+	public void SetVacuumState(bool state) {
         transformationAnimation.SetBool("Vacuum_state", state);
+    }
+
+    public bool TransformedBack() {
+        return transformationAnimation.GetCurrentAnimatorStateInfo(0).IsName("Static");
     }
 }
