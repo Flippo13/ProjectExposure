@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerGrid : MonoBehaviour {
 
     private BoxCollider _input;
-    public GameObject inputBox; 
+    private GameObject _inputBox; 
     private Renderer _rend; 
     private bool _connected; 
 
@@ -13,7 +13,8 @@ public class PowerGrid : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _input = GetComponentInChildren<BoxCollider>();
-        _rend = GetComponent<Renderer>(); 
+        _rend = GetComponent<Renderer>();
+        _inputBox = this.gameObject; 
 	}
 	
 	// Update is called once per frame
@@ -24,12 +25,12 @@ public class PowerGrid : MonoBehaviour {
         }
 	}
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         print("Collide");
-        if (other.collider.tag == "CablePlug")
+        if (other.tag == "CablePlug")
         {
-            other.transform.position = inputBox.transform.position;
+            other.transform.position = this.transform.position;
             other.transform.parent = null;
             _connected = true; 
         }
