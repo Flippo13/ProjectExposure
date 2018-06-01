@@ -48,7 +48,6 @@ public class CompanionGrabber : OVRGrabber {
     //is called in fixed update
     protected override void CheckForGrabOrRelease(float prevFlex) {
         if(_companionMode) {
-            //return; //debug
             //different input mode for the companion
             if (m_prevFlex >= grabBegin && !_grabbingInput) {
                 GrabBegin();

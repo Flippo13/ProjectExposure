@@ -14,9 +14,7 @@ public class CompanionNavigator : MonoBehaviour {
         _rigidbody = GetComponent<Rigidbody>();
         _grabbable = GetComponent<OVRGrabbable>();
 
-        _rigidbody.isKinematic = true;
-        _rigidbody.useGravity = true;
-        _grabbable.enabled = false;
+        SetAgentStatus(true);
     }
 
     //set destination for the navmesh agent

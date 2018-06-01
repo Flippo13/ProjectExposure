@@ -46,7 +46,7 @@ public class CompanionAI : MonoBehaviour {
         //if first boat scene: Inactive, otherwise: Following
         _debug.Init();
         _debug.SetRendererStatus(debug);
-        EnterState(CompanionState.Following);
+        EnterState(CompanionState.Inactive);
         _transformationState = TransformationState.None;
     }
 
@@ -84,7 +84,7 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private bool CheckForCompanionCall() {
-        if (_controls.CallButtonDown()) {
+        if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q)) {
             //call the companion and let it transform into the vacuum gun
             ClearQueue();
             QueueState(CompanionState.Useable);
@@ -97,7 +97,7 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private bool CheckForObjectives() {
-        if (_tracker.GetCurrentObjective().IsActive()) return false; //if there is already an active quest, dont look for a new one
+        //maybe bugged?
 
         CompanionObjective mainObjective = _tracker.GetNextMainObjective();
         CompanionObjective sideObjective = _tracker.GetClosestSideObjective();
@@ -226,7 +226,6 @@ public class CompanionAI : MonoBehaviour {
                         _transformationState = TransformationState.Robot;
                         _model.ActivateTransformation();
                         _animation.SetVacuumState(false);
-                        _navigator.SetAgentStatus(false);
                     }
                 }
 
@@ -234,6 +233,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Useable:
                 _timer = 0f;
+                _navigator.SetAgentStatus(false);
 
                 break;
 
@@ -258,8 +258,6 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
 
-                Debug.Log("On Nav mesh: " + _navigator.OnNavMesh());
-
                 transform.position = companionDestination.transform.position + companionDestination.forward.normalized;
 
                 break;
@@ -275,7 +273,7 @@ public class CompanionAI : MonoBehaviour {
         switch(_aiState) {
             case CompanionState.Inactive:
                 //activate the companion
-                if (_controls.CallButtonDown() && InInterationRange()) {
+                if ((_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q)) && InInterationRange()) {
                     SetState(CompanionState.Following);
                 }
                 break;
@@ -367,8 +365,9 @@ public class CompanionAI : MonoBehaviour {
 
                 if(_controls.GrabButtonPressed() && _controls.InCollider()) {
                     SetState(CompanionState.Grabbed);
-                } else if (_controls.CallButtonDown() || _timer >= maxIdleTime) {
+                } else if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q) || _timer >= maxIdleTime) {
                     //if the call button was pressed again or the companion remained idle for too long
+                    ClearQueue();
                     QueueState(CompanionState.Following);
                     SetState(CompanionState.Transforming);
                 }

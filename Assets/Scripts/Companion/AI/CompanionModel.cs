@@ -8,12 +8,8 @@ public class CompanionModel : MonoBehaviour {
     public Transform transformationModel;
     public Transform vacuumModel;
 
-    private Vector3 _storedScale;
-
     public void Awake() {
         ActivateRobot();
-
-        _storedScale = transformationModel.localScale;
     }
 
     public void ActivateRobot() {
@@ -24,7 +20,7 @@ public class CompanionModel : MonoBehaviour {
 
     public void ActivateTransformation() {
         robotModel.gameObject.SetActive(false);
-        transformationModel.localScale = _storedScale;
+        transformationModel.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         vacuumModel.gameObject.SetActive(false);
     }
 
