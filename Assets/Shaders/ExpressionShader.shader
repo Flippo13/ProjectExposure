@@ -4,11 +4,10 @@
 		_ExpressionMap2("Expression map 2", 2D) = "white" {}
 		_AlphaCutOff("Alpha Cutoff", Range(0,1)) = 0.0
 		_Color("Color", Color) = (0.26,0.19,0.16,0.0)
-		//_Glossiness("Smoothness", Range(0,1)) = 0.5
-		//_Metallic("Metallic", Range(0,1)) = 0
-		//[Enum(Red,1,Blue,2,Green,3,Red2,4,Blue2,5,Green2,6)] _Expression("Expression", Float) = 1
+		_Glossiness("Smoothness", Range(0,1)) = 0.5
+		_Metallic("Metallic", Range(0,1)) = 0
 		[Enum(Expressions)] _Expression("Expression", Float) = 1
-		_EmissionStrenght("Emission Strenght", Range(0,2.5)) = 0.0
+		_EmissionStrenght("Emission Strenght", Range(0,1)) = 0.0
 
 	}
 		SubShader{
@@ -50,11 +49,11 @@
 
 				switch (_Expression)
 				{
-				case 1: _ExpressionColor = c.r;
+				case 0: _ExpressionColor = c.r;
 					break; 
-				case 2: _ExpressionColor = c.b;
+				case 1: _ExpressionColor = c.b;
 					break;
-				case 3: _ExpressionColor = c.g;
+				case 2: _ExpressionColor = c.g;
 					break;
 				}
 
@@ -72,8 +71,8 @@
 
 				o.Albedo = _ExpressionColor * _Color;
 
-				//o.Metallic = _Metallic;
-				//o.Smoothness = _Glossiness;
+				o.Metallic = _Metallic;
+				o.Smoothness = _Glossiness;
 
 				if (_ExpressionColor.a < _AlphaCutOff) discard;
 				o.Alpha = 1;

@@ -7,21 +7,39 @@ public class ExpressionListener : MonoBehaviour
 {
     [SerializeField]
     private Material _faceMaterial;
+    [SerializeField]
+    public List<Expression> _expressions;
 
-    public void ChangeExpression(string name)
+    [Serializable]
+    public class Expression
     {
-        // Check if string isn't empty and whether it exist in the Expression enum
-        if (name != "" && Enum.IsDefined(typeof(Expressions), name))
+        public string _expressionName;
+        public Color _color;
+        public Expressions _expression;
+        public float _emissionStrength;
+    }
+
+    public void ChangeExpression(string expressionName)
+    {
+        Expression newExpression = GetExpressionData(expressionName);
+        if (newExpression != null)
         {
-            _faceMaterial.SetFloat("_Expression", (int)Enum.Parse(typeof(Expressions), name));
+            _faceMaterial.SetFloat("_Expression", (int)newExpression._expression);
+            _faceMaterial.SetFloat("_EmissionStrenght", newExpression._emissionStrength);
+            _faceMaterial.SetColor("_Color", newExpression._color);
         }
-        else { Debug.Log("Expression string is empty or doesn't exist "); }
+        else
+            Debug.Log(expressionName + " doesn't seem to exist in the Expression Listener");
     }
 
-    public void ChangeColor(string color)
+    private Expression GetExpressionData(string expressionName)
     {
-        if (color != "")
-            _faceMaterial.SetColor("_Color", (Color)typeof(Color).GetProperty(color.ToLowerInvariant()).GetValue(null, null));
-        else { Debug.Log("Color string is empty or doesn't exist (perhaps not a default Unity color)"); }
+        for (int i = 0; i < _expressions.Count; i++)
+        {
+            if (expressionName == _expressions[i]._expressionName)
+                return _expressions[i];
+        }
+        return null;
     }
+
 }
