@@ -6,7 +6,8 @@
 		_Color("Color", Color) = (0.26,0.19,0.16,0.0)
 		//_Glossiness("Smoothness", Range(0,1)) = 0.5
 		//_Metallic("Metallic", Range(0,1)) = 0
-		[Enum(Red,1,Blue,2,Green,3,Red2,4,Blue2,5,Green2,6)] _Expression("Expression", Float) = 1
+		//[Enum(Red,1,Blue,2,Green,3,Red2,4,Blue2,5,Green2,6)] _Expression("Expression", Float) = 1
+		[Enum(Expressions)] _Expression("Expression", Float) = 1
 		_EmissionStrenght("Emission Strenght", Range(0,2.5)) = 0.0
 
 	}
