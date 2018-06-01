@@ -17,7 +17,7 @@ public class CompanionGrabber : OVRGrabber {
 
         // Get the grab trigger
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
-        if (grabbable == null) return;
+        if (grabbable == null || !grabbable.enabled) return;
 
         // Add the grabbable
         int refCount = 0;
@@ -29,7 +29,7 @@ public class CompanionGrabber : OVRGrabber {
         if(otherCollider.tag == Tags.Companion) _companionMode = false;
 
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
-        if (grabbable == null) return;
+        if (grabbable == null || !grabbable.enabled) return;
 
         // Remove the grabbable
         int refCount = 0;
@@ -48,7 +48,7 @@ public class CompanionGrabber : OVRGrabber {
     //is called in fixed update
     protected override void CheckForGrabOrRelease(float prevFlex) {
         if(_companionMode) {
-            return; //debug
+            //return; //debug
             //different input mode for the companion
             if (m_prevFlex >= grabBegin && !_grabbingInput) {
                 GrabBegin();

@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 114659865730765304}
   - component: {fileID: 120502031824508692}
   - component: {fileID: 54927942607766402}
-  - component: {fileID: 114988574094174198}
+  - component: {fileID: 114650107199748584}
   - component: {fileID: 135340176072211496}
   - component: {fileID: 135598660790835922}
   m_Layer: 2
@@ -4269,6 +4269,24 @@ MonoBehaviour:
   - {fileID: 135465230538883066}
   m_controller: 2
   m_parentTransform: {fileID: 0}
+--- !u!114 &114650107199748584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589444158153494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b068c78237b84dade3b727c12eedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabBegin: 0.55
+  grabEnd: 0.35
+  m_parentHeldObject: 0
+  m_gripTransform: {fileID: 4934665299209434}
+  m_grabVolumes: []
+  m_controller: 1
+  m_parentTransform: {fileID: 0}
 --- !u!114 &114659865730765304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4366,25 +4384,6 @@ MonoBehaviour:
   vacuumArea: {fileID: 114184685497781592}
   suckSpeed: 0.1
   grabber: {fileID: 114624702429693224}
---- !u!114 &114988574094174198
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1589444158153494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd425c2d06f39bf4899d07c05d0f10eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabBegin: 0.55
-  grabEnd: 0.35
-  m_parentHeldObject: 0
-  m_gripTransform: {fileID: 4934665299209434}
-  m_grabVolumes:
-  - {fileID: 135340176072211496}
-  m_controller: 1
-  m_parentTransform: {fileID: 0}
 --- !u!120 &120502031824508692
 LineRenderer:
   m_ObjectHideFlags: 1

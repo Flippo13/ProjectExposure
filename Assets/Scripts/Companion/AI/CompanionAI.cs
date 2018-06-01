@@ -166,7 +166,7 @@ public class CompanionAI : MonoBehaviour {
 
     private void TransformToRobot() {
         //if the animation is done and the navigator is on the ground again
-        if(_animation.TransformedBack() && _navigator.OnNavMesh()) {
+        if(_animation.TransformedBack()) {
             //when done
             _transformationState = TransformationState.None;
         }

@@ -7,13 +7,16 @@ public class CompanionNavigator : MonoBehaviour {
 
     private NavMeshAgent _navAgent;
     private Rigidbody _rigidbody;
+    private OVRGrabbable _grabbable;
 
     public void Awake() {
         _navAgent = GetComponent<NavMeshAgent>();
         _rigidbody = GetComponent<Rigidbody>();
+        _grabbable = GetComponent<OVRGrabbable>();
 
         _rigidbody.isKinematic = true;
         _rigidbody.useGravity = true;
+        _grabbable.enabled = false;
     }
 
     //set destination for the navmesh agent
@@ -25,6 +28,7 @@ public class CompanionNavigator : MonoBehaviour {
     public void SetAgentStatus(bool status) {
         _navAgent.enabled = status;
         _rigidbody.isKinematic = status;
+        _grabbable.enabled = !status;
     }
 
     public void SetAcceleration(float acceleration) {
