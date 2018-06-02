@@ -7,12 +7,12 @@ public class Fog : MonoBehaviour
     private Material _fogMaterial;
 
     [SerializeField]
-    [Range(0, 2)]
-    private float _FogIntensity;
+    [Range(0, 5)]
+    private float _FogIntensity = 2;
 
     [SerializeField]
-    [Range(0, 2)]
-    private float _FogAmount;
+    [Range(0, 5)]
+    private float _FogAmount = 2;
 
     [SerializeField]
     [Range(32, 256)]
