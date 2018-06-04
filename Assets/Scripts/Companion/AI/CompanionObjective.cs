@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 //objective information container
 public class CompanionObjective : MonoBehaviour {
 
     public ObjectiveType objectiveType;
     public ObjectiveTask objectiveTask;
-    public AudioClip instructionClip;
-    public AudioClip reinforcementClip;
+
+    [EventRef]
+    public string instructionClip;
+
+    [EventRef]
+    public string reinforcementClip;
+
     public float reinforcementInterval;
 
     public int trashAmount;

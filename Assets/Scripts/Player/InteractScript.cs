@@ -7,6 +7,8 @@ public class InteractScript : MonoBehaviour {
     public VacuumArea vacuumArea;
     public float suckSpeed;
     public CompanionGrabber grabber;
+    public float deformationStep;
+    public float scaleFactor;
 
     private int _trashCount;
 
@@ -26,16 +28,24 @@ public class InteractScript : MonoBehaviour {
     }
 
     public void Suck() {
+        if (vacuumArea.suckableObjectsList.Count == 0) return;
+
         for (int i = 0; i < vacuumArea.suckableObjectsList.Count; i++) {
             Vector3 suckDir = (transform.position - vacuumArea.suckableObjectsList[i].position).normalized;
-            vacuumArea.suckableObjectsList[i].Translate(suckDir * suckSpeed);
+            Transform currentTransform = vacuumArea.suckableObjectsList[i];
+            Renderer currentRenderer = currentTransform.GetComponent<Renderer>();
+
+            currentTransform.Translate(suckDir * suckSpeed);
+            currentTransform.localScale = currentTransform.localScale * scaleFactor;
+
+            float newDeform = Mathf.Clamp01(currentRenderer.material.GetFloat("_Deform") + deformationStep);
+            currentRenderer.material.SetFloat("_Deform", newDeform);
         }
 
         for(int i = 0; i < _destroyedObjects.Count; i++) {
             vacuumArea.RemoveTransfromFromList(_destroyedObjects[i]);
             grabber.RemoveGrabCandidate(_destroyedObjects[i]);
             Destroy(_destroyedObjects[i].gameObject);
-            //_destroyedObjects[i].gameObject.SetActive(false); //try to disable instead of destroying the object
         }
 
         _destroyedObjects.Clear();

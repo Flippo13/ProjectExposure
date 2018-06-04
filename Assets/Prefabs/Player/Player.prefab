@@ -1247,6 +1247,7 @@ GameObject:
   - component: {fileID: 20293998473775230}
   - component: {fileID: 114531622963692648}
   - component: {fileID: 114932397217762508}
+  - component: {fileID: 114645463070190040}
   m_Layer: 2
   m_Name: CenterEyeAnchor
   m_TagString: MainCamera
@@ -4104,7 +4105,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839673649375956}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!95 &95161628306734580
 Animator:
   serializedVersion: 3
@@ -4269,6 +4270,18 @@ MonoBehaviour:
   - {fileID: 135465230538883066}
   m_controller: 2
   m_parentTransform: {fileID: 0}
+--- !u!114 &114645463070190040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1839673649375956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
 --- !u!114 &114650107199748584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4545,7 +4558,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1605263442263856}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.1
   m_Height: 2
   m_Direction: 1

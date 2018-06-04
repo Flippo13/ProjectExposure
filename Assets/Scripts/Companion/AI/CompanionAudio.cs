@@ -1,36 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class CompanionAudio : MonoBehaviour {
 
-    public AudioClip motorSound;
+    [EventRef]
+    public string motorSound;
 
-    private AudioSource[] _audioSources;
+    private EventInstance[] _audioTracks;
 
     public void Awake() {
-        _audioSources = GetComponents<AudioSource>();
-
-        if (_audioSources.Length != 2) Debug.LogWarning("Warning: Companion needs 2 audio sources");
+        _audioTracks = new EventInstance[2];
 
         SetClip(motorSound, AudioSourceType.Effects);
-        //PlayAudioSource(AudioSourceType.Effects, true);
+        PlayAudioSource(AudioSourceType.Effects);
     }
 
-    public void SetClip(AudioClip clip, AudioSourceType sourceType) {
-        _audioSources[(int)sourceType].clip = clip;
+    public void SetClip(string eventPath, AudioSourceType sourceType) {
+        _audioTracks[(int)sourceType] = RuntimeManager.CreateInstance(eventPath);
+        _audioTracks[(int)sourceType].set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
     }
 
-    public void PlayAudioSource(AudioSourceType sourceType, bool loop = false) {
-        _audioSources[(int)sourceType].Play();
+    public void PlayAudioSource(AudioSourceType sourceType) {
+        _audioTracks[(int)sourceType].start();
     }
 
     public void StopAudioSource(AudioSourceType sourceType) {
-        _audioSources[(int)sourceType].Stop();
+        _audioTracks[(int)sourceType].stop(STOP_MODE.IMMEDIATE);
     }
 
     public bool IsPlaying(AudioSourceType sourceType) {
-        return _audioSources[(int)sourceType].isPlaying;
+        PLAYBACK_STATE result;
+        _audioTracks[(int)sourceType].getPlaybackState(out result);
+
+        return result != PLAYBACK_STATE.STOPPED;
     }
 
 }

@@ -13,13 +13,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114490050010079902}
-  - {fileID: 114405760214217864}
+  - {fileID: 114835399414532324}
   EditorEvents:
-  - {fileID: 114853254095895354}
   - {fileID: 114160219813448002}
-  MasterBankRef: {fileID: 114405760214217864}
+  - {fileID: 114891093559820054}
+  - {fileID: 114478031789399904}
+  - {fileID: 114903435693551192}
+  - {fileID: 114610820825827056}
+  MasterBankRef: {fileID: 114835399414532324}
   StringsBankRef: {fileID: 114490050010079902}
-  stringsBankWriteTime: 636637093680073987
+  stringsBankWriteTime: 636637156356388479
   cacheVersion: 2
 --- !u!114 &114160219813448002
 MonoBehaviour:
@@ -35,7 +38,7 @@ MonoBehaviour:
   Path: event:/Gameplay/Turbine
   guid: 4653aa5c1f97df459e265fda02ba051b
   Banks:
-  - {fileID: 114405760214217864}
+  - {fileID: 114835399414532324}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -102,6 +105,28 @@ MonoBehaviour:
   - Name: Desktop
     Value: 172096
   Exists: 1
+--- !u!114 &114478031789399904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Reinforcement
+  guid: 6ad8637491f4ca4c8f8cc007329abbe4
+  Banks:
+  - {fileID: 114835399414532324}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6000
 --- !u!114 &114490050010079902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,11 +139,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636637093680073987
+  lastModified: 636637156356388479
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 794
+    Value: 962
+  Exists: 1
+--- !u!114 &114610820825827056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Effects/Test
+  guid: d327866cbccb0847bc80b807d395062b
+  Banks:
+  - {fileID: 114835399414532324}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 17784
+--- !u!114 &114835399414532324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Nico\OneDrive\Dokumente\Quarter 2.4\2.4 Project Exposure\Turbine
+    Turmoil\Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.bank
+  lastModified: 636637156356288559
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 324096
   Exists: 1
 --- !u!114 &114853254095895354
 MonoBehaviour:
@@ -142,6 +208,50 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6000
+--- !u!114 &114891093559820054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Effects/Rotors
+  guid: 6852924e72286d41bd51bbcaee13d71c
+  Banks:
+  - {fileID: 114835399414532324}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
+--- !u!114 &114903435693551192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Instruction
+  guid: fadee2120cbce14281e3ce9193ff6e57
+  Banks:
+  - {fileID: 114835399414532324}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3024
 --- !u!114 &114906181630573934
 MonoBehaviour:
   m_ObjectHideFlags: 0
