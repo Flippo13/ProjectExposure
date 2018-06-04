@@ -13,17 +13,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114490050010079902}
-  - {fileID: 114835399414532324}
+  - {fileID: 114030109620968810}
   EditorEvents:
   - {fileID: 114160219813448002}
   - {fileID: 114891093559820054}
   - {fileID: 114478031789399904}
   - {fileID: 114903435693551192}
   - {fileID: 114610820825827056}
-  MasterBankRef: {fileID: 114835399414532324}
+  MasterBankRef: {fileID: 114030109620968810}
   StringsBankRef: {fileID: 114490050010079902}
-  stringsBankWriteTime: 636637156356388479
+  stringsBankWriteTime: 636637156350000000
   cacheVersion: 2
+--- !u!114 &114030109620968810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Eigene Dateien\OneDrive\Dokumente\Quarter 2.4\2.4 Project Exposure\Turbine
+    Turmoil\Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.bank
+  lastModified: 636637156350000000
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 324096
+  Exists: 1
 --- !u!114 &114160219813448002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,7 +57,7 @@ MonoBehaviour:
   Path: event:/Gameplay/Turbine
   guid: 4653aa5c1f97df459e265fda02ba051b
   Banks:
-  - {fileID: 114835399414532324}
+  - {fileID: 114030109620968810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -119,7 +138,7 @@ MonoBehaviour:
   Path: event:/Companion/Voicelines/Reinforcement
   guid: 6ad8637491f4ca4c8f8cc007329abbe4
   Banks:
-  - {fileID: 114835399414532324}
+  - {fileID: 114030109620968810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -139,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636637156356388479
+  lastModified: 636637156350000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -159,7 +178,7 @@ MonoBehaviour:
   Path: event:/Companion/Effects/Test
   guid: d327866cbccb0847bc80b807d395062b
   Banks:
-  - {fileID: 114835399414532324}
+  - {fileID: 114030109620968810}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -185,7 +204,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 324096
-  Exists: 1
+  Exists: 0
 --- !u!114 &114853254095895354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +241,7 @@ MonoBehaviour:
   Path: event:/Companion/Effects/Rotors
   guid: 6852924e72286d41bd51bbcaee13d71c
   Banks:
-  - {fileID: 114835399414532324}
+  - {fileID: 114030109620968810}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -244,7 +263,7 @@ MonoBehaviour:
   Path: event:/Companion/Voicelines/Instruction
   guid: fadee2120cbce14281e3ce9193ff6e57
   Banks:
-  - {fileID: 114835399414532324}
+  - {fileID: 114030109620968810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

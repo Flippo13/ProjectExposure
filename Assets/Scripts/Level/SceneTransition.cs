@@ -5,26 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour {
 
-    public int sceneIndex;
+    public int nextSceneIndex;
 
     private AsyncOperation _nextScene;
 
+    private Collider _collider;
+
     public void Awake() {
         StartCoroutine(LoadYourAsyncScene());
+
+        _collider = GetComponent<Collider>();
+        SetStatus(false); //disable the collider
     }
 
     public void OnTriggerEnter(Collider other) {
+        //enable scene loading
         if(other.gameObject.tag == Tags.Player) {
             _nextScene.allowSceneActivation = true;
         }
     }
 
     IEnumerator LoadYourAsyncScene() {
-        _nextScene = SceneManager.LoadSceneAsync(sceneIndex);   
+        _nextScene = SceneManager.LoadSceneAsync(nextSceneIndex);   
 
         // Wait until the asynchronous scene fully loads
         while (!_nextScene.isDone) {
             yield return null;
         }
+    }
+
+    public void SetStatus(bool status) {
+        //set collider according to the status
+        _collider.enabled = status;
     }
 }

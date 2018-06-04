@@ -36,7 +36,7 @@
 		void vert(inout appdata_full v)
 		{
 			float noise = tex2Dlod(_NoiseTexture, float4(v.texcoord.xy, 0, 0)).rgb;
-			v.vertex.xyz += v.normal - (v.vertex.xyz * (noise * _Deform));
+			v.vertex.xyz -= v.vertex.xyz * noise * _Deform; //my "fix"
 		}
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
