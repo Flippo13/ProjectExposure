@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4794453732933698}
   - component: {fileID: 33810119459755408}
   - component: {fileID: 23120113096442420}
-  m_Layer: 8
+  - component: {fileID: 65361953984204218}
+  - component: {fileID: 54050824938366862}
+  m_Layer: 9
   m_Name: TrashAlex_CokeBottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1966359263568222}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.505653, y: 0.16032603, z: 0.60143137}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: -0.02626817, y: 0.16032602, z: -0.0257001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 97dd6baea5e7fa34e92cf6c39ed6da64, type: 2}
+  - {fileID: 2100000, guid: 9a1d066fdc5dc9148b5b6a2873d706dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +85,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1966359263568222}
   m_Mesh: {fileID: 4300012, guid: 2a2b992da9bf65f4b8a53e8b71771e32, type: 3}
+--- !u!54 &54050824938366862
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966359263568222}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65361953984204218
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966359263568222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06499988, y: 0.16910052, z: 0.064993516}
+  m_Center: {x: 0.00000009872019, y: 0, z: -0.000000011175871}
