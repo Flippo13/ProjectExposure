@@ -91,19 +91,13 @@ public class Cable : MonoBehaviour {
             Vector3 force = -springConstant * (distance.magnitude - desiredDistance) * Vector3.Normalize(distance) - damping * rVel;
 
            
-            cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
-
-            cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
+            if(i != cableNodesList.Count - 1)
+                cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
+            if (i+1 != cableNodesList.Count - 1)
+                cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
         }
 
         float currentRopeLength = Vector3.Distance(cableStart.transform.position, cableEnd.transform.position);
-
-        if (currentRopeLength > maxRopeLength)
-        {
-            cableEnd.transform.position = _startPos;
-
-            cableEnd.transform.parent = null; 
-        }
 
         Vector3[] positions = new Vector3[cableNodesList.Count];
 
