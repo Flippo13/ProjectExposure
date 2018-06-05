@@ -6,6 +6,7 @@ using FMODUnity;
 //objective information container
 public class CompanionObjective : MonoBehaviour {
 
+    //default information
     public ObjectiveType objectiveType;
     public ObjectiveTask objectiveTask;
 
@@ -17,7 +18,9 @@ public class CompanionObjective : MonoBehaviour {
 
     public float reinforcementInterval;
 
+    //task dependant information
     public int trashAmount;
+    public SceneTransition sceneTransition;
 
     private ObjectiveStatus _status;
 

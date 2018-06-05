@@ -14,4 +14,6 @@ public class CompanionAnimation : MonoBehaviour {
     public bool TransformedBack() {
         return transformationAnimation.GetCurrentAnimatorStateInfo(0).IsName("Static");
     }
+
+
 }

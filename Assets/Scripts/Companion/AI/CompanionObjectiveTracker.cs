@@ -80,25 +80,39 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         _startTrash = trashCount;
     }
 
-    //execute the minigame behaviour (track it)
+    //returns true, if the objective is still being tracked, otherwise returns false
     public bool TrackObjective(int trashCount) {
         switch (_currentObjective.objectiveTask) {
+            case ObjectiveTask.Talk:
+                return false; //needs no tracking
 
             case ObjectiveTask.Cleanup:
+                //collected enough trash
                 if (trashCount - _startTrash >= _currentObjective.trashAmount) return false;
 
                 break;
 
-            case ObjectiveTask.Place:
+            case ObjectiveTask.Choose:
+                break;
 
+            case ObjectiveTask.Place:
+                break;
+
+            case ObjectiveTask.PlugIn:
                 break;
 
             case ObjectiveTask.PowerOn:
+                break;
+
+            case ObjectiveTask.Assemble:
 
                 break;
 
-            case ObjectiveTask.SideTask:
+            case ObjectiveTask.NextLevel:
+                _currentObjective.sceneTransition.SetStatus(true); //activate the transition collider
+                return false;
 
+            case ObjectiveTask.Event:
                 break;
 
             default:

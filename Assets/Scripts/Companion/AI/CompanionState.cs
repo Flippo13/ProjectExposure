@@ -23,11 +23,15 @@ public enum ObjectiveStatus {
 }
 
 public enum ObjectiveTask {
+    Talk, //talk about something, no actual objective
     Cleanup, //clean trash
+    Choose, //choose the location for the minigame
     Place, //place turbine
+    PlugIn, //plug in the cable into the turbine
     PowerOn, //power on turbine
-    SideTask //points of interest
-    //more
+    Assemble, //pick up parts from the turbine and reassemble them
+    NextLevel, //enable level transition
+    Event //points of interest, maybe more specification (side objecitves)
 }
 
 public enum AudioSourceType {

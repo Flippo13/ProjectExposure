@@ -7,13 +7,16 @@ using UnityEditor;
 [CanEditMultipleObjects]
 public class ObjectiveEditor : Editor {
 
+    //default props
     SerializedProperty objectiveTypeProp;
     SerializedProperty objectiveTaskProp;
     SerializedProperty instructionClipProp;
     SerializedProperty reinforcementClipProp;
     SerializedProperty reinforcementIntervalProp;
 
+    //task dependant props
     SerializedProperty trashAmountProp;
+    SerializedProperty sceneTransitionProp;
 
     private CompanionObjective _objective;
 
@@ -25,6 +28,7 @@ public class ObjectiveEditor : Editor {
         reinforcementIntervalProp = serializedObject.FindProperty("reinforcementInterval");
 
         trashAmountProp = serializedObject.FindProperty("trashAmount");
+        sceneTransitionProp = serializedObject.FindProperty("sceneTransition");
 
         _objective = (CompanionObjective)target;
     }
@@ -42,14 +46,38 @@ public class ObjectiveEditor : Editor {
                 EditorGUILayout.PropertyField(objectiveTaskProp, new GUIContent("Objective Task"));
 
                 switch (task) {
+                    case ObjectiveTask.Talk:
+                        break;
+
                     case ObjectiveTask.Cleanup:
                         EditorGUILayout.PropertyField(trashAmountProp, new GUIContent("Trash Amount"));
                         break;
 
+                    case ObjectiveTask.Choose:
+                        break;
+
                     case ObjectiveTask.Place:
+
+                        break;
+
+                    case ObjectiveTask.PlugIn:
+
                         break;
 
                     case ObjectiveTask.PowerOn:
+
+                        break;
+
+                    case ObjectiveTask.Assemble:
+
+                        break;
+
+                    case ObjectiveTask.NextLevel:
+                        EditorGUILayout.PropertyField(sceneTransitionProp, new GUIContent("Scene Transition"));
+                        break;
+
+                    case ObjectiveTask.Event:
+
                         break;
 
                     default:
@@ -59,13 +87,14 @@ public class ObjectiveEditor : Editor {
                 break;
 
             case ObjectiveType.Side:
-                _objective.objectiveTask = ObjectiveTask.SideTask;
+                _objective.objectiveTask = ObjectiveTask.Event;
                 break;
 
             default:
                 break;
         }
 
+        //default properties
         EditorGUILayout.PropertyField(instructionClipProp, new GUIContent("Instruction Clip"));
         EditorGUILayout.PropertyField(reinforcementClipProp, new GUIContent("Reinforcement Clip"));
         EditorGUILayout.PropertyField(reinforcementIntervalProp, new GUIContent("Reinforcement Interval"));
