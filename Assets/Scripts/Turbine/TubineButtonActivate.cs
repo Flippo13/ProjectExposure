@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TubineButtonActivate : MonoBehaviour {
+public class TurbineButtonActivate : MonoBehaviour {
 
     private bool _active; 
 
