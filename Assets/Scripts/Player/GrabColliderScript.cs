@@ -12,11 +12,13 @@ public class GrabColliderScript : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag != Tags.Companion) return;
+        Debug.Log("Companion entered hand collider");
         _inCollider = true;
     }
 
     public void OnTriggerExit(Collider other) {
         if (other.gameObject.tag != Tags.Companion) return;
+        Debug.Log("Companion exited hand collider");
         _inCollider = false;
     }
 

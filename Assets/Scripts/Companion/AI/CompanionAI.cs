@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class CompanionAI : MonoBehaviour {
 
     public Transform companionDestination;
+    public CompanionGrabber grabber;
 
     public float interactionRadius;
     public float grabRadius;
@@ -182,7 +183,7 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private void EnterState(CompanionState state) {
-        Debug.Log("Entering state " + state);
+        //Debug.Log("Entering state " + state);
 
         switch (state) {
 
@@ -237,7 +238,10 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(false);
                 _model.ActivateVacuum();
-                
+
+                _navigator.SetGrabbableStatus(true);
+                grabber.BeginGrabbing();
+
                 break;
 
             default:
@@ -249,13 +253,14 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private void ExitState(CompanionState state) {
-        Debug.Log("Leaving state " + state);
+        //Debug.Log("Leaving state " + state);
 
         switch (state) {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
                 _navigator.SetGrabbableStatus(false); //disable grabbale script
                 _navigator.ResetOnGround(); //reset the on ground bool to check for ground collision
+                grabber.StopGrabbing();
 
                 transform.position = companionDestination.transform.position + companionDestination.forward.normalized;
 

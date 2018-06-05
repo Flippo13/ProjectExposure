@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 136068163222492536}
   m_Layer: 2
   m_Name: VacuumArea
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 114939523589656036}
   m_Layer: 2
   m_Name: VacuumGun
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4396,7 +4396,8 @@ MonoBehaviour:
   grabEnd: 0.35
   m_parentHeldObject: 0
   m_gripTransform: {fileID: 4934665299209434}
-  m_grabVolumes: []
+  m_grabVolumes:
+  - {fileID: 135340176072211496}
   m_controller: 1
   m_parentTransform: {fileID: 0}
 --- !u!120 &120502031824508692

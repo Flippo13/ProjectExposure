@@ -48,6 +48,7 @@ public class CompanionGrabber : OVRGrabber {
     //is called in fixed update
     protected override void CheckForGrabOrRelease(float prevFlex) {
         if(_companionMode) {
+            return;
             //different input mode for the companion
             if (m_prevFlex >= grabBegin && !_grabbingInput) {
                 Debug.Log("Grabber grab pressed");
@@ -62,6 +63,14 @@ public class CompanionGrabber : OVRGrabber {
             base.CheckForGrabOrRelease(prevFlex);
         }
 
+    }
+
+    public void BeginGrabbing() {
+        GrabBegin();
+    }
+
+    public void StopGrabbing() {
+        GrabEnd();
     }
 
     public void RemoveGrabCandidate(Transform grabbableTransform) {
