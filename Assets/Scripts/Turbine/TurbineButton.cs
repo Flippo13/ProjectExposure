@@ -10,7 +10,7 @@ public class TurbineButton : MonoBehaviour {
     [SerializeField]
     private UnityEvent _turbineButtonEvent;
 
-    public TubineButtonActivate _turbineButtonPressed; 
+    public TurbineButtonActivate _turbineButtonPressed; 
 
 	// Use this for initialization
 	void Start () {

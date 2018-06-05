@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Turbine : MonoBehaviour {
 
+    public Transform turbineArea;
+    public float dropTime;
+    public float setHeight; 
+    private Renderer _rend;
 
-    private Renderer _rend; 
+    private BoxCollider _col;
+    private Vector3 landPos;
 
-	// Use this for initialization
-	void Start () {
-        _rend = GetComponentInChildren<Renderer>(); 
+    // Use this for initialization
+    void Start () {
+        _rend = GetComponentInChildren<Renderer>();
+        _col = GetComponent<BoxCollider>();
 	}
 	
 	// Update is called once per frame
@@ -19,6 +25,6 @@ public class Turbine : MonoBehaviour {
 
     public void Activate()
     {
-        _rend.material.color = new Color(0.3f, 0.9f, 0.4f);
+        Debug.Log("I still need to have an animation and sound that shows that I work!");
     }
 }
