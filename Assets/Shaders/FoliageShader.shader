@@ -3,7 +3,9 @@ Shader "ProjectExposure/FoliageShader" {
 
 	Properties{
 		_MainTex("Texture", 2D) = "white" {}
-	_Color("Color", Color) = (1,1,1,1)
+		_MetallicSmoothness("Metallic/Smoothness", 2D) = "white" {}
+		_Smoothness("Smoothness", Range(0,1)) = 0.0
+		_Color("Color", Color) = (1,1,1,1)
 		_AlphaCutOff("Alpha Cutoff", float) = 1.0
 
 		[Header(Global Settings)]
@@ -43,12 +45,15 @@ Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" "DisableBatching" = "
 	Blend SrcAlpha OneMinusSrcAlpha
 
 CGPROGRAM
-#pragma surface surf Lambert vertex:vert addshadow fullforwardshadows 
+#pragma surface surf Standard vertex:vert addshadow fullforwardshadows 
 #pragma target 3.0
-//#include "AutoLight.cginc"
+#include "AutoLight.cginc"
+#pragma shader_feature _METALLICGLOSSMAP
 
-		sampler2D _MainTex;
+	sampler2D _MainTex;
+	sampler2D _MetallicSmoothness;
 	float4 _Color;
+	half _Smoothness;
 
 	//YAxis
 	float _YAxis;
@@ -102,11 +107,15 @@ CGPROGRAM
 		}
 	}
 
-	void surf(Input IN, inout SurfaceOutput o)
+	void surf(Input IN, inout SurfaceOutputStandard o)
 	{
+		fixed4 _MetallicSmoothnesssColor = tex2D(_MetallicSmoothness, IN.uv_MainTex);
 		fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+		o.Metallic = _MetallicSmoothnesssColor.rgb;
+		o.Smoothness = _Smoothness * _MetallicSmoothnesssColor.a;
 		if (c.a < _AlphaCutOff) discard;
 		o.Albedo = c.rgb;
+		
 	}
 
 	ENDCG
