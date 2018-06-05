@@ -49,7 +49,7 @@ public class Fog : MonoBehaviour
         _fogMaterial.SetFloat("_FogAmount", _FogAmount);
     }
 
-
+    [ImageEffectOpaque]
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         Graphics.Blit(source, destination, _fogMaterial);
