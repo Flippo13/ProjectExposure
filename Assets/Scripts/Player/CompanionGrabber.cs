@@ -50,9 +50,11 @@ public class CompanionGrabber : OVRGrabber {
         if(_companionMode) {
             //different input mode for the companion
             if (m_prevFlex >= grabBegin && !_grabbingInput) {
+                Debug.Log("Grabber grab pressed");
                 GrabBegin();
                 _grabbingInput = true;
             } else if (m_prevFlex <= grabEnd && _grabbingInput) {
+                Debug.Log("Grabber grab released");
                 GrabEnd();
                 _grabbingInput = false;
             }

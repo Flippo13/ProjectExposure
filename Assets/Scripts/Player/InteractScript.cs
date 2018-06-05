@@ -30,18 +30,28 @@ public class InteractScript : MonoBehaviour {
     public void Suck() {
         if (vacuumArea.suckableObjectsList.Count == 0) return;
 
+        //expensive loop (better: make a suckable object script and cache components that need to be accessed)
         for (int i = 0; i < vacuumArea.suckableObjectsList.Count; i++) {
             Vector3 suckDir = (transform.position - vacuumArea.suckableObjectsList[i].position).normalized;
             Transform currentTransform = vacuumArea.suckableObjectsList[i];
             Renderer currentRenderer = currentTransform.GetComponent<Renderer>();
+            Rigidbody currentRigidbody = currentTransform.GetComponent<Rigidbody>();
 
+            currentRigidbody.isKinematic = true;
+
+            //translate to vacuum gun collider and scale down
             currentTransform.Translate(suckDir * suckSpeed);
             currentTransform.localScale = currentTransform.localScale * scaleFactor;
 
+            //apply deformation
             float newDeform = Mathf.Clamp01(currentRenderer.material.GetFloat("_Deform") + deformationStep);
             currentRenderer.material.SetFloat("_Deform", newDeform);
+
+            //potential fix
+            currentRigidbody.isKinematic = false;
         }
 
+        //clean up the grabber and vacuum area lists, then destroy the object
         for(int i = 0; i < _destroyedObjects.Count; i++) {
             vacuumArea.RemoveTransfromFromList(_destroyedObjects[i]);
             grabber.RemoveGrabCandidate(_destroyedObjects[i]);

@@ -6,12 +6,10 @@ using UnityEngine.AI;
 //state machine of the robot containing its behaviour
 public class CompanionAI : MonoBehaviour {
 
-    public Transform player;
     public Transform companionDestination;
 
     public float interactionRadius;
     public float grabRadius;
-    public float transformationRadius;
     public float scanRadius;
 
     public float maxIdleTime;
@@ -78,7 +76,7 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private bool InInterationRange() {
-        Vector3 deltaVec = player.transform.position - transform.position;
+        Vector3 deltaVec = companionDestination.transform.position - transform.position;
 
         return deltaVec.magnitude <= interactionRadius; //returns true, if the companion is in the interaction range of the player
     }
@@ -152,21 +150,20 @@ public class CompanionAI : MonoBehaviour {
         Vector3 deltaVec = companionDestination.transform.position - transform.position;
 
         if(deltaVec.magnitude > grabRadius) {
-            //travel to the hand
+            //travel to the hand (super fast)
             _navigator.SetSpeed(50f);
             _navigator.SetAcceleration(300f);
-            _navigator.SetDestination(companionDestination.transform.position - deltaVec.normalized); //slight offset
+            _navigator.SetDestination(companionDestination.transform.position - deltaVec.normalized * grabRadius); //slight offset
         } else {
             //destination reached
-            _navigator.SetSpeed(5f);
-            _navigator.SetAcceleration(12f);
+            _navigator.ResetSpeedAndAcceleration();
             _transformationState = TransformationState.None;
         }
     }
 
     private void TransformToRobot() {
         //if the animation is done and the navigator is on the ground again
-        if(_animation.TransformedBack()) {
+        if(_animation.TransformedBack() && _navigator.OnGround()) {
             //when done
             _transformationState = TransformationState.None;
         }
@@ -257,6 +254,8 @@ public class CompanionAI : MonoBehaviour {
         switch (state) {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
+                _navigator.SetGrabbableStatus(false); //disable grabbale script
+                _navigator.ResetOnGround(); //reset the on ground bool to check for ground collision
 
                 transform.position = companionDestination.transform.position + companionDestination.forward.normalized;
 
@@ -272,8 +271,8 @@ public class CompanionAI : MonoBehaviour {
 
         switch(_aiState) {
             case CompanionState.Inactive:
-                //activate the companion
-                if ((_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q)) && InInterationRange()) {
+                //activate the companion whn pressing the call button
+                if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q)) {
                     SetState(CompanionState.Following);
                 }
                 break;
@@ -285,8 +284,8 @@ public class CompanionAI : MonoBehaviour {
 
                 if (!CheckForObjectives() && !InInterationRange()) { //if there is no objective in range and the player is out of range
                     //move to the player
-                    Vector3 deltaVec = transform.position - player.transform.position;
-                    Vector3 destination = player.transform.position + deltaVec.normalized * (interactionRadius - 1f / interactionRadius);
+                    Vector3 deltaVec = transform.position - companionDestination.transform.position;
+                    Vector3 destination = companionDestination.transform.position + deltaVec.normalized * interactionRadius;
 
                     _navigator.SetDestination(destination);
                 }
@@ -364,6 +363,7 @@ public class CompanionAI : MonoBehaviour {
                 //ready to be used as vacuum gun
 
                 if(_controls.GrabButtonPressed() && _controls.InCollider()) {
+                    Debug.Log("Companion Grab pressed");
                     SetState(CompanionState.Grabbed);
                 } else if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q) || _timer >= maxIdleTime) {
                     //if the call button was pressed again or the companion remained idle for too long
@@ -380,6 +380,8 @@ public class CompanionAI : MonoBehaviour {
                 //currently used a vacuum gun
 
                 if (!_controls.GrabButtonPressed()) {
+                    Debug.Log("Companion Grab released");
+
                     //transform back
                     ClearQueue();
                     QueueState(CompanionState.Following);
