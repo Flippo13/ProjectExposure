@@ -6,16 +6,26 @@ ModelImporter:
     100000: //RootNode
     100002: PowerHub_LOD0
     100004: PowerHub_LOD1
+    100006: Power_Hub_LOD0
+    100008: Power_Hub_LOD1
     400000: //RootNode
     400002: PowerHub_LOD0
     400004: PowerHub_LOD1
+    400006: Power_Hub_LOD0
+    400008: Power_Hub_LOD1
     2100000: AlexProps_Material
     2300000: PowerHub_LOD0
     2300002: PowerHub_LOD1
+    2300004: Power_Hub_LOD0
+    2300006: Power_Hub_LOD1
     3300000: PowerHub_LOD0
     3300002: PowerHub_LOD1
+    3300004: Power_Hub_LOD0
+    3300006: Power_Hub_LOD1
     4300000: PowerHub_LOD0
     4300002: PowerHub_LOD1
+    4300004: Power_Hub_LOD1
+    4300006: Power_Hub_LOD0
     20500000: //RootNode
   externalObjects:
   - first:
@@ -23,6 +33,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: AlexProps_Material
     second: {instanceID: 0}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hub
+    second: {fileID: 2100000, guid: 53e353037ed838542942b15c489ef342, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
