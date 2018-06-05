@@ -14,6 +14,7 @@ public class TurbineButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Physics.IgnoreCollision(GetComponent<Collider>(), transform.parent.GetComponent<Collider>());
     }
 	
 	// Update is called once per frame
@@ -21,7 +22,7 @@ public class TurbineButton : MonoBehaviour {
 	}
 
    private void OnCollisionStay(Collision other)
-    {
+   {
         if (other.collider.tag == "Player")
         {
             Debug.Log("Is being Pressed");
@@ -31,7 +32,7 @@ public class TurbineButton : MonoBehaviour {
                 Debug.Log("Invoke Event");
             }
         }
-    }
+   }
 
 
 }
