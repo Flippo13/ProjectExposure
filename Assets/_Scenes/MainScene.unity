@@ -218,36 +218,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114075422003605136, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
-        type: 2}
-      propertyPath: rightGrabCollider
-      value: 
-      objectReference: {fileID: 771854881}
-    - target: {fileID: 114075422003605136, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
-        type: 2}
-      propertyPath: interact
-      value: 
-      objectReference: {fileID: 1864688887}
-    - target: {fileID: 114639591843888770, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
-        type: 2}
-      propertyPath: vacuumModel
-      value: 
-      objectReference: {fileID: 1864688886}
-    - target: {fileID: 114730599303197376, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
-        type: 2}
-      propertyPath: objectiveLog
-      value: 
-      objectReference: {fileID: 1995770532}
     - target: {fileID: 114924124450073466, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
         type: 2}
       propertyPath: companionDestination
       value: 
       objectReference: {fileID: 771854882}
-    - target: {fileID: 114924124450073466, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
+    - target: {fileID: 114730599303197376, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
         type: 2}
-      propertyPath: grabber
+      propertyPath: objectiveLog
       value: 
-      objectReference: {fileID: 1128978901}
+      objectReference: {fileID: 1995770532}
+    - target: {fileID: 114639591843888770, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
+        type: 2}
+      propertyPath: vacuumModel
+      value: 
+      objectReference: {fileID: 1864688886}
+    - target: {fileID: 114075422003605136, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
+        type: 2}
+      propertyPath: interact
+      value: 
+      objectReference: {fileID: 1864688887}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acd9ac6147ecf2f4c884d7a2d3f83885, type: 2}
   m_IsPrefabParent: 0
@@ -595,12 +585,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4903139573013678, guid: b30d8913a5e911f478cbdac1186c8430,
     type: 2}
   m_PrefabInternal: {fileID: 560949275}
---- !u!114 &771854881 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114523795588147518, guid: 056bef30e01acd749a994dc39334eaad,
-    type: 2}
-  m_PrefabInternal: {fileID: 1128978900}
-  m_Script: {fileID: 11500000, guid: 8f9990c07ab70ed41a68105f9e34f705, type: 3}
 --- !u!4 &771854882 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4154815646678618, guid: 056bef30e01acd749a994dc39334eaad,
@@ -775,12 +759,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 056bef30e01acd749a994dc39334eaad, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1128978901 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114624702429693224, guid: 056bef30e01acd749a994dc39334eaad,
-    type: 2}
-  m_PrefabInternal: {fileID: 1128978900}
-  m_Script: {fileID: 11500000, guid: c26b068c78237b84dade3b727c12eedd, type: 3}
 --- !u!1001 &1162703822
 Prefab:
   m_ObjectHideFlags: 0

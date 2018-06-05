@@ -7384,7 +7384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d74402b7024f0347b023c5736513d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightGrabCollider: {fileID: 0}
   interact: {fileID: 0}
 --- !u!114 &114294586622039314
 MonoBehaviour:
@@ -7398,7 +7397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_allowOffhandGrab: 1
-  m_snapPosition: 0
+  m_snapPosition: 1
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints:
@@ -7482,7 +7481,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   companionDestination: {fileID: 0}
-  grabber: {fileID: 0}
   interactionRadius: 5
   grabRadius: 2.5
   scanRadius: 40
@@ -7499,7 +7497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24101bc2dcae62644ba89c6a96e2be73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigAnimator: {fileID: 0}
+  rigAnimator: {fileID: 95314270100356878}
   transformationAnimation: {fileID: 95950373989423312}
 --- !u!135 &135062145866461420
 SphereCollider:

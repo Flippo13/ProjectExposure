@@ -12,6 +12,8 @@ public class CompanionGrabber : OVRGrabber {
     }
 
     void OnTriggerEnter(Collider otherCollider) {
+        if (otherCollider.tag == Tags.Player) return; //needed to ignore the vacuum area in the child
+
         if (otherCollider.tag == Tags.Companion) _companionMode = true;
         else _companionMode = false;
 
@@ -26,7 +28,9 @@ public class CompanionGrabber : OVRGrabber {
     }
 
     void OnTriggerExit(Collider otherCollider) {
-        if(otherCollider.tag == Tags.Companion) _companionMode = false;
+        if (otherCollider.tag == Tags.Player) return; //needed to ignore the vacuum area in the child
+
+        if (otherCollider.tag == Tags.Companion) _companionMode = false;
 
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
         if (grabbable == null || !grabbable.enabled) return;
@@ -48,7 +52,7 @@ public class CompanionGrabber : OVRGrabber {
     //is called in fixed update
     protected override void CheckForGrabOrRelease(float prevFlex) {
         if(_companionMode) {
-            return;
+            return; //let companion ai handle it for now
             //different input mode for the companion
             if (m_prevFlex >= grabBegin && !_grabbingInput) {
                 Debug.Log("Grabber grab pressed");
@@ -65,12 +69,17 @@ public class CompanionGrabber : OVRGrabber {
 
     }
 
+    //wrappers to gain access to the protected functions
     public void BeginGrabbing() {
         GrabBegin();
     }
 
     public void StopGrabbing() {
         GrabEnd();
+    }
+
+    public bool InGrabCollider() {
+        return _companionMode; //if the companion is in the trigger
     }
 
     public void RemoveGrabCandidate(Transform grabbableTransform) {

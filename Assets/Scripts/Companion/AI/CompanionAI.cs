@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public class CompanionAI : MonoBehaviour {
 
     public Transform companionDestination;
-    public CompanionGrabber grabber;
 
     public float interactionRadius;
     public float grabRadius;
@@ -27,6 +26,7 @@ public class CompanionAI : MonoBehaviour {
     private CompanionAudio _audio;
     private CompanionAnimation _animation;
     private CompanionObjectiveTracker _tracker;
+    private CompanionGrabber _grabber;
     private CompanionDebug _debug;
 
     private float _timer;
@@ -40,6 +40,7 @@ public class CompanionAI : MonoBehaviour {
         _audio = GetComponent<CompanionAudio>();
         _animation = GetComponent<CompanionAnimation>();
         _tracker = GetComponent<CompanionObjectiveTracker>();
+        _grabber = companionDestination.GetComponent<CompanionGrabber>();
         _debug = GetComponent<CompanionDebug>();
 
         //if first boat scene: Inactive, otherwise: Following
@@ -240,7 +241,7 @@ public class CompanionAI : MonoBehaviour {
                 _model.ActivateVacuum();
 
                 _navigator.SetGrabbableStatus(true);
-                grabber.BeginGrabbing();
+                _grabber.BeginGrabbing();
 
                 break;
 
@@ -258,9 +259,9 @@ public class CompanionAI : MonoBehaviour {
         switch (state) {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
+                _grabber.StopGrabbing(); //end grabbing
                 _navigator.SetGrabbableStatus(false); //disable grabbale script
                 _navigator.ResetOnGround(); //reset the on ground bool to check for ground collision
-                grabber.StopGrabbing();
 
                 transform.position = companionDestination.transform.position + companionDestination.forward.normalized;
 
@@ -367,7 +368,7 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Useable:
                 //ready to be used as vacuum gun
 
-                if(_controls.GrabButtonPressed() && _controls.InCollider()) {
+                if(_controls.GrabButtonPressed() && _grabber.InGrabCollider()) {
                     Debug.Log("Companion Grab pressed");
                     SetState(CompanionState.Grabbed);
                 } else if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q) || _timer >= maxIdleTime) {
