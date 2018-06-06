@@ -5,19 +5,31 @@ using UnityEngine;
 public class CompanionAnimation : MonoBehaviour {
 
     public Animator rigAnimator;
-    public Animator transformationAnimation;
 
-	public void SetVacuumState(bool state) {
-        transformationAnimation.SetBool("Vacuum_state", state);
+    private CompanionNavigator _navigator;
+
+    public void Awake() {
+        _navigator = GetComponent<CompanionNavigator>();
     }
 
-    public bool TransformedBack() {
-        return transformationAnimation.GetCurrentAnimatorStateInfo(0).IsName("Static");
+    public void Update() {
+        AnimateMovement();
+    }
+
+    private void AnimateMovement() {
+        //set animation according to the companions movement
+        if (_navigator.GetAgentVelocity().magnitude <= 0 && GetMovingBool()) {
+            SetMovingBool(false);
+        } else if (_navigator.GetAgentVelocity().magnitude > 0 && !GetMovingBool()) {
+            SetMovingBool(true);
+        }
     }
 
     public void SetMovingBool(bool status) {
         rigAnimator.SetBool("moving", status);
     }
 
-
+    public bool GetMovingBool() {
+        return rigAnimator.GetBool("moving");
+    }
 }

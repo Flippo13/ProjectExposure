@@ -13,8 +13,6 @@ public class TeleporterScript : MonoBehaviour {
     public float gravityMultiplier;
     public int maxDistance;
 
-    public bool disableLineOnTeleport;
-
     private Rigidbody _rigidbody;
     private LineRenderer _lineRenderer;
     private Material _lineRendererMat;
@@ -24,9 +22,6 @@ public class TeleporterScript : MonoBehaviour {
     private GameObject _indicatorInstance;
     private ProjectileScript _projectileScript;
 
-    private bool _blockedTeleport;
-    private bool _allowTeleport;
-    private bool _drawIndicator;
     private bool _triggerPressed;
 
     private TeleportFade _fade;
@@ -48,66 +43,30 @@ public class TeleporterScript : MonoBehaviour {
 
         _teleportPath = new List<Vector3>();
 
-        _blockedTeleport = false;
-        _allowTeleport = false;
-        _drawIndicator = true;
         _triggerPressed = false;
 
         _fade = Camera.main.GetComponent<TeleportFade>();
     }
 
     public void Update() {
-        if(disableLineOnTeleport && (OVRInput.GetUp(OVRInput.Button.Three) || Input.GetMouseButtonUp(0))) {
-            _drawIndicator = true;
-        }
+        if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.5f || Input.GetMouseButton(0)) {
+            //pressing
+            _triggerPressed = true;
 
-        if(OVRInput.Get(OVRInput.Button.Three) || Input.GetMouseButton(0)) {
-            if(disableLineOnTeleport) {
-                if (_drawIndicator) DrawTeleportationLine();
-            } else {
-                DrawTeleportationLine();
-            }
-            
-            _allowTeleport = true;
-        }
+            DrawTeleportationLine();
+        } else if((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.5f || Input.GetMouseButtonUp(0)) && _triggerPressed) {
+            //released
+            _triggerPressed = false;
 
-        if (OVRInput.GetUp(OVRInput.Button.Three) || Input.GetMouseButtonUp(0)) {
+            TraceTeleportationLine();
+
+            //disable line renderer 
+            _indicatorInstance.SetActive(false);
+            _lineRenderer.enabled = false;
+
             //disable indicator
             _indicatorInstance.SetActive(false);
             _lineRenderer.enabled = false;
-            _allowTeleport = false;
-        }
-
-        if((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) != 0 && !_triggerPressed) || Input.GetKeyDown(KeyCode.E)) {
-            //pressed
-            _triggerPressed = true;
-
-            //teleport
-            if(disableLineOnTeleport) {
-                if (!_blockedTeleport && _allowTeleport && _drawIndicator && _projectileScript == null) {
-                    TraceTeleportationLine();
-
-                    //disable line renderer 
-                    _indicatorInstance.SetActive(false);
-                    _lineRenderer.enabled = false;
-                    _allowTeleport = false;
-                    if (disableLineOnTeleport) _drawIndicator = false;
-                }
-            } else {
-                if (!_blockedTeleport && _allowTeleport && _projectileScript == null) {
-                    TraceTeleportationLine();
-
-                    //disable line renderer 
-                    _indicatorInstance.SetActive(false);
-                    _lineRenderer.enabled = false;
-                    _allowTeleport = false;
-                }
-            }
-        }
-
-        if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) == 0 && _triggerPressed) {
-            //released
-            _triggerPressed = false;
         }
 
         if(_projectileScript != null && _projectileScript.IsTeleported()) {
@@ -121,7 +80,6 @@ public class TeleporterScript : MonoBehaviour {
         Vector3[] arcArray = GetArcArray();
 
         _lineRenderer.enabled = true;
-        _lineRenderer.SetPositions(arcArray);
 
         _teleportPath.Clear();
         _teleportPath.Add(arcArray[0]); // first point
@@ -136,7 +94,7 @@ public class TeleporterScript : MonoBehaviour {
 
             if(Physics.Raycast(ray, out hit, deltaVec.magnitude)) {
                 _teleportPoint = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z);
-                _teleportPath.Add(_teleportPoint); //add last teleport point to the list to trace
+                _teleportPath[_teleportPath.Count - 1] = _teleportPoint; //set last teleport point to the list to trace
 
                 Vector3 lookAt = Vector3.Cross(-hit.normal, _indicatorInstance.transform.right); // reverse it if it is down
                 lookAt = lookAt.y < 0 ? -lookAt : lookAt; //look at the hits relative up, using the normal as the up vector
@@ -144,11 +102,18 @@ public class TeleporterScript : MonoBehaviour {
                 _indicatorInstance.transform.position = hit.point;
                 _indicatorInstance.transform.rotation = Quaternion.LookRotation(lookAt, hit.normal); //look at the hits relative up, using the normal as the up vector
 
+                Debug.Log(_teleportPath.Count);
+
+                //adjust line renderer
+                _lineRenderer.positionCount = _teleportPath.Count;
+                _lineRenderer.SetPositions(_teleportPath.ToArray());
+                _lineRenderer.SetPosition(_teleportPath.Count - 1, hit.point);
+
                 CheckValidTeleport(hit);
 
                 return; //we found our hit, so we dont need to raycast further
             } else if(i == arcArray.Length - 1) {
-                //last position in the array reachd and still no target hit
+                //last position in the array reached and still no target hit
 
                 ray = new Ray(arcArray[i], Vector3.down);
 
@@ -164,6 +129,7 @@ public class TeleporterScript : MonoBehaviour {
 
                     //adjust line renderer and draw a line straight to the ground
                     _lineRenderer.positionCount = lineResolution + 1;
+                    _lineRenderer.SetPositions(arcArray);
                     _lineRenderer.SetPosition(lineResolution, hit.point);
 
                     CheckValidTeleport(hit);
@@ -212,15 +178,13 @@ public class TeleporterScript : MonoBehaviour {
     }
 
     private void CheckValidTeleport(RaycastHit hit) {
-        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("IgnoreTeleport") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Suckable")) {
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("IgnoreTeleport") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Suckable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Cable Node")) {
             //if we hit a collider that should not allow teleporting
             _lineRendererMat.SetFloat("_Blocked", 1f);
             _indicatorInstance.SetActive(false);
-            _blockedTeleport = true;
         } else {
             _lineRendererMat.SetFloat("_Blocked", 0f);
             _indicatorInstance.SetActive(true);
-            _blockedTeleport = false;
         }
     }
 

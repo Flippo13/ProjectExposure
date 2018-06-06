@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 114490050010079902}
-  - {fileID: 114000891727680386}
+  - {fileID: 114106516467829520}
+  - {fileID: 114509571126497846}
   EditorEvents:
-  - {fileID: 114160219813448002}
-  - {fileID: 114891093559820054}
-  - {fileID: 114478031789399904}
-  - {fileID: 114903435693551192}
-  - {fileID: 114610820825827056}
-  MasterBankRef: {fileID: 114000891727680386}
-  StringsBankRef: {fileID: 114490050010079902}
-  stringsBankWriteTime: 636637156356388479
+  - {fileID: 114560151955803488}
+  - {fileID: 114883029141632164}
+  - {fileID: 114419772667024688}
+  - {fileID: 114460648928552296}
+  - {fileID: 114980679975801768}
+  MasterBankRef: {fileID: 114509571126497846}
+  StringsBankRef: {fileID: 114106516467829520}
+  stringsBankWriteTime: 636639059665171450
   cacheVersion: 2
 --- !u!114 &114000891727680386
 MonoBehaviour:
@@ -62,6 +62,24 @@ MonoBehaviour:
   - Name: Desktop
     Value: 324096
   Exists: 0
+--- !u!114 &114106516467829520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.strings.bank
+  lastModified: 636639059665171450
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 952
+  Exists: 1
 --- !u!114 &114160219813448002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +161,50 @@ MonoBehaviour:
   - Name: Desktop
     Value: 172096
   Exists: 1
+--- !u!114 &114419772667024688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Reinforcement
+  guid: 6ad8637491f4ca4c8f8cc007329abbe4
+  Banks:
+  - {fileID: 114509571126497846}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6612
+--- !u!114 &114460648928552296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Instruction
+  guid: a5c317e98d08cc45bbdc5d6939a41d25
+  Banks:
+  - {fileID: 114509571126497846}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5500
 --- !u!114 &114478031789399904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +245,47 @@ MonoBehaviour:
   - Name: Desktop
     Value: 962
   Exists: 1
+--- !u!114 &114509571126497846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Eigene Dateien\OneDrive\Dokumente\Quarter 2.4\2.4 Project Exposure\Turbine
+    Turmoil\Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.bank
+  lastModified: 636639059665051779
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 355712
+  Exists: 1
+--- !u!114 &114560151955803488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Gameplay/Turbine
+  guid: 4653aa5c1f97df459e265fda02ba051b
+  Banks:
+  - {fileID: 114509571126497846}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 9276
 --- !u!114 &114610820825827056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +349,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6000
+--- !u!114 &114883029141632164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Effects/Rotors
+  guid: 6852924e72286d41bd51bbcaee13d71c
+  Banks:
+  - {fileID: 114509571126497846}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
 --- !u!114 &114891093559820054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,3 +436,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6876
+--- !u!114 &114980679975801768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Welcome
+  guid: ace7a8a5b20b9b4a9df806a0b5564ee3
+  Banks:
+  - {fileID: 114509571126497846}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2869

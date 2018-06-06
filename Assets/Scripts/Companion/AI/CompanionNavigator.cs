@@ -5,38 +5,10 @@ using UnityEngine.AI;
 
 public class CompanionNavigator : MonoBehaviour {
 
-    public float agentSpeed;
-    public float agentAcceleration;
-
     private NavMeshAgent _navAgent;
-    private Rigidbody _rigidbody;
-    private OVRGrabbable _grabbable;
-    private CompanionAnimation _animation;
-
-    private bool _onGround;
 
     public void Awake() {
         _navAgent = GetComponent<NavMeshAgent>();
-        _rigidbody = GetComponent<Rigidbody>();
-        _grabbable = GetComponent<OVRGrabbable>();
-        _animation = GetComponent<CompanionAnimation>();
-
-        SetAgentStatus(true);
-        ResetSpeedAndAcceleration(); //set to default
-    }
-
-    public void Update() {
-        if(_navAgent.velocity.magnitude <= 0) {
-            _animation.SetMovingBool(false);
-        } else {
-            _animation.SetMovingBool(true);
-        }
-    }
-
-    public void OnCollisionEnter(Collision collision) {
-        if (_navAgent.enabled) return; //only execute when the companion touches something while the navmeshagent in disabled
-
-        _onGround = true;
     }
 
     //set destination for the navmesh agent
@@ -44,39 +16,11 @@ public class CompanionNavigator : MonoBehaviour {
         _navAgent.SetDestination(destination);
     }
 
-    //enable or disable the navmesh agent
-    public void SetAgentStatus(bool status) {
-        _navAgent.enabled = status;
-        _rigidbody.isKinematic = status;
-        SetGrabbableStatus(!status);
-    }
-
-    public void SetGrabbableStatus(bool status) {
-        _grabbable.enabled = status;
-    }
-
-    public void SetAcceleration(float acceleration) {
-        _navAgent.acceleration = acceleration;
-    }
-
-    public void SetSpeed(float speed) {
-        _navAgent.speed = speed;
-    }
-
-    public void ResetSpeedAndAcceleration() {
-        _navAgent.speed = agentSpeed;
-        _navAgent.acceleration = agentAcceleration;
-    }
-
     public bool ReachedDestinaton() {
         return _navAgent.remainingDistance <= 0.1f;
     }
 
-    public void ResetOnGround() {
-        _onGround = false;
-    }
-
-    public bool OnGround() {
-        return _onGround;
+    public Vector3 GetAgentVelocity() {
+        return _navAgent.velocity;
     }
 }

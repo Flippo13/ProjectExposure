@@ -9,45 +9,36 @@ public class CompanionAI : MonoBehaviour {
     public Transform companionDestination;
 
     public float interactionRadius;
-    public float grabRadius;
-    public float scanRadius;
-
-    public float maxIdleTime;
+    public float objectiveScanRadius;
 
     public bool debug;
 
     private CompanionState _aiState;
-    private TransformationState _transformationState;
-    private List<CompanionState> _stateQueue;
 
     private CompanionControls _controls;
     private CompanionNavigator _navigator;
-    private CompanionModel _model;
     private CompanionAudio _audio;
     private CompanionAnimation _animation;
     private CompanionObjectiveTracker _tracker;
-    private CompanionGrabber _grabber;
+    private CompanionVacuum _vacuum;
     private CompanionDebug _debug;
 
     private float _timer;
 
     public void Awake() {
-        _stateQueue = new List<CompanionState>();
-
+        //get all relevant components
         _controls = GetComponent<CompanionControls>();
         _navigator = GetComponent<CompanionNavigator>();
-        _model = GetComponent<CompanionModel>();
         _audio = GetComponent<CompanionAudio>();
         _animation = GetComponent<CompanionAnimation>();
         _tracker = GetComponent<CompanionObjectiveTracker>();
-        _grabber = companionDestination.GetComponent<CompanionGrabber>();
+        _vacuum = GetComponent<CompanionVacuum>();
         _debug = GetComponent<CompanionDebug>();
 
         //if first boat scene: Inactive, otherwise: Following
         _debug.Init();
         _debug.SetRendererStatus(debug);
         EnterState(CompanionState.Inactive);
-        _transformationState = TransformationState.None;
     }
 
     public void Update() {
@@ -60,23 +51,6 @@ public class CompanionAI : MonoBehaviour {
         EnterState(newState);
     }
 
-    private void QueueState(CompanionState nextState) {
-        _stateQueue.Add(nextState);
-    }
-
-    private bool CheckQueueState() {
-        if (_stateQueue.Count == 0) return false;
-
-        SetState(_stateQueue[0]); //clean enter new state
-        _stateQueue.RemoveAt(0); //remove front state of the queue
-
-        return true;
-    }
-
-    private void ClearQueue() {
-        _stateQueue.Clear();
-    }
-
     private bool InInterationRange() {
         Vector3 deltaVec = companionDestination.transform.position - transform.position;
 
@@ -85,11 +59,8 @@ public class CompanionAI : MonoBehaviour {
 
     private bool CheckForCompanionCall() {
         if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q)) {
-            //call the companion and let it transform into the vacuum gun
-            ClearQueue();
-            QueueState(CompanionState.Useable);
-            SetState(CompanionState.Transforming);
-
+            //call the companion
+            SetState(CompanionState.Following);
             return true;
         }
 
@@ -108,13 +79,13 @@ public class CompanionAI : MonoBehaviour {
 
             float closest = Mathf.Min(mainDistance, sideDistance);
 
-            if (closest == mainDistance && mainDistance < scanRadius) {
+            if (closest == mainDistance && mainDistance < objectiveScanRadius) {
                 //if it is closer than the side objective and in scan radius
                 _tracker.SetCurrentObjective(mainObjective);
                 SetState(CompanionState.Traveling);
 
                 return true;
-            } else if (closest == sideDistance && sideDistance < scanRadius) {
+            } else if (closest == sideDistance && sideDistance < objectiveScanRadius) {
                 //if it is closer than the main objective and in scan radius
                 _tracker.SetCurrentObjective(sideObjective);
                 SetState(CompanionState.Roaming);
@@ -125,7 +96,7 @@ public class CompanionAI : MonoBehaviour {
             if(mainObjective == null && sideObjective != null) {
                 float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
 
-                if(sideDistance < scanRadius) {
+                if(sideDistance < objectiveScanRadius) {
                     _tracker.SetCurrentObjective(sideObjective);
                     SetState(CompanionState.Roaming);
 
@@ -135,7 +106,7 @@ public class CompanionAI : MonoBehaviour {
             } else if(sideObjective == null && mainObjective != null) {
                 float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
 
-                if(mainDistance < scanRadius) {
+                if(mainDistance < objectiveScanRadius) {
                     _tracker.SetCurrentObjective(mainObjective);
                     SetState(CompanionState.Traveling);
 
@@ -146,29 +117,6 @@ public class CompanionAI : MonoBehaviour {
 
         //nothing in scan radius
         return false;
-    }
-
-    private void TransformToVacuum() {
-        Vector3 deltaVec = companionDestination.transform.position - transform.position;
-
-        if(deltaVec.magnitude > grabRadius) {
-            //travel to the hand (super fast)
-            _navigator.SetSpeed(50f);
-            _navigator.SetAcceleration(300f);
-            _navigator.SetDestination(companionDestination.transform.position - deltaVec.normalized * grabRadius); //slight offset
-        } else {
-            //destination reached
-            _navigator.ResetSpeedAndAcceleration();
-            _transformationState = TransformationState.None;
-        }
-    }
-
-    private void TransformToRobot() {
-        //if the animation is done and the navigator is on the ground again
-        if(_animation.TransformedBack() && _navigator.OnGround()) {
-            //when done
-            _transformationState = TransformationState.None;
-        }
     }
 
     private void UpdateTracker() {
@@ -184,14 +132,9 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private void EnterState(CompanionState state) {
-        //Debug.Log("Entering state " + state);
+        Debug.Log("Entering state " + state);
 
         switch (state) {
-
-            case CompanionState.Following:
-                _model.ActivateRobot();
-                _navigator.SetAgentStatus(true);
-                break;
 
             case CompanionState.Traveling:
                 _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
@@ -214,34 +157,6 @@ public class CompanionAI : MonoBehaviour {
 
                 break;
 
-            case CompanionState.Transforming:
-                //preparing the correct transformation
-                if(_stateQueue.Count > 0) {
-                    if(_stateQueue[0] == CompanionState.Useable) {
-                        _transformationState = TransformationState.Vacuum;
-                        _model.ActivateTransformation();
-                        _animation.SetVacuumState(true);
-                    } else if(_stateQueue[0] == CompanionState.Following) {
-                        _transformationState = TransformationState.Robot;
-                        _model.ActivateTransformation();
-                        _animation.SetVacuumState(false);
-                    }
-                }
-
-                break;
-
-            case CompanionState.Useable:
-                _timer = 0f;
-                _navigator.SetAgentStatus(false);
-
-                break;
-
-            case CompanionState.Grabbed:
-                _debug.SetRendererStatus(false);
-                _model.ActivateVacuum();
-
-                break;
-
             default:
                 break;
         }
@@ -251,17 +166,9 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private void ExitState(CompanionState state) {
-        //Debug.Log("Leaving state " + state);
+        Debug.Log("Leaving state " + state);
 
         switch (state) {
-            case CompanionState.Grabbed:
-                _debug.SetRendererStatus(debug);
-                _navigator.ResetOnGround(); //reset the on ground bool to check for ground collision
-
-                transform.position = companionDestination.transform.position + companionDestination.forward.normalized;
-
-                break;
-
             default:
                 break;
         }
@@ -281,14 +188,18 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Following:
                 //idle/main state of the companion
 
-                if (CheckForCompanionCall()) return; //prioritise calling
+                if (_vacuum.GetVacuumState() == VacuumState.Free) {
+                    SetState(CompanionState.GettingVacuum);
+                }
 
                 if (!CheckForObjectives() && !InInterationRange()) { //if there is no objective in range and the player is out of range
                     //move to the player
-                    Vector3 deltaVec = transform.position - companionDestination.transform.position;
-                    Vector3 destination = companionDestination.transform.position + deltaVec.normalized * interactionRadius;
+                    Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
+                    Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
 
                     _navigator.SetDestination(destination);
+                } else if(InInterationRange()) {
+                    _navigator.SetDestination(transform.position); //stop following at interaction range
                 }
 
                 break;
@@ -341,58 +252,17 @@ public class CompanionAI : MonoBehaviour {
 
                 break;
 
-            case CompanionState.Transforming:
-                //tranform companion into gun or back to robot
+            case CompanionState.GettingVacuum:
+                //pick up or catch the vacuum gun
 
-                switch(_transformationState) {
-                    case TransformationState.Vacuum:
-                        TransformToVacuum();
-                        break;
+                Vector3 vacuumPos = _vacuum.GetVacuumTransform().position;
+                Vector3 deltaVecVacuum = vacuumPos - transform.position;
 
-                    case TransformationState.Robot:
-                        TransformToRobot();
-                        break;
+                _navigator.SetDestination(vacuumPos);
 
-                    default:
-                        CheckQueueState(); //either go to vacuum gun or follow state
-                        break;
-                }
-
-                break;
-
-            case CompanionState.Useable:
-                //ready to be used as vacuum gun
-
-                if(_controls.GrabButtonPressed() && _grabber.InGrabCollider()) {
-                    Debug.Log("Companion Grab pressed");
-                    SetState(CompanionState.Grabbed);
-                } else if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q) || _timer >= maxIdleTime) {
-                    //if the call button was pressed again or the companion remained idle for too long
-                    ClearQueue();
-                    QueueState(CompanionState.Following);
-                    SetState(CompanionState.Transforming);
-                }
-
-                _timer += Time.deltaTime;
-
-                break;
-
-            case CompanionState.Grabbed:
-                //currently used a vacuum gun
-
-                if (!_controls.GrabButtonPressed()) {
-                    Debug.Log("Companion Grab released");
-
-                    //transform back
-                    ClearQueue();
-                    QueueState(CompanionState.Following);
-                    SetState(CompanionState.Transforming);
-                    return;
-                }
-
-                //use vacuum gun
-                if (_controls.UseButtonPressed()) {
-                    _controls.UseVacuum(); //using Felix' vaccum gun script
+                if(deltaVecVacuum.magnitude <= 0.5f) {
+                    _vacuum.SetVacuumState(VacuumState.Companion);
+                    SetState(CompanionState.Following);
                 }
 
                 break;

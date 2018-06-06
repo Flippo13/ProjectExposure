@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CompanionGrabber : OVRGrabber {
+public class ObjectGrabber : OVRGrabber {
 
-    private bool _companionMode = false;
-    private bool _grabbingInput = false;
-
-    public void SetCompanionStatus(bool status) {
-        _companionMode = status;
-    }
+    private bool _vacuumMode;
 
     void OnTriggerEnter(Collider otherCollider) {
-        if (otherCollider.tag == Tags.Companion) _companionMode = true;
-        else _companionMode = false;
+        if (otherCollider.tag == Tags.Vacuum) {
+            _vacuumMode = true;
+        }
 
         // Get the grab trigger
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
@@ -26,7 +22,9 @@ public class CompanionGrabber : OVRGrabber {
     }
 
     void OnTriggerExit(Collider otherCollider) {
-        if (otherCollider.tag == Tags.Companion) _companionMode = false;
+        if (otherCollider.tag == Tags.Vacuum) {
+            _vacuumMode = false;
+        }
 
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
         if (grabbable == null || !grabbable.enabled) return;
@@ -45,27 +43,8 @@ public class CompanionGrabber : OVRGrabber {
         }
     }
 
-    //is called in fixed update
-    protected override void CheckForGrabOrRelease(float prevFlex) {
-        if(_companionMode) {
-            //different input mode for the companion
-            if (m_prevFlex >= grabBegin && !_grabbingInput) {
-                Debug.Log("Grabber grab pressed");
-                GrabBegin();
-                _grabbingInput = true;
-            } else if (m_prevFlex <= grabEnd && _grabbingInput) {
-                Debug.Log("Grabber grab released");
-                GrabEnd();
-                _grabbingInput = false;
-            }
-        } else {
-            base.CheckForGrabOrRelease(prevFlex);
-        }
-
-    }
-
-    public bool InGrabCollider() {
-        return _companionMode; //if the companion is in the trigger
+    public bool InVacuumMode() {
+        return _vacuumMode;
     }
 
     public void RemoveGrabCandidate(Transform grabbableTransform) {

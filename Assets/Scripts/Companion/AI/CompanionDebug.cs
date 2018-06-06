@@ -10,7 +10,7 @@ public class CompanionDebug : MonoBehaviour {
     public Material activeMaterial;
     public Material waitingMaterial;
     public Material busyMaterial;
-    public Material gunMaterial;
+    public Material vacuumMaterial;
 
     private Renderer _renderer;
 
@@ -32,16 +32,12 @@ public class CompanionDebug : MonoBehaviour {
                 _renderer.material = busyMaterial;
                 break;
 
-            case CompanionState.Transforming:
-                _renderer.material = busyMaterial;
-                break;
-
             case CompanionState.Waiting:
                 _renderer.material = waitingMaterial;
                 break;
 
-            case CompanionState.Useable:
-                _renderer.material = gunMaterial;
+            case CompanionState.GettingVacuum:
+                _renderer.material = vacuumMaterial;
                 break;
 
             default:
