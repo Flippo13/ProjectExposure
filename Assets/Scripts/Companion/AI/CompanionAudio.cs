@@ -15,7 +15,7 @@ public class CompanionAudio : MonoBehaviour {
         _audioTracks = new EventInstance[2];
 
         SetClip(motorSound, AudioSourceType.Effects);
-        PlayAudioSource(AudioSourceType.Effects);
+        //PlayAudioSource(AudioSourceType.Effects);
     }
 
     public void SetClip(string eventPath, AudioSourceType sourceType) {
