@@ -38,6 +38,7 @@ public class InteractScript : MonoBehaviour {
             Rigidbody currentRigidbody = currentTransform.GetComponent<Rigidbody>();
 
             currentRigidbody.isKinematic = true;
+            currentRigidbody.useGravity = false;
 
             //translate to vacuum gun collider and scale down
             currentTransform.Translate(suckDir * suckSpeed);
@@ -49,10 +50,11 @@ public class InteractScript : MonoBehaviour {
 
             //potential fix
             currentRigidbody.isKinematic = false;
+            currentRigidbody.useGravity = true;
         }
 
         //clean up the grabber and vacuum area lists, then destroy the object
-        for(int i = 0; i < _destroyedObjects.Count; i++) {
+        for (int i = 0; i < _destroyedObjects.Count; i++) {
             vacuumArea.RemoveTransfromFromList(_destroyedObjects[i]);
             grabber.RemoveGrabCandidate(_destroyedObjects[i]);
             Destroy(_destroyedObjects[i].gameObject);

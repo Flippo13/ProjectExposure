@@ -10,20 +10,12 @@ public class VacuumArea : MonoBehaviour {
     public void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Suckable")) {
             suckableObjectsList.Add(other.transform);
-
-            Rigidbody rigidbody = other.gameObject.GetComponent<Rigidbody>();
-            rigidbody.isKinematic = true;
-            rigidbody.useGravity = false;
         }
     }
 
     public void OnTriggerExit(Collider other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Suckable")) {
             suckableObjectsList.Remove(other.transform);
-
-            Rigidbody rigidbody = other.gameObject.GetComponent<Rigidbody>();
-            rigidbody.isKinematic = false;
-            rigidbody.useGravity = true;
         }
     }
 

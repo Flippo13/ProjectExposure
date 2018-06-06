@@ -240,9 +240,6 @@ public class CompanionAI : MonoBehaviour {
                 _debug.SetRendererStatus(false);
                 _model.ActivateVacuum();
 
-                //_navigator.SetGrabbableStatus(true);
-                //_grabber.BeginGrabbing();
-
                 break;
 
             default:
@@ -259,8 +256,6 @@ public class CompanionAI : MonoBehaviour {
         switch (state) {
             case CompanionState.Grabbed:
                 _debug.SetRendererStatus(debug);
-                //_grabber.StopGrabbing(); //end grabbing
-                //_navigator.SetGrabbableStatus(false); //disable grabbale script
                 _navigator.ResetOnGround(); //reset the on ground bool to check for ground collision
 
                 transform.position = companionDestination.transform.position + companionDestination.forward.normalized;
