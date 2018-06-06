@@ -15,5 +15,9 @@ public class CompanionAnimation : MonoBehaviour {
         return transformationAnimation.GetCurrentAnimatorStateInfo(0).IsName("Static");
     }
 
+    public void SetMovingBool(bool status) {
+        rigAnimator.SetBool("moving", status);
+    }
+
 
 }

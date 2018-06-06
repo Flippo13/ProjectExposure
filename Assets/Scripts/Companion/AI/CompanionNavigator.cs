@@ -11,6 +11,7 @@ public class CompanionNavigator : MonoBehaviour {
     private NavMeshAgent _navAgent;
     private Rigidbody _rigidbody;
     private OVRGrabbable _grabbable;
+    private CompanionAnimation _animation;
 
     private bool _onGround;
 
@@ -18,9 +19,18 @@ public class CompanionNavigator : MonoBehaviour {
         _navAgent = GetComponent<NavMeshAgent>();
         _rigidbody = GetComponent<Rigidbody>();
         _grabbable = GetComponent<OVRGrabbable>();
+        _animation = GetComponent<CompanionAnimation>();
 
         SetAgentStatus(true);
         ResetSpeedAndAcceleration(); //set to default
+    }
+
+    public void Update() {
+        if(_navAgent.velocity.magnitude <= 0) {
+            _animation.SetMovingBool(false);
+        } else {
+            _animation.SetMovingBool(true);
+        }
     }
 
     public void OnCollisionEnter(Collision collision) {
