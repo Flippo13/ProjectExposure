@@ -7,7 +7,6 @@ public class Cable : MonoBehaviour {
     public GameObject cableStart;
     public GameObject cableEnd;
     public GameObject cableNode;
-    public Transform cablePartTrans;
 
     private GameObject cylinder; 
 
@@ -19,7 +18,6 @@ public class Cable : MonoBehaviour {
     private List<GameObject> cylinders = new List<GameObject>(); 
     public int nodeAmount; 
 
-
     //Info for the Hookes Law Formula F = -K*(|x| - d) (x/|x|) - bv 
     public float springConstant = 0.7f;
     public float desiredDistance;
@@ -27,11 +25,6 @@ public class Cable : MonoBehaviour {
 
 
     //Cable info
-    public float ropeLength;
-    public float minRopeLength;
-    public float maxRopeLength;
-    public float winchSpeed;
-    public float maxLengthBetweenNodes;
     private Vector3 nodeStartPos; 
 
     private Vector3 _startPos; 
@@ -41,12 +34,17 @@ public class Cable : MonoBehaviour {
         _lineRenderer = GetComponent<LineRenderer>();
         _springJoint = cableStart.GetComponent<SpringJoint>();
         SetUpCable();
-        SetupCableDisplay(cablePartTrans);
     }
 
     // Update is called once per frame
     void FixedUpdate () {
         UpdateCable();
+    }
+
+
+    public void Activate()
+    {
+
     }
 
     private void SetUpCable()
@@ -65,10 +63,6 @@ public class Cable : MonoBehaviour {
         cableNodesList.Add(cableEnd);
     }
 
-    private void SetupCableDisplay(Transform cylinderPrefab)
-    {
-       
-    }
 
     private void UpdateCableDisplay(Transform cylinder)
     {
@@ -112,86 +106,5 @@ public class Cable : MonoBehaviour {
         _lineRenderer.SetPositions(positions); 
     }
 
-    private void SetUpCableV2()
-    {
-
-    }
-
-    private void UpdateCableV2()
-    {
-        float density = 7750f;
-
-        float radius = 0.02f;
-        float volume = Mathf.PI * radius * radius * ropeLength;
-
-        float ropeMass = volume * density;
-
-        ropeMass += cableEnd.GetComponent<Rigidbody>().mass;
-
-        float ropeForce = ropeMass * 9.81f;
-
-        //k is the springconstance
-        float k = ropeForce / 0.01f;
-
-        _springJoint.spring = k * 1.0f;
-        _springJoint.damper = k * 0.8f;
-
-        _springJoint.maxDistance = ropeLength; 
-       
-    }
-
-    private void DisplayCable()
-    {
-        float ropeWidth = 0.2f;
-
-        _lineRenderer.startWidth = ropeWidth;
-        _lineRenderer.endWidth = ropeWidth;
-
-        Vector3 A = cableStart.transform.position;
-        Vector3 D = cableEnd.transform.position;
-
-        Vector3 B = A + cableStart.transform.up * (-(A - D).magnitude * 0.1f);
-        Vector3 C = D + cableEnd.transform.up * ((A - D).magnitude * 0.5f);
-
-       // BezierCurve.GetBezierCurve(A, B, C, D, cableNodesList.transform.position);
-
-        Vector3[] positions = new Vector3[cableNodesList.Count];
-
-        for (int i = 0; i < cableNodesList.Count; i++)
-        {
-            positions[i] = cableNodesList[i].transform.position; 
-        }
-
-
-        _lineRenderer.positionCount = positions.Length;
-
-        _lineRenderer.SetPositions(positions); 
-
-    }
-
-    private void UpdateWinch()
-    {
-        bool hasChangedCable = false; 
-
-        if(Input.GetKey(KeyCode.O) && ropeLength < maxRopeLength)
-        {
-            ropeLength += winchSpeed * Time.deltaTime;
-
-            hasChangedCable = true; 
-        }
-
-        if (Input.GetKey(KeyCode.I) && ropeLength > minRopeLength)
-        {
-            ropeLength -= winchSpeed * Time.deltaTime;
-
-            hasChangedCable = true; 
-        }
-
-        if(hasChangedCable)
-        {
-            ropeLength = Mathf.Clamp(ropeLength, minRopeLength, maxRopeLength);
-
-            UpdateCableV2(); 
-        }
-    }
+    
 }
