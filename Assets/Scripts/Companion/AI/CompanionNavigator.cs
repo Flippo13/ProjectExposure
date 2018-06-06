@@ -38,6 +38,7 @@ public class CompanionNavigator : MonoBehaviour {
     public void SetAgentStatus(bool status) {
         _navAgent.enabled = status;
         _rigidbody.isKinematic = status;
+        SetGrabbableStatus(!status);
     }
 
     public void SetGrabbableStatus(bool status) {
