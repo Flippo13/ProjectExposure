@@ -12,7 +12,7 @@ public class CompanionGrabber : OVRGrabber {
     }
 
     void OnTriggerEnter(Collider otherCollider) {
-        if (otherCollider.tag == Tags.Player) return; //needed to ignore the vacuum area in the child
+        //if (otherCollider.tag == Tags.Player) return; //needed to ignore the vacuum area in the child
 
         if (otherCollider.tag == Tags.Companion) _companionMode = true;
         else _companionMode = false;
@@ -28,7 +28,7 @@ public class CompanionGrabber : OVRGrabber {
     }
 
     void OnTriggerExit(Collider otherCollider) {
-        if (otherCollider.tag == Tags.Player) return; //needed to ignore the vacuum area in the child
+        //if (otherCollider.tag == Tags.Player) return; //needed to ignore the vacuum area in the child
 
         if (otherCollider.tag == Tags.Companion) _companionMode = false;
 
