@@ -21,6 +21,9 @@ GameObject:
   - component: {fileID: 4501888367142186}
   - component: {fileID: 33207735931288186}
   - component: {fileID: 23221164366029654}
+  - component: {fileID: 65059169961301236}
+  - component: {fileID: 114458198663179986}
+  - component: {fileID: 54594914693429044}
   m_Layer: 0
   m_Name: Green Sunstar
   m_TagString: Untagged
@@ -83,3 +86,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1598704724777424}
   m_Mesh: {fileID: 4300008, guid: 956e944be06319443bd521bc0084fd4d, type: 3}
+--- !u!54 &54594914693429044
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598704724777424}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65059169961301236
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598704724777424}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 659.57196, y: 78.585014, z: 711.0712}
+  m_Center: {x: 0, y: -0.0000019073485, z: 0}
+--- !u!114 &114458198663179986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598704724777424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []

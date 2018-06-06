@@ -21,7 +21,10 @@ GameObject:
   - component: {fileID: 4661425258057702}
   - component: {fileID: 33879777470827648}
   - component: {fileID: 23599052280346160}
-  m_Layer: 0
+  - component: {fileID: 54429713092806006}
+  - component: {fileID: 114594027252032600}
+  - component: {fileID: 65449664479957124}
+  m_Layer: 9
   m_Name: TrashBag_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +86,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1039533567004856}
   m_Mesh: {fileID: 4300030, guid: 2a2b992da9bf65f4b8a53e8b71771e32, type: 3}
+--- !u!54 &54429713092806006
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1039533567004856}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65449664479957124
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1039533567004856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8535379, y: 0.8180978, z: 0.85761124}
+  m_Center: {x: -0.0080047995, y: -0.017680824, z: -0.007927328}
+--- !u!114 &114594027252032600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1039533567004856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
