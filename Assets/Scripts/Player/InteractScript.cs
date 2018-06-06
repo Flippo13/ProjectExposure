@@ -37,9 +37,6 @@ public class InteractScript : MonoBehaviour {
             Renderer currentRenderer = currentTransform.GetComponent<Renderer>();
             Rigidbody currentRigidbody = currentTransform.GetComponent<Rigidbody>();
 
-            currentRigidbody.isKinematic = true;
-            currentRigidbody.useGravity = false;
-
             //translate to vacuum gun collider and scale down
             currentTransform.Translate(suckDir * suckSpeed);
             currentTransform.localScale = currentTransform.localScale * scaleFactor;
@@ -47,10 +44,6 @@ public class InteractScript : MonoBehaviour {
             //apply deformation
             float newDeform = Mathf.Clamp01(currentRenderer.material.GetFloat("_Deform") + deformationStep);
             currentRenderer.material.SetFloat("_Deform", newDeform);
-
-            //potential fix
-            currentRigidbody.isKinematic = false;
-            currentRigidbody.useGravity = true;
         }
 
         //clean up the grabber and vacuum area lists, then destroy the object
