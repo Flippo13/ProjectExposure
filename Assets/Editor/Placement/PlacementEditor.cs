@@ -21,8 +21,6 @@ public class PlacementEditor : EditorWindow
     private int _menuSelection = 0;
     private int _objectSelection = 0;
 
-
-
     //Collapse booleans
     bool _paintOptions = true;
     bool _objectOpacity = true;
@@ -44,7 +42,6 @@ public class PlacementEditor : EditorWindow
     public mouseEvent eventType;
     [HideInInspector]
     public EventType selectedEvent;
-    public float _brushOpacity = 1f;
     public float _brushSize = 15f;
     public Color _brushColor = new Color(0.028f, 0.991f, 0.934f, 0.116f);
     public bool _brushSolid;
@@ -222,11 +219,6 @@ public class PlacementEditor : EditorWindow
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
-                GUILayout.Label("Brush opacity", GUILayout.Width(Screen.width / 4));
-                _brushOpacity = EditorGUILayout.Slider(_brushOpacity, 0, 1);
-                EditorGUILayout.EndHorizontal();
-
-                EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
                 GUILayout.Label("Brush color", GUILayout.Width(Screen.width / 4));
                 _brushColor = EditorGUILayout.ColorField(_brushColor);
                 EditorGUILayout.EndHorizontal();
@@ -365,6 +357,7 @@ public class PlacementEditor : EditorWindow
             if (Physics.Raycast(_raycastBrush, out _raycastBrushHit))
             {
                 Handles.color = _brushColor;
+                Handles.Label(_raycastBrushHit.point, "");
                 Handles.DrawSolidDisc(_raycastBrushHit.point, _raycastBrushHit.normal, _brushSize / 10);
             }
         }
