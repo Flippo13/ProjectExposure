@@ -11,6 +11,9 @@ public class Caustics : MonoBehaviour
     private float _minimumLight = 2;
 
     [SerializeField]
+    private float _sinMultiplier = 2;
+
+    [SerializeField]
     private List<Texture2D> _causticTextures;
 
 
@@ -25,7 +28,7 @@ public class Caustics : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _caustics.intensity = Mathf.Sin(Time.time) + _minimumLight;
+        _caustics.intensity = Mathf.Sin(Time.time * (1 + _sinMultiplier)) + _minimumLight;
     }
 
 
@@ -36,7 +39,5 @@ public class Caustics : MonoBehaviour
         currentTexture++;
         if (currentTexture == _causticTextures.Count)
             currentTexture = 0;
-        
-        Debug.Log(currentTexture);
     }
 }
