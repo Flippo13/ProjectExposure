@@ -12,6 +12,8 @@ public class ObjectPreset : ScriptableObject
     [HideInInspector]
     public float opacity;
 
+    public float offset;
+
     //Uniform scaling
     public bool uniformScaling;
     [HideInInspector]
