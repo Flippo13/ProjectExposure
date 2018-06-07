@@ -1,6 +1,7 @@
 ﻿public enum CompanionState {
     Inactive, //companion is turned off and has to be turned on
     Following, //companion follows the player around
+    Returning, //companion returns to the player and delivers the vacuum gun
     Traveling, //companion travels to a task
     Roaming, //companion roams around the areas and draws attention
     Waiting, //companion waits for the player do so something and provides reinforcement

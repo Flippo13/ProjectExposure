@@ -13,16 +13,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114106516467829520}
-  - {fileID: 114509571126497846}
+  - {fileID: 114787198007070864}
   EditorEvents:
   - {fileID: 114560151955803488}
   - {fileID: 114883029141632164}
   - {fileID: 114419772667024688}
   - {fileID: 114460648928552296}
   - {fileID: 114980679975801768}
-  MasterBankRef: {fileID: 114509571126497846}
+  MasterBankRef: {fileID: 114787198007070864}
   StringsBankRef: {fileID: 114106516467829520}
-  stringsBankWriteTime: 636639059665171450
+  stringsBankWriteTime: 636639657064956158
   cacheVersion: 2
 --- !u!114 &114000891727680386
 MonoBehaviour:
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636639059665171450
+  lastModified: 636639657064956158
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -175,7 +175,7 @@ MonoBehaviour:
   Path: event:/Companion/Voicelines/Reinforcement
   guid: 6ad8637491f4ca4c8f8cc007329abbe4
   Banks:
-  - {fileID: 114509571126497846}
+  - {fileID: 114787198007070864}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -197,7 +197,7 @@ MonoBehaviour:
   Path: event:/Companion/Voicelines/Instruction
   guid: a5c317e98d08cc45bbdc5d6939a41d25
   Banks:
-  - {fileID: 114509571126497846}
+  - {fileID: 114787198007070864}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -278,7 +278,7 @@ MonoBehaviour:
   Path: event:/Gameplay/Turbine
   guid: 4653aa5c1f97df459e265fda02ba051b
   Banks:
-  - {fileID: 114509571126497846}
+  - {fileID: 114787198007070864}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -308,6 +308,25 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 17784
+--- !u!114 &114787198007070864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Nico\OneDrive\Dokumente\Quarter 2.4\2.4 Project Exposure\Turbine
+    Turmoil\Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.bank
+  lastModified: 636639657064876208
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 356800
+  Exists: 1
 --- !u!114 &114835399414532324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +382,7 @@ MonoBehaviour:
   Path: event:/Companion/Effects/Rotors
   guid: 6852924e72286d41bd51bbcaee13d71c
   Banks:
-  - {fileID: 114509571126497846}
+  - {fileID: 114787198007070864}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -450,7 +469,7 @@ MonoBehaviour:
   Path: event:/Companion/Voicelines/Welcome
   guid: ace7a8a5b20b9b4a9df806a0b5564ee3
   Banks:
-  - {fileID: 114509571126497846}
+  - {fileID: 114787198007070864}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

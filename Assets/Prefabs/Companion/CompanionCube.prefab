@@ -431,7 +431,6 @@ GameObject:
   - component: {fileID: 114075422003605136}
   - component: {fileID: 114730599303197376}
   - component: {fileID: 114323477499243486}
-  - component: {fileID: 114020025693287626}
   - component: {fileID: 114662176903652410}
   - component: {fileID: 114928323724228590}
   m_Layer: 2
@@ -1795,14 +1794,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1154171102820800}
-  m_LocalRotation: {x: -0.67191076, y: 0.1667779, z: -0.09021718, w: 0.7159482}
+  m_LocalRotation: {x: -0.66049486, y: 0.19613273, z: -0.12026997, w: 0.7147122}
   m_LocalPosition: {x: 0, y: 1.2025, z: -0.4125023}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 4479072988903542}
   m_Father: {fileID: 4498706546059666}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: -68.75101, y: 83.43401, z: -77.119}
+  m_LocalEulerAnglesHint: {x: -63.76, y: 83.43401, z: -77.119}
 --- !u!4 &4165714237435188
 Transform:
   m_ObjectHideFlags: 1
@@ -2245,7 +2244,7 @@ Transform:
   m_GameObject: {fileID: 1095880907201938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0035000003, y: 0.0035000003, z: 0.0035000003}
+  m_LocalScale: {x: 0.0025, y: 0.0035000003, z: 0.0035000003}
   m_Children:
   - {fileID: 4931253722300936}
   m_Father: {fileID: 4163479654967740}
@@ -3623,18 +3622,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114020025693287626
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1241325418213258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3f287dee3e54c479e66aa746209119, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vacuumInteract: {fileID: 114752987928019450}
 --- !u!114 &114075422003605136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3670,8 +3657,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_allowOffhandGrab: 1
-  m_snapPosition: 1
-  m_snapOrientation: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
 --- !u!114 &114504610622488740
@@ -3755,6 +3742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   companionDestination: {fileID: 0}
+  vacuum: {fileID: 114752987928019450}
   interactionRadius: 3
   objectiveScanRadius: 30
   debug: 1

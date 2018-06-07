@@ -15,6 +15,7 @@ public class InteractScript : MonoBehaviour {
 
     private List<Transform> _destroyedObjects;
     private Rigidbody _rigidbody;
+    private Collider _collider;
     private VacuumState _state;
 
     // Use this for initialization
@@ -27,6 +28,8 @@ public class InteractScript : MonoBehaviour {
     }
 
     public void OnTriggerEnter(Collider other) {
+        if (_state != VacuumState.Player) return;
+
         if (other.gameObject.layer == LayerMask.NameToLayer("Suckable") && !_destroyedObjects.Contains(other.transform)) {
             _trashCount++;
             _destroyedObjects.Add(other.transform);
@@ -58,6 +61,8 @@ public class InteractScript : MonoBehaviour {
                 _rigidbody.useGravity = false;
                 _rigidbody.isKinematic = true;
 
+                _collider.isTrigger = true;
+
                 break;
 
             case VacuumState.Player:
@@ -66,6 +71,8 @@ public class InteractScript : MonoBehaviour {
 
                 _rigidbody.useGravity = false;
                 _rigidbody.isKinematic = true;
+
+                _collider.isTrigger = true;
 
                 break;
 
@@ -76,6 +83,8 @@ public class InteractScript : MonoBehaviour {
                 _rigidbody.useGravity = true;
                 _rigidbody.isKinematic = false;
 
+                _collider.isTrigger = false;
+
                 break;
 
             default:
@@ -83,7 +92,7 @@ public class InteractScript : MonoBehaviour {
         }
     }
 
-    public VacuumState GetState() {
+    public VacuumState GetVacuumState() {
         return _state;
     }
 

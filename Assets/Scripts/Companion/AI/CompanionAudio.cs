@@ -35,7 +35,9 @@ public class CompanionAudio : MonoBehaviour {
         PLAYBACK_STATE result;
         _audioTracks[(int)sourceType].getPlaybackState(out result);
 
-        return result != PLAYBACK_STATE.STOPPED;
+        Debug.Log("Playback state result: " + result);
+
+        return result != PLAYBACK_STATE.STOPPED || result != PLAYBACK_STATE.STOPPING;
     }
 
 }

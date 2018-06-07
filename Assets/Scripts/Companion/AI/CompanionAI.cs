@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class CompanionAI : MonoBehaviour {
 
     public Transform companionDestination;
+    public InteractScript vacuum;
 
     public float interactionRadius;
     public float objectiveScanRadius;
@@ -20,7 +21,6 @@ public class CompanionAI : MonoBehaviour {
     private CompanionAudio _audio;
     private CompanionAnimation _animation;
     private CompanionObjectiveTracker _tracker;
-    private CompanionVacuum _vacuum;
     private CompanionDebug _debug;
 
     private float _timer;
@@ -32,7 +32,6 @@ public class CompanionAI : MonoBehaviour {
         _audio = GetComponent<CompanionAudio>();
         _animation = GetComponent<CompanionAnimation>();
         _tracker = GetComponent<CompanionObjectiveTracker>();
-        _vacuum = GetComponent<CompanionVacuum>();
         _debug = GetComponent<CompanionDebug>();
 
         //if first boat scene: Inactive, otherwise: Following
@@ -60,7 +59,7 @@ public class CompanionAI : MonoBehaviour {
     private bool CheckForCompanionCall() {
         if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q)) {
             //call the companion
-            SetState(CompanionState.Following);
+            SetState(CompanionState.Returning);
             return true;
         }
 
@@ -188,7 +187,8 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Following:
                 //idle/main state of the companion
 
-                if (_vacuum.GetVacuumState() == VacuumState.Free) {
+                //check wether the vacuum was dropped or not
+                if (vacuum.GetVacuumState() == VacuumState.Free) {
                     SetState(CompanionState.GettingVacuum);
                 }
 
@@ -200,6 +200,20 @@ public class CompanionAI : MonoBehaviour {
                     _navigator.SetDestination(destination);
                 } else if(InInterationRange()) {
                     _navigator.SetDestination(transform.position); //stop following at interaction range
+                }
+
+                break;
+
+            case CompanionState.Returning:
+                if(!InInterationRange()) {
+                    //move to the player without other priorities
+                    Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
+                    Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
+
+                    _navigator.SetDestination(destination);
+
+                } else {
+                    SetState(CompanionState.Following);
                 }
 
                 break;
@@ -255,13 +269,13 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.GettingVacuum:
                 //pick up or catch the vacuum gun
 
-                Vector3 vacuumPos = _vacuum.GetVacuumTransform().position;
+                Vector3 vacuumPos = vacuum.transform.position;
                 Vector3 deltaVecVacuum = vacuumPos - transform.position;
 
                 _navigator.SetDestination(vacuumPos);
 
                 if(deltaVecVacuum.magnitude <= 0.5f) {
-                    _vacuum.SetVacuumState(VacuumState.Companion);
+                    vacuum.SetVacuumState(VacuumState.Companion);
                     SetState(CompanionState.Following);
                 }
 
