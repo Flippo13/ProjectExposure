@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 
-[CustomEditor(typeof(PlacementEditor))]
 public class PlacementEditor : EditorWindow
 {
 
@@ -211,10 +210,10 @@ public class PlacementEditor : EditorWindow
                 GUILayout.Label("Group Object", GUILayout.Width(Screen.width / 4));
                 groupObject = EditorGUILayout.ObjectField(groupObject, typeof(GameObject), true) as GameObject;
                 EditorGUILayout.EndHorizontal();
-                
-                
+
+
                 EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
-                GUILayout.Label("Brush size",GUILayout.Width(Screen.width / 4));
+                GUILayout.Label("Brush size", GUILayout.Width(Screen.width / 4));
                 _brushSize = EditorGUILayout.Slider(_brushSize, 0, 250);
                 EditorGUILayout.EndHorizontal();
 
@@ -243,7 +242,7 @@ public class PlacementEditor : EditorWindow
                 opacityScrollPosition = EditorGUILayout.BeginScrollView(opacityScrollPosition, EditorStyles.helpBox);
                 for (int i = 0; i < _objectPresets.Count; i++)
                 {
-                    
+
                     EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
                     GUILayout.Label(_objectPresets[i].gameObject.name, GUILayout.Width(Screen.width / 4));
                     _objectPresets[i].opacity = EditorGUILayout.Slider(_objectPresets[i].opacity, 0, 1);
@@ -272,7 +271,7 @@ public class PlacementEditor : EditorWindow
                 _currentPreset = _objectPresets[_objectSelection];
 
                 GUILayout.BeginHorizontal(EditorStyles.helpBox);
-                _currentPreset.uniformScaling = GUILayout.Toggle(_currentPreset.uniformScaling, "Uniform X/Y/Z  scaling");
+                _currentPreset.uniformScaling = GUILayout.Toggle(_currentPreset.uniformScaling, "Uniform X/Y/Z  scaling", GUILayout.Width(Screen.width / 4));
                 GUI.enabled = _currentPreset.uniformScaling;
                 _currentPreset.uniformScaleMin = EditorGUILayout.FloatField(_currentPreset.uniformScaleMin);
                 EditorGUILayout.MinMaxSlider(ref _currentPreset.uniformScaleMin, ref _currentPreset.uniformScaleMax, _currentPreset.uniformScaleMin, _currentPreset.uniformScaleMax);
@@ -289,7 +288,7 @@ public class PlacementEditor : EditorWindow
                     {
                         GUILayout.BeginHorizontal(EditorStyles.helpBox);
                         GUI.enabled = !_currentPreset.uniformScaling;
-                        _currentPreset.scalingBooleans[i] = GUILayout.Toggle(_currentPreset.scalingBooleans[i], "Random " + _axisStrings[i] + " Scaling");
+                        _currentPreset.scalingBooleans[i] = GUILayout.Toggle(_currentPreset.scalingBooleans[i], "Random " + _axisStrings[i] + " Scaling", GUILayout.Width(Screen.width / 4));
                         GUI.enabled = _currentPreset.scalingBooleans[i];
                         _currentPreset.minScaling[i] = EditorGUILayout.FloatField(_currentPreset.minScaling[i]);
                         float minScale = _currentPreset.minScaling[i];
@@ -312,7 +311,7 @@ public class PlacementEditor : EditorWindow
                 for (int i = 0; i < _axisStrings.Count; i++)
                 {
                     GUILayout.BeginHorizontal(EditorStyles.helpBox);
-                    _currentPreset.rotationBooleans[i] = GUILayout.Toggle(_currentPreset.rotationBooleans[i], "Random " + _axisStrings[i] + " Rotation");
+                    _currentPreset.rotationBooleans[i] = GUILayout.Toggle(_currentPreset.rotationBooleans[i], "Random " + _axisStrings[i] + " Rotation", GUILayout.Width(Screen.width / 4));
                     GUI.enabled = _currentPreset.rotationBooleans[i];
                     float minRotation = _currentPreset.minRotations[i];
                     float maxRotation = _currentPreset.maxRotations[i];
@@ -343,6 +342,15 @@ public class PlacementEditor : EditorWindow
                 EditorGUILayout.EndHorizontal();
 
                 GUILayout.EndVertical();
+
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+                GUILayout.BeginHorizontal(EditorStyles.helpBox);
+                GUILayout.Label("Offset Options");
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal(EditorStyles.helpBox);
+                _currentPreset.offset = EditorGUILayout.FloatField("Y Axis offset", _currentPreset.offset);
+                GUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
             }
         }
     }
@@ -363,32 +371,32 @@ public class PlacementEditor : EditorWindow
         }
         if (_objectPresets.Count > 0 && e.shift && e.button == 0 && Event.current.type == selectedEvent && groupObject != null)
         {
-                Ray _raycast = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-                RaycastHit _raycastHit;
-                if (Physics.Raycast(_raycast, out _raycastHit))
+            Ray _raycast = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+            RaycastHit _raycastHit;
+            if (Physics.Raycast(_raycast, out _raycastHit))
+            {
+                for (int i = 0; i < _objectPresets.Count; i++)
                 {
-                    for (int i = 0; i < _objectPresets.Count; i++)
+                    ObjectPreset objectToSpawn = _objectPresets[i];
+                    if (Random.Range(0f, 1f) < objectToSpawn.opacity)
                     {
-                        ObjectPreset objectToSpawn = _objectPresets[i];
-                        if (Random.Range(0f, 1f) < objectToSpawn.opacity)
-                        {
-                            Vector3 positionOffset = Random.insideUnitSphere * _brushSize / 10;
-                            positionOffset.y = 0f;
-                            GameObject instantiatedObject = Instantiate(objectToSpawn.gameObject, _raycastHit.point + positionOffset, Quaternion.identity);
-                            var newEulerAngels = instantiatedObject.transform.eulerAngles;
-                            newEulerAngels.x = Random.Range(objectToSpawn.minRotations.x, objectToSpawn.maxRotations.x);
-                            newEulerAngels.y = Random.Range(objectToSpawn.minRotations.y, objectToSpawn.maxRotations.y);
-                            newEulerAngels.z = Random.Range(objectToSpawn.minRotations.z, objectToSpawn.maxRotations.z);
-                            instantiatedObject.transform.eulerAngles = newEulerAngels;
-                            instantiatedObject.transform.localScale = new Vector3(Random.Range(objectToSpawn.minScaling.x, objectToSpawn.maxScaling.x), Random.Range(objectToSpawn.minScaling.y, objectToSpawn.maxScaling.y), Random.Range(objectToSpawn.minScaling.z, objectToSpawn.maxScaling.z));
-                            instantiatedObject.transform.tag = objectToSpawn.tag;
-                            instantiatedObject.transform.parent = groupObject.transform;
-                            instantiatedObject.isStatic = objectToSpawn.isStatic;
-                            instantiatedObject.layer = objectToSpawn.layer;
-                            instantiatedObject.transform.name = objectToSpawn.gameObject.name;
-                           
-                        }
+                        Vector3 positionOffset = Random.insideUnitSphere * _brushSize / 10;
+                        positionOffset.y = objectToSpawn.offset;
+                        GameObject instantiatedObject = Instantiate(objectToSpawn.gameObject, _raycastHit.point + positionOffset, Quaternion.identity);
+                        var newEulerAngels = instantiatedObject.transform.eulerAngles;
+                        newEulerAngels.x = Random.Range(objectToSpawn.minRotations.x, objectToSpawn.maxRotations.x);
+                        newEulerAngels.y = Random.Range(objectToSpawn.minRotations.y, objectToSpawn.maxRotations.y);
+                        newEulerAngels.z = Random.Range(objectToSpawn.minRotations.z, objectToSpawn.maxRotations.z);
+                        instantiatedObject.transform.eulerAngles = newEulerAngels;
+                        instantiatedObject.transform.localScale = new Vector3(Random.Range(objectToSpawn.minScaling.x, objectToSpawn.maxScaling.x), Random.Range(objectToSpawn.minScaling.y, objectToSpawn.maxScaling.y), Random.Range(objectToSpawn.minScaling.z, objectToSpawn.maxScaling.z));
+                        instantiatedObject.transform.tag = objectToSpawn.tag;
+                        instantiatedObject.transform.parent = groupObject.transform;
+                        instantiatedObject.isStatic = objectToSpawn.isStatic;
+                        instantiatedObject.layer = objectToSpawn.layer;
+                        instantiatedObject.transform.name = objectToSpawn.gameObject.name;
+
                     }
+                }
             }
             Handles.EndGUI();
         }
