@@ -66,11 +66,14 @@ public class CompanionAI : MonoBehaviour {
         return false;
     }
 
+    //returns true, if an objective was found
     private bool CheckForObjectives() {
+        if (_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) return false; 
+
         CompanionObjective mainObjective = _tracker.GetNextMainObjective();
         CompanionObjective sideObjective = _tracker.GetClosestSideObjective();
 
-        if(mainObjective != null && sideObjective != null) {
+        if (mainObjective != null && sideObjective != null) {   //main and side remaining
             float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
             float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
 
@@ -89,27 +92,27 @@ public class CompanionAI : MonoBehaviour {
 
                 return true;
             }
-        } else {
-            if(mainObjective == null && sideObjective != null) {
-                float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
+        } else if (mainObjective == null && sideObjective != null) { //only side objectives remaining
+            float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
 
-                if(sideDistance < objectiveScanRadius) {
-                    _tracker.SetCurrentObjective(sideObjective);
-                    SetState(CompanionState.Roaming);
+            if (sideDistance < objectiveScanRadius) {
+                _tracker.SetCurrentObjective(sideObjective);
+                SetState(CompanionState.Roaming);
 
-                    return true;
-                }
-                
-            } else if(sideObjective == null && mainObjective != null) {
-                float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
-
-                if(mainDistance < objectiveScanRadius) {
-                    _tracker.SetCurrentObjective(mainObjective);
-                    SetState(CompanionState.Traveling);
-
-                    return true;
-                }
+                return true;
             }
+
+        } else if (sideObjective == null && mainObjective != null) { //only main objectives remaining
+            float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
+
+            if (mainDistance < objectiveScanRadius) {
+                _tracker.SetCurrentObjective(mainObjective);
+                SetState(CompanionState.Traveling);
+
+                return true;
+            }
+        } else { //no objective remaining
+            Debug.Log("No Main or Side Objectives found");
         }
 
         //nothing in scan radius
@@ -123,7 +126,6 @@ public class CompanionAI : MonoBehaviour {
                 //if the objective is completed
                 _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Complete);
                 Debug.Log("Objective complete");
-                CheckForObjectives(); //get next objective
             }
         }
     }
@@ -144,7 +146,7 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.Waiting:
-                _timer = float.MaxValue;
+                _timer = float.MaxValue; //ensure to play the reinforcement once at the start
 
                 break;
 
@@ -175,9 +177,9 @@ public class CompanionAI : MonoBehaviour {
     //maybe split this up into different functions or even classes if it becomes to much
     private void UpdateState() {
 
-        switch(_aiState) {
+        switch (_aiState) {
             case CompanionState.Inactive:
-                //activate the companion whn pressing the call button
+                //activate the companion when pressing the call button
                 if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q)) {
                     SetState(CompanionState.Following);
                 }
@@ -197,14 +199,14 @@ public class CompanionAI : MonoBehaviour {
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
 
                     _navigator.SetDestination(destination);
-                } else if(InInterationRange()) {
+                } else if (InInterationRange()) {
                     _navigator.SetDestination(transform.position); //stop following at interaction range
                 }
 
                 break;
 
             case CompanionState.Returning:
-                if(!InInterationRange()) {
+                if (!InInterationRange()) {
                     //move to the player without other priorities
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
@@ -212,6 +214,7 @@ public class CompanionAI : MonoBehaviour {
                     _navigator.SetDestination(destination);
 
                 } else {
+                    //close enough to the player
                     SetState(CompanionState.Following);
                 }
 
@@ -235,14 +238,14 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Waiting:
                 if (CheckForCompanionCall()) return;
-                
-                if(InInterationRange()) {
+
+                if (InInterationRange()) {
                     //if the player is close enough, start instructing
                     SetState(CompanionState.Instructing);
-                    return;
-                } else if(_timer >= _tracker.GetCurrentObjective().reinforcementInterval) { //maybe cache the current objective
+                } else if (_timer >= _tracker.GetCurrentObjective().reinforcementInterval) {
                     //wait and reinforce the player for objective
                     _timer = 0f;
+                    _audio.StopAudioSource(AudioSourceType.Voice);
                     _audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice);
                     _audio.PlayAudioSource(AudioSourceType.Voice);
                 }
@@ -254,7 +257,7 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Instructing:
                 //instruct the player about objective
 
-                if(_audio.IsPlaying(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED) {
+                if (_audio.IsPlaying(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED) {
                     //instructions are done, so either start the objective, reinforce the objective or follow
 
                     //activate the current task and go back to the following state
@@ -273,7 +276,7 @@ public class CompanionAI : MonoBehaviour {
 
                 _navigator.SetDestination(vacuumPos);
 
-                if(deltaVecVacuum.magnitude <= 0.5f) {
+                if (deltaVecVacuum.magnitude <= 0.5f) {
                     vacuum.SetVacuumState(VacuumState.Companion);
                     SetState(CompanionState.Following);
                 }
