@@ -102,8 +102,6 @@ public class TeleporterScript : MonoBehaviour {
                 _indicatorInstance.transform.position = hit.point;
                 _indicatorInstance.transform.rotation = Quaternion.LookRotation(lookAt, hit.normal); //look at the hits relative up, using the normal as the up vector
 
-                Debug.Log(_teleportPath.Count);
-
                 //adjust line renderer
                 _lineRenderer.positionCount = _teleportPath.Count;
                 _lineRenderer.SetPositions(_teleportPath.ToArray());

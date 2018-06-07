@@ -24,6 +24,7 @@ public class InteractScript : MonoBehaviour {
         _trashCount = 0;
 
         _rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
         _state = VacuumState.Companion;
     }
 
@@ -49,6 +50,8 @@ public class InteractScript : MonoBehaviour {
 
     public void SetVacuumState(VacuumState state) {
         _state = state;
+
+        Debug.Log("Entering Vaccum state: " + state);
 
         switch (state) {
 
