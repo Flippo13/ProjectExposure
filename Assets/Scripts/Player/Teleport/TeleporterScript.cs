@@ -24,6 +24,7 @@ public class TeleporterScript : MonoBehaviour {
 
     private bool _triggerPressed;
     private bool _allowTeleport;
+    private bool _projectileDestroyed;
 
     private TeleportFade _fade;
 
@@ -45,7 +46,7 @@ public class TeleporterScript : MonoBehaviour {
         _teleportPath = new List<Vector3>();
 
         _triggerPressed = false;
-        _allowTeleport = true;
+        _projectileDestroyed = true;
 
         _fade = Camera.main.GetComponent<TeleportFade>();
     }
@@ -56,12 +57,13 @@ public class TeleporterScript : MonoBehaviour {
             _triggerPressed = true;
 
             DrawTeleportationLine();
-        } else if((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.5f || Input.GetMouseButtonUp(0)) && _triggerPressed && _allowTeleport) {
+        } else if((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.5f || Input.GetMouseButtonUp(0)) && _triggerPressed) {
+            //teleport
+            if (_allowTeleport && _projectileDestroyed) TraceTeleportationLine();
+
             //released
             _triggerPressed = false;
             _allowTeleport = false;
-
-            TraceTeleportationLine();
 
             //disable line renderer 
             _indicatorInstance.SetActive(false);
@@ -76,7 +78,7 @@ public class TeleporterScript : MonoBehaviour {
             _fade.StartTeleportFade();
             Destroy(_projectileScript.gameObject);
             _projectileScript = null;
-            _allowTeleport = true;
+            _projectileDestroyed = true;
         }
     }
 
@@ -184,9 +186,13 @@ public class TeleporterScript : MonoBehaviour {
             //if we hit a collider that should not allow teleporting
             _lineRendererMat.SetFloat("_Blocked", 1f);
             _indicatorInstance.SetActive(false);
+
+            _allowTeleport = false;
         } else {
             _lineRendererMat.SetFloat("_Blocked", 0f);
             _indicatorInstance.SetActive(true);
+
+            _allowTeleport = true;
         }
     }
 
@@ -195,5 +201,6 @@ public class TeleporterScript : MonoBehaviour {
         _projectileScript = projectile.GetComponent<ProjectileScript>();
 
         _projectileScript.Trace(_teleportPath, transform);
+        _projectileDestroyed = false;
     }
 }
