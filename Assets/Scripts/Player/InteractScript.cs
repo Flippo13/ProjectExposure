@@ -41,9 +41,9 @@ public class InteractScript : MonoBehaviour {
         //input and suck
         if(_state == VacuumState.Player && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5) {
             MoveTrash();
-        } else if(_state == VacuumState.Player && !grabber.InVacuumMode()) {
+        } else if(_state == VacuumState.Player && !grabber.IsGrabbing()) {
             SetVacuumState(VacuumState.Free);
-        } else if(_state != VacuumState.Player && grabber.InVacuumMode()) {
+        } else if(_state != VacuumState.Player && grabber.InVacuumMode() && grabber.IsGrabbing()) {
             SetVacuumState(VacuumState.Player);
         }
     }
@@ -109,7 +109,7 @@ public class InteractScript : MonoBehaviour {
             Renderer currentRenderer = currentTransform.GetComponent<Renderer>();
 
             //translate to vacuum gun collider and scale down
-            currentTransform.Translate(suckDir * suckSpeed);
+            currentTransform.position = suckDir * suckSpeed;
             currentTransform.localScale = currentTransform.localScale * scaleFactor;
 
             //apply deformation

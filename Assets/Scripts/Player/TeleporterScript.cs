@@ -23,6 +23,7 @@ public class TeleporterScript : MonoBehaviour {
     private ProjectileScript _projectileScript;
 
     private bool _triggerPressed;
+    private bool _allowTeleport;
 
     private TeleportFade _fade;
 
@@ -44,6 +45,7 @@ public class TeleporterScript : MonoBehaviour {
         _teleportPath = new List<Vector3>();
 
         _triggerPressed = false;
+        _allowTeleport = true;
 
         _fade = Camera.main.GetComponent<TeleportFade>();
     }
@@ -54,9 +56,10 @@ public class TeleporterScript : MonoBehaviour {
             _triggerPressed = true;
 
             DrawTeleportationLine();
-        } else if((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.5f || Input.GetMouseButtonUp(0)) && _triggerPressed) {
+        } else if((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.5f || Input.GetMouseButtonUp(0)) && _triggerPressed && _allowTeleport) {
             //released
             _triggerPressed = false;
+            _allowTeleport = false;
 
             TraceTeleportationLine();
 
@@ -73,6 +76,7 @@ public class TeleporterScript : MonoBehaviour {
             _fade.StartTeleportFade();
             Destroy(_projectileScript.gameObject);
             _projectileScript = null;
+            _allowTeleport = true;
         }
     }
 

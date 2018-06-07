@@ -67,8 +67,6 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private bool CheckForObjectives() {
-        //maybe bugged?
-
         CompanionObjective mainObjective = _tracker.GetNextMainObjective();
         CompanionObjective sideObjective = _tracker.GetClosestSideObjective();
 

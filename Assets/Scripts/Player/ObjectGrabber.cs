@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class ObjectGrabber : OVRGrabber {
 
+    public bool isVacuumGrabber;
+    public Transform vacuumAnchor;
+
     private bool _vacuumMode;
     private bool _grabbing;
 
     void OnTriggerEnter(Collider otherCollider) {
         if (otherCollider.tag == Tags.Vacuum) {
-            _vacuumMode = true;
+            if (isVacuumGrabber) _vacuumMode = true;
+            else return; //dont allow grabbing vacuum
         }
 
         // Get the grab trigger
@@ -24,7 +28,8 @@ public class ObjectGrabber : OVRGrabber {
 
     void OnTriggerExit(Collider otherCollider) {
         if (otherCollider.tag == Tags.Vacuum) {
-            _vacuumMode = false;
+            if (isVacuumGrabber) _vacuumMode = false;
+            else return; //dont allow grabbing vacuum
         }
 
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
@@ -45,7 +50,11 @@ public class ObjectGrabber : OVRGrabber {
     }
 
     public bool InVacuumMode() {
-        return _vacuumMode && _grabbing;
+        return _vacuumMode;
+    }
+
+    public bool IsGrabbing() {
+        return _grabbing;
     }
 
     protected override void CheckForGrabOrRelease(float prevFlex) {
@@ -62,10 +71,35 @@ public class ObjectGrabber : OVRGrabber {
         }
     }
 
+    protected override void MoveGrabbedObject(Vector3 pos, Quaternion rot, bool forceTeleport = false) {
+        if (m_grabbedObj == null) {
+            return;
+        }
+
+        if(_vacuumMode) {
+            //handle vacuum repositioning (world position and rotation)
+            m_grabbedObj.transform.position = vacuumAnchor.position;
+            m_grabbedObj.transform.rotation = vacuumAnchor.rotation;
+
+        } else {
+            //default
+            Rigidbody grabbedRigidbody = m_grabbedObj.grabbedRigidbody;
+            Vector3 grabbablePosition = pos + rot * m_grabbedObjectPosOff;
+            Quaternion grabbableRotation = rot * m_grabbedObjectRotOff;
+
+            if (forceTeleport) {
+                grabbedRigidbody.transform.position = grabbablePosition;
+                grabbedRigidbody.transform.rotation = grabbableRotation;
+            } else {
+                grabbedRigidbody.MovePosition(grabbablePosition);
+                grabbedRigidbody.MoveRotation(grabbableRotation);
+            }
+        }
+    }
+
     public void InterruptGrabbing() {
         //end grabbing manually
         GrabEnd();
-        _grabbing = false;
     }
 
     public void RemoveGrabCandidate(Transform grabbableTransform) {
