@@ -30,8 +30,8 @@ public class PowerGrid : MonoBehaviour {
         print("Collide");
         if (other.tag == "CablePlug")
         {
-            other.transform.parent.position = this.transform.position;
-            other.transform.parent.rotation = this.transform.rotation;
+            other.transform.position = this.transform.position;
+            other.transform.rotation = this.transform.rotation;
             //other.transform.parent = null;
             _connected = true; 
         }
