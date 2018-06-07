@@ -151,6 +151,7 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.Instructing:
+                _audio.StopAudioSource(AudioSourceType.Voice);
                 _audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice);
                 _audio.PlayAudioSource(AudioSourceType.Voice);
 
@@ -255,7 +256,7 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Instructing:
                 //instruct the player about objective
 
-                if(!_audio.IsPlaying(AudioSourceType.Voice)) {
+                if(_audio.IsPlaying(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED) {
                     //instructions are done, so either start the objective, reinforce the objective or follow
 
                     //activate the current task and go back to the following state

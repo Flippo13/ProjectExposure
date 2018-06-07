@@ -7,14 +7,6 @@ public class ObjectGrabber : OVRGrabber {
     private bool _vacuumMode;
     private bool _grabbing;
 
-    public void Update() {
-        if(OVRInput.GetDown(OVRInput.Button.Three) || Input.GetKeyDown(KeyCode.I)) {
-            //debug testing grab interrupting when pressing X
-            InterruptGrabbing();
-            Debug.Log("Interrupted grabbing");
-        }
-    }
-
     void OnTriggerEnter(Collider otherCollider) {
         if (otherCollider.tag == Tags.Vacuum) {
             _vacuumMode = true;
