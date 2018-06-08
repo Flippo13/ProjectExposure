@@ -39,6 +39,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         return _currentObjective;
     }
 
+    //returns the next main objective that isnt completed, returns null if no objective was found
     public CompanionObjective GetNextMainObjective() {
         CompanionObjective mainObjective = null;
 
@@ -53,6 +54,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         return mainObjective;
     }
 
+    //returns the closest side objective in range that isnt completed, returns null if no objective was found
     public CompanionObjective GetClosestSideObjective() {
         CompanionObjective closestObjective = null;
         float prevMagnitude = 0f;

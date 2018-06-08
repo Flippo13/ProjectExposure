@@ -31,13 +31,11 @@ public class CompanionAudio : MonoBehaviour {
         _audioTracks[(int)sourceType].stop(STOP_MODE.IMMEDIATE);
     }
 
-    public bool IsPlaying(AudioSourceType sourceType) {
+    public PLAYBACK_STATE IsPlaying(AudioSourceType sourceType) {
         PLAYBACK_STATE result;
         _audioTracks[(int)sourceType].getPlaybackState(out result);
 
-        Debug.Log("Playback state result: " + result);
-
-        return result != PLAYBACK_STATE.STOPPED || result != PLAYBACK_STATE.STOPPING;
+        return result;
     }
 
 }
