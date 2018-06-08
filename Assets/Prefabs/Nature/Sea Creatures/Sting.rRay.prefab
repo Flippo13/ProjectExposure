@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4790822078298068}
   - component: {fileID: 33017108282224312}
   - component: {fileID: 23728779382156990}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stingray_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4693328374773236}
   - component: {fileID: 33744353210114028}
   - component: {fileID: 23775622897984574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stingray_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4450800781119404}
   - component: {fileID: 33375644953385632}
   - component: {fileID: 23989972572985752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stingray_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4272149202221684}
   - component: {fileID: 205903388161832156}
-  m_Layer: 0
+  - component: {fileID: 65654976578973634}
+  m_Layer: 8
   m_Name: Sting.rRay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,8 +85,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818861349906274}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 373.8826, y: 41.84, z: 341.67703}
+  m_LocalRotation: {x: -0.00030081405, y: -0.6926845, z: 0.00013207296, w: 0.7212408}
+  m_LocalPosition: {x: 90.32, y: -5.17, z: 91.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4450800781119404}
@@ -93,7 +94,7 @@ Transform:
   - {fileID: 4790822078298068}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.014, y: -87.686005, z: 0.035}
 --- !u!4 &4450800781119404
 Transform:
   m_ObjectHideFlags: 1
@@ -259,6 +260,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1590154268437678}
   m_Mesh: {fileID: 4300002, guid: a93f1e5724fcfb447b11217b2f4c5ba4, type: 3}
+--- !u!65 &65654976578973634
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1818861349906274}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0111389, y: 0.18151474, z: 1.4677734}
+  m_Center: {x: -0.005569458, y: -0.0230999, z: -0.9850464}
 --- !u!205 &205903388161832156
 LODGroup:
   m_ObjectHideFlags: 1
