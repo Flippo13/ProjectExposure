@@ -27,12 +27,11 @@ public class PowerGrid : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Collide");
-        if (other.tag == "CablePlug")
+        if (other.tag == Tags.CablePlug)
         {
+            other.GetComponent<TurbineSocket>().PlugIn();
             other.transform.position = this.transform.position;
             other.transform.rotation = this.transform.rotation;
-            //other.transform.parent = null;
             _connected = true; 
         }
                 

@@ -991,6 +991,7 @@ GameObject:
   - component: {fileID: 839332713}
   - component: {fileID: 839332710}
   - component: {fileID: 839332711}
+  - component: {fileID: 839332715}
   - component: {fileID: 839332712}
   m_Layer: 10
   m_Name: CableEnd
@@ -1098,6 +1099,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 839332708}
   m_Mesh: {fileID: 4300000, guid: 14af783c98352c445b8d2c05acf3b75d, type: 3}
+--- !u!114 &839332715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 839332708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52f7c8a62e9f684db0c2c7afdde8848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &893460345
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2320,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1665384267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.98, y: 2.7, z: -37.36}
+  m_LocalPosition: {x: -21.92, y: 9.52, z: -37.36}
   m_LocalScale: {x: 2.0463789, y: 6.628616, z: 2.430418}
   m_Children: []
   m_Father: {fileID: 0}
