@@ -15,6 +15,7 @@ public class InteractScript : MonoBehaviour {
 
     private List<Transform> _destroyedObjects;
     private Rigidbody _rigidbody;
+    private Collider _collider;
     private VacuumState _state;
 
     // Use this for initialization
@@ -23,6 +24,7 @@ public class InteractScript : MonoBehaviour {
         _trashCount = 0;
 
         _rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
         _state = VacuumState.Companion;
     }
 
@@ -59,6 +61,7 @@ public class InteractScript : MonoBehaviour {
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
 
+                _collider.isTrigger = true;
                 _rigidbody.isKinematic = true;
 
                 break;
@@ -67,6 +70,7 @@ public class InteractScript : MonoBehaviour {
                 //release
                 transform.parent = null;
 
+                _collider.isTrigger = true;
                 _rigidbody.isKinematic = true;
 
                 break;
@@ -75,6 +79,7 @@ public class InteractScript : MonoBehaviour {
                 //release
                 transform.parent = null;
 
+                _collider.isTrigger = false;
                 _rigidbody.isKinematic = false;
 
                 break;

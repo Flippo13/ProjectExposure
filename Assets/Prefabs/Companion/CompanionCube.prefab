@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 33400065936650932}
   - component: {fileID: 23421724611507554}
   - component: {fileID: 65200205590693424}
-  - component: {fileID: 65048007306961764}
   - component: {fileID: 114752987928019450}
   - component: {fileID: 54748598564778388}
   - component: {fileID: 114488268358852340}
@@ -548,7 +547,7 @@ GameObject:
   - component: {fileID: 54599779534358580}
   m_Layer: 2
   m_Name: VacuumArea
-  m_TagString: Untagged
+  m_TagString: Vacuum
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3593,18 +3592,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65048007306961764
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1095880907201938}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 79.46778, y: 70.240295, z: 92.4306}
-  m_Center: {x: 0, y: 0, z: 0.00390625}
 --- !u!65 &65200205590693424
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3615,8 +3602,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 129.7, y: 132.2, z: 136.6}
-  m_Center: {x: 0.00024414062, y: -0.001953125, z: 0}
+  m_Size: {x: 113.5, y: 118.3, z: 127.6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95314270100356878
 Animator:
   serializedVersion: 3
