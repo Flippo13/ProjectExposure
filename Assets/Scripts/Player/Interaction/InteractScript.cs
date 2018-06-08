@@ -15,7 +15,6 @@ public class InteractScript : MonoBehaviour {
 
     private List<Transform> _destroyedObjects;
     private Rigidbody _rigidbody;
-    private Collider _collider;
     private VacuumState _state;
 
     // Use this for initialization
@@ -24,7 +23,6 @@ public class InteractScript : MonoBehaviour {
         _trashCount = 0;
 
         _rigidbody = GetComponent<Rigidbody>();
-        _collider = GetComponent<Collider>();
         _state = VacuumState.Companion;
     }
 
@@ -61,10 +59,7 @@ public class InteractScript : MonoBehaviour {
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
 
-                _rigidbody.useGravity = false;
                 _rigidbody.isKinematic = true;
-
-                _collider.isTrigger = true;
 
                 break;
 
@@ -72,10 +67,7 @@ public class InteractScript : MonoBehaviour {
                 //release
                 transform.parent = null;
 
-                _rigidbody.useGravity = false;
                 _rigidbody.isKinematic = true;
-
-                _collider.isTrigger = true;
 
                 break;
 
@@ -83,10 +75,7 @@ public class InteractScript : MonoBehaviour {
                 //release
                 transform.parent = null;
 
-                _rigidbody.useGravity = true;
                 _rigidbody.isKinematic = false;
-
-                _collider.isTrigger = false;
 
                 break;
 
@@ -107,14 +96,19 @@ public class InteractScript : MonoBehaviour {
             Vector3 suckDir = (transform.position - vacuumArea.suckableObjectsList[i].position).normalized;
             Transform currentTransform = vacuumArea.suckableObjectsList[i];
             Renderer currentRenderer = currentTransform.GetComponent<Renderer>();
+            Rigidbody currentRigidbody = currentTransform.GetComponent<Rigidbody>();
+
+            currentRigidbody.isKinematic = true;
 
             //translate to vacuum gun collider and scale down
-            currentTransform.position = suckDir * suckSpeed;
+            currentTransform.position += suckDir * suckSpeed;
             currentTransform.localScale = currentTransform.localScale * scaleFactor;
 
             //apply deformation
             float newDeform = Mathf.Clamp01(currentRenderer.material.GetFloat("_Deform") + deformationStep);
             currentRenderer.material.SetFloat("_Deform", newDeform);
+
+            currentRigidbody.isKinematic = false;
         }
 
         //clean up the grabber and vacuum area lists, then destroy the object

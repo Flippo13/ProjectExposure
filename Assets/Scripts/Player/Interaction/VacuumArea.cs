@@ -8,13 +8,13 @@ public class VacuumArea : MonoBehaviour {
     public List<Transform> suckableObjectsList = new List<Transform>();
 
     public void OnTriggerEnter(Collider other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Suckable")) {
+        if (other.gameObject.layer == Layers.Suckable) {
             suckableObjectsList.Add(other.transform);
         }
     }
 
     public void OnTriggerExit(Collider other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Suckable")) {
+        if (other.gameObject.layer == Layers.Suckable) {
             suckableObjectsList.Remove(other.transform);
         }
     }
