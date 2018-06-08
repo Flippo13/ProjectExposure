@@ -9,13 +9,16 @@ public class CheckForTrashArea : MonoBehaviour {
     public float radius;
     private BoxCollider _col;
 
-    public UnityEvent trashCollected; 
+    public UnityEvent areaChosen; 
 
     public bool _playerInArea;
     private int trashCount;
+    private float _playerInAreaTime;
+    public float _timeToChoose;
+    private bool _areaChosen;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         _col = GetComponent<BoxCollider>();
 
         _col.size = new Vector3(radius, 3, radius);
@@ -25,6 +28,7 @@ public class CheckForTrashArea : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         CheckForTrash();
+        ChoosePosition(); 
     }
 
 
@@ -39,17 +43,38 @@ public class CheckForTrashArea : MonoBehaviour {
             if (trashCount <= 0)
             {
                 Debug.Log(trashCount);
-                trashCollected.Invoke(); 
+            }
+            if (_areaChosen)
+            {
+                areaChosen.Invoke();
             }
         }
     }
 
+
+    private void ChoosePosition()
+    {
+        if (_playerInArea)
+        {
+            _playerInAreaTime += 1 * Time.deltaTime;
+            Debug.Log("Counting " + _playerInAreaTime);
+            if (_playerInAreaTime > _timeToChoose)
+            {
+                _areaChosen = true; 
+            }
+        }
+        else
+        {
+            _playerInAreaTime = 0; 
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             _playerInArea = true; 
+            
         }
     }
 

@@ -5,11 +5,11 @@ using UnityEngine;
 public class TurbineSocket : MonoBehaviour {
 
 
-    private ObjectGrabber _hand; 
-
+    private ObjectGrabber _hand;
+    private Rigidbody _rb;
 	// Use this for initialization
 	void Start () {
-		
+        _rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -20,11 +20,14 @@ public class TurbineSocket : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Hello Hand");
         if (other.gameObject.GetComponent<ObjectGrabber>())
         {
             _hand = other.gameObject.GetComponent<ObjectGrabber>();
-            Debug.Log(_hand.name);
+
+            if (_rb.isKinematic)
+            {
+                _rb.isKinematic = false;
+            }
         }
     }
 

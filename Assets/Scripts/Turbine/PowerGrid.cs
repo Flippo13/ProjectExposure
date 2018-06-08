@@ -32,7 +32,9 @@ public class PowerGrid : MonoBehaviour {
             other.GetComponent<TurbineSocket>().PlugIn();
             other.transform.position = this.transform.position;
             other.transform.rotation = this.transform.rotation;
-            _connected = true; 
+            _connected = true;
+
+            other.GetComponent<Rigidbody>().isKinematic = true;
         }
                 
     }

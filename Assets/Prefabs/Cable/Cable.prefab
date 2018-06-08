@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4096687746167794}
   - component: {fileID: 120173199602694736}
   - component: {fileID: 114480039318776840}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,33 +40,48 @@ GameObject:
   - component: {fileID: 23590042196721710}
   - component: {fileID: 65487626048586012}
   - component: {fileID: 54514965846485210}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CableStart
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1652993160636560
+--- !u!1 &1993894748725294
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4879866362125466}
-  - component: {fileID: 33388365954357726}
-  - component: {fileID: 23045188011218810}
-  - component: {fileID: 65112054863692068}
-  - component: {fileID: 54627921634701844}
-  - component: {fileID: 114351255103398220}
-  m_Layer: 0
+  - component: {fileID: 4060854739663526}
+  - component: {fileID: 33673518127420970}
+  - component: {fileID: 23470307731143022}
+  - component: {fileID: 65109179920463702}
+  - component: {fileID: 54618910134926566}
+  - component: {fileID: 114950299277472480}
+  - component: {fileID: 114490793127011110}
+  - component: {fileID: 65777430724842810}
+  m_Layer: 10
   m_Name: CableEnd
   m_TagString: CablePlug
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4060854739663526
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993894748725294}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -4.09, y: -0.398, z: -22.909}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4096687746167794}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4096687746167794
 Transform:
   m_ObjectHideFlags: 1
@@ -74,11 +89,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579586159288876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.154, y: 1.0615973, z: -19.52}
+  m_LocalPosition: {x: -37.154, y: 1.46, z: -19.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4855517939895932}
-  - {fileID: 4879866362125466}
+  - {fileID: 4060854739663526}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95,25 +110,12 @@ Transform:
   m_Father: {fileID: 4096687746167794}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0.319, z: 0}
---- !u!4 &4879866362125466
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652993160636560}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.1824493, y: -0.56159735, z: -17.38794}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4096687746167794}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23045188011218810
+--- !u!23 &23470307731143022
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652993160636560}
+  m_GameObject: {fileID: 1993894748725294}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -178,13 +180,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33388365954357726
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652993160636560}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33398412630642042
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -192,6 +187,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1619687306162076}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33673518127420970
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993894748725294}
+  m_Mesh: {fileID: 4300000, guid: 14af783c98352c445b8d2c05acf3b75d, type: 3}
 --- !u!54 &54514965846485210
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -207,32 +209,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!54 &54627921634701844
+--- !u!54 &54618910134926566
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652993160636560}
+  m_GameObject: {fileID: 1993894748725294}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65112054863692068
+--- !u!65 &65109179920463702
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652993160636560}
+  m_GameObject: {fileID: 1993894748725294}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.32965407, y: 0.35858244, z: 0.38767278}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65487626048586012
 BoxCollider:
@@ -246,23 +248,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114351255103398220
-MonoBehaviour:
+--- !u!65 &65777430724842810
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652993160636560}
+  m_GameObject: {fileID: 1993894748725294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints:
-  - {fileID: 65112054863692068}
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.42, z: 0.42}
+  m_Center: {x: 0, y: 0, z: -0.0000038146973}
 --- !u!114 &114480039318776840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,18 +272,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cableStart: {fileID: 1619687306162076}
-  cableEnd: {fileID: 1652993160636560}
+  cableEnd: {fileID: 1993894748725294}
   cableNode: {fileID: 1020876479632522, guid: 8cacfa6012384984dac935ac5c2228f9, type: 2}
-  cablePartTrans: {fileID: 0}
-  nodeAmount: 50
+  nodeAmount: 30
   springConstant: 22
   desiredDistance: 0.3
   damping: 5
-  ropeLength: 0.2
-  minRopeLength: 0.2
-  maxRopeLength: 34
-  winchSpeed: 2
-  maxLengthBetweenNodes: 0.5
+--- !u!114 &114490793127011110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993894748725294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints:
+  - {fileID: 65109179920463702}
+--- !u!114 &114950299277472480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993894748725294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52f7c8a62e9f684db0c2c7afdde8848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &120173199602694736
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -333,7 +352,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.52702713
+        value: 0.50574875
         inSlope: 0
         outSlope: 0
         tangentMode: 0
