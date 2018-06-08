@@ -26,6 +26,8 @@ public class InteractScript : MonoBehaviour {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
         _state = VacuumState.Companion;
+
+        _rigidbody.useGravity = true;
     }
 
     public void OnTriggerEnter(Collider other) {

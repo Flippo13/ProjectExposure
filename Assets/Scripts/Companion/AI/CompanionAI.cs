@@ -12,6 +12,8 @@ public class CompanionAI : MonoBehaviour {
     public float interactionRadius;
     public float objectiveScanRadius;
 
+    public float stayDuration;
+
     public bool debug;
 
     private CompanionState _aiState;
@@ -135,6 +137,11 @@ public class CompanionAI : MonoBehaviour {
 
         switch (state) {
 
+            case CompanionState.Staying:
+                _timer = 0f;
+
+                break;
+
             case CompanionState.Traveling:
                 _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
 
@@ -198,17 +205,25 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.Returning:
+                //returning to the player when called
                 if (!InInterationRange()) {
                     //move to the player without other priorities
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
 
                     _navigator.SetDestination(destination);
-
-                } else {
-                    //close enough to the player
-                    SetState(CompanionState.Following);
                 }
+
+                //close enough to the player
+                if (_navigator.ReachedDestinaton()) SetState(CompanionState.Staying);
+
+                break;
+
+            case CompanionState.Staying:
+                //staying at its position after getting called
+                if (_timer >= stayDuration) SetState(CompanionState.Following);
+
+                _timer += Time.deltaTime;
 
                 break;
 

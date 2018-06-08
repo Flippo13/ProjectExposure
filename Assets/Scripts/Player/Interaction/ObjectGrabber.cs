@@ -28,8 +28,7 @@ public class ObjectGrabber : OVRGrabber {
 
     void OnTriggerExit(Collider otherCollider) {
         if (otherCollider.tag == Tags.Vacuum) {
-            if (isVacuumGrabber) _vacuumMode = false;
-            else return; //dont allow grabbing vacuum
+            return; //dont allow grabbing vacuum
         }
 
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
@@ -58,16 +57,14 @@ public class ObjectGrabber : OVRGrabber {
     }
 
     protected override void CheckForGrabOrRelease(float prevFlex) {
-        if(_vacuumMode) {
-            if ((m_prevFlex >= grabBegin) && (prevFlex < grabBegin)) {
-                GrabBegin();
-                _grabbing = true;
-            } else if ((m_prevFlex <= grabEnd) && (prevFlex > grabEnd)) {
-                GrabEnd();
-                _grabbing = false;
-            }
-        } else {
-            base.CheckForGrabOrRelease(prevFlex);
+        if ((m_prevFlex >= grabBegin) && (prevFlex < grabBegin)) {
+            GrabBegin();
+            _grabbing = true;
+        } else if ((m_prevFlex <= grabEnd) && (prevFlex > grabEnd)) {
+            GrabEnd();
+            _grabbing = false;
+
+            if (isVacuumGrabber) _vacuumMode = false;
         }
     }
 
