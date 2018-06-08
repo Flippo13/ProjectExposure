@@ -1,6 +1,9 @@
 ﻿public enum Expressions
 {
     Default,
-    Rotated,
-    Flipped,
+    Sad,
+    Happy,
+    Wink,
+    Burp,
+    Dizzy,
 }
