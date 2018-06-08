@@ -44,7 +44,7 @@
 			{
 				fixed4 _ExpressionColor = 0;
 				// If enum is more than 3, keep it within the 0-3 range due to RGB
-				if (_Expression > 3)
+				if (_Expression > 2)
 					_Expression = _Expression - 3;
 
 				switch (_Expression)
@@ -64,7 +64,7 @@
 
 				fixed4 _ExpressionColor;
 				// If enum is more than 3, use the other texture
-				if(_Expression > 3)
+				if(_Expression > 2)
 					_ExpressionColor = getExpression(tex2D(_ExpressionMap2, IN.uv_ExpressionMap2));
 				else
 					_ExpressionColor = getExpression(tex2D(_ExpressionMap1, IN.uv_ExpressionMap1));
