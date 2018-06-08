@@ -180,6 +180,7 @@ public class CompanionAI : MonoBehaviour {
         switch (_aiState) {
             case CompanionState.Following:
                 //idle/main state of the companion
+                if (CheckForCompanionCall()) return;
 
                 //check wether the vacuum was dropped or not
                 if (vacuum.GetVacuumState() == VacuumState.Free) {
@@ -189,11 +190,9 @@ public class CompanionAI : MonoBehaviour {
                 if (!CheckForObjectives() && !InInterationRange()) { //if there is no objective in range and the player is out of range
                     //move to the player
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
-                    Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
+                    Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius; //player pos plus an offset
 
                     _navigator.SetDestination(destination);
-                } else if (InInterationRange()) {
-                    _navigator.SetDestination(transform.position); //stop following at interaction range
                 }
 
                 break;
