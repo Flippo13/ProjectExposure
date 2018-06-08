@@ -37,7 +37,7 @@ public class CompanionAI : MonoBehaviour {
         //if first boat scene: Inactive, otherwise: Following
         _debug.Init();
         _debug.SetRendererStatus(debug);
-        EnterState(CompanionState.Inactive);
+        EnterState(CompanionState.Following);
     }
 
     public void Update() {
@@ -178,13 +178,6 @@ public class CompanionAI : MonoBehaviour {
     private void UpdateState() {
 
         switch (_aiState) {
-            case CompanionState.Inactive:
-                //activate the companion when pressing the call button
-                if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q)) {
-                    SetState(CompanionState.Following);
-                }
-                break;
-
             case CompanionState.Following:
                 //idle/main state of the companion
 

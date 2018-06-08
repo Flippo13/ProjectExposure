@@ -6,7 +6,6 @@ using UnityEngine.XR;
 //helpoer debug component for the companion
 public class CompanionDebug : MonoBehaviour {
 
-    public Material inactiveMaterial;
     public Material activeMaterial;
     public Material waitingMaterial;
     public Material busyMaterial;
@@ -24,9 +23,6 @@ public class CompanionDebug : MonoBehaviour {
         if (_renderer == null || !_renderer.enabled) return;
 
         switch(state) {
-            case CompanionState.Inactive:
-                _renderer.material = inactiveMaterial;
-                break;
 
             case CompanionState.Instructing:
                 _renderer.material = busyMaterial;
