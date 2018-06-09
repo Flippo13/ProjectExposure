@@ -7,7 +7,7 @@ public class InteractScript : MonoBehaviour {
     public Transform vacuumAnchor;
     public VacuumArea vacuumArea;
     public float suckSpeed;
-    public ObjectGrabber grabber;
+    public ObjectGrabber vacuumGrabber;
     public float deformationStep;
     public float scaleFactor;
 
@@ -31,9 +31,9 @@ public class InteractScript : MonoBehaviour {
     }
 
     public void OnTriggerEnter(Collider other) {
-        if (_state != VacuumState.Player) return;
+        if (_state != VacuumState.Player) return; //only execute in player state
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Suckable") && !_destroyedObjects.Contains(other.transform)) {
+        if (other.gameObject.layer == Layers.Suckable && !_destroyedObjects.Contains(other.transform)) {
             _trashCount++;
             _destroyedObjects.Add(other.transform);
         }
@@ -43,9 +43,9 @@ public class InteractScript : MonoBehaviour {
         //input and suck
         if(_state == VacuumState.Player && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5) {
             MoveTrash();
-        } else if(_state == VacuumState.Player && !grabber.IsGrabbing()) {
+        } else if(_state == VacuumState.Player && !vacuumGrabber.IsGrabbing()) {
             SetVacuumState(VacuumState.Free);
-        } else if(_state != VacuumState.Player && grabber.InVacuumMode() && grabber.IsGrabbing()) {
+        } else if(_state != VacuumState.Player && vacuumGrabber.InVacuumMode() && vacuumGrabber.IsGrabbing()) {
             SetVacuumState(VacuumState.Player);
         }
     }
@@ -91,10 +91,6 @@ public class InteractScript : MonoBehaviour {
         }
     }
 
-    public VacuumState GetVacuumState() {
-        return _state;
-    }
-
     public void MoveTrash() {
         if (vacuumArea.suckableObjectsList.Count == 0) return;
 
@@ -121,7 +117,7 @@ public class InteractScript : MonoBehaviour {
         //clean up the grabber and vacuum area lists, then destroy the object
         for (int i = 0; i < _destroyedObjects.Count; i++) {
             vacuumArea.RemoveTransfromFromList(_destroyedObjects[i]);
-            grabber.RemoveGrabCandidate(_destroyedObjects[i]);
+            vacuumGrabber.RemoveGrabCandidate(_destroyedObjects[i]);
             Destroy(_destroyedObjects[i].gameObject);
         }
 
@@ -130,5 +126,9 @@ public class InteractScript : MonoBehaviour {
 
     public int GetTrashCount() {
         return _trashCount;
+    }
+
+    public VacuumState GetVacuumState() {
+        return _state;
     }
 }

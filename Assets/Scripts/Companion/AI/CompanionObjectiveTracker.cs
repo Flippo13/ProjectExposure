@@ -95,15 +95,27 @@ public class CompanionObjectiveTracker : MonoBehaviour {
                 break;
 
             case ObjectiveTask.Choose:
+                //player chose position
+                if (_currentObjective.ChosePosition()) return false;
+
                 break;
 
             case ObjectiveTask.Place:
+                //player dropped turbine
+                if (_currentObjective.DroppedTurbine()) return false;
+
                 break;
 
             case ObjectiveTask.PlugIn:
+                //player has plugged in the cable socket into the power grid
+                if (_currentObjective.CableConnected()) return false;
+
                 break;
 
             case ObjectiveTask.PowerOn:
+                //player has pressed the console button to reactivate the turbine
+                if (_currentObjective.ConsoleButtonPressed()) return false;
+
                 break;
 
             case ObjectiveTask.Assemble:

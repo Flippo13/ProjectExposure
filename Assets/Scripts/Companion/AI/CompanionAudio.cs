@@ -18,9 +18,14 @@ public class CompanionAudio : MonoBehaviour {
         //PlayAudioSource(AudioSourceType.Effects);
     }
 
-    public void SetClip(string eventPath, AudioSourceType sourceType) {
+    //returns true if the event clip was valid, returns false otherwise
+    public bool SetClip(string eventPath, AudioSourceType sourceType) {
+        if (eventPath == "") return false;
+
         _audioTracks[(int)sourceType] = RuntimeManager.CreateInstance(eventPath);
         _audioTracks[(int)sourceType].set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
+
+        return true;
     }
 
     public void PlayAudioSource(AudioSourceType sourceType) {

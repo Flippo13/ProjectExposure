@@ -20,11 +20,11 @@ public class TeleporterScript : MonoBehaviour {
     private Vector3 _teleportPoint;
     private List<Vector3> _teleportPath;
     private GameObject _indicatorInstance;
+    private GameObject _projectileInstance;
     private ProjectileScript _projectileScript;
 
     private bool _triggerPressed;
     private bool _allowTeleport;
-    private bool _projectileDestroyed;
 
     private TeleportFade _fade;
 
@@ -38,7 +38,10 @@ public class TeleporterScript : MonoBehaviour {
         _indicatorInstance = Instantiate(indicatorPrefab);
         _indicatorInstance.SetActive(false);
 
-        _projectileScript = null;
+        _projectileInstance = Instantiate(projectilePrefab);
+        _projectileInstance.SetActive(false);
+
+        _projectileScript = _projectileInstance.GetComponent<ProjectileScript>();
 
         _lineRenderer = leftHandAnchor.GetComponent<LineRenderer>();
         _lineRendererMat = _lineRenderer.material;
@@ -46,7 +49,6 @@ public class TeleporterScript : MonoBehaviour {
         _teleportPath = new List<Vector3>();
 
         _triggerPressed = false;
-        _projectileDestroyed = true;
 
         _fade = Camera.main.GetComponent<TeleportFade>();
     }
@@ -59,7 +61,7 @@ public class TeleporterScript : MonoBehaviour {
             DrawTeleportationLine();
         } else if((OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.5f || Input.GetMouseButtonUp(0)) && _triggerPressed) {
             //teleport
-            if (_allowTeleport && _projectileDestroyed) TraceTeleportationLine();
+            if (_allowTeleport && !_projectileInstance.activeSelf) TraceTeleportationLine();
 
             //released
             _triggerPressed = false;
@@ -74,11 +76,10 @@ public class TeleporterScript : MonoBehaviour {
             _lineRenderer.enabled = false;
         }
 
-        if(_projectileScript != null && _projectileScript.IsTeleported()) {
+        if(_projectileInstance.activeSelf && _projectileScript.IsTeleported()) {
             _fade.StartTeleportFade();
-            Destroy(_projectileScript.gameObject);
-            _projectileScript = null;
-            _projectileDestroyed = true;
+            _projectileScript.SetTeleported(false);
+            _projectileInstance.SetActive(false);
         }
     }
 
@@ -199,10 +200,8 @@ public class TeleporterScript : MonoBehaviour {
     }
 
     private void TraceTeleportationLine() {
-        GameObject projectile = Instantiate(projectilePrefab);
-        _projectileScript = projectile.GetComponent<ProjectileScript>();
+        _projectileInstance.SetActive(true);
 
         _projectileScript.Trace(_teleportPath, transform);
-        _projectileDestroyed = false;
     }
 }

@@ -81,4 +81,8 @@ public class ProjectileScript : MonoBehaviour {
     public bool IsTeleported() {
         return _teleported;
     }
+
+    public void SetTeleported(bool status) {
+        _teleported = status;
+    }
 }

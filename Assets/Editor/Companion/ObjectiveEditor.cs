@@ -17,6 +17,10 @@ public class ObjectiveEditor : Editor {
     //task dependant props
     SerializedProperty trashAmountProp;
     SerializedProperty sceneTransitionProp;
+    SerializedProperty dropdownZonesProp;
+    SerializedProperty turbineProp;
+    SerializedProperty powerGridProp;
+    SerializedProperty turbineButtonProp;
 
     private CompanionObjective _objective;
 
@@ -29,6 +33,10 @@ public class ObjectiveEditor : Editor {
 
         trashAmountProp = serializedObject.FindProperty("trashAmount");
         sceneTransitionProp = serializedObject.FindProperty("sceneTransition");
+        dropdownZonesProp = serializedObject.FindProperty("dropdownZones");
+        turbineProp = serializedObject.FindProperty("turbine");
+        powerGridProp = serializedObject.FindProperty("powerGrid");
+        turbineButtonProp = serializedObject.FindProperty("turbineButton");
 
         _objective = (CompanionObjective)target;
     }
@@ -46,25 +54,34 @@ public class ObjectiveEditor : Editor {
                 EditorGUILayout.PropertyField(objectiveTaskProp, new GUIContent("Objective Task"));
 
                 switch (task) {
-                    case ObjectiveTask.Talk:
-                        break;
 
                     case ObjectiveTask.Cleanup:
                         EditorGUILayout.PropertyField(trashAmountProp, new GUIContent("Trash Amount"));
+
                         break;
 
                     case ObjectiveTask.Choose:
+                        //array
+                        EditorGUILayout.PropertyField(dropdownZonesProp, new GUIContent("Dropdown Zones"));
+
+                        for (int i = 0; i < dropdownZonesProp.arraySize; i++) {
+                            EditorGUILayout.PropertyField(dropdownZonesProp.GetArrayElementAtIndex(i), new GUIContent("Zone " + (i + 1)));
+                        }
+
                         break;
 
                     case ObjectiveTask.Place:
+                        EditorGUILayout.PropertyField(turbineProp, new GUIContent("Dropping Turbine"));
 
                         break;
 
                     case ObjectiveTask.PlugIn:
-
+                        EditorGUILayout.PropertyField(powerGridProp, new GUIContent("Power Grid"));
+                        
                         break;
 
                     case ObjectiveTask.PowerOn:
+                        EditorGUILayout.PropertyField(turbineButtonProp, new GUIContent("Turbine Button"));
 
                         break;
 
@@ -74,9 +91,6 @@ public class ObjectiveEditor : Editor {
 
                     case ObjectiveTask.NextLevel:
                         EditorGUILayout.PropertyField(sceneTransitionProp, new GUIContent("Scene Transition"));
-                        break;
-
-                    case ObjectiveTask.Event:
 
                         break;
 
@@ -94,10 +108,12 @@ public class ObjectiveEditor : Editor {
                 break;
         }
 
-        //default properties
-        EditorGUILayout.PropertyField(instructionClipProp, new GUIContent("Instruction Clip"));
-        EditorGUILayout.PropertyField(reinforcementClipProp, new GUIContent("Reinforcement Clip"));
-        EditorGUILayout.PropertyField(reinforcementIntervalProp, new GUIContent("Reinforcement Interval"));
+        if(task != ObjectiveTask.Place) {
+            //default properties
+            EditorGUILayout.PropertyField(instructionClipProp, new GUIContent("Instruction Clip"));
+            EditorGUILayout.PropertyField(reinforcementClipProp, new GUIContent("Reinforcement Clip"));
+            EditorGUILayout.PropertyField(reinforcementIntervalProp, new GUIContent("Reinforcement Interval"));
+        }
 
         //apply changes
         serializedObject.ApplyModifiedProperties();

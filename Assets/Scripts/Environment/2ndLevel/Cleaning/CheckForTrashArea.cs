@@ -23,6 +23,8 @@ public class CheckForTrashArea : MonoBehaviour {
 
         _col.size = new Vector3(radius, 3, radius);
         _col.isTrigger = true;
+
+        _playerInArea = false;
 	}
 	
 	// Update is called once per frame
@@ -46,6 +48,7 @@ public class CheckForTrashArea : MonoBehaviour {
             }
             if (_areaChosen)
             {
+                Debug.Log("Invoking");
                 areaChosen.Invoke();
             }
         }
@@ -57,7 +60,7 @@ public class CheckForTrashArea : MonoBehaviour {
         if (_playerInArea)
         {
             _playerInAreaTime += 1 * Time.deltaTime;
-            Debug.Log("Counting " + _playerInAreaTime);
+            //Debug.Log("Counting " + _playerInAreaTime);
             if (_playerInAreaTime > _timeToChoose)
             {
                 _areaChosen = true; 
@@ -73,7 +76,8 @@ public class CheckForTrashArea : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            _playerInArea = true; 
+            _playerInArea = true;
+            Debug.Log("Player ");
             
         }
     }

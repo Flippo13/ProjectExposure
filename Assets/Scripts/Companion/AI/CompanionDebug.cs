@@ -9,6 +9,7 @@ public class CompanionDebug : MonoBehaviour {
     public Material activeMaterial;
     public Material waitingMaterial;
     public Material busyMaterial;
+    public Material stayingMaterial;
     public Material vacuumMaterial;
 
     private Renderer _renderer;
@@ -23,6 +24,11 @@ public class CompanionDebug : MonoBehaviour {
         if (_renderer == null || !_renderer.enabled) return;
 
         switch(state) {
+
+            case CompanionState.Staying:
+                _renderer.material = stayingMaterial;
+
+                break;
 
             case CompanionState.Instructing:
                 _renderer.material = busyMaterial;

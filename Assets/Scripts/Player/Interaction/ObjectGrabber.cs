@@ -10,7 +10,13 @@ public class ObjectGrabber : OVRGrabber {
     private bool _vacuumMode;
     private bool _grabbing;
 
-    void OnTriggerEnter(Collider otherCollider) {
+    public void Update() {
+        //update controller position and rotation
+        transform.localPosition = OVRInput.GetLocalControllerPosition(m_controller);
+        transform.localRotation = OVRInput.GetLocalControllerRotation(m_controller);
+    }
+
+    public void OnTriggerEnter(Collider otherCollider) {
         if (otherCollider.tag == Tags.Vacuum) {
             if (isVacuumGrabber) _vacuumMode = true;
             else return; //dont allow grabbing vacuum
@@ -26,10 +32,8 @@ public class ObjectGrabber : OVRGrabber {
         m_grabCandidates[grabbable] = refCount + 1;
     }
 
-    void OnTriggerExit(Collider otherCollider) {
-        if (otherCollider.tag == Tags.Vacuum) {
-            return; //dont allow grabbing vacuum
-        }
+    public void OnTriggerExit(Collider otherCollider) {
+        if (otherCollider.tag == Tags.Vacuum && !isVacuumGrabber) return; //dont remove anything from the list
 
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
         if (grabbable == null || !grabbable.enabled) return;
@@ -48,14 +52,6 @@ public class ObjectGrabber : OVRGrabber {
         }
     }
 
-    public bool InVacuumMode() {
-        return _vacuumMode;
-    }
-
-    public bool IsGrabbing() {
-        return _grabbing;
-    }
-
     protected override void CheckForGrabOrRelease(float prevFlex) {
         if ((m_prevFlex >= grabBegin) && (prevFlex < grabBegin)) {
             GrabBegin();
@@ -64,14 +60,12 @@ public class ObjectGrabber : OVRGrabber {
             GrabEnd();
             _grabbing = false;
 
-            if (isVacuumGrabber) _vacuumMode = false;
+            if (isVacuumGrabber) _vacuumMode = false; //release the vacuum
         }
     }
 
     protected override void MoveGrabbedObject(Vector3 pos, Quaternion rot, bool forceTeleport = false) {
-        if (m_grabbedObj == null) {
-            return;
-        }
+        if (m_grabbedObj == null) return;
 
         if(_vacuumMode) {
             //handle vacuum repositioning (world position and rotation)
@@ -79,7 +73,7 @@ public class ObjectGrabber : OVRGrabber {
             m_grabbedObj.transform.rotation = vacuumAnchor.rotation;
 
         } else {
-            //default
+            //default for anything else
             Rigidbody grabbedRigidbody = m_grabbedObj.grabbedRigidbody;
             Vector3 grabbablePosition = pos + rot * m_grabbedObjectPosOff;
             Quaternion grabbableRotation = rot * m_grabbedObjectRotOff;
@@ -97,6 +91,14 @@ public class ObjectGrabber : OVRGrabber {
     public void InterruptGrabbing() {
         //end grabbing manually
         GrabEnd();
+    }
+
+    public bool InVacuumMode() {
+        return _vacuumMode;
+    }
+
+    public bool IsGrabbing() {
+        return _grabbing;
     }
 
     public void RemoveGrabCandidate(Transform grabbableTransform) {

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 //state machine of the robot containing its behaviour
 public class CompanionAI : MonoBehaviour {
@@ -36,7 +35,6 @@ public class CompanionAI : MonoBehaviour {
         _tracker = GetComponent<CompanionObjectiveTracker>();
         _debug = GetComponent<CompanionDebug>();
 
-        //if first boat scene: Inactive, otherwise: Following
         _debug.Init();
         _debug.SetRendererStatus(debug);
         EnterState(CompanionState.Following);
@@ -114,7 +112,7 @@ public class CompanionAI : MonoBehaviour {
                 return true;
             }
         } else { //no objective remaining
-            Debug.Log("No Main or Side Objectives found");
+            if(debug) Debug.Log("No Main or Side Objectives found");
         }
 
         //nothing in scan radius
@@ -127,13 +125,20 @@ public class CompanionAI : MonoBehaviour {
             if (!_tracker.TrackObjective(_controls.GetTrashCount())) {
                 //if the objective is completed
                 _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Complete);
-                Debug.Log("Objective complete");
+                if (debug) Debug.Log("Objective complete");
             }
         }
     }
 
+    private void RotateTowardsPlayer() {
+        //rotate the companion towards the player over the y axis (not smooth but snap)
+
+        Vector3 targetPos = new Vector3(companionDestination.position.x, transform.position.y, companionDestination.position.z); //only rotate over y
+        transform.LookAt(targetPos);
+    }
+
     private void EnterState(CompanionState state) {
-        Debug.Log("Entering state " + state);
+        if (debug) Debug.Log("Entering state " + state);
 
         switch (state) {
 
@@ -159,8 +164,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Instructing:
                 _audio.StopAudioSource(AudioSourceType.Voice);
-                _audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice);
-                _audio.PlayAudioSource(AudioSourceType.Voice);
+                if(_audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice)) _audio.PlayAudioSource(AudioSourceType.Voice);
 
                 break;
 
@@ -169,11 +173,11 @@ public class CompanionAI : MonoBehaviour {
         }
 
         _aiState = state;
-        _debug.ApplyState(_aiState);
+        if(debug) _debug.ApplyState(_aiState);
     }
 
     private void ExitState(CompanionState state) {
-        Debug.Log("Leaving state " + state);
+        if (debug) Debug.Log("Leaving state " + state);
 
         switch (state) {
             default:
@@ -200,6 +204,9 @@ public class CompanionAI : MonoBehaviour {
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius; //player pos plus an offset
 
                     _navigator.SetDestination(destination);
+                } else if (InInterationRange()) {
+                    //next to the player
+                    RotateTowardsPlayer();
                 }
 
                 break;
@@ -221,6 +228,8 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Staying:
                 //staying at its position after getting called
+                RotateTowardsPlayer();
+
                 if (_timer >= stayDuration) SetState(CompanionState.Following);
 
                 _timer += Time.deltaTime;
@@ -244,6 +253,9 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.Waiting:
+                //reinforce the player to come to the objective
+                RotateTowardsPlayer();
+
                 if (CheckForCompanionCall()) return;
 
                 if (InInterationRange()) {
@@ -253,8 +265,7 @@ public class CompanionAI : MonoBehaviour {
                     //wait and reinforce the player for objective
                     _timer = 0f;
                     _audio.StopAudioSource(AudioSourceType.Voice);
-                    _audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice);
-                    _audio.PlayAudioSource(AudioSourceType.Voice);
+                    if(_audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice)) _audio.PlayAudioSource(AudioSourceType.Voice);
                 }
 
                 _timer += Time.deltaTime;
@@ -263,6 +274,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Instructing:
                 //instruct the player about objective
+                RotateTowardsPlayer();
 
                 if (_audio.IsPlaying(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED) {
                     //instructions are done, so either start the objective, reinforce the objective or follow
@@ -283,7 +295,7 @@ public class CompanionAI : MonoBehaviour {
 
                 _navigator.SetDestination(vacuumPos);
 
-                if (deltaVecVacuum.magnitude <= 0.5f) {
+                if (deltaVecVacuum.magnitude <= 0.7f) {
                     vacuum.SetVacuumState(VacuumState.Companion);
                     SetState(CompanionState.Following);
                 }
