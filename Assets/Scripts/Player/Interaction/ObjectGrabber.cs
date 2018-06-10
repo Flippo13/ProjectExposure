@@ -55,7 +55,8 @@ public class ObjectGrabber : OVRGrabber {
     protected override void CheckForGrabOrRelease(float prevFlex) {
         if ((m_prevFlex >= grabBegin) && (prevFlex < grabBegin)) {
             GrabBegin();
-            _grabbing = true;
+            if (_vacuumMode) _grabbing = true;
+            else _grabbing = false;
         } else if ((m_prevFlex <= grabEnd) && (prevFlex > grabEnd)) {
             GrabEnd();
             _grabbing = false;
