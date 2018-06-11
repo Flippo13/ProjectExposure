@@ -27,7 +27,8 @@ public class SceneTransition : MonoBehaviour {
     }
 
     IEnumerator LoadYourAsyncScene() {
-        _nextScene = SceneManager.LoadSceneAsync(nextSceneIndex);   
+        _nextScene = SceneManager.LoadSceneAsync(nextSceneIndex);
+        _nextScene.allowSceneActivation = false;
 
         // Wait until the asynchronous scene fully loads
         while (!_nextScene.isDone) {
