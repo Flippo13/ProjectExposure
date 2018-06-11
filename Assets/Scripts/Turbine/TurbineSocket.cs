@@ -24,7 +24,7 @@ public class TurbineSocket : MonoBehaviour {
         {
             _hand = other.gameObject.GetComponent<ObjectGrabber>();
 
-            if (_rb.isKinematic)
+            if (_rb.isKinematic && other.gameObject == _hand)
             {
                 _rb.isKinematic = false;
             }

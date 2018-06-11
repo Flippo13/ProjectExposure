@@ -30,13 +30,19 @@ public class TurbinePiece : MonoBehaviour {
 		
 	}
 
+
+    private void CheckRotation()
+    {
+
+    }
+
     public void Activate()
     {
         rend.material.color = new Color(0.3f, 0.8f, 0.4f, 1.0f);
         connected = true; 
     }
 
-    public void Kill()
+    public void Connected()
     {
         Destroy(this); 
     }
