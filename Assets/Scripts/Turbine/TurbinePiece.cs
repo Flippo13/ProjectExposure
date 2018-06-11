@@ -7,9 +7,12 @@ public class TurbinePiece : MonoBehaviour {
     public enum Piece {TrubineBlade, TurbineFoundation};
     public Piece piece;
 
-    private Renderer rend;
-    public bool connected; 
+    public GameObject turbinePiecePosition; 
 
+    public bool connected;
+
+    private Renderer rend;
+    private bool _grabbed; 
 
 	// Use this for initialization
 	void Start () {
