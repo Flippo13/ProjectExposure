@@ -11,7 +11,8 @@ public class SceneTransition : MonoBehaviour {
 
     private Collider _collider;
 
-    public void Awake() {
+    public void Start() {
+        //doesnt work with awake
         StartCoroutine(LoadYourAsyncScene());
 
         _collider = GetComponent<Collider>();
