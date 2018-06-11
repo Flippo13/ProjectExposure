@@ -9,32 +9,100 @@ public class TurbinePiece : MonoBehaviour {
 
     public GameObject turbinePiecePosition; 
 
+
+
     public bool connected;
 
-    private Renderer rend;
-    private bool _grabbed; 
+    public float offset; 
 
-	// Use this for initialization
+    private Renderer rend;
+    private new Transform transform;
+    private Transform _tubinePosTransform;
+
+    public bool grabbed;
+    private bool _correctXRotation; 
+    private bool _correctYRotation;
+    private bool _correctZRotation; 
+    // Use this for initialization
 	void Start () {
-        rend = GetComponent<Renderer>(); 
+        rend = GetComponent<Renderer>();
+        transform = GetComponent<Transform>();
+        _tubinePosTransform = turbinePiecePosition.GetComponent<Transform>(); 
 
 		if(this.tag == "TurbinePiecePosition")
         {
-            rend.material.color = new Color(0.3f, 0.8f,0.4f, 0.31f);
+            rend.material.color = new Color(0.3f, 0.8f,0.4f, 0.21f);
             connected = false; 
         }
+
+       
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        //CheckRotation(); 
+        if (this.tag != "TurbinePiecePosition" && grabbed)
+        {
+            if (piece == Piece.TrubineBlade)
+            {
+                _correctXRotation = AxisIsOne(transform.right, true, false, true);
+                _correctYRotation = AxisIsOne(transform.up, false, true, true);
+                _correctZRotation = AxisIsOne(transform.forward, true, false, true);
+
+
+                if (_correctXRotation && _correctYRotation && _correctZRotation)
+                {
+                    connected = true;
+                    _tubinePosTransform.GetComponent<Renderer>().material.renderQueue = 1;
+                    
+                    grabbed = false; 
+                    Debug.Log("Can Connect");
+                }
+            }
+        }
+    }
 
 
     private void CheckRotation()
     {
+        float dotOfXtoY = Vector3.Dot(transform.right, _tubinePosTransform.transform.up);
+        float dotOfXtoX = Vector3.Dot(transform.right, _tubinePosTransform.transform.right);
+        float dotOfXtoZ = Vector3.Dot(transform.right, _tubinePosTransform.transform.forward);
 
+        float dotOfYtoY = Vector3.Dot(transform.up, _tubinePosTransform.transform.up);
+        float dotOfYtoX = Vector3.Dot(transform.up, _tubinePosTransform.transform.right);
+        float dotOfYtoZ = Vector3.Dot(transform.up, _tubinePosTransform.transform.forward);
+
+        float dotOfZtoY = Vector3.Dot(transform.forward, _tubinePosTransform.transform.up);
+        float dotOfZtoX = Vector3.Dot(transform.forward, _tubinePosTransform.transform.right);
+        float dotOfZtoZ = Vector3.Dot(transform.forward, _tubinePosTransform.transform.forward);
+
+        Debug.Log("Y to Y: " + dotOfYtoY);
+        Debug.Log("Y to X: " + dotOfYtoX);
+        Debug.Log("Y to Z: " + dotOfYtoZ);
+
+        Debug.Log("Y +- other Y: " + (1 <= dotOfYtoY + offset || -1 >= dotOfYtoY - offset));
+        Debug.Log("Y +- other X: " + (1 <= dotOfYtoX + offset || -1 >= dotOfYtoX - offset));
+        Debug.Log("Y +- other Z: " + (1 <= dotOfYtoZ + offset || -1 >= dotOfYtoZ - offset));
     }
+
+    private bool AxisIsOne(Vector3 turbinePieceAxis, bool compareToX, bool compareToY, bool compareToZ)
+    {
+        float dotOfAxisToX = Vector3.Dot(turbinePieceAxis, _tubinePosTransform.right);
+        float dotOfAxisToY = Vector3.Dot(turbinePieceAxis, _tubinePosTransform.up); 
+        float dotOfAxisToZ = Vector3.Dot(turbinePieceAxis, _tubinePosTransform.forward);
+
+        if (compareToX && 1 <= dotOfAxisToX + offset || -1 >= dotOfAxisToX - offset)
+            return true;
+        else if (compareToY && 1 <= dotOfAxisToY + offset || -1 >= dotOfAxisToY - offset && compareToY)
+            return true; 
+        else if (compareToZ && 1 <= dotOfAxisToZ + offset || -1 >= dotOfAxisToZ - offset)
+            return true;
+        else
+            return false; 
+        
+    }
+
 
     public void Activate()
     {
@@ -45,6 +113,14 @@ public class TurbinePiece : MonoBehaviour {
     public void Connected()
     {
         Destroy(this); 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<ObjectGrabber>())
+        {
+            grabbed = true; 
+        }
     }
 
 }
