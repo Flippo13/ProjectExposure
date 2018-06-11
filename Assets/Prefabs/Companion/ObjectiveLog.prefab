@@ -11,22 +11,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1022082736760574}
   m_IsPrefabParent: 1
---- !u!1 &1009425696806030
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4180571127856072}
-  - component: {fileID: 114143531214472880}
-  m_Layer: 0
-  m_Name: SideObjective_Test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1022082736760574
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,6 +26,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1199412834968290
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4056623303307568}
+  - component: {fileID: 114325371056671040}
+  m_Layer: 0
+  m_Name: Power on turbine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1382174889142734
 GameObject:
   m_ObjectHideFlags: 1
@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 4741056039550018}
   - component: {fileID: 114654617502441608}
   m_Layer: 0
-  m_Name: MainObjective_Test
+  m_Name: Welcome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 4372203876965334}
   - component: {fileID: 114265081637826660}
   m_Layer: 0
-  m_Name: MainObjective_Test2 (5)
+  m_Name: Level transition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4062070624095978}
   - component: {fileID: 114398040465026980}
   m_Layer: 0
-  m_Name: MainObjective_Test2 (4)
+  m_Name: Plug in
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 4607746086156350}
   - component: {fileID: 114532621008783964}
   m_Layer: 0
-  m_Name: MainObjective_Test2 (1)
+  m_Name: Talk 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 4217460246391450}
   - component: {fileID: 114932832922877580}
   m_Layer: 0
-  m_Name: MainObjective_Test2 (3)
+  m_Name: Cleanup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 4135243143689316}
   - component: {fileID: 114939529238737798}
   m_Layer: 0
-  m_Name: MainObjective_Test2
+  m_Name: Talk 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,12 +178,25 @@ GameObject:
   - component: {fileID: 4585302925763064}
   - component: {fileID: 114449799258876654}
   m_Layer: 0
-  m_Name: MainObjective_Test2 (2)
+  m_Name: Talk 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4056623303307568
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1199412834968290}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 103.52, y: -7.93, z: -71.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4433155184370468}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4062070624095978
 Transform:
   m_ObjectHideFlags: 1
@@ -191,7 +204,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1535949073019100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 114.88, y: -7.11, z: -71.2}
+  m_LocalPosition: {x: 73.2, y: -11.23, z: -80.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
@@ -209,19 +222,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4433155184370468}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4180571127856072
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1009425696806030}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 148.20544, y: 0.96, z: -2.4890442}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4764563742629622}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4217460246391450
 Transform:
@@ -243,11 +243,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1514774168346594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 73.88, y: -11.11, z: -82.2}
+  m_LocalPosition: {x: 94.72, y: -9.75, z: -154.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4433155184370468
 Transform:
@@ -265,6 +265,7 @@ Transform:
   - {fileID: 4585302925763064}
   - {fileID: 4217460246391450}
   - {fileID: 4062070624095978}
+  - {fileID: 4056623303307568}
   - {fileID: 4372203876965334}
   m_Father: {fileID: 4984129479999284}
   m_RootOrder: 0
@@ -302,7 +303,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382174889142734}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 229.53, y: 1.32, z: 67.47}
+  m_LocalPosition: {x: 242.72, y: 4.64, z: 65.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
@@ -317,8 +318,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4180571127856072}
+  m_Children: []
   m_Father: {fileID: 4984129479999284}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -337,24 +337,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114143531214472880
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1009425696806030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectiveType: 1
-  objectiveTask: 8
-  instructionClip: event:/Companion/Voicelines/Instruction
-  reinforcementClip: event:/Companion/Voicelines/Reinforcement
-  reinforcementInterval: 10
-  trashAmount: 0
-  sceneTransition: {fileID: 0}
 --- !u!114 &114265081637826660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,12 +349,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 0
+  objectiveTask: 7
   instructionClip: event:/Companion/Voicelines/Instruction
   reinforcementClip: event:/Companion/Voicelines/Reinforcement
   reinforcementInterval: 10
   trashAmount: 5
   sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
+--- !u!114 &114325371056671040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1199412834968290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 5
+  instructionClip: event:/Companion/Voicelines/Instruction
+  reinforcementClip: event:/Companion/Voicelines/Reinforcement
+  reinforcementInterval: 10
+  trashAmount: 5
+  sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
 --- !u!114 &114398040465026980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -385,12 +399,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 0
+  objectiveTask: 4
   instructionClip: event:/Companion/Voicelines/Instruction
   reinforcementClip: event:/Companion/Voicelines/Reinforcement
   reinforcementInterval: 10
   trashAmount: 5
   sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
 --- !u!114 &114449799258876654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -409,6 +430,13 @@ MonoBehaviour:
   reinforcementInterval: 10
   trashAmount: 5
   sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
 --- !u!114 &114532621008783964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,6 +455,13 @@ MonoBehaviour:
   reinforcementInterval: 10
   trashAmount: 5
   sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
 --- !u!114 &114654617502441608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -445,6 +480,13 @@ MonoBehaviour:
   reinforcementInterval: 10
   trashAmount: 0
   sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
 --- !u!114 &114932832922877580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -457,12 +499,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 0
+  objectiveTask: 1
   instructionClip: event:/Companion/Voicelines/Instruction
   reinforcementClip: event:/Companion/Voicelines/Reinforcement
   reinforcementInterval: 10
   trashAmount: 5
   sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
 --- !u!114 &114939529238737798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -481,3 +530,10 @@ MonoBehaviour:
   reinforcementInterval: 10
   trashAmount: 5
   sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
