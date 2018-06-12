@@ -20,7 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4949842209044898}
   - component: {fileID: 205290303599468344}
-  m_Layer: 8
+  - component: {fileID: 114429666514225386}
+  - component: {fileID: 135632634889672872}
+  m_Layer: 11
   m_Name: Small fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +39,7 @@ GameObject:
   - component: {fileID: 4602222567881232}
   - component: {fileID: 33541135757665778}
   - component: {fileID: 23973884794712588}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Fish_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +56,7 @@ GameObject:
   - component: {fileID: 4214540222192628}
   - component: {fileID: 33012606764232506}
   - component: {fileID: 23835162287065748}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Fish_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,6 +188,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786536859704698}
   m_Mesh: {fileID: 4300002, guid: 8ee416cee74ae7945b053e7d61ef7d87, type: 3}
+--- !u!114 &114429666514225386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1325752437698004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b1a3d02d5293240b38ea3d7b0be13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  cohesionRange: 2
+  seperationRange: 0.2
+  maxSpeed: 2
+  rotationSpeed: 0.8
+--- !u!135 &135632634889672872
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1325752437698004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!205 &205290303599468344
 LODGroup:
   m_ObjectHideFlags: 1

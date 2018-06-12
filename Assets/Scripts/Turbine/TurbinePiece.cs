@@ -17,8 +17,8 @@ public class TurbinePiece : MonoBehaviour {
 
     private Renderer rend;
     private new Transform transform;
-    private Transform _tubinePosTransform;
-
+    private Transform _turbinePosTransform;
+    private TurbinePiecePosition _turbinePiecePosition; 
     public bool grabbed;
     private bool _correctXRotation; 
     private bool _correctYRotation;
@@ -27,8 +27,8 @@ public class TurbinePiece : MonoBehaviour {
 	void Start () {
         rend = GetComponent<Renderer>();
         transform = GetComponent<Transform>();
-        _tubinePosTransform = turbinePiecePosition.GetComponent<Transform>(); 
-
+        _turbinePosTransform = turbinePiecePosition.GetComponent<Transform>();
+        _turbinePiecePosition = _turbinePosTransform.GetComponent<TurbinePiecePosition>(); 
 		if(this.tag == "TurbinePiecePosition")
         {
             rend.material.color = new Color(0.3f, 0.8f,0.4f, 0.21f);
@@ -41,7 +41,7 @@ public class TurbinePiece : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //CheckRotation(); 
-        if (this.tag != "TurbinePiecePosition" && grabbed)
+        if (this.tag != "TurbinePiecePosition" && grabbed && _turbinePiecePosition.InPlacementRange)
         {
             if (piece == Piece.TrubineBlade)
             {
@@ -53,7 +53,7 @@ public class TurbinePiece : MonoBehaviour {
                 if (_correctXRotation && _correctYRotation && _correctZRotation)
                 {
                     connected = true;
-                    _tubinePosTransform.GetComponent<Renderer>().material.renderQueue = 1;
+                    _turbinePosTransform.GetComponent<Renderer>().material.renderQueue = 1;
                     
                     grabbed = false; 
                     Debug.Log("Can Connect");
@@ -65,17 +65,17 @@ public class TurbinePiece : MonoBehaviour {
 
     private void CheckRotation()
     {
-        float dotOfXtoY = Vector3.Dot(transform.right, _tubinePosTransform.transform.up);
-        float dotOfXtoX = Vector3.Dot(transform.right, _tubinePosTransform.transform.right);
-        float dotOfXtoZ = Vector3.Dot(transform.right, _tubinePosTransform.transform.forward);
+        float dotOfXtoY = Vector3.Dot(transform.right, _turbinePosTransform.transform.up);
+        float dotOfXtoX = Vector3.Dot(transform.right, _turbinePosTransform.transform.right);
+        float dotOfXtoZ = Vector3.Dot(transform.right, _turbinePosTransform.transform.forward);
 
-        float dotOfYtoY = Vector3.Dot(transform.up, _tubinePosTransform.transform.up);
-        float dotOfYtoX = Vector3.Dot(transform.up, _tubinePosTransform.transform.right);
-        float dotOfYtoZ = Vector3.Dot(transform.up, _tubinePosTransform.transform.forward);
+        float dotOfYtoY = Vector3.Dot(transform.up, _turbinePosTransform.transform.up);
+        float dotOfYtoX = Vector3.Dot(transform.up, _turbinePosTransform.transform.right);
+        float dotOfYtoZ = Vector3.Dot(transform.up, _turbinePosTransform.transform.forward);
 
-        float dotOfZtoY = Vector3.Dot(transform.forward, _tubinePosTransform.transform.up);
-        float dotOfZtoX = Vector3.Dot(transform.forward, _tubinePosTransform.transform.right);
-        float dotOfZtoZ = Vector3.Dot(transform.forward, _tubinePosTransform.transform.forward);
+        float dotOfZtoY = Vector3.Dot(transform.forward, _turbinePosTransform.transform.up);
+        float dotOfZtoX = Vector3.Dot(transform.forward, _turbinePosTransform.transform.right);
+        float dotOfZtoZ = Vector3.Dot(transform.forward, _turbinePosTransform.transform.forward);
 
         Debug.Log("Y to Y: " + dotOfYtoY);
         Debug.Log("Y to X: " + dotOfYtoX);
@@ -88,9 +88,9 @@ public class TurbinePiece : MonoBehaviour {
 
     private bool AxisIsOne(Vector3 turbinePieceAxis, bool compareToX, bool compareToY, bool compareToZ)
     {
-        float dotOfAxisToX = Vector3.Dot(turbinePieceAxis, _tubinePosTransform.right);
-        float dotOfAxisToY = Vector3.Dot(turbinePieceAxis, _tubinePosTransform.up); 
-        float dotOfAxisToZ = Vector3.Dot(turbinePieceAxis, _tubinePosTransform.forward);
+        float dotOfAxisToX = Vector3.Dot(turbinePieceAxis, _turbinePosTransform.right);
+        float dotOfAxisToY = Vector3.Dot(turbinePieceAxis, _turbinePosTransform.up); 
+        float dotOfAxisToZ = Vector3.Dot(turbinePieceAxis, _turbinePosTransform.forward);
 
         if (compareToX && 1 <= dotOfAxisToX + offset || -1 >= dotOfAxisToX - offset)
             return true;

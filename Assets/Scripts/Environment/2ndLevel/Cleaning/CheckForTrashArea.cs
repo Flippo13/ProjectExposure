@@ -44,12 +44,12 @@ public class CheckForTrashArea : MonoBehaviour {
 
             if (trashCount <= 0)
             {
-                Debug.Log(trashCount);
+                //Do something with the score? 
             }
             if (_areaChosen)
             {
-                Debug.Log("Invoking");
                 areaChosen.Invoke();
+                _areaChosen = false; 
             }
         }
     }
