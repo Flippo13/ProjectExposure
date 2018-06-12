@@ -3392,11 +3392,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 714388906}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &771854882 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4154815646678618, guid: 056bef30e01acd749a994dc39334eaad,
-    type: 2}
-  m_PrefabInternal: {fileID: 1372744917}
 --- !u!1 &814052306
 GameObject:
   m_ObjectHideFlags: 0
@@ -6825,22 +6820,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114924124450073466, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
+        type: 2}
+      propertyPath: companionDestination
+      value: 
+      objectReference: {fileID: 1914282299}
     - target: {fileID: 114730599303197376, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
         type: 2}
       propertyPath: objectiveLog
       value: 
       objectReference: {fileID: 1995770532}
-    - target: {fileID: 114752987928019450, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
-        type: 2}
-      propertyPath: grabber
-      value: 
-      objectReference: {fileID: 579193429}
-    - target: {fileID: 114924124450073466, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
-        type: 2}
-      propertyPath: companionDestination
-      value: 
-      objectReference: {fileID: 771854882}
-    - target: {fileID: 114680726897577748, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
+    - target: {fileID: 114036079984971078, guid: acd9ac6147ecf2f4c884d7a2d3f83885,
         type: 2}
       propertyPath: vacuumGrabber
       value: 
@@ -8749,6 +8739,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1911042433}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1914282299 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4100259400169420, guid: 056bef30e01acd749a994dc39334eaad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1372744917}
 --- !u!1 &1923821322
 GameObject:
   m_ObjectHideFlags: 0
