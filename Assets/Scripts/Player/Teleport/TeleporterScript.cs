@@ -18,7 +18,6 @@ public class TeleporterScript : MonoBehaviour {
     private LineRenderer _lineRenderer;
     private Material _lineRendererMat;
 
-    private Vector3 _teleportPoint;
     private List<Vector3> _teleportPath;
     private GameObject _indicatorInstance;
     private GameObject _projectileInstance;
@@ -121,7 +120,6 @@ public class TeleporterScript : MonoBehaviour {
         _teleportPath.Clear();
         _teleportPath.Add(arcArray[0]); // first point
 
-        //bad for performance to raycast that often each frame, think of a better solution
         for (int i = 1; i < arcArray.Length; i++) {
             Vector3 deltaVec = arcArray[i] - arcArray[i - 1];
             Ray ray = new Ray(arcArray[i - 1], deltaVec);
@@ -130,12 +128,17 @@ public class TeleporterScript : MonoBehaviour {
             _teleportPath.Add(arcArray[i]); //add point to the list which can be traced by the projectile
 
             if(Physics.Raycast(ray, out hit, deltaVec.magnitude)) {
-                _teleportPoint = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z);
-                _teleportPath[_teleportPath.Count - 1] = _teleportPoint; //set last teleport point to the list to trace
-
-                ApplyLineAndIndicator(hit);
-
                 CheckValidTeleport(hit);
+
+                if (!_allowTeleport) {
+                    ApplyLineAndIndicator(hit);
+
+                    return;
+                } else {
+                    _teleportPath[_teleportPath.Count - 1] = hit.point; //set last teleport point to the list to trace
+
+                    ApplyLineAndIndicator(hit);
+                }
 
                 return; //we found our hit, so we dont need to raycast further
             } else if(i == arcArray.Length - 1) {
@@ -144,12 +147,10 @@ public class TeleporterScript : MonoBehaviour {
                 ray = new Ray(arcArray[i], Vector3.down);
 
                 if(Physics.Raycast(ray, out hit)) {
-                    _teleportPoint = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z); //+1 for the player y offset
-                    _teleportPath.Add(_teleportPoint); //add last teleport point to the list to trace
-
-                    ApplyLineAndIndicator(hit);
-
                     CheckValidTeleport(hit);
+
+                    _teleportPath.Add(hit.point); //add last teleport point to the list to trace
+                    ApplyLineAndIndicator(hit);  
                 }
             }
         }

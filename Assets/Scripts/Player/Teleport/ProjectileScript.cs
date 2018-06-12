@@ -54,15 +54,10 @@ public class ProjectileScript : MonoBehaviour {
             transform.position = _startPos;
             _pointIndex++;
 
-            if (_pointIndex >= _tracingPoints.Count) {
+            if (_pointIndex >= _tracingPoints.Count && !_teleported) {
                 //last point in the list
                 TeleportPlayer();
                 return;
-            } else if (_pointIndex == _tracingPoints.Count - 1) {
-                //last point
-                Vector3 newPoint = _tracingPoints[_pointIndex];
-                newPoint.y = newPoint.y - 1;
-                _tracingPoints[_pointIndex] = newPoint;
             }
 
             Vector3 direction = _tracingPoints[_pointIndex] - _startPos;
