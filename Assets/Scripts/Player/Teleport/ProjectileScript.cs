@@ -46,16 +46,25 @@ public class ProjectileScript : MonoBehaviour {
     }
 
     private void FollowPath() {
-        if (_tracingPoints == null || _pointIndex >= _tracingPoints.Count || _teleported) return;
+        if (_tracingPoints == null || _teleported) return;
 
-        if (_pointIndex >= _tracingPoints.Count - 1) {
-            //last point in the list
-            TeleportPlayer();
-        } else if (_incrementor >= 1f) {
+        if (_incrementor >= 1f) {
             //next point
             _startPos = _tracingPoints[_pointIndex];
             transform.position = _startPos;
             _pointIndex++;
+
+            if (_pointIndex >= _tracingPoints.Count) {
+                //last point in the list
+                TeleportPlayer();
+                return;
+            } else if (_pointIndex == _tracingPoints.Count - 1) {
+                //last point
+                Vector3 newPoint = _tracingPoints[_pointIndex];
+                newPoint.y = newPoint.y - 1;
+                _tracingPoints[_pointIndex] = newPoint;
+            }
+
             Vector3 direction = _tracingPoints[_pointIndex] - _startPos;
 
             _step = speed / direction.magnitude;
@@ -72,7 +81,7 @@ public class ProjectileScript : MonoBehaviour {
 
     private void TeleportPlayer() {
         //teleport the player and flag the projectile
-        _player.position = _tracingPoints[_tracingPoints.Count - 1];
+        _player.position = new Vector3(_tracingPoints[_tracingPoints.Count - 1].x, _tracingPoints[_tracingPoints.Count - 1].y + 1, _tracingPoints[_tracingPoints.Count - 1].z);
         _trail.enabled = false;
 
         _teleported = true;

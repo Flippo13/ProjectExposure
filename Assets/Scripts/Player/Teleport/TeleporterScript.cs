@@ -7,6 +7,7 @@ public class TeleporterScript : MonoBehaviour {
     public Transform leftHandAnchor;
     public GameObject indicatorPrefab;
     public GameObject projectilePrefab;
+    public ObjectGrabber leftHandGrabber;
 
     public int lineResolution;
     public float lineStep;
@@ -54,6 +55,8 @@ public class TeleporterScript : MonoBehaviour {
     }
 
     public void Update() {
+        if (leftHandGrabber.IsGrabbing()) return; //dont allow teleportation when holding something in the left hand
+
         if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.5f || Input.GetMouseButton(0)) {
             //pressing
             _triggerPressed = true;
@@ -83,6 +86,19 @@ public class TeleporterScript : MonoBehaviour {
         }
     }
 
+    private void ApplyLineAndIndicator(RaycastHit hit) {
+        Vector3 lookAt = Vector3.Cross(-hit.normal, _indicatorInstance.transform.right); // reverse it if it is down
+        lookAt = lookAt.y < 0 ? -lookAt : lookAt; //look at the hits relative up, using the normal as the up vector
+
+        _indicatorInstance.transform.position = hit.point;
+        _indicatorInstance.transform.rotation = Quaternion.LookRotation(lookAt, hit.normal); //look at the hits relative up, using the normal as the up vector
+
+        //adjust line renderer
+        _lineRenderer.positionCount = _teleportPath.Count;
+        _lineRenderer.SetPositions(_teleportPath.ToArray());
+        _lineRenderer.SetPosition(_teleportPath.Count - 1, hit.point);
+    }
+
     private void DrawTeleportationLine() {
         Vector3[] arcArray = GetArcArray();
 
@@ -103,16 +119,7 @@ public class TeleporterScript : MonoBehaviour {
                 _teleportPoint = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z);
                 _teleportPath[_teleportPath.Count - 1] = _teleportPoint; //set last teleport point to the list to trace
 
-                Vector3 lookAt = Vector3.Cross(-hit.normal, _indicatorInstance.transform.right); // reverse it if it is down
-                lookAt = lookAt.y < 0 ? -lookAt : lookAt; //look at the hits relative up, using the normal as the up vector
-
-                _indicatorInstance.transform.position = hit.point;
-                _indicatorInstance.transform.rotation = Quaternion.LookRotation(lookAt, hit.normal); //look at the hits relative up, using the normal as the up vector
-
-                //adjust line renderer
-                _lineRenderer.positionCount = _teleportPath.Count;
-                _lineRenderer.SetPositions(_teleportPath.ToArray());
-                _lineRenderer.SetPosition(_teleportPath.Count - 1, hit.point);
+                ApplyLineAndIndicator(hit);
 
                 CheckValidTeleport(hit);
 
@@ -126,16 +133,7 @@ public class TeleporterScript : MonoBehaviour {
                     _teleportPoint = new Vector3(hit.point.x, hit.point.y + 1, hit.point.z); //+1 for the player y offset
                     _teleportPath.Add(_teleportPoint); //add last teleport point to the list to trace
 
-                    Vector3 lookAt = Vector3.Cross(-hit.normal, _indicatorInstance.transform.right); // reverse it if it is down
-                    lookAt = lookAt.y < 0 ? -lookAt : lookAt; //look at the hits relative up, using the normal as the up vector
-
-                    _indicatorInstance.transform.position = hit.point;
-                    _indicatorInstance.transform.rotation = Quaternion.LookRotation(lookAt, hit.normal); //look at the hits relative up, using the normal as the up vector
-
-                    //adjust line renderer and draw a line straight to the ground
-                    _lineRenderer.positionCount = lineResolution + 1;
-                    _lineRenderer.SetPositions(arcArray);
-                    _lineRenderer.SetPosition(lineResolution, hit.point);
+                    ApplyLineAndIndicator(hit);
 
                     CheckValidTeleport(hit);
                 }
