@@ -42,6 +42,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FoamMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 0a4357948f1a1bc4da88a8603301e45f, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -50,17 +54,21 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseMap:
+        m_Texture: {fileID: 2800000, guid: e4ee7aa950669d74993b6374daf89494, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NoiseTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
         m_Texture: {fileID: 2800000, guid: 88df6c4fa1e6fc340bd254db3892c76a, type: 3}
-        m_Scale: {x: 25, y: 25}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _NormalMap2:
         m_Texture: {fileID: 2800000, guid: 82cf61ff472f92b409db63f0931179fa, type: 3}
-        m_Scale: {x: 25, y: 25}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -82,11 +90,12 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.677
+    - _Glossiness: 0.324
     - _GlossyReflections: 1
-    - _Metallic: 1
+    - _Metallic: 0.761
     - _Mode: 0
-    - _NormalScrollSpeed: 0.03
+    - _NoiseAmplitude: 1
+    - _NormalScrollSpeed: 0.3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ReflecTivity: 1
@@ -98,12 +107,12 @@ Material:
     - _SrcBlend: 1
     - _Tess: 1
     - _UVSec: 0
-    - _WaveAmplitude: 0.35
+    - _WaveAmplitude: 0.035
     - _WaveLength: 0.1
-    - _WaveSpeed: 4.3
+    - _WaveSpeed: 11.1
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.38412246, g: 0.6575194, b: 0.9811321, a: 0.6784314}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.6}
     - _Dir: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NormalMap: {r: 1, g: 1, b: 1, a: 1}

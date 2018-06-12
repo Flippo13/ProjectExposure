@@ -47,7 +47,7 @@
 		float depthValue = Linear01Depth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.scrPos)));
 		float depthValueMul = depthValue * _FogAmount;
 		fixed4 fogCol = tex2D(_ColorRamp, (float2(depthValueMul, 0)));
-		return (depthValue < 1) ? lerp(orCol, orCol * fogCol, fogCol.a * _FogIntensity) : orCol;
+		return (depthValue < 1) ? lerp(orCol, fogCol, fogCol.a * _FogIntensity) : orCol;
 		}
 		ENDCG
 		}
