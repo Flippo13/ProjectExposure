@@ -34,7 +34,7 @@ Shader "ProjectExposure/FoliageShader" {
 
 
 SubShader{
-Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" "DisableBatching" = "True"}
+Tags{ "Queue" = "Geometry" "RenderType" = "Transparent" "DisableBatching" = "True"}
 	LOD 100
 
 			
