@@ -25,6 +25,7 @@ public class CompanionAI : MonoBehaviour {
     private CompanionDebug _debug;
 
     private float _timer;
+    private bool _wasCalled;
 
     public void Awake() {
         //get all relevant components
@@ -34,6 +35,8 @@ public class CompanionAI : MonoBehaviour {
         _animation = GetComponent<CompanionAnimation>();
         _tracker = GetComponent<CompanionObjectiveTracker>();
         _debug = GetComponent<CompanionDebug>();
+
+        _wasCalled = false;
 
         _debug.Init();
         _debug.SetRendererStatus(debug);
@@ -59,7 +62,14 @@ public class CompanionAI : MonoBehaviour {
     private bool CheckForCompanionCall() {
         if (_controls.CallButtonDown() || Input.GetKeyDown(KeyCode.Q)) {
             //call the companion
-            SetState(CompanionState.Returning);
+            if (vacuum.GetVacuumState() == VacuumState.Free) {
+                //get the vacuum if the vacuum is lying around
+                _wasCalled = true;
+                SetState(CompanionState.GettingVacuum);
+            } else {
+                SetState(CompanionState.Returning);
+            }
+            
             return true;
         }
 
@@ -165,6 +175,7 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.Instructing:
                 _audio.StopAudioSource(AudioSourceType.Voice);
                 if(_audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice)) _audio.PlayAudioSource(AudioSourceType.Voice);
+                _animation.SetAnimationTrigger(_tracker.GetCurrentObjective().animationTrigger);
 
                 break;
 
@@ -195,6 +206,7 @@ public class CompanionAI : MonoBehaviour {
 
                 //check wether the vacuum was dropped or not
                 if (vacuum.GetVacuumState() == VacuumState.Free) {
+                    _wasCalled = false;
                     SetState(CompanionState.GettingVacuum);
                 }
 
@@ -297,7 +309,14 @@ public class CompanionAI : MonoBehaviour {
 
                 if (deltaVecVacuum.magnitude <= 0.7f) {
                     vacuum.SetVacuumState(VacuumState.Companion);
-                    SetState(CompanionState.Following);
+                    _animation.SetGrabbingVaccumTrigger();
+
+                    //return if he was called, following if not
+                    if(_wasCalled) {
+                        SetState(CompanionState.Returning); //includes stay
+                    } else {
+                        SetState(CompanionState.Following);
+                    }
                 }
 
                 break;

@@ -9,6 +9,7 @@ public class CompanionObjective : MonoBehaviour {
     //default information
     public ObjectiveType objectiveType;
     public ObjectiveTask objectiveTask;
+    public string animationTrigger;
 
     [EventRef]
     public string instructionClip;
