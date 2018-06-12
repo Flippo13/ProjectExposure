@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 114323477499243486}
   - component: {fileID: 114662176903652410}
   - component: {fileID: 114928323724228590}
+  - component: {fileID: 136241898843354078}
   m_Layer: 2
   m_Name: CompanionCube
   m_TagString: Companion
@@ -1212,7 +1213,7 @@ GameObject:
   - component: {fileID: 114705415941955410}
   - component: {fileID: 54254481346534712}
   - component: {fileID: 114308412351872608}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: VacuumGun
   m_TagString: Vacuum
   m_Icon: {fileID: 0}
@@ -2404,7 +2405,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714205912000834}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.012, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.008, y: 0.008, z: 0.008}
   m_Children:
   - {fileID: 4601369283938086}
@@ -3717,6 +3718,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigAnimator: {fileID: 95357498043921674}
+--- !u!136 &136241898843354078
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241325418213258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136431686984060752
 CapsuleCollider:
   m_ObjectHideFlags: 1

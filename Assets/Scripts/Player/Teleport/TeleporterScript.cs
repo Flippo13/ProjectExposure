@@ -55,7 +55,21 @@ public class TeleporterScript : MonoBehaviour {
     }
 
     public void Update() {
-        if (leftHandGrabber.IsGrabbing()) return; //dont allow teleportation when holding something in the left hand
+        if (leftHandGrabber.IsGrabbing()) {
+            //released
+            _triggerPressed = false;
+            _allowTeleport = false;
+
+            //disable line renderer 
+            _indicatorInstance.SetActive(false);
+            _lineRenderer.enabled = false;
+
+            //disable indicator
+            _indicatorInstance.SetActive(false);
+            _lineRenderer.enabled = false;
+
+            return; //dont allow teleportation when holding something in the left hand
+        }
 
         if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.5f || Input.GetMouseButton(0)) {
             //pressing

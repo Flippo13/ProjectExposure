@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR 
+using UnityEngine;
 public class Fog : MonoBehaviour
 {
     [SerializeField]
@@ -31,7 +32,7 @@ public class Fog : MonoBehaviour
         Texture2D texture = new Texture2D(_textureSize, 1);
 
         //Some texture settings to make it ideal for the shader
-        texture.alphaIsTransparency = true;
+        //texture.alphaIsTransparency = true;
         texture.anisoLevel = 16;
         texture.wrapMode = TextureWrapMode.Clamp;
         texture.filterMode = FilterMode.Trilinear;
@@ -55,3 +56,4 @@ public class Fog : MonoBehaviour
         Graphics.Blit(source, destination, _fogMaterial);
     }
 }
+#endif
