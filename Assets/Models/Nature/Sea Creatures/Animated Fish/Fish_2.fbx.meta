@@ -1,55 +1,37 @@
 fileFormatVersion: 2
-guid: bcb86f6a8226d8940a4ad22487cdd087
+guid: ef5722d4105f3834798ccda3ad212bdd
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: aiPhotometricLight1
-    100002: Big_Fin_1
-    100004: curve1
-    100006: ikHandle1
-    100008: left_flipper_01
-    100010: left_flipper_03
-    100012: left_frlipper_02
-    100014: Lower_Fin_1
-    100016: right_flipper_01
-    100018: right_flipper_03
-    100020: right_frlipper_02
-    100022: //RootNode
-    100024: Shark_LOD0
-    100026: sine1Handle
-    100028: Spine_1
-    100030: Spine_2
-    100032: Spine_3
-    100034: Spine_4
-    100036: Spine_5
-    100038: Spine_6
-    100040: Upper_Fin_1
-    400000: aiPhotometricLight1
-    400002: Big_Fin_1
-    400004: curve1
-    400006: ikHandle1
-    400008: left_flipper_01
-    400010: left_flipper_03
-    400012: left_frlipper_02
-    400014: Lower_Fin_1
-    400016: right_flipper_01
-    400018: right_flipper_03
-    400020: right_frlipper_02
-    400022: //RootNode
-    400024: Shark_LOD0
-    400026: sine1Handle
-    400028: Spine_1
-    400030: Spine_2
-    400032: Spine_3
-    400034: Spine_4
-    400036: Spine_5
-    400038: Spine_6
-    400040: Upper_Fin_1
-    2100000: lambert1
-    4300000: Shark_LOD0
-    7400000: Take 001
+    100000: //RootNode
+    100002: Saithe2_LOD0
+    100004: sine1Handle
+    100006: Spine1
+    100008: Spine2
+    100010: Spine3
+    100012: Spine4
+    100014: Spine5
+    100016: Spine6
+    100018: Spine7
+    100020: Spine_IK
+    100022: Spine_IK_CV
+    400000: //RootNode
+    400002: Saithe2_LOD0
+    400004: sine1Handle
+    400006: Spine1
+    400008: Spine2
+    400010: Spine3
+    400012: Spine4
+    400014: Spine5
+    400016: Spine6
+    400018: Spine7
+    400020: Spine_IK
+    400022: Spine_IK_CV
+    2100000: lambert3
+    4300000: Saithe2_LOD0
+    7400000: Fish_Big_2_Swimming
     9500000: //RootNode
-    13700000: Shark_LOD0
+    13700000: Saithe2_LOD0
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -77,7 +59,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Fish_Big_2_Swimming
+      takeName: Take 001
+      firstFrame: 27
+      lastFrame: 42
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
