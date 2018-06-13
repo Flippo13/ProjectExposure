@@ -8,12 +8,14 @@
 		_MetallicSmoothness("Metallic/Smoothness", 2D) = "white" {}
 		_Smoothness("Smoothness", Range(0,1)) = 0.0
 		_Deform("Deform", Range(0,1)) = 0.0
+		[MaterialToggle]_InRange("In Range", Range(0,1)) = 0.0
 
 	}
 		SubShader{
 			Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" }
 			LOD 200
 			Cull Off
+			Blend SrcAlpha OneMinusSrcAlpha
 			CGPROGRAM
 			// Physically based Standard lighting model, and enable shadows on all light types
 			#pragma surface surf Standard  vertex:vert fullforwardshadows addshadow
@@ -59,10 +61,11 @@
 
 				Pass
 			{
-				Cull Front
-				CGPROGRAM
+				Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" }
+			Cull Front
+			CGPROGRAM
 			#pragma vertex vert
-			#pragma fragment frag
+			#pragma fragment frag alpha:fade
 			#include "UnityCG.cginc"
 			#pragma target 3.0
 
@@ -76,14 +79,15 @@
 			struct VertexOutput
 			{
 				float4 pos : SV_POSITION;
-				
+
 			};
 
 			sampler2D _NoiseTexture;
 			half _Deform;
 			uniform float4 _OutlineColor;
 			half _Outline;
-			
+			half _InRange;
+
 			VertexOutput vert(VertexInput v)
 			{
 				VertexOutput o;
@@ -92,17 +96,21 @@
 				float dist = distance(_WorldSpaceCameraPos, objPos.xyz) / _ScreenParams.g;
 				float noise = tex2Dlod(_NoiseTexture, float4(v.texcoord.xy, 0, 0)).rgb;
 				v.vertex.xyz -= v.vertex.xyz * noise * _Deform;
-
 				float expand = dist * _Outline * 5;
 				float4 pos = float4(v.vertex.xyz + v.normal * expand, 1);
-
 				o.pos = UnityObjectToClipPos(pos);
 				return o;
 			}
 
 			float4 frag(VertexOutput i) : COLOR
 			{
-				return fixed4(_OutlineColor.rgb, _OutlineColor.a);
+				fixed4 returnColor;
+				if (_InRange)
+					returnColor = fixed4(_OutlineColor.rgb, 1);
+				else
+					returnColor = fixed4(0, 0, 0, 0);
+
+				return returnColor;
 			}
 				ENDCG
 			}
