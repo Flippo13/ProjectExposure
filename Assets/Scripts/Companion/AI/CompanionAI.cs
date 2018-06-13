@@ -307,10 +307,12 @@ public class CompanionAI : MonoBehaviour {
 
                 _navigator.SetDestination(vacuumPos);
 
-                if (deltaVecVacuum.magnitude <= 0.7f) {
-                    vacuum.SetVacuumState(VacuumState.Companion);
-                    _animation.SetGrabbingVaccumTrigger();
+                if(deltaVecVacuum.magnitude <= 1.5f) {
+                    _animation.SetGrabbingVaccumTrigger(); //play animation
 
+                } else if (deltaVecVacuum.magnitude <= 0.7f) {
+                    vacuum.SetVacuumState(VacuumState.Companion);
+                    
                     //return if he was called, following if not
                     if(_wasCalled) {
                         SetState(CompanionState.Returning); //includes stay

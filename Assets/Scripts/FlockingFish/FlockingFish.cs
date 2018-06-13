@@ -25,6 +25,8 @@ public class FlockingFish : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        return;
+
         transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
 
         if (Random.Range(0, 3) < 1)
