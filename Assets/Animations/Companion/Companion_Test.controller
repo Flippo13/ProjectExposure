@@ -98,6 +98,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: New Trigger
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -2240,7 +2246,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400034, guid: cbf0f0e5b7f717348bb3db9c47aa9b5c, type: 3}
+  m_Motion: {fileID: 7400034, guid: 0c0efc543ed1ee34b97b9e28fc16a098, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2842,7 +2848,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Burp
-  m_Speed: 1
+  m_Speed: 0.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101764307558567288}
@@ -2855,7 +2861,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400034, guid: cbf0f0e5b7f717348bb3db9c47aa9b5c, type: 3}
+  m_Motion: {fileID: 7400034, guid: 0c0efc543ed1ee34b97b9e28fc16a098, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -4189,45 +4195,45 @@ AnimatorStateMachine:
   m_EntryTransitions:
   - {fileID: 1109584703561021186}
   m_StateMachineTransitions:
-  - first: {fileID: 1107980123925178808}
-    second:
-    - {fileID: 1109430475293140334}
-  - first: {fileID: 1107711500463152520}
-    second:
-    - {fileID: 1109350307945754870}
-  - first: {fileID: 1107351909799835208}
-    second:
-    - {fileID: 1109698873633908116}
-  - first: {fileID: 1107763110001157998}
-    second:
-    - {fileID: 1109620823802529254}
-  - first: {fileID: 1107159766019581852}
-    second:
-    - {fileID: 1109757895616278632}
-  - first: {fileID: 1107774054126218624}
-    second:
-    - {fileID: 1109710568008877774}
-  - first: {fileID: 1107161642276225262}
-    second:
-    - {fileID: 1109367448338718598}
-  - first: {fileID: 1107500331992194700}
-    second:
-    - {fileID: 1109466881216829740}
-  - first: {fileID: 1107232708430362048}
-    second:
-    - {fileID: 1109729983717088918}
-  - first: {fileID: 1107183967901956482}
-    second:
-    - {fileID: 1109055665773712520}
-  - first: {fileID: 1107325429821864302}
-    second:
-    - {fileID: 1109154566725665210}
-  - first: {fileID: 1107758279713638448}
-    second:
-    - {fileID: 1109792138966431530}
   - first: {fileID: 1107474472378451578}
     second:
     - {fileID: 1109804287816603884}
+  - first: {fileID: 1107758279713638448}
+    second:
+    - {fileID: 1109792138966431530}
+  - first: {fileID: 1107325429821864302}
+    second:
+    - {fileID: 1109154566725665210}
+  - first: {fileID: 1107183967901956482}
+    second:
+    - {fileID: 1109055665773712520}
+  - first: {fileID: 1107232708430362048}
+    second:
+    - {fileID: 1109729983717088918}
+  - first: {fileID: 1107500331992194700}
+    second:
+    - {fileID: 1109466881216829740}
+  - first: {fileID: 1107161642276225262}
+    second:
+    - {fileID: 1109367448338718598}
+  - first: {fileID: 1107774054126218624}
+    second:
+    - {fileID: 1109710568008877774}
+  - first: {fileID: 1107159766019581852}
+    second:
+    - {fileID: 1109757895616278632}
+  - first: {fileID: 1107763110001157998}
+    second:
+    - {fileID: 1109620823802529254}
+  - first: {fileID: 1107351909799835208}
+    second:
+    - {fileID: 1109698873633908116}
+  - first: {fileID: 1107711500463152520}
+    second:
+    - {fileID: 1109350307945754870}
+  - first: {fileID: 1107980123925178808}
+    second:
+    - {fileID: 1109430475293140334}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 36, y: -456, z: 0}
   m_EntryPosition: {x: 420, y: -408, z: 0}
@@ -4585,6 +4591,19 @@ AnimatorTransition:
   m_IsExit: 0
   serializedVersion: 1
 --- !u!1109 &1109466881216829740
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102627217857797350}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
+--- !u!1109 &1109520038408089504
 AnimatorTransition:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
