@@ -5,22 +5,25 @@ using UnityEngine;
 public class SceneEntrance : MonoBehaviour {
 
     public Transform player;
+    public Transform divingBell;
     public bool isBeginning;
     public SceneTransition sceneTransition;
 
     private TeleporterScript _teleport;
+    private bool _completedBegin;
 
     public void Awake() {
         _teleport = player.GetComponent<TeleporterScript>();
+        _completedBegin = false;
     }
 
     public void SetParentStatus(string status) {
         if(status == "true") {
             if(isBeginning) {
                 //parent to the diving bell
-                player.parent = transform;
+                player.parent = divingBell;
                 _teleport.SetInTransition(true);
-            } else {
+            } else if(!isBeginning && _completedBegin) {
                 sceneTransition.EnableTransition(); //go to next level
             }
             
@@ -29,8 +32,10 @@ public class SceneEntrance : MonoBehaviour {
                 //unparent
                 player.parent = null;
                 _teleport.SetInTransition(false);
-            } else {
-                player.parent = transform;
+
+                _completedBegin = true;
+            } else if (!isBeginning && _completedBegin) {
+                player.parent = divingBell;
                 _teleport.SetInTransition(true);
             }
             
