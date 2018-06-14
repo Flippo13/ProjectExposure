@@ -51,10 +51,10 @@ public class SceneEntrance : MonoBehaviour {
     {
         if (open == "true")
         {
-            FMODUnity.RuntimeManager.PlayOneShot(_doorOpen);
+            FMODUnity.RuntimeManager.PlayOneShot(_doorOpen, transform.position);
         }
         else
-            FMODUnity.RuntimeManager.PlayOneShot(_doorClose);
+            FMODUnity.RuntimeManager.PlayOneShot(_doorClose, transform.position);
 
     }
 }
