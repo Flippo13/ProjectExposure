@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class PowerGrid : MonoBehaviour {
 
-    private BoxCollider _input;
-    private GameObject _inputBox; 
     private Renderer _rend; 
     private bool _connected; 
 
 
 	// Use this for initialization
 	void Start () {
-        _input = GetComponentInChildren<BoxCollider>();
         _rend = GetComponent<Renderer>();
-        _inputBox = this.gameObject; 
 	}
 	
 	// Update is called once per frame

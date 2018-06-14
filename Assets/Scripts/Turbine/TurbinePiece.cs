@@ -65,6 +65,7 @@ public class TurbinePiece : MonoBehaviour {
 
     private void CheckRotation()
     {
+        /*
         float dotOfXtoY = Vector3.Dot(transform.right, _turbinePosTransform.transform.up);
         float dotOfXtoX = Vector3.Dot(transform.right, _turbinePosTransform.transform.right);
         float dotOfXtoZ = Vector3.Dot(transform.right, _turbinePosTransform.transform.forward);
@@ -84,6 +85,7 @@ public class TurbinePiece : MonoBehaviour {
         Debug.Log("Y +- other Y: " + (1 <= dotOfYtoY + offset || -1 >= dotOfYtoY - offset));
         Debug.Log("Y +- other X: " + (1 <= dotOfYtoX + offset || -1 >= dotOfYtoX - offset));
         Debug.Log("Y +- other Z: " + (1 <= dotOfYtoZ + offset || -1 >= dotOfYtoZ - offset));
+        */
     }
 
     private bool AxisIsOne(Vector3 turbinePieceAxis, bool compareToX, bool compareToY, bool compareToZ)

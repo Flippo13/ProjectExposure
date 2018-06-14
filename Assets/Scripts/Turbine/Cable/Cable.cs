@@ -12,7 +12,6 @@ public class Cable : MonoBehaviour {
 
     private Collider _cablePartCollider; 
     private LineRenderer _lineRenderer;
-    private SpringJoint _springJoint; 
 
     private List<GameObject> cableNodesList = new List<GameObject>();
     private List<GameObject> cylinders = new List<GameObject>(); 
@@ -32,7 +31,6 @@ public class Cable : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         _lineRenderer = GetComponent<LineRenderer>();
-        _springJoint = cableStart.GetComponent<SpringJoint>();
         SetUpCable();
     }
 
@@ -63,17 +61,6 @@ public class Cable : MonoBehaviour {
         cableNodesList.Add(cableEnd);
     }
 
-
-    private void UpdateCableDisplay(Transform cylinder)
-    {
-        for (int i = 0; i < cableNodesList.Count; i++)
-        {
-            Vector3 startPos = cableNodesList[i].transform.position;
-            Vector3 endPos = cableNodesList[i + 1].transform.position;
-
-            Vector3 offset = (endPos - startPos) / 2;
-        }
-    }
 
     private void UpdateCable()
     {

@@ -8,15 +8,12 @@ public class Turbine : MonoBehaviour {
     private Animator _anim; 
     public float dropTime;
     public float setHeight; 
-    private Renderer _rend;
 
     private BoxCollider _col;
     private Vector3 landPos;
 
     // Use this for initialization
     void Start () {
-        _rend = GetComponentInChildren<Renderer>();
-        _col = GetComponent<BoxCollider>();
         _anim = GetComponent<Animator>();
 	}
 	
