@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4190697454275934}
   - component: {fileID: 95891305845953506}
+  - component: {fileID: 114117174000891118}
   m_Layer: 11
   m_Name: Fish_3
   m_TagString: Fish
@@ -378,6 +379,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114117174000891118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065596245647118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b1a3d02d5293240b38ea3d7b0be13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  cohesionRange: 0.7
+  seperationRange: 0.04
+  maxSpeed: 2
+  rotationSpeed: 0.6
 --- !u!137 &137007735478385996
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

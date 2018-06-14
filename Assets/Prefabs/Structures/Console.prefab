@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23739123888699760}
   - component: {fileID: 64227852344093252}
   m_Layer: 8
-  m_Name: Console_Mesh
+  m_Name: Console
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1518294206850940}
   m_LocalRotation: {x: -0, y: 0.14158244, z: -0, w: 0.9899265}
-  m_LocalPosition: {x: 245.588, y: 29.004, z: 201.326}
+  m_LocalPosition: {x: 511.44, y: 1.9760017, z: -121.384995}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4265571310066726}
@@ -383,7 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9730abe195fda24b9cfff22acc502b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _springJoint: {fileID: 0}
+  springJoint: {fileID: 145433070718888740}
+  consoleMeshCol: {fileID: 64227852344093252}
   _turbineButtonEvent:
     m_PersistentCalls:
       m_Calls:
@@ -400,7 +401,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  _turbineButtonPressed: {fileID: 0}
+  _turbineButtonPressed: {fileID: 114611395336030908}
 --- !u!145 &145433070718888740
 SpringJoint:
   m_ObjectHideFlags: 1

@@ -231,6 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4269669209966344}
   - component: {fileID: 95528749400521868}
+  - component: {fileID: 114391594133985368}
   m_Layer: 11
   m_Name: Stingray
   m_TagString: Fish
@@ -633,12 +634,30 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 49cc340fd1272a043a6997172306a5cf, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114391594133985368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802551290864586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b1a3d02d5293240b38ea3d7b0be13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  cohesionRange: 0.7
+  seperationRange: 0.04
+  maxSpeed: 2.05
+  rotationSpeed: 1
 --- !u!137 &137380482189566900
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

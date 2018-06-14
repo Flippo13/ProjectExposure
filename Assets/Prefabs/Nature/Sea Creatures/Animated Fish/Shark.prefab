@@ -80,6 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4153440182889434}
   - component: {fileID: 95796847337756430}
+  - component: {fileID: 114115349557173968}
   m_Layer: 11
   m_Name: Shark
   m_TagString: Fish
@@ -633,12 +634,30 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 7865a9408c0957c42ac39a9b3da301fa, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114115349557173968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1199982186110888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b1a3d02d5293240b38ea3d7b0be13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  cohesionRange: 0.7
+  seperationRange: 0.04
+  maxSpeed: 2
+  rotationSpeed: 0.6
 --- !u!137 &137702843817940002
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
