@@ -33,7 +33,7 @@ MonoBehaviour:
     m_Settings:
       method: 0
       fxaaSettings:
-        preset: 2
+        preset: 3
       taaSettings:
         jitterSpread: 0.75
         sharpen: 0.3
@@ -42,13 +42,13 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 1.46
-      radius: 0.81
+      intensity: 0.93
+      radius: 1.18
       sampleCount: 16
       downsampling: 0
-      forceForwardCompatibility: 1
+      forceForwardCompatibility: 0
       ambientOnly: 0
-      highPrecision: 1
+      highPrecision: 0
   screenSpaceReflection:
     m_Enabled: 0
     m_Settings:
@@ -100,11 +100,11 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.14
-        threshold: 1.1
-        softKnee: 0.5
-        radius: 1.8
-        antiFlicker: 1
+        intensity: 2.2
+        threshold: 0.89
+        softKnee: 0.128
+        radius: 1
+        antiFlicker: 0
       lensDirt:
         texture: {fileID: 2800000, guid: 69e847bbff1cf5449a4ee0bbd045dbc9, type: 3}
         intensity: 0
@@ -113,19 +113,19 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0.027
-        neutralWhiteIn: 11.1
-        neutralBlackOut: -0.003
-        neutralWhiteOut: 10
-        neutralWhiteLevel: 11.3
+        neutralBlackIn: -0.0025
+        neutralWhiteIn: 5.69
+        neutralBlackOut: -0.0067
+        neutralWhiteOut: 8.77
+        neutralWhiteLevel: 3.97
         neutralWhiteClip: 10
       basic:
         postExposure: 0.73
         temperature: -12
-        tint: -6.38
+        tint: -2.9
         hueShift: 0
-        saturation: 1.74
-        contrast: 1.19
+        saturation: 1.47
+        contrast: 1.022
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -134,13 +134,13 @@ MonoBehaviour:
       colorWheels:
         mode: 0
         log:
-          slope: {r: 0.9326713, g: 0.97931343, b: 1, a: 0}
-          power: {r: 1, g: 0.8456505, b: 0.83343923, a: 0}
-          offset: {r: 1, g: 1, b: 1, a: 0}
+          slope: {r: 0.82247114, g: 0.94972754, b: 1, a: 0.015209125}
+          power: {r: 1, g: 0.8572572, b: 0.84372795, a: -0.045627378}
+          offset: {r: 0.8547414, g: 0.85019445, b: 1, a: 0}
         linear:
-          lift: {r: 0.9326713, g: 0.97931343, b: 1, a: 0}
-          gamma: {r: 1, g: 0.85434705, b: 0.9462904, a: 0}
-          gain: {r: 0.79872525, g: 0.7729931, b: 1, a: -0.28880867}
+          lift: {r: 0.83312714, g: 0.8684752, b: 1, a: 0}
+          gamma: {r: 1, g: 0.8550241, b: 0.82787955, a: -0.16730037}
+          gain: {r: 0.6200862, g: 0.5434883, b: 1, a: 0.18267421}
       curves:
         master:
           curve:
@@ -322,7 +322,7 @@ MonoBehaviour:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.163
+      intensity: 0.31
       smoothness: 0.2
       roundness: 1
       mask: {fileID: 0}
