@@ -10,6 +10,7 @@ public class ObjectiveEditor : Editor {
     //default props
     SerializedProperty objectiveTypeProp;
     SerializedProperty objectiveTaskProp;
+    SerializedProperty animationTriggerProp;
     SerializedProperty instructionClipProp;
     SerializedProperty reinforcementClipProp;
     SerializedProperty reinforcementIntervalProp;
@@ -27,6 +28,7 @@ public class ObjectiveEditor : Editor {
     public void OnEnable() {
         objectiveTypeProp = serializedObject.FindProperty("objectiveType");
         objectiveTaskProp = serializedObject.FindProperty("objectiveTask");
+        animationTriggerProp = serializedObject.FindProperty("animationTrigger");
         instructionClipProp = serializedObject.FindProperty("instructionClip");
         reinforcementClipProp = serializedObject.FindProperty("reinforcementClip");
         reinforcementIntervalProp = serializedObject.FindProperty("reinforcementInterval");
@@ -107,6 +109,8 @@ public class ObjectiveEditor : Editor {
             default:
                 break;
         }
+
+        EditorGUILayout.PropertyField(animationTriggerProp, new GUIContent("Animation Trigger"));
 
         if(task != ObjectiveTask.Place) {
             //default properties

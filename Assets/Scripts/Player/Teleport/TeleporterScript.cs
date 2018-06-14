@@ -25,6 +25,7 @@ public class TeleporterScript : MonoBehaviour {
 
     private bool _triggerPressed;
     private bool _allowTeleport;
+    private bool _inTransition;
 
     private TeleportFade _fade;
 
@@ -54,7 +55,7 @@ public class TeleporterScript : MonoBehaviour {
     }
 
     public void Update() {
-        if (leftHandGrabber.IsGrabbing()) {
+        if (leftHandGrabber.IsGrabbing() || _inTransition) {
             //released
             _triggerPressed = false;
             _allowTeleport = false;
@@ -97,6 +98,10 @@ public class TeleporterScript : MonoBehaviour {
             _projectileScript.SetTeleported(false);
             _projectileInstance.SetActive(false);
         }
+    }
+
+    public void SetInTransition(bool status) {
+        _inTransition = status;
     }
 
     private void ApplyLineAndIndicator(RaycastHit hit) {

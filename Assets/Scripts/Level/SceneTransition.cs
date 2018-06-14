@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneTransition : MonoBehaviour {
 
     public int nextSceneIndex;
+    public Animator divingbellAnimator;
 
     private AsyncOperation _nextScene;
 
@@ -16,13 +17,12 @@ public class SceneTransition : MonoBehaviour {
         StartCoroutine(LoadYourAsyncScene());
 
         _collider = GetComponent<Collider>();
-        SetStatus(false); //disable the collider
+        _collider.enabled = false;
     }
 
     public void OnTriggerEnter(Collider other) {
-        //enable scene loading
-        if(other.gameObject.tag == Tags.Player) {
-            _nextScene.allowSceneActivation = true;
+        if(other.tag == Tags.Player && divingbellAnimator != null) {
+            divingbellAnimator.SetTrigger("LevelExit");
         }
     }
 
@@ -36,8 +36,12 @@ public class SceneTransition : MonoBehaviour {
         }
     }
 
-    public void SetStatus(bool status) {
+    public void EnableTransition() {
         //set collider according to the status
-        _collider.enabled = status;
+        _nextScene.allowSceneActivation = true;
+    }
+
+    public void EnableCollider() {
+        _collider.enabled = true;
     }
 }
