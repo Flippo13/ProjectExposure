@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65665666610861770}
   - component: {fileID: 54696381933472812}
   - component: {fileID: 114657662678427366}
+  - component: {fileID: 114421905554523062}
   m_Layer: 9
   m_Name: TrashAlex_FoodBox
   m_TagString: Untagged
@@ -113,6 +114,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08951476, y: 0.074615225, z: 0.15042466}
   m_Center: {x: 0.0000000949949, y: 0, z: -0.000000011175871}
+--- !u!114 &114421905554523062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1228256785094834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
 --- !u!114 &114657662678427366
 MonoBehaviour:
   m_ObjectHideFlags: 1

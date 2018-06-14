@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33821965157605740}
   - component: {fileID: 23108019979456288}
   - component: {fileID: 54717790528361162}
-  - component: {fileID: 114551742390596588}
   - component: {fileID: 65129923095605156}
   - component: {fileID: 114471641916354492}
+  - component: {fileID: 114173994252849700}
   m_Layer: 9
   m_Name: Trashbag_2
   m_TagString: Untagged
@@ -114,20 +114,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8402793, y: 0.8706431, z: 0.8502276}
   m_Center: {x: 0.009687722, y: 0.02818808, z: 0.005857751}
---- !u!114 &114471641916354492
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1895827660216890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _surface: 7
-  _strength: 1
---- !u!114 &114551742390596588
+--- !u!114 &114173994252849700
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -143,3 +130,16 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+--- !u!114 &114471641916354492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1895827660216890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 7
+  _strength: 1

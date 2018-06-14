@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33117558586064362}
   - component: {fileID: 23912209481557564}
   - component: {fileID: 54668426799843842}
+  - component: {fileID: 65105725658179026}
+  - component: {fileID: 114694491259324808}
   - component: {fileID: 114200076154298118}
   m_Layer: 9
   m_Name: Oildrum
@@ -100,6 +102,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65105725658179026
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654588651804906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0587378, y: 1.5253507, z: 1.0587379}
+  m_Center: {x: -0.00000008940699, y: 0.000000029802322, z: -4.440892e-15}
 --- !u!114 &114200076154298118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,3 +127,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _surface: 4
   _strength: 0
+--- !u!114 &114694491259324808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654588651804906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []

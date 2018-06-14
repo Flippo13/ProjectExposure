@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65244120735944466}
   - component: {fileID: 54287475699298128}
   - component: {fileID: 114145333711621528}
+  - component: {fileID: 114754557528809110}
   m_Layer: 9
   m_Name: TrashAnna_Donut
   m_TagString: Untagged
@@ -126,3 +127,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _surface: 1
   _strength: 1
+--- !u!114 &114754557528809110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1456103211839242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []

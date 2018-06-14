@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33900507648705560}
   - component: {fileID: 23087781879750434}
   - component: {fileID: 54217777776770478}
-  - component: {fileID: 114140059024339522}
   - component: {fileID: 65230628196917438}
-  - component: {fileID: 114288643714464480}
+  - component: {fileID: 114534002972693524}
+  - component: {fileID: 114140059024339522}
   m_Layer: 9
   m_Name: Oildrum_blue
   m_TagString: Untagged
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _surface: 4
   _strength: 0
---- !u!114 &114288643714464480
+--- !u!114 &114534002972693524
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -135,8 +135,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1396778503201994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _surface: 0
-  _strength: 0
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
