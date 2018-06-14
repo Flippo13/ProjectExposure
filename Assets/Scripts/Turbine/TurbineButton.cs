@@ -5,8 +5,9 @@ using UnityEngine.Events;
 
 public class TurbineButton : MonoBehaviour {
 
-    public SpringJoint _springJoint;
-
+    public SpringJoint springJoint;
+    public Collider consoleMeshCol;
+    private Collider _col; 
     [SerializeField]
     private UnityEvent _turbineButtonEvent;
 
@@ -14,7 +15,8 @@ public class TurbineButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Physics.IgnoreCollision(GetComponent<Collider>(), transform.parent.GetComponent<Collider>());
+        _col = GetComponent<Collider>();
+        Physics.IgnoreCollision(_col, consoleMeshCol); 
     }
 	
 	// Update is called once per frame

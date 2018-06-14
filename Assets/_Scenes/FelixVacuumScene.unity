@@ -155,6 +155,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14af783c98352c445b8d2c05acf3b75d, type: 3}
   m_IsPrefabParent: 0
+--- !u!64 &105289298 stripped
+MeshCollider:
+  m_PrefabParentObject: {fileID: 64227852344093252, guid: 98225faaba066454e99f7ef9388552db,
+    type: 2}
+  m_PrefabInternal: {fileID: 1397159288}
 --- !u!1 &174413051
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +691,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!145 &543568966 stripped
+SpringJoint:
+  m_PrefabParentObject: {fileID: 145433070718888740, guid: 98225faaba066454e99f7ef9388552db,
+    type: 2}
+  m_PrefabInternal: {fileID: 1397159288}
 --- !u!1 &626092184 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1807967222262034, guid: 394241cc6acfcd64d81f974acdb54d9a,
@@ -896,6 +906,12 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300026, guid: cd1dba2997300f74394d913ea9e032ac, type: 3}
+--- !u!114 &827789599 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114611395336030908, guid: 98225faaba066454e99f7ef9388552db,
+    type: 2}
+  m_PrefabInternal: {fileID: 1397159288}
+  m_Script: {fileID: 11500000, guid: 0f0b364d079e2fb498ecd23d5fa52b9c, type: 3}
 --- !u!1 &854352685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,7 +1401,7 @@ Prefab:
     - target: {fileID: 114861624631529258, guid: 110f19a4cf329fa49b935b2ec081f621,
         type: 2}
       propertyPath: fishCount
-      value: 1000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 65360251989744610, guid: 110f19a4cf329fa49b935b2ec081f621,
         type: 2}
@@ -1407,6 +1423,12 @@ Prefab:
       propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114861624631529258, guid: 110f19a4cf329fa49b935b2ec081f621,
+        type: 2}
+      propertyPath: fish
+      value: 
+      objectReference: {fileID: 1038845187160012, guid: b963b24333ce60c4fa2814710c9d09ce,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 110f19a4cf329fa49b935b2ec081f621, type: 2}
   m_IsPrefabParent: 0
@@ -2044,6 +2066,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114671215207783952, guid: 98225faaba066454e99f7ef9388552db,
+        type: 2}
+      propertyPath: consoleMeshCol
+      value: 
+      objectReference: {fileID: 105289298}
+    - target: {fileID: 114671215207783952, guid: 98225faaba066454e99f7ef9388552db,
+        type: 2}
+      propertyPath: springJoint
+      value: 
+      objectReference: {fileID: 543568966}
+    - target: {fileID: 114671215207783952, guid: 98225faaba066454e99f7ef9388552db,
+        type: 2}
+      propertyPath: _turbineButtonPressed
+      value: 
+      objectReference: {fileID: 827789599}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98225faaba066454e99f7ef9388552db, type: 2}
   m_IsPrefabParent: 0
@@ -2760,7 +2797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9730abe195fda24b9cfff22acc502b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _springJoint: {fileID: 1043785478}
+  springJoint: {fileID: 0}
+  consoleMeshCol: {fileID: 0}
   _turbineButtonEvent:
     m_PersistentCalls:
       m_Calls:

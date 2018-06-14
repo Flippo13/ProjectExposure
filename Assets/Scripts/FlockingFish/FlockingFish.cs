@@ -72,13 +72,11 @@ public class FlockingFish : MonoBehaviour {
             direction = _fishTank.fishTank.bounds.center - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
             speed = Random.Range(0.6f, maxSpeed);
-            Debug.Log("Going back");
         }
 
         else if (Random.Range(0.0f, 10.0f) < 1 && !_goBack)
         {
             Collider[] neighbours = Physics.OverlapSphere(transform.position, cohesionRange, fishLayer);
-            Debug.Log("Going to goal");
             _calculatedCohesion = CalculateCohesion(neighbours) + (_fishTank.Goal - transform.position);
             _calculatedSeperation = CalculateSeperation(neighbours);
             //Debug.Log("cohesion: " + _calculatedCohesion);
@@ -157,7 +155,7 @@ public class FlockingFish : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Entered "); 
+
         if (other.tag == "Fish")
         {
             _listOfObjectsInRange.Add(other.transform.position);
