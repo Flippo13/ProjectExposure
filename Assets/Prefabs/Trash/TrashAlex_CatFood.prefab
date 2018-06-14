@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65422156647298392}
   - component: {fileID: 54766607765992082}
   - component: {fileID: 114996412068683096}
+  - component: {fileID: 114915352464453548}
   m_Layer: 9
   m_Name: TrashAlex_CatFood
   m_TagString: Untagged
@@ -113,6 +114,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08516699, y: 0.08516702, z: 0.085167006}
   m_Center: {x: 0.0000000055879354, y: -0.0000000037252903, z: -0.000000033527613}
+--- !u!114 &114915352464453548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900508038075946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
 --- !u!114 &114996412068683096
 MonoBehaviour:
   m_ObjectHideFlags: 1

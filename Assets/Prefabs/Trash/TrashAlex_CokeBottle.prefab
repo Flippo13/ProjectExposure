@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65361953984204218}
   - component: {fileID: 54050824938366862}
   - component: {fileID: 114445268284877506}
+  - component: {fileID: 114911557694999668}
   m_Layer: 9
   m_Name: TrashAlex_CokeBottle
   m_TagString: Untagged
@@ -126,3 +127,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _surface: 6
   _strength: 1
+--- !u!114 &114911557694999668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966359263568222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []

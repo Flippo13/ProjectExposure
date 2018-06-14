@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33943598329057790}
   - component: {fileID: 23997392565188418}
   - component: {fileID: 54628876212467770}
-  - component: {fileID: 114304085509422512}
   - component: {fileID: 65110553867512536}
-  - component: {fileID: 114014438245368798}
+  - component: {fileID: 114584338719515378}
+  - component: {fileID: 114304085509422512}
   m_Layer: 9
   m_Name: Oildrum_red
   m_TagString: Untagged
@@ -38,8 +38,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1528762973553718}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.496, y: -0.455, z: 2.256}
+  m_LocalRotation: {x: -0.73820215, y: -0, z: -0, w: 0.6745796}
+  m_LocalPosition: {x: -6.45401, y: -2.9489975, z: 0.5814514}
   m_LocalScale: {x: 1, y: 1.0000005, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,19 +114,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0587375, y: 1.5253506, z: 1.0587374}
   m_Center: {x: -0.00000008940697, y: 0.000000029802322, z: 0}
---- !u!114 &114014438245368798
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1528762973553718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _surface: 0
-  _strength: 0
 --- !u!114 &114304085509422512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,3 +127,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _surface: 4
   _strength: 0
+--- !u!114 &114584338719515378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1528762973553718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []

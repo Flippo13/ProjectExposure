@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54850627935455414}
   - component: {fileID: 65498259418368536}
   - component: {fileID: 114703852078307386}
+  - component: {fileID: 114655699632019746}
   m_Layer: 9
   m_Name: Cinderblock
   m_TagString: Untagged
@@ -113,6 +114,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3085774, y: 0.29106277, z: 0.5712656}
   m_Center: {x: -5.551115e-16, y: 0, z: 0.000000074505806}
+--- !u!114 &114655699632019746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979020565178038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
 --- !u!114 &114703852078307386
 MonoBehaviour:
   m_ObjectHideFlags: 1
