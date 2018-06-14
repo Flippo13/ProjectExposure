@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BubbleSound : MonoBehaviour {
+public class BubbleSound : MonoBehaviour
+{
 
     [SerializeField]
     [FMODUnity.EventRef]
@@ -16,24 +17,40 @@ public class BubbleSound : MonoBehaviour {
     private ParticleSystem.Particle[] _particles;
     private ParticleSystem _particlesSystem;
 
+    private List<ParticleSystem.Particle> insideList;
+
+    private bool inside = true;
 
     private void Awake()
     {
+        insideList = new List<ParticleSystem.Particle>();
+
         _particlesSystem = GetComponent<ParticleSystem>();
         _particles = new ParticleSystem.Particle[_particlesSystem.main.maxParticles];
 
         FMODUnity.RuntimeManager.PlayOneShot(_BubbleStart, transform.position);
     }
 
-
-    void FixedUpdate()
+    private void Update()
     {
-        int aliveParticles = _particlesSystem.GetParticles(_particles);
-
-        for (int i = 0; i < aliveParticles; i++)
+        var trigger = _particlesSystem.trigger;
+        trigger.inside = inside ? ParticleSystemOverlapAction.Callback : ParticleSystemOverlapAction.Ignore;
+    }
+    private void OnParticleTrigger()
+    {
+        if (inside)
         {
-            if (_particles[i].remainingLifetime < 0.1f)
-                FMODUnity.RuntimeManager.PlayOneShot(_BubblePop, _particles[i].position);
+            insideList.Clear();
+            int numInside = _particlesSystem.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, insideList);
+
+            for (int i = 0; i < numInside; i++)
+            {
+                if (insideList[i].remainingLifetime < 0.05f)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot(_BubblePop, _particles[i].position);
+                }
+            }
+            _particlesSystem.SetTriggerParticles(ParticleSystemTriggerEventType.Inside, insideList);
         }
     }
 }
