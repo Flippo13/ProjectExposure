@@ -6423,6 +6423,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 276.837, y: 48.800465, z: 263.2884}
   m_Center: {x: -99.99945, y: 24.3973, z: 0.031033527}
+--- !u!1 &126351578 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1100559397104240, guid: 6738092d073071846b700215e3e13b50,
+    type: 2}
+  m_PrefabInternal: {fileID: 1263422130}
+--- !u!114 &126351581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126351578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!1001 &127638014
 Prefab:
   m_ObjectHideFlags: 0
@@ -15581,6 +15599,7 @@ GameObject:
   - component: {fileID: 324474403}
   - component: {fileID: 324474402}
   - component: {fileID: 324474401}
+  - component: {fileID: 324474404}
   m_Layer: 0
   m_Name: Underwater1_Terrain
   m_TagString: Untagged
@@ -15642,6 +15661,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &324474404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 324474400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 0
 --- !u!4 &324559430 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4571853752285724, guid: c0bd7810221f96e49bb3a41064288c8e,
@@ -27600,21 +27632,21 @@ MonoBehaviour:
     LowFreqTransmission: 0.1
     MidFreqTransmission: 0.05
     HighFreqTransmission: 0.03
-  simulationPreset: 3
+  simulationPreset: 1
   simulationValue:
-    RealtimeRays: 16384
+    RealtimeRays: 8192
     RealtimeSecondaryRays: 1024
-    RealtimeBounces: 8
-    BakeRays: 65536
+    RealtimeBounces: 4
+    BakeRays: 32768
     BakeSecondaryRays: 4096
-    BakeBounces: 128
+    BakeBounces: 64
     Duration: 1
     AmbisonicsOrder: 1
     MaxSources: 32
   updateComponents: 1
   currentAudioListener: {fileID: 0}
-  showLoadTimeOptions: 0
-  showMassBakingOptions: 0
+  showLoadTimeOptions: 1
+  showMassBakingOptions: 1
 --- !u!4 &574055326
 Transform:
   m_ObjectHideFlags: 0
