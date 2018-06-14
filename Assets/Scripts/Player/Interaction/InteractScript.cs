@@ -1,11 +1,19 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractScript : MonoBehaviour {
 
     public Transform vacuumAnchor;
     public VacuumArea vacuumArea;
+    public Text trashCounter; 
+
+    [SerializeField]
+    [FMODUnity.EventRef]
+    private string _vacuumSound;
+
     public float suckSpeed;
     public ObjectGrabber vacuumGrabber;
     public float deformationStep;
@@ -18,16 +26,23 @@ public class InteractScript : MonoBehaviour {
     private Collider _collider;
     private VacuumState _state;
 
+    private FMOD.Studio.EventInstance _vacuumInstance;
+
+    private bool _soundPlayed;
+
     // Use this for initialization
     void Awake() {
         _destroyedObjects = new List<Transform>();
         _trashCount = 0;
+        trashCounter.text = "" + _trashCount;
 
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
         _state = VacuumState.Companion;
 
         _rigidbody.useGravity = true;
+
+        _vacuumInstance = RuntimeManager.CreateInstance(_vacuumSound);
     }
 
     public void OnTriggerEnter(Collider other) {
@@ -35,6 +50,7 @@ public class InteractScript : MonoBehaviour {
 
         if (other.gameObject.layer == Layers.Suckable && !_destroyedObjects.Contains(other.transform)) {
             _trashCount++;
+            trashCounter.text = "" + _trashCount;
             _destroyedObjects.Add(other.transform);
         }
     }
@@ -48,6 +64,11 @@ public class InteractScript : MonoBehaviour {
         } else if(_state != VacuumState.Player && vacuumGrabber.InVacuumMode() && vacuumGrabber.IsGrabbing()) {
             SetVacuumState(VacuumState.Player);
         }
+
+        if(OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) < 0.5 && _soundPlayed) {
+            _vacuumInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            _soundPlayed = false;
+        } 
     }
 
     public void SetVacuumState(VacuumState state) {
@@ -92,6 +113,14 @@ public class InteractScript : MonoBehaviour {
     }
 
     public void MoveTrash() {
+        if(!_soundPlayed) {
+            _vacuumInstance.start();
+            _soundPlayed = true;
+        }
+
+        //update sound pos
+        _vacuumInstance.set3DAttributes((RuntimeUtils.To3DAttributes(transform)));
+
         if (vacuumArea.suckableObjectsList.Count == 0) return;
 
         //expensive loop (better: make a suckable object script and cache components that need to be accessed)
