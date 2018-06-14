@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,11 @@ public class InteractScript : MonoBehaviour {
 
     public Transform vacuumAnchor;
     public VacuumArea vacuumArea;
+
+    [SerializeField]
+    [FMODUnity.EventRef]
+    private string _vacuumSound;
+
     public float suckSpeed;
     public ObjectGrabber vacuumGrabber;
     public float deformationStep;
@@ -18,6 +24,10 @@ public class InteractScript : MonoBehaviour {
     private Collider _collider;
     private VacuumState _state;
 
+    private FMOD.Studio.EventInstance _vacuumInstance;
+
+    private bool _soundPlayed;
+
     // Use this for initialization
     void Awake() {
         _destroyedObjects = new List<Transform>();
@@ -28,6 +38,10 @@ public class InteractScript : MonoBehaviour {
         _state = VacuumState.Companion;
 
         _rigidbody.useGravity = true;
+
+        _vacuumInstance = RuntimeManager.CreateInstance(_vacuumSound);
+        //_vacuumInstance.set3DAttributes((RuntimeUtils.To3DAttributes(transform)));
+        //RuntimeManager.AttachInstanceToGameObject(_vacuumInstance, transform, _rigidbody);
     }
 
     public void OnTriggerEnter(Collider other) {
@@ -48,6 +62,11 @@ public class InteractScript : MonoBehaviour {
         } else if(_state != VacuumState.Player && vacuumGrabber.InVacuumMode() && vacuumGrabber.IsGrabbing()) {
             SetVacuumState(VacuumState.Player);
         }
+
+        if(OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) < 0.5 && _soundPlayed) {
+            _vacuumInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            _soundPlayed = false;
+        } 
     }
 
     public void SetVacuumState(VacuumState state) {
@@ -92,6 +111,13 @@ public class InteractScript : MonoBehaviour {
     }
 
     public void MoveTrash() {
+        if(!_soundPlayed) {
+            _vacuumInstance.start();
+            _soundPlayed = true;
+        }
+
+        _vacuumInstance.set3DAttributes((RuntimeUtils.To3DAttributes(transform)));
+
         if (vacuumArea.suckableObjectsList.Count == 0) return;
 
         //expensive loop (better: make a suckable object script and cache components that need to be accessed)
