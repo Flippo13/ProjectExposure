@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23372920547052966}
   - component: {fileID: 65837148726852790}
   - component: {fileID: 54896431618421042}
+  - component: {fileID: 114361655112331298}
   m_Layer: 9
   m_Name: TrashAnna_Yogurt
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.040218983, y: 0.043647908, z: 0.040632553}
   m_Center: {x: 0, y: 0, z: 0.000000007450581}
+--- !u!114 &114361655112331298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1238174275023680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 8
+  _strength: 1

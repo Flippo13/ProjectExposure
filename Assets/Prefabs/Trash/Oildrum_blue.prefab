@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54217777776770478}
   - component: {fileID: 114140059024339522}
   - component: {fileID: 65230628196917438}
+  - component: {fileID: 114288643714464480}
   m_Layer: 9
   m_Name: Oildrum_blue
   m_TagString: Untagged
@@ -114,6 +115,19 @@ BoxCollider:
   m_Size: {x: 1.0587375, y: 1.5253506, z: 1.0587374}
   m_Center: {x: -0.00000008940697, y: 0.000000029802322, z: 0}
 --- !u!114 &114140059024339522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396778503201994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 4
+  _strength: 0
+--- !u!114 &114288643714464480
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

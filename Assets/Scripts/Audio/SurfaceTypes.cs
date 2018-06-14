@@ -9,4 +9,5 @@
     PlasticBox,
     Rubber,
     Cardboard,
+    Concrete,
 }

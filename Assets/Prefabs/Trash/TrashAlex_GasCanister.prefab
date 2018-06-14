@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23866743764444640}
   - component: {fileID: 65008873268433470}
   - component: {fileID: 54980247392025478}
+  - component: {fileID: 114234443610882868}
   m_Layer: 9
   m_Name: TrashAlex_GasCanister
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07471894, y: 0.1954698, z: 0.07472275}
   m_Center: {x: 0.000000117346644, y: -0.000000007450581, z: -0.00000005029142}
+--- !u!114 &114234443610882868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1163506641544750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 1
+  _strength: 1

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23901771182649444}
   - component: {fileID: 65244120735944466}
   - component: {fileID: 54287475699298128}
+  - component: {fileID: 114145333711621528}
   m_Layer: 9
   m_Name: TrashAnna_Donut
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.049965546, y: 0.010612421, z: 0.053106535}
   m_Center: {x: 0.0000000027939677, y: 0, z: 0}
+--- !u!114 &114145333711621528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1456103211839242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 1
+  _strength: 1

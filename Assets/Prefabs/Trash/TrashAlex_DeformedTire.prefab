@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23552672379704550}
   - component: {fileID: 65347310842767280}
   - component: {fileID: 54739252377296080}
+  - component: {fileID: 114413172170486214}
   m_Layer: 9
   m_Name: TrashAlex_DeformedTire
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.20157775, y: 0.35940513, z: 0.32913393}
   m_Center: {x: 0.00000016391277, y: 0, z: 0.00000017136335}
+--- !u!114 &114413172170486214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1428694182920100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 7
+  _strength: 1

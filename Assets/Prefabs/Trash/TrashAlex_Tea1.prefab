@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23723205348246954}
   - component: {fileID: 65752835576787366}
   - component: {fileID: 54094323249184246}
+  - component: {fileID: 114380445972617802}
   m_Layer: 9
   m_Name: TrashAlex_Tea1
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04306469, y: 0.06872346, z: 0.06872352}
   m_Center: {x: -0.000000023283064, y: -0.0000000037252903, z: -0.03876419}
+--- !u!114 &114380445972617802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873863358862836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 8
+  _strength: 1

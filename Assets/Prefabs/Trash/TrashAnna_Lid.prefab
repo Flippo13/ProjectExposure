@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23808097549207902}
   - component: {fileID: 65451941130481858}
   - component: {fileID: 54879181018404926}
+  - component: {fileID: 114516456758372800}
   m_Layer: 9
   m_Name: TrashAnna_Lid
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07433687, y: 0.02383155, z: 0.08336747}
   m_Center: {x: 0.0000000018626451, y: 0.0000000018626451, z: -0.000000009313226}
+--- !u!114 &114516456758372800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136699317798918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 1
+  _strength: 1

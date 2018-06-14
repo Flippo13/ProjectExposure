@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54628876212467770}
   - component: {fileID: 114304085509422512}
   - component: {fileID: 65110553867512536}
+  - component: {fileID: 114014438245368798}
   m_Layer: 9
   m_Name: Oildrum_red
   m_TagString: Untagged
@@ -113,7 +114,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0587375, y: 1.5253506, z: 1.0587374}
   m_Center: {x: -0.00000008940697, y: 0.000000029802322, z: 0}
---- !u!114 &114304085509422512
+--- !u!114 &114014438245368798
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -125,4 +126,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _surface: 0
+  _strength: 0
+--- !u!114 &114304085509422512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1528762973553718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 4
   _strength: 0

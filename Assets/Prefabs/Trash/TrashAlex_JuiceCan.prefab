@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23019224127914954}
   - component: {fileID: 65804155379069106}
   - component: {fileID: 54519896758959356}
+  - component: {fileID: 114520022625787186}
   m_Layer: 9
   m_Name: TrashAlex_JuiceCan
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.057346437, y: 0.076912954, z: 0.054537352}
   m_Center: {x: 0.00000009313226, y: -0.0000000018626451, z: -0.0000000018626451}
+--- !u!114 &114520022625787186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1011473754053730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 1
+  _strength: 1

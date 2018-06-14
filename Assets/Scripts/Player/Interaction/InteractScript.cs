@@ -19,6 +19,9 @@ public class InteractScript : MonoBehaviour {
     public float deformationStep;
     public float scaleFactor;
 
+
+    public GameObject _particleParent;
+
     private int _trashCount;
 
     private List<Transform> _destroyedObjects;
@@ -68,6 +71,12 @@ public class InteractScript : MonoBehaviour {
         if(OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) < 0.5 && _soundPlayed) {
             _vacuumInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             _soundPlayed = false;
+
+            // Disable Particles
+            for (int i = 0; i < _particleParent.transform.childCount; i++)
+            {
+                _particleParent.transform.GetChild(i).gameObject.SetActive(false);
+            }
         } 
     }
 
@@ -116,6 +125,12 @@ public class InteractScript : MonoBehaviour {
         if(!_soundPlayed) {
             _vacuumInstance.start();
             _soundPlayed = true;
+
+            // Enable Particles
+            for (int i = 0; i < _particleParent.transform.childCount; i++)
+            {
+                _particleParent.transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
 
         //update sound pos

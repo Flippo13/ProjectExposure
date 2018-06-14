@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23993499845287274}
   - component: {fileID: 65533013046580934}
   - component: {fileID: 54183429967907926}
+  - component: {fileID: 114479888427465074}
   m_Layer: 9
   m_Name: TrashAlex_ShortCan
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08161596, y: 0.024563927, z: 0.07762314}
   m_Center: {x: 0.00000010058284, y: -0.0000000027939677, z: -0.000000011175871}
+--- !u!114 &114479888427465074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1547380795460106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 1
+  _strength: 1
