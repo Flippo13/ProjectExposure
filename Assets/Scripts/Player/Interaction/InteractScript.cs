@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractScript : MonoBehaviour {
 
     public Transform vacuumAnchor;
     public VacuumArea vacuumArea;
+    public Text trashCounter; 
 
     [SerializeField]
     [FMODUnity.EventRef]
@@ -32,6 +34,7 @@ public class InteractScript : MonoBehaviour {
     void Awake() {
         _destroyedObjects = new List<Transform>();
         _trashCount = 0;
+        trashCounter.text = "" + _trashCount;
 
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
@@ -40,8 +43,6 @@ public class InteractScript : MonoBehaviour {
         _rigidbody.useGravity = true;
 
         _vacuumInstance = RuntimeManager.CreateInstance(_vacuumSound);
-        //_vacuumInstance.set3DAttributes((RuntimeUtils.To3DAttributes(transform)));
-        //RuntimeManager.AttachInstanceToGameObject(_vacuumInstance, transform, _rigidbody);
     }
 
     public void OnTriggerEnter(Collider other) {
@@ -49,6 +50,7 @@ public class InteractScript : MonoBehaviour {
 
         if (other.gameObject.layer == Layers.Suckable && !_destroyedObjects.Contains(other.transform)) {
             _trashCount++;
+            trashCounter.text = "" + _trashCount;
             _destroyedObjects.Add(other.transform);
         }
     }
@@ -116,6 +118,7 @@ public class InteractScript : MonoBehaviour {
             _soundPlayed = true;
         }
 
+        //update sound pos
         _vacuumInstance.set3DAttributes((RuntimeUtils.To3DAttributes(transform)));
 
         if (vacuumArea.suckableObjectsList.Count == 0) return;

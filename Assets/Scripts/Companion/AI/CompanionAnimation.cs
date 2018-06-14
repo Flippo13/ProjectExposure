@@ -53,6 +53,8 @@ public class CompanionAnimation : MonoBehaviour {
     }
 
     public void SetGrabbingVaccumTrigger() {
+        if (rigAnimator.GetCurrentAnimatorStateInfo(0).IsName("ScoopVacuum")) return; //dont play it if it is already playing
+
         rigAnimator.SetTrigger("grab_vacuum");
     }
 

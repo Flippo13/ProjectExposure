@@ -9,11 +9,9 @@ public class SceneEntrance : MonoBehaviour {
     public bool isBeginning;
     public SceneTransition sceneTransition;
 
-    private TeleporterScript _teleport;
     private bool _completedBegin;
 
     public void Awake() {
-        _teleport = player.GetComponent<TeleporterScript>();
         _completedBegin = false;
     }
 
@@ -22,7 +20,6 @@ public class SceneEntrance : MonoBehaviour {
             if(isBeginning) {
                 //parent to the diving bell
                 player.parent = divingBell;
-                _teleport.SetInTransition(true);
             } else if(!isBeginning && _completedBegin) {
                 sceneTransition.EnableTransition(); //go to next level
             }
@@ -31,12 +28,10 @@ public class SceneEntrance : MonoBehaviour {
             if(isBeginning) {
                 //unparent
                 player.parent = null;
-                _teleport.SetInTransition(false);
 
                 _completedBegin = true;
             } else if (!isBeginning && _completedBegin) {
                 player.parent = divingBell;
-                _teleport.SetInTransition(true);
             }
             
         }
