@@ -157,6 +157,8 @@ GameObject:
   - component: {fileID: 4997698959001512}
   - component: {fileID: 95406085293504516}
   - component: {fileID: 114408334998382782}
+  - component: {fileID: 135428414268631166}
+  - component: {fileID: 54809951039859850}
   m_Layer: 11
   m_Name: Small_Fish_1
   m_TagString: Fish
@@ -303,6 +305,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54809951039859850
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1980417781555538}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &95406085293504516
 Animator:
   serializedVersion: 3
@@ -339,6 +356,18 @@ MonoBehaviour:
   seperationRange: 0.04
   maxSpeed: 2
   rotationSpeed: 0.6
+--- !u!135 &135428414268631166
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1980417781555538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137898526267155656
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
