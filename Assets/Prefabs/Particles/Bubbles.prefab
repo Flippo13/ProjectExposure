@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4212608685305518}
   - component: {fileID: 198831687937625406}
   - component: {fileID: 199516300627611284}
-  m_Layer: 0
+  - component: {fileID: 114512581064505312}
+  m_Layer: 2
   m_Name: Bubbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,12 +36,34 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649577639198320}
   m_LocalRotation: {x: -0.6702003, y: -0, z: -0, w: 0.74218035}
-  m_LocalPosition: {x: 76.6, y: 13.6, z: -0.566349}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 506.72, y: 2.26, z: -124.91}
+  m_LocalScale: {x: 0.44800028, y: 0.44800043, z: 0.44800043}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -84.165, y: 0, z: 0}
+--- !u!114 &114512581064505312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649577639198320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/Enviroment/Effects/Bubbles
+  PlayEvent: 11
+  StopEvent: 12
+  CollisionTag: 
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!198 &198831687937625406
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -289,7 +312,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.31
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -607,7 +630,7 @@ ParticleSystem:
     randomizeRotationDirection: 0
     maxNumParticles: 1000
     size3D: 0
-    rotation3D: 0
+    rotation3D: 1
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
@@ -672,7 +695,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 1.7584747, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -918,7 +941,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -1427,7 +1450,7 @@ ParticleSystem:
     sprites:
     - sprite: {fileID: 0}
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
