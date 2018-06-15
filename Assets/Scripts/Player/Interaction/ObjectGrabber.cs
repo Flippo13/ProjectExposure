@@ -91,6 +91,8 @@ public class ObjectGrabber : OVRGrabber {
     public void InterruptGrabbing() {
         //end grabbing manually
         GrabEnd();
+
+        _grabbing = false;
     }
 
     public bool InVacuumMode() {
