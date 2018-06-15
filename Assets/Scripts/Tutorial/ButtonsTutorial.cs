@@ -83,10 +83,27 @@ public class ButtonsTutorial : MonoBehaviour
         if (rightHand)
         {
             _rightOculusController.SetActive(value);
+            if (value)
+            {
+                _rightOculusController.GetComponent<Animator>().Play("ControllerFadeR_in");
+            }
+            else
+                _rightOculusController.GetComponent<Animator>().Play("ControllerFadeR_out");
+
         }
         else
+        {
             _leftOculusController.SetActive(value);
+            if (value)
+            {
+                _leftOculusController.GetComponent<Animator>().Play("ControllerFadeL_in");
+            }
+            else
+                _leftOculusController.GetComponent<Animator>().Play("ControllerFadeL_out");
+        }
     }
+
+
 
     private void FixedUpdate()
     {
