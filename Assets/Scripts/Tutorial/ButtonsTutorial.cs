@@ -78,41 +78,25 @@ public class ButtonsTutorial : MonoBehaviour
         }
     }
 
-    IEnumerator SetController(bool active, bool rightHand)
+    public void SetController(bool active, bool rightHand)
     {
         Animator _animator;
         if (rightHand)
         {
+            _rightOculusController.SetActive(active);
             _animator = _rightOculusController.GetComponent<Animator>();
             if (active)
             {
-                _rightOculusController.SetActive(active);
                 _animator.Play("ControllerFadeR_in");
             }
-            else
-            {
-                _animator.Play("ControllerFadeR_out");
-                // Wait for the animation to end before deactivating it
-                yield return new WaitForSeconds(_animator.GetCurrentAnimatorClipInfo(0).Length);
-                _rightOculusController.SetActive(active);
-            }
-
-
         }
         else
         {
+            _leftOculusController.SetActive(active);
             _animator = _leftOculusController.GetComponent<Animator>();
             if (active)
             {
-                _leftOculusController.SetActive(active);
                 _animator.Play("ControllerFadeL_in");
-            }
-            else
-            {
-                _animator.Play("ControllerFadeL_out");
-                // Wait for the animation to end before deactivating it
-                yield return new WaitForSeconds(_animator.GetCurrentAnimatorClipInfo(0).Length);
-                _leftOculusController.SetActive(active);
             }
         }
     }
