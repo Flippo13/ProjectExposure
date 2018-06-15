@@ -34,72 +34,86 @@ public class ButtonsTutorial : MonoBehaviour
     private bool _tutorialActive;
     private bool _fullTutorialActive;
 
-    public void SetFullTutorial(bool value)
+    public void SetFullTutorial(bool active)
     {
-        SetController(value, false);
-        SetController(value, true);
+        SetController(active, false);
+        SetController(active, true);
 
-        _teleportButton.SetActive(value);
-        _tutorialButton.SetActive(value);
-        _leftGrabButton.SetActive(value);
-        _rightGrabButton.SetActive(value);
-        _vacuumButton.SetActive(value);
-        _callButton.SetActive(value);
+        _teleportButton.SetActive(active);
+        _tutorialButton.SetActive(active);
+        _leftGrabButton.SetActive(active);
+        _rightGrabButton.SetActive(active);
+        _vacuumButton.SetActive(active);
+        _callButton.SetActive(active);
     }
 
-    public void SetButtonTutorial(TutorialButtons button, bool value)
+    public void SetButtonTutorial(TutorialButtons button, bool active)
     {
         switch (button)
         {
             case TutorialButtons.Teleport:
-                _teleportButton.SetActive(value);
-                SetController(value, false);
+                _teleportButton.SetActive(active);
+                SetController(active, false);
                 break;
             case TutorialButtons.LeftGrab:
-                _leftGrabButton.SetActive(value);
-                SetController(value, false);
+                _leftGrabButton.SetActive(active);
+                SetController(active, false);
                 break;
             case TutorialButtons.RightGrab:
-                _rightGrabButton.SetActive(value);
-                SetController(value, true);
+                _rightGrabButton.SetActive(active);
+                SetController(active, true);
                 break;
             case TutorialButtons.Vacuum:
-                _vacuumButton.SetActive(value);
-                SetController(value, true);
+                _vacuumButton.SetActive(active);
+                SetController(active, true);
                 break;
             case TutorialButtons.CallCompanion:
-                _callButton.SetActive(value);
-                SetController(value, true);
+                _callButton.SetActive(active);
+                SetController(active, true);
                 break;
             case TutorialButtons.FullTutorial:
-                _tutorialButton.SetActive(value);
-                SetController(value, false);
+                _tutorialButton.SetActive(active);
+                SetController(active, false);
                 break;
         }
     }
 
-    private void SetController(bool value, bool rightHand)
+    IEnumerator SetController(bool active, bool rightHand)
     {
+        Animator _animator;
         if (rightHand)
         {
-            _rightOculusController.SetActive(value);
-            if (value)
+            _animator = _rightOculusController.GetComponent<Animator>();
+            if (active)
             {
-                _rightOculusController.GetComponent<Animator>().Play("ControllerFadeR_in");
+                _rightOculusController.SetActive(active);
+                _animator.Play("ControllerFadeR_in");
             }
             else
-                _rightOculusController.GetComponent<Animator>().Play("ControllerFadeR_out");
+            {
+                _animator.Play("ControllerFadeR_out");
+                // Wait for the animation to end before deactivating it
+                yield return new WaitForSeconds(_animator.GetCurrentAnimatorClipInfo(0).Length);
+                _rightOculusController.SetActive(active);
+            }
+
 
         }
         else
         {
-            _leftOculusController.SetActive(value);
-            if (value)
+            _animator = _leftOculusController.GetComponent<Animator>();
+            if (active)
             {
-                _leftOculusController.GetComponent<Animator>().Play("ControllerFadeL_in");
+                _leftOculusController.SetActive(active);
+                _animator.Play("ControllerFadeL_in");
             }
             else
-                _leftOculusController.GetComponent<Animator>().Play("ControllerFadeL_out");
+            {
+                _animator.Play("ControllerFadeL_out");
+                // Wait for the animation to end before deactivating it
+                yield return new WaitForSeconds(_animator.GetCurrentAnimatorClipInfo(0).Length);
+                _leftOculusController.SetActive(active);
+            }
         }
     }
 
