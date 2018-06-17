@@ -6,13 +6,8 @@
     Roaming, //companion roams around the areas and draws attention
     Waiting, //companion waits for the player do so something and provides reinforcement
     Instructing, //compansion tells the player about something
-    GettingVacuum //companion catches or picks up the vacuum
-}
-
-public enum TransformationState {
-    None, //not transforming 
-    Vacuum, //transforming into the vacuum
-    Robot //trasnforming into the robot
+    GettingVacuum, //companion catches or picks up the vacuum
+    HandingVacuum //companion hands over the vacuum to the player
 }
 
 public enum ObjectiveStatus {
@@ -44,7 +39,8 @@ public enum ObjectiveType {
 }
 
 public enum VacuumState {
-    Companion, //companion carries vacuum
+    CompanionBack, //companion carries vacuum on his back
+    CompanionHand, //companion hold vacuum in his left hand
     Player, //player carries vacuum
     Free //not held or used by anything
 }

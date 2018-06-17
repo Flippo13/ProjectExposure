@@ -30,14 +30,29 @@ namespace CurvedVRKeyboard {
         private const string QUAD_FRONT = "Front";
         private const string MAIN_TEXURE_NAME_IN_SHADER = "_MainTex";
 
-
+        private KeyboardStatus _status;
 
         public enum KeyMaterialEnum {
             Normal, Selected, Pressed
         }
 
         public void Awake() {
+            _status = GetComponentInParent<KeyboardStatus>();
+
             Init();
+        }
+
+        public void OnTriggerEnter(Collider other) {
+            if (other.tag != "Hand") return;
+
+            Click();
+            if(_status != null) _status.HandleClick(this);
+        }
+
+        public void OnTriggerExit(Collider other) {
+            if (other.tag != "Hand") return;
+
+            StopHovering();
         }
 
         public void Init() {

@@ -130,7 +130,8 @@ public class OVRGrabbable : MonoBehaviour
 	virtual public void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
     {
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-        rb.isKinematic = m_grabbedKinematic;
+        if (gameObject.layer == LayerMask.NameToLayer("Suckable")) rb.isKinematic = false; //always reset trash to non kinematic
+        else rb.isKinematic = m_grabbedKinematic;
         rb.velocity = linearVelocity;
         rb.angularVelocity = angularVelocity;
         m_grabbedBy = null;

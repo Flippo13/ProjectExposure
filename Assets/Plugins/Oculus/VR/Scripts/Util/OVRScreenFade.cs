@@ -195,6 +195,7 @@ public class OVRScreenFade : MonoBehaviour
     protected void SetMaterialAlpha()
     {
 		Color color = fadeColor;
+
         color.a = Mathf.Max(currentAlpha, uiFadeAlpha);
 		isFading = color.a > 0;
         if (fadeMaterial != null)
