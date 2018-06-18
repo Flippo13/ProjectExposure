@@ -6,10 +6,13 @@ using UnityEngine;
 public class CheckForTrashArea : MonoBehaviour {
 
     public LayerMask trashLayer;
-    public float radius;
+    public int minTrashCleaned; 
+    
+    public bool turbineArea; 
     private BoxCollider _col;
 
-    public UnityEvent areaChosen; 
+    public UnityEvent areaChosen;
+    public UnityEvent trashCleared; 
 
     public bool _playerInArea;
     private int trashCount;
@@ -20,8 +23,6 @@ public class CheckForTrashArea : MonoBehaviour {
     // Use this for initialization
     void Start () {
         _col = GetComponent<BoxCollider>();
-
-        _col.size = new Vector3(radius, 3, radius);
         _col.isTrigger = true;
 
         _playerInArea = false;
@@ -38,13 +39,13 @@ public class CheckForTrashArea : MonoBehaviour {
     {
         if (_playerInArea)
         {
-            Collider[] trash = Physics.OverlapBox(transform.position, new Vector3 (radius, 3, radius), Quaternion.identity ,trashLayer);
-
+            Collider[] trash = Physics.OverlapBox(transform.position, new Vector3(_col.size.x, _col.size.y, _col.size.z));
             trashCount = trash.Length;
 
-            if (trashCount <= 0)
+            if (trashCount <= minTrashCleaned)
             {
                 //Do something with the score? 
+                trashCleared.Invoke(); 
             }
             if (_areaChosen)
             {
@@ -57,7 +58,7 @@ public class CheckForTrashArea : MonoBehaviour {
 
     private void ChoosePosition()
     {
-        if (_playerInArea)
+        if (_playerInArea && turbineArea)
         {
             _playerInAreaTime += 1 * Time.deltaTime;
             //Debug.Log("Counting " + _playerInAreaTime);
