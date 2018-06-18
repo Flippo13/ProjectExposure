@@ -6,4 +6,5 @@
     public static string CablePlug = "CablePlug";
     public static string Vacuum = "Vacuum";
     public static string Hand = "Hand";
+    public static string Boundary = "Boundary";
 }

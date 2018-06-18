@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class FeedbackSliderHandler : MonoBehaviour {
 
-    public Slider feedbackSlider;
+    private Slider _feedbackSlider;
 
-	public void SetValue(int value) {
-        feedbackSlider.value = value;
+    public void Awake() {
+        _feedbackSlider = GetComponent<Slider>();
+    }
 
-        if (gameObject.name == "FeedbackSlider1") ScoreTracker.Feedback1 = (int)feedbackSlider.value;
-        else ScoreTracker.Feedback2 = (int)feedbackSlider.value;
+    public void SetValue(int value) {
+        _feedbackSlider.value = value;
+
+        if (gameObject.name == "FeedbackSlider1") ScoreTracker.Feedback1 = (int)_feedbackSlider.value;
+        else ScoreTracker.Feedback2 = (int)_feedbackSlider.value;
 
     }
 }

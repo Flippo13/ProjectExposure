@@ -8,22 +8,26 @@ using UnityEngine.UI;
 
 public struct YearlyEntry {
     public string Name;
+    public string Age;
     public string Date;
-    public float Playtime;
-    public int Score;
-    public int CompletedLevels;
-    public int Feedback1;
-    public int Feedback2;
+    public string Time;
+    public string Playtime;
+    public string Score;
+    public string CompletedLevels;
+    public string Feedback1;
+    public string Feedback2;
 }
 
 public struct DailyEntry {
     public string Name;
+    public string Age;
     public string Date;
-    public float Playtime;
-    public int Score;
-    public int CompletedLevels;
-    public int Feedback1;
-    public int Feedback2;
+    public string Time;
+    public string Playtime;
+    public string Score;
+    public string CompletedLevels;
+    public string Feedback1;
+    public string Feedback2;
 }
 
 public class StatTracker : MonoBehaviour {
@@ -31,13 +35,13 @@ public class StatTracker : MonoBehaviour {
     FORMAT:
      
     Yearly Leaderboard (max. 50, display 10+ records) - Filename "TurbineTurmoil-Yearly-yyyy.csv":
-    Name, Date, Playtime, Score, Completed Levels, Feedback 1, Feedback 2
-    Nico, 17.06.2018, 03h:00m:00s, 1234, 1, 3, 3
+    Name, Age, Date, Time, Playtime (in seconds), Score, Completed Levels, Feedback 1, Feedback 2
+    Nico, 12, 17.06.2018, 20:05:12, 600, 1234, 1, 3, 3
     ...
 
     Daily Leaderboard (max. 500, display 5+ records) - Filename "TurbineTurmoil-Daily-dd-mm-yyyy.csv":
-    Name, Date, Playtime, Score, Completed Levels, Feedback 1, Feedback 2
-    Nico, 17.06.2018, 03h:00m:00s, 1234, 1, 3, 3
+    Name, Age, Date, Time, Playtime (in seconds), Score, Completed Levels, Feedback 1, Feedback 2
+    Nico, 12, 17.06.2018, 20:05:12, 600, 1234, 1, 3, 3
     ...
      */
 
@@ -63,6 +67,7 @@ public class StatTracker : MonoBehaviour {
         _yearlyEntries = new List<YearlyEntry>();
         _dailyEntries = new List<DailyEntry>();
 
+        //read already saved highscores
         ReadYearlyHighScore();
         ReadDailyHighScore();
 
@@ -76,8 +81,6 @@ public class StatTracker : MonoBehaviour {
     }
 
     public void Update() {
-        ScoreTracker.Playtime += Time.deltaTime; //track playtime
-
         if(Input.GetKeyDown(KeyCode.Space)) {
             DisplayLeaderboard();
         }
@@ -126,34 +129,38 @@ public class StatTracker : MonoBehaviour {
     public void TrackData() {
         //fill with data
         _playerStatsYearly.Name = ScoreTracker.PlayerName;
+        _playerStatsYearly.Age = ScoreTracker.PlayerAge;
         _playerStatsYearly.Date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
-        _playerStatsYearly.Playtime = ScoreTracker.Playtime;
-        _playerStatsYearly.Score = ScoreTracker.ScoreLevel1 + ScoreTracker.ScoreLevel2;
-        _playerStatsYearly.Feedback1 = ScoreTracker.Feedback1;
-        _playerStatsYearly.Feedback2 = ScoreTracker.Feedback2;
+        _playerStatsYearly.Time = GetFormattedTime();
+        _playerStatsYearly.Playtime = (int)Time.time + "";
+        _playerStatsYearly.Score = (ScoreTracker.ScoreLevel1 + ScoreTracker.ScoreLevel2).ToString();
+        _playerStatsYearly.Feedback1 = ScoreTracker.Feedback1.ToString();
+        _playerStatsYearly.Feedback2 = ScoreTracker.Feedback2.ToString();
 
-        if(ScoreTracker.CompletedLevel1 && ScoreTracker.CompletedLevel2) {
-            _playerStatsYearly.CompletedLevels = 2;
+        if (ScoreTracker.CompletedLevel1 && ScoreTracker.CompletedLevel2) {
+            _playerStatsYearly.CompletedLevels = "2";
         } else if (ScoreTracker.CompletedLevel1) {
-            _playerStatsYearly.CompletedLevels = 1;
+            _playerStatsYearly.CompletedLevels = "1";
         } else {
-            _playerStatsYearly.CompletedLevels = 0;
+            _playerStatsYearly.CompletedLevels = "0";
         }
 
         //fill with data
         _playerStatsDaily.Name = ScoreTracker.PlayerName;
+        _playerStatsDaily.Age = ScoreTracker.PlayerAge;
         _playerStatsDaily.Date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
-        _playerStatsDaily.Playtime = ScoreTracker.Playtime;
-        _playerStatsDaily.Score = ScoreTracker.ScoreLevel1 + ScoreTracker.ScoreLevel2;
-        _playerStatsDaily.Feedback1 = ScoreTracker.Feedback1;
-        _playerStatsDaily.Feedback2 = ScoreTracker.Feedback2;
+        _playerStatsDaily.Time = GetFormattedTime();
+        _playerStatsDaily.Playtime = (int)Time.time + "";
+        _playerStatsDaily.Score = (ScoreTracker.ScoreLevel1 + ScoreTracker.ScoreLevel2).ToString();
+        _playerStatsDaily.Feedback1 = ScoreTracker.Feedback1.ToString();
+        _playerStatsDaily.Feedback2 = ScoreTracker.Feedback2.ToString();
 
         if (ScoreTracker.CompletedLevel1 && ScoreTracker.CompletedLevel2) {
-            _playerStatsDaily.CompletedLevels = 2;
+            _playerStatsDaily.CompletedLevels = "2";
         } else if (ScoreTracker.CompletedLevel1) {
-            _playerStatsDaily.CompletedLevels = 1;
+            _playerStatsDaily.CompletedLevels = "1";
         } else {
-            _playerStatsDaily.CompletedLevels = 0;
+            _playerStatsDaily.CompletedLevels = "0";
         }
 
         //apply
@@ -161,10 +168,28 @@ public class StatTracker : MonoBehaviour {
         _dailyEntries[_dailyEntries.Count - 1] = _playerStatsDaily;
     }
 
+    private string GetFormattedTime() {
+        string formattedTime = DateTime.Now.TimeOfDay.Hours + ":";
+
+        if(DateTime.Now.TimeOfDay.Minutes < 10) {
+            formattedTime += "0" + DateTime.Now.TimeOfDay.Minutes + ":";
+        } else {
+            formattedTime += DateTime.Now.TimeOfDay.Minutes + ":";
+        }
+
+        if (DateTime.Now.TimeOfDay.Seconds < 10) {
+            formattedTime += "0" + DateTime.Now.TimeOfDay.Seconds;
+        } else {
+            formattedTime += DateTime.Now.TimeOfDay.Seconds;
+        }
+
+        return formattedTime;
+    }
+
     private void WriteYearlyScore() {
         _writer = new StreamWriter(YEARLY); //creates new one automatically
 
-        string line = "Name,Date,Playtime,Score,Completed Levels,Feedback 1,Feedback 2";
+        string line = "Name,Age,Date,Time,Playtime (in Seconds),Score,Completed Levels,Feedback 1,Feedback 2";
         _writer.WriteLine(line);
 
         _yearlyEntries = _yearlyEntries.OrderBy(o => o.Score).ToList(); //sort by score
@@ -173,8 +198,9 @@ public class StatTracker : MonoBehaviour {
         for(int i = 0; i < 50; i++) {
             if (i >= _yearlyEntries.Count) break; //reached end of the entry list
 
-            line = _yearlyEntries[i].Name + "," + _yearlyEntries[i].Date + "," + Math.Round(_yearlyEntries[i].Playtime / 60.0f, 2) + "," + _yearlyEntries[i].Score + "," +
-                _yearlyEntries[i].CompletedLevels + "," + _yearlyEntries[i].Feedback1 + "," + _yearlyEntries[i].Feedback2;
+            line = _yearlyEntries[i].Name + "," + _yearlyEntries[i].Age + "," + _yearlyEntries[i].Date + "," + _yearlyEntries[i].Time + ","
+                + _yearlyEntries[i].Playtime + "," + _yearlyEntries[i].Score + "," + _yearlyEntries[i].CompletedLevels + "," + _yearlyEntries[i].Feedback1 + ","
+                + _yearlyEntries[i].Feedback2;
             _writer.WriteLine(line); //write the content
         }
 
@@ -184,7 +210,7 @@ public class StatTracker : MonoBehaviour {
     private void WriteDailyScore() {
         _writer = new StreamWriter(DAILY); //creates new one automatically
 
-        string line = "Name,Date,Playtime,Score,Completed Levels,Feedback 1,Feedback 2";
+        string line = "Name,Age,Date,Time,Playtime (in Seconds),Score,Completed Levels,Feedback 1,Feedback 2";
         _writer.WriteLine(line);
 
         _dailyEntries = _dailyEntries.OrderBy(o => o.Score).ToList(); //sort by score
@@ -193,8 +219,9 @@ public class StatTracker : MonoBehaviour {
         for (int i = 0; i < 500; i++) {
             if (i >= _dailyEntries.Count) break; //reached end of the entry list
 
-            line = _dailyEntries[i].Name + "," + _dailyEntries[i].Date + "," + Math.Round(_dailyEntries[i].Playtime / 60.0f, 2) + "," + _dailyEntries[i].Score + "," +
-                _dailyEntries[i].CompletedLevels + "," + _dailyEntries[i].Feedback1 + "," + _dailyEntries[i].Feedback2;
+            line = _dailyEntries[i].Name + "," + _dailyEntries[i].Age + "," + _dailyEntries[i].Date + "," + _dailyEntries[i].Time + ","
+                + _dailyEntries[i].Playtime + "," + _dailyEntries[i].Score + "," + _dailyEntries[i].CompletedLevels + "," + _dailyEntries[i].Feedback1 + "," 
+                + _dailyEntries[i].Feedback2;
             _writer.WriteLine(line); //write the content
         }
 
@@ -232,12 +259,14 @@ public class StatTracker : MonoBehaviour {
 
             //story everything in the list as an entry
             newEntry.Name = content[0];
-            newEntry.Date = content[1];
-            float.TryParse(content[2], out newEntry.Playtime);
-            int.TryParse(content[3], out newEntry.Score);
-            int.TryParse(content[4], out newEntry.CompletedLevels);
-            int.TryParse(content[5], out newEntry.Feedback1);
-            int.TryParse(content[6], out newEntry.Feedback2);
+            newEntry.Age = content[1];
+            newEntry.Date = content[2];
+            newEntry.Time = content[3];
+            newEntry.Playtime = content[4];
+            newEntry.Score = content[5];
+            newEntry.CompletedLevels = content[6];
+            newEntry.Feedback1 = content[7];
+            newEntry.Feedback2 = content[8];
 
             _yearlyEntries.Add(newEntry);
         }
@@ -278,12 +307,14 @@ public class StatTracker : MonoBehaviour {
 
             //story everything in the list as an entry
             newEntry.Name = content[0];
-            newEntry.Date = content[1];
-            float.TryParse(content[2], out newEntry.Playtime);
-            int.TryParse(content[3], out newEntry.Score);
-            int.TryParse(content[4], out newEntry.CompletedLevels);
-            int.TryParse(content[5], out newEntry.Feedback1);
-            int.TryParse(content[6], out newEntry.Feedback2);
+            newEntry.Age = content[1];
+            newEntry.Date = content[2];
+            newEntry.Time = content[3];
+            newEntry.Playtime = content[4];
+            newEntry.Score = content[5];
+            newEntry.CompletedLevels = content[6];
+            newEntry.Feedback1 = content[7];
+            newEntry.Feedback2 = content[8];
 
             _dailyEntries.Add(newEntry);
         }

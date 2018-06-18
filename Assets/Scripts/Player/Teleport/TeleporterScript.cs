@@ -18,6 +18,8 @@ public class TeleporterScript : MonoBehaviour {
     private LineRenderer _lineRenderer;
     private Material _lineRendererMat;
 
+    private BoundaryDetector _boundatyDetector;
+
     private List<Vector3> _teleportPath;
     private GameObject _indicatorInstance;
     private GameObject _projectileInstance;
@@ -35,6 +37,8 @@ public class TeleporterScript : MonoBehaviour {
         _rigidbody.isKinematic = true;
         _rigidbody.freezeRotation = true;
         _rigidbody.useGravity = true;
+
+        _boundatyDetector = leftHandGrabber.GetComponent<BoundaryDetector>();
 
         _indicatorInstance = Instantiate(indicatorPrefab);
         _indicatorInstance.SetActive(false);
@@ -55,7 +59,7 @@ public class TeleporterScript : MonoBehaviour {
     }
 
     public void Update() {
-        if (leftHandGrabber.IsGrabbing()) {
+        if (leftHandGrabber.IsGrabbing() || _boundatyDetector.InBoundary()) {
             //released
             _triggerPressed = false;
             _allowTeleport = false;
@@ -68,7 +72,7 @@ public class TeleporterScript : MonoBehaviour {
             _indicatorInstance.SetActive(false);
             _lineRenderer.enabled = false;
 
-            return; //dont allow teleportation when holding something in the left hand
+            return; //dont allow teleportation when holding something in the left hand or when having the hand in a boundary
         }
 
         if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.5f || Input.GetMouseButton(0)) {
