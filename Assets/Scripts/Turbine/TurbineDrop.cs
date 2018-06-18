@@ -7,7 +7,7 @@ public class TurbineDrop : MonoBehaviour {
     public float dropHeight;
     public float dropTime;
 
-    public GameObject turbine;
+    public GameObject turbinePrefab;
 
     private new Transform transform;
     private Collider _col;
@@ -41,11 +41,11 @@ public class TurbineDrop : MonoBehaviour {
         {
             if (hit.collider.tag == "Terrain")
             {
-                _dropSpeed += Time.deltaTime / dropTime;
+                _dropSpeed += Time.deltaTime / 10.0f;
                 print("drop speed " + _dropSpeed); 
                 Vector3 dropPos = new Vector3(hit.point.x, hit.point.y + dropHeight, hit.point.z);
 
-               transform.position = Vector3.Lerp(transform.position, dropPos, _dropSpeed);
+               transform.position = Vector3.Lerp(transform.position, dropPos, Time.deltaTime / 10.0f);
 
                 if (transform.position.y <= dropPos.y + dropHeight + 1)
                 {
@@ -59,9 +59,9 @@ public class TurbineDrop : MonoBehaviour {
 
     private void Landed()
     {
-        if (turbine != null)
+        if (turbinePrefab != null)
         {
-            turbine.transform.parent = null;
+            turbinePrefab.transform.parent = null;
             Destroy(gameObject);
         }
     }
