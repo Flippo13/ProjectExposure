@@ -31,7 +31,8 @@ public class TurbineSocket : MonoBehaviour {
         }
     }
 
-    public void PlugIn()
+
+    public void LetGo()
     {
         _hand.InterruptGrabbing();
     }

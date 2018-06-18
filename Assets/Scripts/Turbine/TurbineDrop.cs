@@ -41,13 +41,13 @@ public class TurbineDrop : MonoBehaviour {
         {
             if (hit.collider.tag == "Terrain")
             {
-                _dropSpeed += Time.deltaTime / 10.0f;
+                _dropSpeed += 1 * (Time.deltaTime / 100.0f);
                 print("drop speed " + _dropSpeed); 
                 Vector3 dropPos = new Vector3(hit.point.x, hit.point.y + dropHeight, hit.point.z);
 
-               transform.position = Vector3.Lerp(transform.position, dropPos, Time.deltaTime / 10.0f);
+               transform.position = Vector3.Lerp(transform.position, dropPos, _dropSpeed);
 
-                if (transform.position.y <= dropPos.y + dropHeight + 1)
+                if (transform.position.y <= dropPos.y + dropHeight)
                 {
                     _calledDown = false; 
                     Landed(); 

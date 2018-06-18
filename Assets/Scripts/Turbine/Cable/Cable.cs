@@ -8,8 +8,8 @@ public class Cable : MonoBehaviour {
     public GameObject cableEnd;
     public GameObject cableNode;
 
-    private GameObject cylinder; 
-
+    private GameObject cylinder;
+    private TurbineSocket _socket; 
     private Collider _cablePartCollider; 
     private LineRenderer _lineRenderer;
 
@@ -33,6 +33,7 @@ public class Cable : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         _lineRenderer = GetComponent<LineRenderer>();
+        _socket = cableEnd.GetComponent<TurbineSocket>(); 
         SetUpCable();
     }
 
@@ -85,6 +86,7 @@ public class Cable : MonoBehaviour {
                     cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
                 if (i + 1 != cableNodesList.Count - 1)
                     cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
+                _socket.LetGo(); 
             }
 
             else

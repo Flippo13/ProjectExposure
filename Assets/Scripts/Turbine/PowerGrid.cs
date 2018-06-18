@@ -25,7 +25,7 @@ public class PowerGrid : MonoBehaviour {
     {
         if (other.tag == Tags.CablePlug)
         {
-            other.GetComponent<TurbineSocket>().PlugIn();
+            other.GetComponent<TurbineSocket>().LetGo();
             other.transform.position = this.transform.position;
             other.transform.rotation = this.transform.rotation;
             _connected = true;
