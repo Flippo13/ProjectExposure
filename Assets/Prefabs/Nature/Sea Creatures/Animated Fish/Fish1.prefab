@@ -409,10 +409,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishLayer:
     serializedVersion: 2
-    m_Bits: 2048
-  cohesionRange: 0.7
-  seperationRange: 0.04
-  maxSpeed: 2
+    m_Bits: 2052
+  cohesionRange: 1
+  seperationRange: 0.4
+  seperateFromPlayerRange: 3
+  maxSpeed: 5
   rotationSpeed: 0.6
 --- !u!135 &135767717321872278
 SphereCollider:

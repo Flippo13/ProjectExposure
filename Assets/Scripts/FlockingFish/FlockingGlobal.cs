@@ -6,20 +6,25 @@ public class FlockingGlobal : MonoBehaviour {
 
     public GameObject goalIndicator;
     public GameObject fish;
-    public int fishCount; 
+    public int fishCount;
+    public bool playerEntered;
+    public GameObject player; 
+
+    public GameObject[] arrayOfFishies;
 
     public BoxCollider fishTank;
     public Vector3 goal;
-    private int[] _fishies;
+
+
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         fishTank = GetComponent<BoxCollider>();
-        _fishies = new int[fishCount];
+        arrayOfFishies = new GameObject[fishCount];
 
-        for (int i = 0; i < _fishies.Length; i++)
+        for (int i = 0; i < arrayOfFishies.Length; i++)
         {
-            Instantiate(fish, new Vector3(Random.Range(fishTank.bounds.min.x, fishTank.bounds.max.x), Random.Range(fishTank.bounds.min.y, fishTank.bounds.max.y), Random.Range(fishTank.bounds.min.z, fishTank.bounds.max.z)), Quaternion.Euler(new Vector3(-90,0,0)),this.transform); 
+           arrayOfFishies[i] = Instantiate(fish, new Vector3(Random.Range(fishTank.bounds.min.x, fishTank.bounds.max.x), Random.Range(fishTank.bounds.min.y, fishTank.bounds.max.y), Random.Range(fishTank.bounds.min.z, fishTank.bounds.max.z)), Quaternion.Euler(new Vector3(-90, 0, 0)), this.transform); ; 
         }
 
         goal = new Vector3(Random.Range(fishTank.bounds.min.x, fishTank.bounds.max.x), Random.Range(fishTank.bounds.min.y, fishTank.bounds.max.y), Random.Range(fishTank.bounds.min.z, fishTank.bounds.max.z));
@@ -29,8 +34,9 @@ public class FlockingGlobal : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(goalIndicator != null)
-        goalIndicator.transform.position = goal; 
+           goalIndicator.transform.position = goal; 
 	}
+
 
     IEnumerator FindNewGoalPosWithDelay(float delay)
     {
@@ -40,6 +46,7 @@ public class FlockingGlobal : MonoBehaviour {
             NewGoalPos(); 
         }
     }
+
 
     private void NewGoalPos()
     {
@@ -51,4 +58,23 @@ public class FlockingGlobal : MonoBehaviour {
     {
         get { return goal; }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerEntered = true;
+            player = other.gameObject; 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            playerEntered = false; 
+            player = null; 
+        }
+    }
+
 }

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 //helper class to check for certain controlls
 public class CompanionControls : MonoBehaviour {
 
-    public InteractScript interact;
+    public VacuumScript interact;
 
     //returns true, when the button is pressed down
     public bool CallButtonDown() {

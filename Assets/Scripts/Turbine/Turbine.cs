@@ -13,7 +13,7 @@ public class Turbine : MonoBehaviour {
 	
     public void Activate()
     {
-        //Debug.Log("I still need to have an animation and sound that shows that I work!");
+        Debug.Log("I still need to have an animation and sound that shows that I work!");
         _anim.SetBool("enabled", true);
     }
 }

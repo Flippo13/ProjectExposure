@@ -5,10 +5,29 @@ using UnityEngine.AI;
 
 public class CompanionNavigator : MonoBehaviour {
 
+    public float nearSpeed;
+    public float nearAcceleration;
+    public float farSpeed;
+    public float farAcceleration;
+
+    public float switchRadius;
+
     private NavMeshAgent _navAgent;
 
     public void Awake() {
         _navAgent = GetComponent<NavMeshAgent>();
+    }
+
+    public void CheckForSpeedAdjustment(Vector3 playerPos) {
+        Vector3 deltaVec = transform.position - playerPos;
+
+        if(deltaVec.magnitude <= switchRadius) {
+            _navAgent.speed = nearSpeed;
+            _navAgent.acceleration = nearAcceleration;
+        } else {
+            _navAgent.speed = farSpeed;
+            _navAgent.acceleration = farAcceleration;
+        }
     }
 
     //set destination for the navmesh agent

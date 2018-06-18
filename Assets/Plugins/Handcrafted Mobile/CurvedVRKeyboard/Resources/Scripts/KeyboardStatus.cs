@@ -34,14 +34,17 @@ namespace CurvedVRKeyboard {
         /// <param name="clicked">keyboard item clicked</param>
         public void HandleClick ( KeyboardItem clicked ) {
             string value = clicked.GetValue();
-            if(value.Equals(QEH) || value.Equals(ABC)) { // special signs pressed
+
+            if (value.Equals(QEH) || value.Equals(ABC)) { // special signs pressed
                 ChangeSpecialLetters();
-            } else if(value.Equals(UP) || value.Equals(LOW)) { // upper/lower case pressed
+            } else if (value.Equals(UP) || value.Equals(LOW)) { // upper/lower case pressed
                 LowerUpperKeys();
-            } else if(value.Equals(SPACE)) {
+            } else if (value.Equals(SPACE)) {
                 TypeKey(BLANKSPACE);
-            } else if(value.Equals(BACK)) {
+            } else if (value.Equals(BACK)) {
                 BackspaceKey();
+            } else if (value.Equals(DONE)) {
+                //do nothing
             } else {// Normal letter
                 TypeKey(value[0]);
             }

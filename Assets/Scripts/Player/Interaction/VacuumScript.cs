@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class InteractScript : MonoBehaviour {
+public class VacuumScript : MonoBehaviour {
 
-    public Transform vacuumAnchor;
+    public Transform vacuumBackAnchor;
+    public Transform vacuumHandAnchor;
     public VacuumArea vacuumArea;
     public Text trashCounter; 
 
@@ -41,7 +43,7 @@ public class InteractScript : MonoBehaviour {
 
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
-        _state = VacuumState.Companion;
+        _state = VacuumState.CompanionBack;
 
         _rigidbody.useGravity = true;
 
@@ -53,18 +55,28 @@ public class InteractScript : MonoBehaviour {
 
         if (other.gameObject.layer == Layers.Suckable && !_destroyedObjects.Contains(other.transform)) {
             _trashCount++;
+
+            //apply to score tracker
+            if (SceneManager.GetActiveScene().buildIndex == 0) ScoreTracker.ScoreLevel1 = _trashCount;
+            else ScoreTracker.ScoreLevel2 = _trashCount;
+
             trashCounter.text = "" + _trashCount;
             _destroyedObjects.Add(other.transform);
         }
     }
 
     public void Update() {
-        //input and suck
         if(_state == VacuumState.Player && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5) {
+            //player holds the vacuum and pressed the right index finger trigger button
+            byte[] samples = { 200 }; //1 haptic sample with the strength of 200 (range: 0-255)
+            OVRHaptics.RightChannel.Preempt(new OVRHapticsClip(samples, 1)); //play the vibration clip
+
             MoveTrash();
         } else if(_state == VacuumState.Player && !vacuumGrabber.IsGrabbing()) {
+            //player released the vacuum 
             SetVacuumState(VacuumState.Free);
         } else if(_state != VacuumState.Player && vacuumGrabber.InVacuumMode() && vacuumGrabber.IsGrabbing()) {
+            //player grabs vacuum whenever he wants
             SetVacuumState(VacuumState.Player);
         }
 
@@ -87,9 +99,20 @@ public class InteractScript : MonoBehaviour {
 
         switch (state) {
 
-            case VacuumState.Companion:
-                //attach to companion and reset
-                transform.parent = vacuumAnchor;
+            case VacuumState.CompanionBack:
+                //attach to companion back and reset
+                transform.parent = vacuumBackAnchor;
+                transform.localPosition = Vector3.zero;
+                transform.localRotation = Quaternion.identity;
+
+                _collider.isTrigger = true;
+                _rigidbody.isKinematic = true;
+
+                break;
+
+            case VacuumState.CompanionHand:
+                //attach to companion hand an reset
+                transform.parent = vacuumHandAnchor;
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
 

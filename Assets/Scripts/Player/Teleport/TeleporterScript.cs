@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeleporterScript : MonoBehaviour {
 
-    public Transform leftHandAnchor;
+    public Transform watchAnchor;
     public GameObject indicatorPrefab;
     public GameObject projectilePrefab;
     public ObjectGrabber leftHandGrabber;
@@ -44,7 +44,7 @@ public class TeleporterScript : MonoBehaviour {
 
         _projectileScript = _projectileInstance.GetComponent<ProjectileScript>();
 
-        _lineRenderer = leftHandAnchor.GetComponent<LineRenderer>();
+        _lineRenderer = watchAnchor.GetComponent<LineRenderer>();
         _lineRendererMat = _lineRenderer.material;
 
         _teleportPath = new List<Vector3>();
@@ -161,8 +161,8 @@ public class TeleporterScript : MonoBehaviour {
         //draw an arc by simulating velocity and gravity for a given amlount of steps
         Vector3[] vecArray = new Vector3[lineResolution];
 
-        Vector3 startingPos = leftHandAnchor.position;
-        Vector3 lineDirection = leftHandAnchor.transform.forward.normalized;
+        Vector3 startingPos = watchAnchor.position;
+        Vector3 lineDirection = watchAnchor.transform.forward.normalized;
 
         _lineRenderer.positionCount = lineResolution;
 

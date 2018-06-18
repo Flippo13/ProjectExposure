@@ -19,8 +19,6 @@ public class SceneEntrance : MonoBehaviour {
     [FMODUnity.EventRef]
     private string _doorClose;
 
-
-
     public void Awake() {
         _completedBegin = false;
     }

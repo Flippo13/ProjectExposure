@@ -11,7 +11,9 @@ public class TurbineButton : MonoBehaviour {
     [SerializeField]
     private UnityEvent _turbineButtonEvent;
 
-    public TurbineButtonActivate _turbineButtonPressed; 
+    public TurbineButtonActivate _turbineButtonPressed;
+
+    private bool _buttonIsBeingPressed; 
 
 	// Use this for initialization
 	void Start () {
@@ -21,20 +23,28 @@ public class TurbineButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+            if (_turbineButtonPressed.Active)
+                _turbineButtonEvent.Invoke(); 
+        if (_buttonIsBeingPressed)
+        {
+        }
 	}
 
-   private void OnCollisionStay(Collision other)
+   private void OnCollisionEnter(Collision other)
    {
         if (other.collider.tag == "Player")
         {
             Debug.Log("Is being Pressed");
-            if (_turbineButtonPressed.Active)
-            {
-                _turbineButtonEvent.Invoke();
-                Debug.Log("Invoke Event");
-            }
+            _buttonIsBeingPressed = true; 
         }
    }
 
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.collider.tag == "Player")
+        {
+            _buttonIsBeingPressed = false; 
+        }
+    }
 
 }

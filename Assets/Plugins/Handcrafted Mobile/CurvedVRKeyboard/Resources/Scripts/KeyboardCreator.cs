@@ -58,9 +58,9 @@ namespace CurvedVRKeyboard {
         public void Awake() {
             InitKeys();
             ChangeMaterialOnKeys();
-            if (!Application.isPlaying) {
+            /*if (!Application.isPlaying) {
                 ManageKeys();
-            }
+            }*/
             wasStaticOnStart = gameObject.isStatic;
             SetComponents();
 
@@ -94,10 +94,10 @@ namespace CurvedVRKeyboard {
         /// Sets values for other necessary components
         /// </summary>
         private void SetComponents() {
-            KeyboardRaycaster rayCaster = GetComponent<KeyboardRaycaster>();
+            /*KeyboardRaycaster rayCaster = GetComponent<KeyboardRaycaster>();
             rayCaster.SetRaycastingTransform(RaycastingSource);
             rayCaster.SetClickButton(ClickHandle);
-            rayCaster.SetTarget(gameObject);
+            rayCaster.SetTarget(gameObject);*/
             KeyboardStatus status = GetComponent<KeyboardStatus>();
             status.SetKeys(keys);
         }

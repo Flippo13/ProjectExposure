@@ -14,14 +14,16 @@ public class Cable : MonoBehaviour {
     private LineRenderer _lineRenderer;
 
     private List<GameObject> cableNodesList = new List<GameObject>();
-    private List<GameObject> cylinders = new List<GameObject>(); 
+    private List<GameObject> cylinders = new List<GameObject>();
+    private float[] distanceBetweenNodes;
+    private float maximumLength;
+   // private float currentLength; 
     public int nodeAmount; 
 
     //Info for the Hookes Law Formula F = -K*(|x| - d) (x/|x|) - bv 
     public float springConstant = 0.7f;
     public float desiredDistance;
     public float damping;
-
 
     //Cable info
     private Vector3 nodeStartPos; 
@@ -37,18 +39,24 @@ public class Cable : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
         UpdateCable();
+        DisplayCable();
     }
 
-
+    //Do we need to disable the cable at some point? 
     public void Activate()
     {
 
     }
 
+
     private void SetUpCable()
     {
         cableNodesList.Add(cableStart);
-        _startPos = cableEnd.transform.position; 
+        _startPos = cableEnd.transform.position;
+
+        distanceBetweenNodes = new float[nodeAmount + 1];
+        maximumLength = (nodeAmount + 1) * desiredDistance;
+        Debug.Log("maximum distance: " + maximumLength); 
 
         float nodeDistance = 1.0f / nodeAmount;
         for (int i = 1; i <= nodeAmount; i++)
@@ -71,15 +79,43 @@ public class Cable : MonoBehaviour {
 
             Vector3 force = -springConstant * (distance.magnitude - desiredDistance) * Vector3.Normalize(distance) - damping * rVel;
 
-           
-            if(i != cableNodesList.Count - 1)
+            if (GetCurrentLength() < maximumLength)
+            {
+                if (i != cableNodesList.Count - 1)
+                    cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
+                if (i + 1 != cableNodesList.Count - 1)
+                    cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
+            }
+
+            else
+            {
                 cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
-            if (i+1 != cableNodesList.Count - 1)
                 cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
+            }
         }
 
-        float currentRopeLength = Vector3.Distance(cableStart.transform.position, cableEnd.transform.position);
+        for (int i = 0; i < distanceBetweenNodes.Length; i++)
+        {
+            distanceBetweenNodes[i] = Vector3.Distance(cableNodesList[i].transform.position, cableNodesList[i + 1].transform.position);
+        }
+    }
 
+
+    private float GetCurrentLength()
+    {
+        float currentLength = 0;
+
+        for (int i = 0; i < distanceBetweenNodes.Length; i++)
+        {
+            currentLength += distanceBetweenNodes[i];
+        }
+
+        return currentLength; 
+    }
+
+
+    private void DisplayCable()
+    {
         Vector3[] positions = new Vector3[cableNodesList.Count];
 
         for (int i = 0; i < cableNodesList.Count; i++)
@@ -87,11 +123,9 @@ public class Cable : MonoBehaviour {
             positions[i] = cableNodesList[i].transform.position;
         }
 
-
         _lineRenderer.positionCount = positions.Length;
 
         _lineRenderer.SetPositions(positions); 
-    }
 
-    
+    }
 }
