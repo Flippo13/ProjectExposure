@@ -71,7 +71,7 @@ public class CompanionAI : MonoBehaviour {
 
     private bool CheckForVacuumHandOver() {
         //go into new state if player is reaching out for vacuum
-        if(grabScanner.IsReachingForVacuum()) {
+        if(grabScanner.IsReachingForVacuum() && vacuum.GetVacuumState() != VacuumState.Player && vacuum.GetVacuumState() != VacuumState.Free) {
             SetState(CompanionState.HandingVacuum);
 
             return true;
@@ -191,7 +191,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Instructing:
                 _audio.StopAudioSource(AudioSourceType.Voice);
-                if(_audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice)) StartCoroutine(_audio.PlayAudioSourceWithHaptic(AudioSourceType.Voice));
+                if (_audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice)) StartCoroutine(_audio.PlayAudioSourceWithHaptic(AudioSourceType.Voice));
                 _animation.SetAnimationTrigger(_tracker.GetCurrentObjective().animationTrigger);
 
                 break;
@@ -332,7 +332,7 @@ public class CompanionAI : MonoBehaviour {
                     //wait and reinforce the player for objective
                     _timer = 0f;
                     _audio.StopAudioSource(AudioSourceType.Voice);
-                    if(_audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice)) _audio.PlayAudioSource(AudioSourceType.Voice);
+                    if(_audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice)) StartCoroutine(_audio.PlayAudioSourceWithHaptic(AudioSourceType.Voice));
                 }
 
                 if (CheckForIdleAnimation()) {
@@ -349,12 +349,13 @@ public class CompanionAI : MonoBehaviour {
                 //instruct the player about objective
                 RotateTowardsPlayer();
 
-                if (_audio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED) {
+                if (_audio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED && _audio.GetStartedPlaying()) {
                     //instructions are done, so either start the objective, reinforce the objective or follow
 
                     //activate the current task and go back to the following state
                     _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Active);
                     _tracker.StartTracking(_controls.GetTrashCount());
+                    _audio.ResetStartedPlaying();
                     SetState(CompanionState.Following);
                 }
 
@@ -378,27 +379,24 @@ public class CompanionAI : MonoBehaviour {
                     } else {
                         SetState(CompanionState.Following);
                     }
-                } else if (deltaVecVacuum.magnitude <= 2.5f) {
+                } else if (deltaVecVacuum.magnitude <= 4f) {
                     _animation.SetGrabbingVaccumTrigger(); //play animation
                 }
 
                 break;
 
             case CompanionState.HandingVacuum:
-                //check if the vacuum is grabbed or if the player didnt grab it (in animation)
-
+                //check if the vacuum is grabbed or if the player didnt grab it (in animation)S
                 RotateTowardsPlayer();
-                if(vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
+
+                if (_animation.VacuumHandDone()) {
+                    SetState(CompanionState.Following); //go back to overall idle
+                } else if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
                     //go back to hover idle when vacuum is grabbed or released
                     _animation.SetAnimationTrigger("hand_over_vacuum_hover");
-
                 } else if(!grabScanner.IsReachingForVacuum()) {
                     //put vacuum back
                     _animation.SetAnimationTrigger("hand_over_vacuum_back");
-                }
-
-                if(_animation.VacuumHandDone()) {
-                    SetState(CompanionState.Following); //go back to overall idle
                 }
 
                 break;

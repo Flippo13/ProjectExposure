@@ -106,7 +106,7 @@ public class WaterConditionManager : MonoBehaviour {
     private void InterpolateSkyboyTint() {
         _currentSkyboxTint = Color.Lerp(dirtyWaterSkyboxTint, cleanWaterSkyboxTint, _incrementor); //interpolate color based on collected trash
 
-        RenderSettings.skybox.SetColor("Tint Color", _currentSkyboxTint); //set the tint for the skybox
+        RenderSettings.skybox.SetColor("_Tint", _currentSkyboxTint); //set the tint for the skybox
         DynamicGI.UpdateEnvironment(); //apply settings to the skybox
     }
 }

@@ -16,14 +16,32 @@ public class CompanionAudio : MonoBehaviour {
     private EventInstance[] _audioTracks;
     private OVRHapticsClip _notificationHapticsClip;
 
-    //20 times full strength, 10 times silent, 20 times full strength
+    private bool _startedPlaying;
+
+    //notification samples
     private byte[] samples = {
             255, 255, 255, 255, 255,
             255, 255, 255, 255, 255,
             255, 255, 255, 255, 255,
             255, 255, 255, 255, 255,
+            255, 255, 255, 255, 255,
+            255, 255, 255, 255, 255,
+            255, 255, 255, 255, 255,
+            255, 255, 255, 255, 255,
             1, 1, 1, 1, 1,
             1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1,
+            255, 255, 255, 255, 255,
+            255, 255, 255, 255, 255,
+            255, 255, 255, 255, 255,
+            255, 255, 255, 255, 255,
             255, 255, 255, 255, 255,
             255, 255, 255, 255, 255,
             255, 255, 255, 255, 255,
@@ -38,6 +56,8 @@ public class CompanionAudio : MonoBehaviour {
         } else {
             _notificationHapticsClip = new OVRHapticsClip(notificationAudioClip);
         }
+
+        _startedPlaying = false;
 
         SetClip(motorSound, AudioSourceType.Effects);
         //PlayAudioSource(AudioSourceType.Effects);
@@ -85,10 +105,12 @@ public class CompanionAudio : MonoBehaviour {
     }
 
     public void PlayAudioSource(AudioSourceType sourceType) {
+        _startedPlaying = true;
         _audioTracks[(int)sourceType].start();
     }
 
     public void StopAudioSource(AudioSourceType sourceType) {
+        _startedPlaying = false;
         _audioTracks[(int)sourceType].stop(STOP_MODE.IMMEDIATE);
     }
 
@@ -97,6 +119,14 @@ public class CompanionAudio : MonoBehaviour {
         _audioTracks[(int)sourceType].getPlaybackState(out result);
 
         return result;
+    }
+
+    public bool GetStartedPlaying() {
+        return _startedPlaying;
+    }
+
+    public void ResetStartedPlaying() {
+        _startedPlaying = false;
     }
 
 }
