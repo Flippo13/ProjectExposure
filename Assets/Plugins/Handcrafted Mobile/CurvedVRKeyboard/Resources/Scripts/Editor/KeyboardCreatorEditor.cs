@@ -79,15 +79,14 @@ namespace CurvedVRKeyboard {
 
         private void DrawPrimary () {
             GUILayout.Label(PRIMARY_SETUP, EditorStyles.boldLabel);
-            keyboardCreator.RaycastingSource = EditorGUILayout.ObjectField(RAYCASTING_SOURCE_CONTENT, keyboardCreator.RaycastingSource, typeof(Transform), true) as Transform;
+            //keyboardCreator.RaycastingSource = EditorGUILayout.ObjectField(RAYCASTING_SOURCE_CONTENT, keyboardCreator.RaycastingSource, typeof(Transform), true) as Transform;
 
-            isRaycastingSourceSet = (keyboardCreator.RaycastingSource != null);
-            GUI.enabled = isRaycastingSourceSet;
+            //isRaycastingSourceSet = (keyboardCreator.RaycastingSource != null);
+            //GUI.enabled = isRaycastingSourceSet;
 
             keyboardCreator.Curvature = EditorGUILayout.Slider(CURVATURE_CONTENT, keyboardCreator.Curvature, 0f, 1f);
             
-
-            keyboardCreator.ClickHandle = EditorGUILayout.TextField(CLICK_INPUT_COMMAND_CONTENT, keyboardCreator.ClickHandle);
+            //keyboardCreator.ClickHandle = EditorGUILayout.TextField(CLICK_INPUT_COMMAND_CONTENT, keyboardCreator.ClickHandle);
         }
 
         private void DrawMaterials () {
@@ -139,10 +138,11 @@ namespace CurvedVRKeyboard {
         }
 
         private void DisplayWarnings () {
+            /*
             if(keyboardCreator.RaycastingSource != null) {
                 GUILayout.Space(SPACING_WARINING);
                 NotifyErrors();
-            }
+            }*/
         }
 
         /// <summary>
@@ -185,12 +185,13 @@ namespace CurvedVRKeyboard {
         /// Searches for available camera on scene
         /// </summary>
         private void SearchForCamera () {
+            /*
             if(Camera.allCameras.Length != 0) {//If there is camera on scene
                 noCameraFound = false;
                 keyboardCreator.RaycastingSource = Camera.allCameras[0].transform;
             } else {
                 noCameraFound = true;
-            }
+            }*/
         }
     }
 }
