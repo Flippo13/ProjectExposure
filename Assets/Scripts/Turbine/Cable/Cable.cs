@@ -80,21 +80,15 @@ public class Cable : MonoBehaviour {
 
             Vector3 force = -springConstant * (distance.magnitude - desiredDistance) * Vector3.Normalize(distance) - damping * rVel;
 
-            if (GetCurrentLength() < maximumLength)
-            {
+            
                 if (i != cableNodesList.Count - 1)
                     cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
                 if (i + 1 != cableNodesList.Count - 1)
                     cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
-                _socket.LetGo(); 
-            }
 
-            else
-            {
-                cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
-                cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
-            }
+            
         }
+              
 
         for (int i = 0; i < distanceBetweenNodes.Length; i++)
         {

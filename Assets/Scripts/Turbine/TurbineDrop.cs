@@ -6,17 +6,18 @@ public class TurbineDrop : MonoBehaviour {
 
     public float dropHeight;
     public float dropTime;
+    public float maxDropSpeed;
 
     public GameObject turbinePrefab;
 
     private new Transform transform;
     private Collider _col;
     private bool _calledDown;
-    private bool _landed; 
-    private float _dropSpeed;
+    private bool _landed;
+    private Vector3 velocity = Vector3.zero;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         transform = GetComponent<Transform>();
         _col = GetComponent<Collider>(); 
 	}
@@ -33,21 +34,22 @@ public class TurbineDrop : MonoBehaviour {
         _calledDown = true; 
     }
 
+
     private void Drop()
     {
-        RaycastHit hit; 
+        RaycastHit hit;
 
         if (Physics.Raycast(transform.position,-transform.up, out hit))
         {
             if (hit.collider.tag == "Terrain")
             {
-                _dropSpeed += 1 * (Time.deltaTime / 100.0f);
-                print("drop speed " + _dropSpeed); 
-                Vector3 dropPos = new Vector3(hit.point.x, hit.point.y + dropHeight, hit.point.z);
+               
+               Vector3 dropPos = new Vector3(hit.point.x, hit.point.y + dropHeight, hit.point.z);
 
-               transform.position = Vector3.Lerp(transform.position, dropPos, _dropSpeed);
+                
+                transform.position = Vector3.SmoothDamp(transform.position, dropPos, ref velocity, dropTime, maxDropSpeed);
 
-                if (transform.position.y <= dropPos.y + dropHeight)
+                if (transform.position.y <= dropPos.y + 2)
                 {
                     _calledDown = false; 
                     Landed(); 
@@ -65,4 +67,6 @@ public class TurbineDrop : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+
 }
