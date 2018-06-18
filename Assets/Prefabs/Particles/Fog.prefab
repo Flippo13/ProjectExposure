@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4482603579738510}
   m_Layer: 0
-  m_Name: dirttrails 1
+  m_Name: Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -1099,7 +1099,7 @@ ParticleSystem:
         m_RotationOrder: 0
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 3
@@ -1107,8 +1107,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.1548594, g: 0.16303848, b: 0.3773585, a: 0.8862745}
-        key1: {r: 0.4371582, g: 0.4433962, b: 0.34927908, a: 0.9529412}
+        key0: {r: 0.1548594, g: 0.16303848, b: 0.3773585, a: 0}
+        key1: {r: 0.4371582, g: 0.4433962, b: 0.34927908, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1136,8 +1136,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0.5377358, g: 0.35810715, b: 0.27647737, a: 0.9019608}
-        key1: {r: 0.2735849, g: 0.19979739, b: 0.14324492, a: 0.9372549}
+        key0: {r: 0.5377358, g: 0.35810715, b: 0.27647737, a: 0}
+        key1: {r: 0.2735849, g: 0.19979739, b: 0.14324492, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1152,8 +1152,8 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 12722
-        atime1: 57440
+        atime0: 0
+        atime1: 65535
         atime2: 0
         atime3: 0
         atime4: 0
@@ -4498,7 +4498,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -5396,7 +5396,7 @@ ParticleSystem:
         m_RotationOrder: 0
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 3
@@ -5404,7 +5404,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.1548594, g: 0.16303848, b: 0.3773585, a: 0.8862745}
+        key0: {r: 0.1548594, g: 0.16303848, b: 0.3773585, a: 0}
         key1: {r: 0.4371582, g: 0.4433962, b: 0.34927908, a: 0.9529412}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -5433,7 +5433,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0.5377358, g: 0.35810715, b: 0.27647737, a: 0.9019608}
+        key0: {r: 0.5377358, g: 0.35810715, b: 0.27647737, a: 0}
         key1: {r: 0.2735849, g: 0.19979739, b: 0.14324492, a: 0.9372549}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -5449,7 +5449,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 12722
+        atime0: 0
         atime1: 57440
         atime2: 0
         atime3: 0
@@ -8795,7 +8795,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -9693,7 +9693,7 @@ ParticleSystem:
         m_RotationOrder: 0
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 3
@@ -9701,7 +9701,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.1548594, g: 0.16303848, b: 0.3773585, a: 0.8862745}
+        key0: {r: 0.1548594, g: 0.16303848, b: 0.3773585, a: 0}
         key1: {r: 0.4371582, g: 0.4433962, b: 0.34927908, a: 0.9529412}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -9730,7 +9730,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0.5377358, g: 0.35810715, b: 0.27647737, a: 0.9019608}
+        key0: {r: 0.5377358, g: 0.35810715, b: 0.27647737, a: 0}
         key1: {r: 0.2735849, g: 0.19979739, b: 0.14324492, a: 0.9372549}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -9746,7 +9746,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 12722
+        atime0: 1542
         atime1: 57440
         atime2: 0
         atime3: 0
