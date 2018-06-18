@@ -19,6 +19,7 @@ public class FlockingFish : MonoBehaviour {
     private Vector3 _calculatedCohesion;
     private Vector3 _calculatedSeperation;
     private float speed;
+    private bool _swimmingFromPlayer;
     private Vector3 _goalPos;
     private Vector3 direction;
     private bool _goBack;
@@ -50,7 +51,7 @@ public class FlockingFish : MonoBehaviour {
 
         }
 
-        if (_goBack)
+        if (_goBack && !_swimmingFromPlayer)
         {
             direction = _fishTank.fishTank.bounds.center - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
@@ -59,9 +60,17 @@ public class FlockingFish : MonoBehaviour {
 
         if (_fishTank.playerEntered && _fishTank.player != null)
         {
-            direction = _fishTank.player.transform.position - transform.position;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-direction), rotationSpeed * Time.deltaTime);
-            speed = 4;
+            if (Vector3.Distance(_fishTank.player.transform.position, transform.position) < seperateFromPlayerRange)
+            {
+                direction = _fishTank.player.transform.position + transform.position;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
+                speed = 3;
+                _swimmingFromPlayer = true; 
+            }
+            else
+            {
+                _swimmingFromPlayer = false;
+            }
         }
 
         /*
@@ -105,7 +114,7 @@ public class FlockingFish : MonoBehaviour {
 
     private void CalculateDirection()
     {
-        if (Random.Range(0.0f, 7.0f) < 1 && !_goBack)
+        if (Random.Range(0.0f, 7.0f) < 1 && !_goBack && !_swimmingFromPlayer)
         {
              Collider[] neighbours = Physics.OverlapSphere(transform.position, cohesionRange, fishLayer);
             //Debug.Log("Neighbours: " + neighbours.Length); 
