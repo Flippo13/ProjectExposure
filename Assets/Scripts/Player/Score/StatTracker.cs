@@ -90,6 +90,8 @@ public class StatTracker : MonoBehaviour {
         //write to files
         WriteYearlyScore();
         WriteDailyScore();
+
+        Debug.Log("Writing Data...");
     }
 
     public void DisplayLeaderboard() {
@@ -189,7 +191,7 @@ public class StatTracker : MonoBehaviour {
 
         //write max 500 lines
         for (int i = 0; i < 500; i++) {
-            if (i >= _yearlyEntries.Count) break; //reached end of the entry list
+            if (i >= _dailyEntries.Count) break; //reached end of the entry list
 
             line = _dailyEntries[i].Name + "," + _dailyEntries[i].Date + "," + Math.Round(_dailyEntries[i].Playtime / 60.0f, 2) + "," + _dailyEntries[i].Score + "," +
                 _dailyEntries[i].CompletedLevels + "," + _dailyEntries[i].Feedback1 + "," + _dailyEntries[i].Feedback2;

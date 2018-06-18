@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 2.2
+        intensity: 1
         threshold: 0.89
         softKnee: 0.128
         radius: 1
@@ -113,34 +113,34 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0.0031
-        neutralWhiteIn: 5.76
+        neutralBlackIn: 0.003
+        neutralWhiteIn: 5.69
         neutralBlackOut: -0.0067
         neutralWhiteOut: 8.77
-        neutralWhiteLevel: 6.33
+        neutralWhiteLevel: 3.97
         neutralWhiteClip: 10
       basic:
-        postExposure: 0.42
-        temperature: -7.1
-        tint: -3.2
+        postExposure: 0.58
+        temperature: -12
+        tint: -2.9
         hueShift: 0
-        saturation: 1.233
-        contrast: 1.226
+        saturation: 1.47
+        contrast: 1.022
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
         blue: {x: 0, y: 0, z: 1}
-        currentEditingChannel: 2
+        currentEditingChannel: 0
       colorWheels:
-        mode: 1
+        mode: 0
         log:
-          slope: {r: 0.82247114, g: 0.94972754, b: 1, a: 0.03041825}
-          power: {r: 1, g: 0.8572572, b: 0.84372795, a: 0.015209124}
+          slope: {r: 0.82247114, g: 0.94972754, b: 1, a: 0.015209125}
+          power: {r: 1, g: 0.8572572, b: 0.84372795, a: -0.045627378}
           offset: {r: 0.8547414, g: 0.85019445, b: 1, a: 0}
         linear:
-          lift: {r: 0.924729, g: 1, b: 0.7952435, a: 0}
-          gamma: {r: 1, g: 0.94083697, b: 0.6485646, a: -0.19771862}
-          gain: {r: 1, g: 0.98833054, b: 0.8508642, a: 0.18267421}
+          lift: {r: 0.83312714, g: 0.8684752, b: 1, a: 0}
+          gamma: {r: 1, g: 0.8550241, b: 0.82787955, a: -0.16730037}
+          gain: {r: 0.6200862, g: 0.5434883, b: 1, a: 0.18267421}
       curves:
         master:
           curve:

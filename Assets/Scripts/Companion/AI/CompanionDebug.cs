@@ -11,6 +11,7 @@ public class CompanionDebug : MonoBehaviour {
     public Material busyMaterial;
     public Material stayingMaterial;
     public Material vacuumMaterial;
+    public Material handingMaterial;
 
     private Renderer _renderer;
 
@@ -40,6 +41,10 @@ public class CompanionDebug : MonoBehaviour {
 
             case CompanionState.GettingVacuum:
                 _renderer.material = vacuumMaterial;
+                break;
+
+            case CompanionState.HandingVacuum:
+                _renderer.material = handingMaterial;
                 break;
 
             default:
