@@ -32,7 +32,7 @@ public class CompanionAI : MonoBehaviour {
     private bool _wasCalled;
     private bool _inTutorial;
 
-    public void Awake() {
+    public void Start() {
         //get all relevant components
         _controls = GetComponent<CompanionControls>();
         _navigator = GetComponent<CompanionNavigator>();
@@ -255,10 +255,7 @@ public class CompanionAI : MonoBehaviour {
                 //minimalistic following state for the tutorial
                 RotateTowardsPlayer();
 
-                if(_tracker.GetCurrentObjective().tutorialArea.GetCurrentTutorialButton() == TutorialButtons.CallCompanion) {
-                    //special companion behviour for the calling
-                    if (CheckForCompanionCall()) return;
-                }
+                if (_tracker.GetCurrentObjective().tutorialArea.GetCurrentTutorialButton() == TutorialButtons.None) return;
 
                 if (_tracker.GetCurrentObjective().IsCompleted()) {
                     _inTutorial = false;

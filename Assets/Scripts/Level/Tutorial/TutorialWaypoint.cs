@@ -34,15 +34,8 @@ public class TutorialWaypoint : MonoBehaviour {
                 
                 break;
 
-            case TutorialButtons.LeftGrab:
-                if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > 0.5f) {
-                    return true;
-                }
-
-                break;
-
             case TutorialButtons.RightGrab:
-                if (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > 0.5f) {
+                if (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > 0.5f && _tutorialArea.vacuum.vacuumGrabber.IsGrabbing() && _tutorialArea.vacuum.vacuumGrabber.InVacuumMode()) {
                     return true;
                 }
 

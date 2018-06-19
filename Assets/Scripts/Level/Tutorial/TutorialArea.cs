@@ -56,6 +56,7 @@ public class TutorialArea : MonoBehaviour {
     }
 
     public TutorialButtons GetCurrentTutorialButton() {
-        return _activeWaypoint.tutorialButton;
+        if (_activeWaypoint == null) return TutorialButtons.None;
+        else return _activeWaypoint.tutorialButton;
     }
 }

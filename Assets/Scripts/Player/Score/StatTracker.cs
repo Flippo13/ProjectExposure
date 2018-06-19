@@ -91,7 +91,7 @@ public class StatTracker : MonoBehaviour {
         string leaderboard = "";
         leaderboard += "Daily Highscores:" + Environment.NewLine;
 
-        _dailyEntries = _dailyEntries.OrderBy(o => o.Score).ToList(); //sort by score
+        _dailyEntries = _dailyEntries.OrderByDescending(o => o.Score).ToList(); //sort by score
 
         for (int i = 0; i < 5; i++) { //max. 5 entries
             if (i >= _dailyEntries.Count) break;
@@ -101,7 +101,7 @@ public class StatTracker : MonoBehaviour {
 
         leaderboard += "Yearly Highscores:" + Environment.NewLine;
 
-        _yearlyEntries = _yearlyEntries.OrderBy(o => o.Score).ToList(); //sort by score
+        _yearlyEntries = _yearlyEntries.OrderByDescending(o => o.Score).ToList(); //sort by score
 
         for (int i = 0; i < 10; i++) { //max 10. entries
             if (i >= _yearlyEntries.Count) break;
@@ -160,7 +160,7 @@ public class StatTracker : MonoBehaviour {
         string line = "Name,Age,Date,Time,Playtime (in Seconds),Score,Completed Levels,Feedback 1,Feedback 2";
         _writer.WriteLine(line);
 
-        _yearlyEntries = _yearlyEntries.OrderBy(o => o.Score).ToList(); //sort by score
+        _yearlyEntries = _yearlyEntries.OrderByDescending(o => o.Score).ToList(); //sort by score
 
         //write max 50 lines
         for(int i = 0; i < 50; i++) {
@@ -181,7 +181,7 @@ public class StatTracker : MonoBehaviour {
         string line = "Name,Age,Date,Time,Playtime (in Seconds),Score,Completed Levels,Feedback 1,Feedback 2";
         _writer.WriteLine(line);
 
-        _dailyEntries = _dailyEntries.OrderBy(o => o.Score).ToList(); //sort by score
+        _dailyEntries = _dailyEntries.OrderByDescending(o => o.Score).ToList(); //sort by score
 
         //write max 500 lines
         for (int i = 0; i < 500; i++) {
