@@ -33,7 +33,27 @@ public class ButtonsTutorial : MonoBehaviour
 
     private bool _tutorialActive;
     private bool _fullTutorialActive;
+    [SerializeField]
+    private bool _lerpLeft;
+    [SerializeField]
+    private bool _lerping;
 
+    [Header("Hand meshes")]
+    [SerializeField]
+    private GameObject _leftHand;
+    [SerializeField]
+    private GameObject _rightHand;
+
+    private Material _leftMaterial;
+    private Material _rightMaterial;
+
+    private float lerpValue = 0f;
+
+    private void Awake()
+    {
+        _leftMaterial = _leftHand.GetComponent<Renderer>().material;
+        _rightMaterial = _rightHand.GetComponent<Renderer>().material;
+    }
     public void SetFullTutorial(bool active)
     {
         SetController(active, false);
@@ -80,25 +100,11 @@ public class ButtonsTutorial : MonoBehaviour
 
     public void SetController(bool active, bool rightHand)
     {
-        Animator _animator;
+        _lerping = true;
         if (rightHand)
-        {
             _rightOculusController.SetActive(active);
-            //_animator = _rightOculusController.GetComponent<Animator>();
-            //if (active)
-            //{
-            //    _animator.Play("ControllerFadeR_in");
-            //}
-        }
         else
-        {
             _leftOculusController.SetActive(active);
-            //_animator = _leftOculusController.GetComponent<Animator>();
-            //if (active)
-            //{
-            //    _animator.Play("ControllerFadeL_in");
-            //}
-        }
     }
 
 
@@ -114,6 +120,27 @@ public class ButtonsTutorial : MonoBehaviour
         {
             _fullTutorialActive = false;
             SetFullTutorial(false);
+        }
+
+        if (_lerping)
+        {
+            lerpValue += Time.deltaTime;
+            lerpValue = Mathf.Clamp01(lerpValue);
+            if (_lerpLeft)
+            {
+                _leftMaterial.color = Color.Lerp(new Color(1,1,1,1), new Color(1, 1, 1, 0.5f), lerpValue);
+            }
+            else
+            {
+                _rightMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.5f), lerpValue);
+
+            }
+
+            if (lerpValue == 1)
+            {
+                _lerping = false;
+                lerpValue = 0;
+            }
         }
 
     }
