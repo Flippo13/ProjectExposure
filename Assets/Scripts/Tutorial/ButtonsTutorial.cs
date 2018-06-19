@@ -164,7 +164,7 @@ public class ButtonsTutorial : MonoBehaviour
 
         if (_lerping && lerpValue < 1f)
         {
-            lerpValue += Time.deltaTime;
+            lerpValue += Time.deltaTime * 1.3f;
             lerpValue = Mathf.Clamp01(lerpValue);
             if (_lerpLeft)
             {
