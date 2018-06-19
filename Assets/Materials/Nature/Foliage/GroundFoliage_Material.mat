@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: GroundFoliage_Material
   m_Shader: {fileID: 4800000, guid: 22d06c07a7ebd014db4c03043d60e96d, type: 3}
-  m_ShaderKeywords: _TIDE_ON _XAXIS_ON _ZAXIS_ON
+  m_ShaderKeywords: _TIDE_ON _XAXIS_ON _YAXIS_ON _ZAXIS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -84,14 +84,14 @@ Material:
     - _TideZ: 0
     - _UVSec: 0
     - _XAxis: 1
-    - _XScale: 0.23
-    - _XSpeed: 1.4
-    - _YAxis: 0
-    - _YScale: 0.15
-    - _YSpeed: 0.75
+    - _XScale: 0.16
+    - _XSpeed: 1.84
+    - _YAxis: 1
+    - _YScale: 0.11
+    - _YSpeed: 1.77
     - _ZAxis: 1
-    - _ZScale: 0.21
-    - _ZSpeed: 0.38
+    - _ZScale: -0.07
+    - _ZSpeed: 1.52
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
