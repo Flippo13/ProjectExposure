@@ -46,9 +46,9 @@ public class ButtonsTutorial : MonoBehaviour
 
     private Material _leftMaterial;
     private Material _rightMaterial;
-
     private float lerpValue = 0f;
     private bool _fade;
+    private bool _bothHands;
 
     private void Awake()
     {
@@ -59,7 +59,7 @@ public class ButtonsTutorial : MonoBehaviour
     {
         SetController(active, false);
         SetController(active, true);
-
+        _bothHands = true;
         _teleportButton.SetActive(active);
         _tutorialButton.SetActive(active);
         _leftGrabButton.SetActive(active);
@@ -103,6 +103,7 @@ public class ButtonsTutorial : MonoBehaviour
     {
         if (rightHand)
         {
+            _bothHands = false;
             _rightOculusController.SetActive(active);
             _lerpLeft = false;
         }
@@ -111,6 +112,12 @@ public class ButtonsTutorial : MonoBehaviour
         {
             _leftOculusController.SetActive(active);
             _lerpLeft = true;
+            _bothHands = true;
+        }
+        if (_bothHands)
+        {
+            _leftOculusController.SetActive(active);
+            _rightOculusController.SetActive(active);
         }
 
         if (active)
@@ -161,12 +168,17 @@ public class ButtonsTutorial : MonoBehaviour
             lerpValue = Mathf.Clamp01(lerpValue);
             if (_lerpLeft)
             {
-                _leftMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.35f), lerpValue);
+                _leftMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.15f), lerpValue);
             }
             else
             {
-                _rightMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.35f), lerpValue);
+                _rightMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.15f), lerpValue);
 
+            }
+            if (_bothHands)
+            {
+                _leftMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.15f), lerpValue);
+                _rightMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.15f), lerpValue);
             }
 
             if (lerpValue == 1)
@@ -180,12 +192,18 @@ public class ButtonsTutorial : MonoBehaviour
             lerpValue = Mathf.Clamp01(lerpValue);
             if (_lerpLeft)
             {
-                _leftMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.35f), lerpValue);
+                _leftMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.15f), lerpValue);
             }
             else
             {
-                _rightMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.35f), lerpValue);
+                _rightMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.15f), lerpValue);
 
+            }
+
+            if (_bothHands)
+            {
+                _leftMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.15f), lerpValue);
+                _rightMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.15f), lerpValue);
             }
 
             if (lerpValue == 0)
