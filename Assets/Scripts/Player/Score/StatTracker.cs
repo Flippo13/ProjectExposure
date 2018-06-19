@@ -69,6 +69,15 @@ public class StatTracker : MonoBehaviour {
     public void Update() {
         if(Input.GetKeyDown(KeyCode.Space)) {
             DisplayLeaderboard();
+
+            //when exiting playmode (OnApplicationQuit did not work)
+            TrackData();
+
+            //write to files
+            WriteYearlyScore();
+            WriteDailyScore();
+
+            Debug.Log("Writing Data...");
         }
     }
 
