@@ -8,6 +8,8 @@ public class DoneButtonHandler : MonoBehaviour {
     public Animator divingBellAnimator;
     public Text nameField;
 
+    public TutorialArea tutorialArea;
+
     private bool _started;
 
     public void Awake() {
@@ -19,6 +21,8 @@ public class DoneButtonHandler : MonoBehaviour {
 
         //save name
         ScoreTracker.PlayerName = nameField.text;
+
+        tutorialArea.StartTutorial();
 
         //start diving bell animation
         divingBellAnimator.SetTrigger("LevelEnter");

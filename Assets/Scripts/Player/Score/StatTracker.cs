@@ -6,19 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public struct YearlyEntry {
-    public string Name;
-    public string Age;
-    public string Date;
-    public string Time;
-    public string Playtime;
-    public string Score;
-    public string CompletedLevels;
-    public string Feedback1;
-    public string Feedback2;
-}
-
-public struct DailyEntry {
+public struct Entry {
     public string Name;
     public string Age;
     public string Date;
@@ -54,30 +42,28 @@ public class StatTracker : MonoBehaviour {
     private StreamWriter _writer;
     private StreamReader _reader;
 
-    private List<YearlyEntry> _yearlyEntries;
-    private List<DailyEntry> _dailyEntries;
+    private List<Entry> _yearlyEntries;
+    private List<Entry> _dailyEntries;
 
-    private YearlyEntry _playerStatsYearly;
-    private DailyEntry _playerStatsDaily;
+    private Entry _playerStats;
 
     private int _writtenYearlyLines;
     private int _writtenDailyLines;
 
     public void Awake() {
-        _yearlyEntries = new List<YearlyEntry>();
-        _dailyEntries = new List<DailyEntry>();
+        _yearlyEntries = new List<Entry>();
+        _dailyEntries = new List<Entry>();
 
         //read already saved highscores
         ReadYearlyHighScore();
         ReadDailyHighScore();
 
         //track the players data and store them
-        _playerStatsYearly = new YearlyEntry();
-        _playerStatsDaily = new DailyEntry();
+        _playerStats = new Entry();
 
         //add our tracked player
-        _yearlyEntries.Add(_playerStatsYearly);
-        _dailyEntries.Add(_playerStatsDaily);
+        _yearlyEntries.Add(_playerStats);
+        _dailyEntries.Add(_playerStats);
     }
 
     public void Update() {
@@ -128,44 +114,26 @@ public class StatTracker : MonoBehaviour {
 
     public void TrackData() {
         //fill with data
-        _playerStatsYearly.Name = ScoreTracker.PlayerName;
-        _playerStatsYearly.Age = ScoreTracker.PlayerAge;
-        _playerStatsYearly.Date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
-        _playerStatsYearly.Time = GetFormattedTime();
-        _playerStatsYearly.Playtime = (int)Time.time + "";
-        _playerStatsYearly.Score = (ScoreTracker.ScoreLevel1 + ScoreTracker.ScoreLevel2).ToString();
-        _playerStatsYearly.Feedback1 = ScoreTracker.Feedback1.ToString();
-        _playerStatsYearly.Feedback2 = ScoreTracker.Feedback2.ToString();
+        _playerStats.Name = ScoreTracker.PlayerName;
+        _playerStats.Age = ScoreTracker.PlayerAge;
+        _playerStats.Date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
+        _playerStats.Time = GetFormattedTime();
+        _playerStats.Playtime = (int)Time.time + "";
+        _playerStats.Score = (ScoreTracker.ScoreLevel1 + ScoreTracker.ScoreLevel2).ToString();
+        _playerStats.Feedback1 = ScoreTracker.Feedback1.ToString();
+        _playerStats.Feedback2 = ScoreTracker.Feedback2.ToString();
 
         if (ScoreTracker.CompletedLevel1 && ScoreTracker.CompletedLevel2) {
-            _playerStatsYearly.CompletedLevels = "2";
+            _playerStats.CompletedLevels = "2";
         } else if (ScoreTracker.CompletedLevel1) {
-            _playerStatsYearly.CompletedLevels = "1";
+            _playerStats.CompletedLevels = "1";
         } else {
-            _playerStatsYearly.CompletedLevels = "0";
-        }
-
-        //fill with data
-        _playerStatsDaily.Name = ScoreTracker.PlayerName;
-        _playerStatsDaily.Age = ScoreTracker.PlayerAge;
-        _playerStatsDaily.Date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
-        _playerStatsDaily.Time = GetFormattedTime();
-        _playerStatsDaily.Playtime = (int)Time.time + "";
-        _playerStatsDaily.Score = (ScoreTracker.ScoreLevel1 + ScoreTracker.ScoreLevel2).ToString();
-        _playerStatsDaily.Feedback1 = ScoreTracker.Feedback1.ToString();
-        _playerStatsDaily.Feedback2 = ScoreTracker.Feedback2.ToString();
-
-        if (ScoreTracker.CompletedLevel1 && ScoreTracker.CompletedLevel2) {
-            _playerStatsDaily.CompletedLevels = "2";
-        } else if (ScoreTracker.CompletedLevel1) {
-            _playerStatsDaily.CompletedLevels = "1";
-        } else {
-            _playerStatsDaily.CompletedLevels = "0";
+            _playerStats.CompletedLevels = "0";
         }
 
         //apply
-        _yearlyEntries[_yearlyEntries.Count - 1] = _playerStatsYearly;
-        _dailyEntries[_dailyEntries.Count - 1] = _playerStatsDaily;
+        _yearlyEntries[_yearlyEntries.Count - 1] = _playerStats;
+        _dailyEntries[_dailyEntries.Count - 1] = _playerStats;
     }
 
     private string GetFormattedTime() {
@@ -255,7 +223,7 @@ public class StatTracker : MonoBehaviour {
 
             //process each line
             string[] content = lines[i].Split(','); //split by comma
-            YearlyEntry newEntry = new YearlyEntry();
+            Entry newEntry = new Entry();
 
             //story everything in the list as an entry
             newEntry.Name = content[0];
@@ -303,7 +271,7 @@ public class StatTracker : MonoBehaviour {
 
             //process each line
             string[] content = lines[i].Split(','); //split by comma
-            DailyEntry newEntry = new DailyEntry();
+            Entry newEntry = new Entry();
 
             //story everything in the list as an entry
             newEntry.Name = content[0];

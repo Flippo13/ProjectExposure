@@ -1,4 +1,5 @@
 ﻿public enum CompanionState {
+    Tutorial, //companion is executing the tutorial 
     Following, //companion follows the player around
     Returning, //companion returns to the player and delivers the vacuum gun
     Staying, //companion stays where he is for a certain amount of time
@@ -17,6 +18,7 @@ public enum ObjectiveStatus {
 }
 
 public enum ObjectiveTask {
+    Tutorial, //track progress of the tutorial
     Talk, //talk about something, no actual objective
     Cleanup, //clean trash
     Choose, //choose the location for the minigame

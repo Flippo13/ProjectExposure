@@ -18,6 +18,7 @@ public class VacuumScript : MonoBehaviour {
 
     public float suckSpeed;
     public ObjectGrabber vacuumGrabber;
+    public ObjectGrabber leftHandGrabber;
     public float deformationStep;
     public float scaleFactor;
 
@@ -29,7 +30,7 @@ public class VacuumScript : MonoBehaviour {
     private List<Transform> _destroyedObjects;
     private Rigidbody _rigidbody;
     private Collider _collider;
-    private VacuumState _state;
+    private VacuumState _state = VacuumState.CompanionBack;
 
     private FMOD.Studio.EventInstance _vacuumInstance;
 
@@ -43,7 +44,6 @@ public class VacuumScript : MonoBehaviour {
 
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
-        _state = VacuumState.CompanionBack;
 
         _rigidbody.useGravity = true;
 
@@ -185,6 +185,7 @@ public class VacuumScript : MonoBehaviour {
         for (int i = 0; i < _destroyedObjects.Count; i++) {
             vacuumArea.RemoveTransfromFromList(_destroyedObjects[i]);
             vacuumGrabber.RemoveGrabCandidate(_destroyedObjects[i]);
+            leftHandGrabber.RemoveGrabCandidate(_destroyedObjects[i]);
             Destroy(_destroyedObjects[i].gameObject);
         }
 

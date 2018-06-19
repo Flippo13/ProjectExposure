@@ -30,6 +30,7 @@ public class CompanionAI : MonoBehaviour {
     private float _timer;
     private float _idleTimer;
     private bool _wasCalled;
+    private bool _inTutorial;
 
     public void Awake() {
         //get all relevant components
@@ -45,8 +46,13 @@ public class CompanionAI : MonoBehaviour {
         _debug.Init();
         _debug.SetRendererStatus(debug);
 
-        if (SceneManager.GetActiveScene().buildIndex == 0) EnterState(CompanionState.Following); //level 1
-        else EnterState(CompanionState.Following);
+        if (SceneManager.GetActiveScene().buildIndex == 0) {
+            _inTutorial = true;
+            EnterState(CompanionState.Tutorial); //level 1
+        } else {
+            _inTutorial = false;
+            EnterState(CompanionState.Following);
+        }
     }
 
     public void Update() {
@@ -167,6 +173,15 @@ public class CompanionAI : MonoBehaviour {
         if (debug) Debug.Log("Entering state " + state);
 
         switch (state) {
+            case CompanionState.Tutorial:
+                //look for tutorial objective and activate it
+                _tracker.SetCurrentObjective(_tracker.GetTutorialObjective());
+                if(_tracker.GetCurrentObjective() != null) _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Active);
+
+                vacuum.SetVacuumState(VacuumState.Free); //unparent vacuum
+                vacuum.transform.position = _tracker.GetCurrentObjective().transform.position; //relocate vacuum gun to the tutorial objective location
+
+                break;
 
             case CompanionState.Staying:
                 _timer = 0f;
@@ -236,8 +251,29 @@ public class CompanionAI : MonoBehaviour {
 
     private void UpdateState() {
         switch (_aiState) {
+            case CompanionState.Tutorial:
+                //minimalistic following state for the tutorial
+                RotateTowardsPlayer();
+
+                if(_tracker.GetCurrentObjective().tutorialArea.GetCurrentTutorialButton() == TutorialButtons.CallCompanion) {
+                    //special companion behviour for the calling
+                    if (CheckForCompanionCall()) return;
+                }
+
+                if (_tracker.GetCurrentObjective().IsCompleted()) {
+                    _inTutorial = false;
+                    SetState(CompanionState.Following); //tutorial is completed, so return to normal behaviour
+                }
+
+                break;
+
             case CompanionState.Following:
                 //idle/main state of the companion
+
+                if (_inTutorial) { //go back to tutorial instead of doing the other stuff
+                    SetState(CompanionState.Tutorial);
+                    return;
+                }
 
                 _navigator.CheckForSpeedAdjustment(companionDestination.position); //adjust speed based on the distance between player and companion
 
@@ -247,6 +283,7 @@ public class CompanionAI : MonoBehaviour {
                 if (CheckForVacuumGrab()) {
                     _wasCalled = false;
                     SetState(CompanionState.GettingVacuum);
+                    return;
                 }
 
                 if (!CheckForObjectives() && !InInterationRange()) { //if there is no objective in range and the player is out of range
@@ -293,7 +330,9 @@ public class CompanionAI : MonoBehaviour {
                 RotateTowardsPlayer();
                 if (CheckForVacuumHandOver()) return;
 
-                if (_timer >= stayDuration) SetState(CompanionState.Following);
+                if (_timer >= stayDuration) {
+                    SetState(CompanionState.Following);
+                }
 
                 _timer += Time.deltaTime;
 

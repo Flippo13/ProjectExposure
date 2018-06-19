@@ -26,6 +26,7 @@ public class CompanionObjective : MonoBehaviour {
     public Transform turbine;
     public PowerGrid powerGrid;
     public TurbineButtonActivate turbineButton;
+    public TutorialArea tutorialArea;
 
     //states
     private ObjectiveStatus _status;

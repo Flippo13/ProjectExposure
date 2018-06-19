@@ -39,6 +39,12 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         return _currentObjective;
     }
 
+    //returns the first objective is it is the tutorial one, otherwise returns null
+    public CompanionObjective GetTutorialObjective() {
+        if (_mainObjectives[0].objectiveTask == ObjectiveTask.Tutorial) return _mainObjectives[0];
+        else return null;
+    }
+
     //returns the next main objective that isnt completed, returns null if no objective was found
     public CompanionObjective GetNextMainObjective() {
         CompanionObjective mainObjective = null;
@@ -87,6 +93,15 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         switch (_currentObjective.objectiveTask) {
             case ObjectiveTask.Talk:
                 return false; //needs no tracking
+
+            case ObjectiveTask.Tutorial:
+                //tutorial completed
+                if (_currentObjective.tutorialArea.TutorialCompleted()) {
+                    _currentObjective.tutorialArea.SetBoundaryStatus(false); //disable boundaries
+                    return false;
+                }
+
+                break;
 
             case ObjectiveTask.Cleanup:
                 //collected enough trash

@@ -96,6 +96,9 @@ public class ButtonsTutorial : MonoBehaviour
                 _tutorialButton.SetActive(active);
                 SetController(active, false);
                 break;
+
+            default:
+                break;
         }
     }
 

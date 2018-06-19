@@ -428,6 +428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4311748724419910}
   - component: {fileID: 135001587389034570}
+  - component: {fileID: 54532717350653450}
   - component: {fileID: 114893047438587668}
   m_Layer: 2
   m_Name: VacuumGrabScanner
@@ -887,6 +888,21 @@ GameObject:
   m_Layer: 0
   m_Name: Movement_Bubbles 1 (1)
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1438155826140830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4085463957624890}
+  m_Layer: 2
+  m_Name: WatchPointer
+  m_TagString: Companion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2055,6 +2071,19 @@ Transform:
   m_Father: {fileID: 4321485957622340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4085463957624890
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438155826140830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.817, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4165714237435188}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4093349859623626
 Transform:
   m_ObjectHideFlags: 1
@@ -2153,6 +2182,7 @@ Transform:
   m_Children:
   - {fileID: 4196304731517586}
   - {fileID: 4311748724419910}
+  - {fileID: 4085463957624890}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4170,6 +4200,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &54532717350653450
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1233189137579454}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!54 &54839331708300366
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -4357,6 +4402,7 @@ MonoBehaviour:
   _vacuumSound: event:/Companion/Effects/Vacuum
   suckSpeed: 0.2
   vacuumGrabber: {fileID: 0}
+  leftHandGrabber: {fileID: 0}
   deformationStep: 0.05
   scaleFactor: 0.95
   _particleParent: {fileID: 1582274064138802}
@@ -4372,7 +4418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   watchAnchor: {fileID: 0}
-  talkingRadius: 0
+  talkingRadius: 10
   notificationAudioClip: {fileID: 0}
   motorSound: event:/Companion/Effects/Rotors
 --- !u!114 &114730599303197376
@@ -5763,7 +5809,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1241325418213258}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.15
   m_Speed: 10
   m_Acceleration: 30
   avoidancePriority: 50

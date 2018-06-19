@@ -6,14 +6,18 @@ public class BoundaryDetector : MonoBehaviour {
 
     private bool _inBoundary;
 
+    public void Awake() {
+        _inBoundary = false;
+    }
+
     public void OnTriggerEnter(Collider other) {
-        if (other.tag != Tags.Hand) return;
+        if (other.tag != Tags.Boundary) return;
 
         _inBoundary = true;
     }
 
     public void OnTriggerExit(Collider other) {
-        if (other.tag != Tags.Hand) return;
+        if (other.tag != Tags.Boundary) return;
 
         _inBoundary = false;
     }

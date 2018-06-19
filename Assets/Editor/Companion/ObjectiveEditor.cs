@@ -22,6 +22,7 @@ public class ObjectiveEditor : Editor {
     SerializedProperty turbineProp;
     SerializedProperty powerGridProp;
     SerializedProperty turbineButtonProp;
+    SerializedProperty tutorialAreaProp;
 
     private CompanionObjective _objective;
 
@@ -39,6 +40,7 @@ public class ObjectiveEditor : Editor {
         turbineProp = serializedObject.FindProperty("turbine");
         powerGridProp = serializedObject.FindProperty("powerGrid");
         turbineButtonProp = serializedObject.FindProperty("turbineButton");
+        tutorialAreaProp = serializedObject.FindProperty("tutorialArea");
 
         _objective = (CompanionObjective)target;
     }
@@ -56,6 +58,10 @@ public class ObjectiveEditor : Editor {
                 EditorGUILayout.PropertyField(objectiveTaskProp, new GUIContent("Objective Task"));
 
                 switch (task) {
+                    case ObjectiveTask.Tutorial:
+                        EditorGUILayout.PropertyField(tutorialAreaProp, new GUIContent("Tutorial Area"));
+
+                        break;
 
                     case ObjectiveTask.Cleanup:
                         EditorGUILayout.PropertyField(trashAmountProp, new GUIContent("Trash Amount"));
