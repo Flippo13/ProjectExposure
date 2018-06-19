@@ -60,7 +60,7 @@
     <object class="MarkerTrack" id="{fbfb3ac8-6a02-4f68-b605-8625e0fe5ab7}"/>
     <object class="GroupTrack" id="{e8288038-920e-404e-bcec-3c56d4028efa}">
         <relationship name="modules">
-            <destination>{3ae9ce6f-f4ca-49ca-b037-525fb6cfb413}</destination>
+            <destination>{e75943b2-6217-48ec-8f79-9631784f4444}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{646b1538-a419-4e32-9093-3b450f43aa8c}</destination>
@@ -68,7 +68,7 @@
     </object>
     <object class="Timeline" id="{33078d06-80c3-4942-bd59-d4aa9977eb98}">
         <relationship name="modules">
-            <destination>{3ae9ce6f-f4ca-49ca-b037-525fb6cfb413}</destination>
+            <destination>{e75943b2-6217-48ec-8f79-9631784f4444}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{4d07e7fe-aed1-4141-b3ee-f3a849051d95}">
@@ -88,15 +88,12 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{410b9da1-02c8-43d2-8083-08ec42b933d1}"/>
-    <object class="SingleSound" id="{3ae9ce6f-f4ca-49ca-b037-525fb6cfb413}">
+    <object class="SingleSound" id="{e75943b2-6217-48ec-8f79-9631784f4444}">
         <property name="length">
-            <value>38</value>
-        </property>
-        <property name="timelockedOffset">
-            <value>1</value>
+            <value>19.51140589569161</value>
         </property>
         <relationship name="audioFile">
-            <destination>{596cd825-8112-49e3-ade2-1b87f83271cb}</destination>
+            <destination>{329f7eb5-a829-494c-918f-72d9591c4724}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{646b1538-a419-4e32-9093-3b450f43aa8c}">
@@ -300,7 +297,6 @@
         <property name="dataType">
             <value>0</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="DataPluginParameter" id="{fc14d92c-a8a2-4913-8608-7208c70756ee}">
         <property name="name">
@@ -309,6 +305,5 @@
         <property name="dataType">
             <value>-2</value>
         </property>
-        <property name="value"/>
     </object>
 </objects>

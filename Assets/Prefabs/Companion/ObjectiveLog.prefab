@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4741056039550018}
   - component: {fileID: 114654617502441608}
   m_Layer: 0
-  m_Name: Welcome
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,6 +200,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1894007212894918
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4979070710155516}
+  - component: {fileID: 114370783133908574}
+  m_Layer: 0
+  m_Name: Welcome
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4056623303307568
 Transform:
   m_ObjectHideFlags: 1
@@ -207,11 +223,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1199412834968290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 102.08, y: -8.139999, z: -70.11}
+  m_LocalPosition: {x: 116.1, y: -8.139999, z: -62.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4062070624095978
 Transform:
@@ -220,11 +236,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1535949073019100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 104.85, y: -9.54, z: -58.058445}
+  m_LocalPosition: {x: 103.72, y: -7.96, z: -66.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4135243143689316
 Transform:
@@ -237,7 +253,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4217460246391450
 Transform:
@@ -246,11 +262,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1613021850929796}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 113.24, y: -7.08, z: -73.93}
+  m_LocalPosition: {x: 121.28, y: -7.99, z: -79.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4372203876965334
 Transform:
@@ -259,11 +275,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1514774168346594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 94.72, y: -9.75, z: -154.24}
+  m_LocalPosition: {x: 94.21, y: -9.33, z: -144.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4433155184370468
 Transform:
@@ -276,6 +292,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4741056039550018}
+  - {fileID: 4979070710155516}
   - {fileID: 4135243143689316}
   - {fileID: 4607746086156350}
   - {fileID: 4688173374544964}
@@ -298,7 +315,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4688173374544964
 Transform:
@@ -307,11 +324,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033520866197582}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 118.42, y: -13.5, z: -51.43}
+  m_LocalPosition: {x: 118.42, y: -11.9, z: -51.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4741056039550018
 Transform:
@@ -320,7 +337,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382174889142734}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 196.61, y: -2.61, z: 30.76}
+  m_LocalPosition: {x: 196.61003, y: -2.6100006, z: 30.75999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
@@ -346,11 +363,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507227700185880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 103.7, y: -8.14, z: -70.11}
+  m_LocalPosition: {x: 114.71, y: -7.65, z: -61.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 6
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4979070710155516
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1894007212894918}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 196.61, y: -2.61, z: 30.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4433155184370468}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4984129479999284
 Transform:
@@ -359,7 +389,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1022082736760574}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 201.185, y: 37.07, z: 323.77893}
+  m_LocalPosition: {x: 467.615, y: 10.040001, z: 2.5389404}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4433155184370468}
@@ -393,6 +423,7 @@ MonoBehaviour:
   turbine: {fileID: 0}
   powerGrid: {fileID: 0}
   turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!114 &114325371056671040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -419,6 +450,34 @@ MonoBehaviour:
   turbine: {fileID: 0}
   powerGrid: {fileID: 0}
   turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
+--- !u!114 &114370783133908574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1894007212894918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 0
+  animationTrigger: welcome
+  instructionClip: event:/Companion/Voicelines/Level I - Act I/Turbine Introduction
+  reinforcementClip: 
+  reinforcementInterval: 10
+  trashAmount: 0
+  sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!114 &114398040465026980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -445,6 +504,7 @@ MonoBehaviour:
   turbine: {fileID: 0}
   powerGrid: {fileID: 0}
   turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!114 &114532621008783964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,6 +531,7 @@ MonoBehaviour:
   turbine: {fileID: 0}
   powerGrid: {fileID: 0}
   turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!114 &114575242412517654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -497,6 +558,7 @@ MonoBehaviour:
   turbine: {fileID: 0}
   powerGrid: {fileID: 0}
   turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!114 &114654617502441608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -510,8 +572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveType: 0
   objectiveTask: 0
-  animationTrigger: welcome
-  instructionClip: event:/Companion/Voicelines/Level I - Act I/Turbine Introduction
+  animationTrigger: 
+  instructionClip: 
   reinforcementClip: 
   reinforcementInterval: 10
   trashAmount: 0
@@ -523,6 +585,7 @@ MonoBehaviour:
   turbine: {fileID: 0}
   powerGrid: {fileID: 0}
   turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!114 &114923620769281320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,6 +612,7 @@ MonoBehaviour:
   turbine: {fileID: 0}
   powerGrid: {fileID: 0}
   turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!114 &114932832922877580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -575,6 +639,7 @@ MonoBehaviour:
   turbine: {fileID: 0}
   powerGrid: {fileID: 0}
   turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!114 &114939529238737798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -601,3 +666,4 @@ MonoBehaviour:
   turbine: {fileID: 0}
   powerGrid: {fileID: 0}
   turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
