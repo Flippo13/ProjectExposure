@@ -33,7 +33,28 @@ public class ButtonsTutorial : MonoBehaviour
 
     private bool _tutorialActive;
     private bool _fullTutorialActive;
+    [SerializeField]
+    private bool _lerpLeft;
+    [SerializeField]
+    private bool _lerping;
 
+    [Header("Hand meshes")]
+    [SerializeField]
+    private GameObject _leftHand;
+    [SerializeField]
+    private GameObject _rightHand;
+
+    private Material _leftMaterial;
+    private Material _rightMaterial;
+
+    private float lerpValue = 0f;
+    private bool _fade;
+
+    private void Awake()
+    {
+        _leftMaterial = _leftHand.GetComponent<Renderer>().material;
+        _rightMaterial = _rightHand.GetComponent<Renderer>().material;
+    }
     public void SetFullTutorial(bool active)
     {
         SetController(active, false);
@@ -80,30 +101,34 @@ public class ButtonsTutorial : MonoBehaviour
 
     public void SetController(bool active, bool rightHand)
     {
-        Animator _animator;
         if (rightHand)
         {
             _rightOculusController.SetActive(active);
-            _animator = _rightOculusController.GetComponent<Animator>();
-            if (active)
-            {
-                _animator.Play("ControllerFadeR_in");
-            }
+            _lerpLeft = false;
         }
+
         else
         {
             _leftOculusController.SetActive(active);
-            _animator = _leftOculusController.GetComponent<Animator>();
-            if (active)
-            {
-                _animator.Play("ControllerFadeL_in");
-            }
+            _lerpLeft = true;
         }
+
+        if (active)
+        {
+            lerpValue = 0;
+            _lerping = true;
+        }
+        else
+        {
+            lerpValue = 1;
+            _lerping = false;
+        }
+
+        _fade = true;
     }
 
 
-
-    private void FixedUpdate()
+    private void Update()
     {
         if (OVRInput.GetDown(OVRInput.Button.Three) && !_fullTutorialActive)
         {
@@ -114,6 +139,59 @@ public class ButtonsTutorial : MonoBehaviour
         {
             _fullTutorialActive = false;
             SetFullTutorial(false);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.E) && !_fullTutorialActive)
+        {
+            _fullTutorialActive = true;
+            SetFullTutorial(true);
+        }
+        else if (Input.GetKeyUp(KeyCode.E) && _fullTutorialActive)
+        {
+            _fullTutorialActive = false;
+            SetFullTutorial(false);
+        }
+
+        if (!_fade) return;
+
+        if (_lerping && lerpValue < 1f)
+        {
+            lerpValue += Time.deltaTime;
+            lerpValue = Mathf.Clamp01(lerpValue);
+            if (_lerpLeft)
+            {
+                _leftMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.35f), lerpValue);
+            }
+            else
+            {
+                _rightMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.35f), lerpValue);
+
+            }
+
+            if (lerpValue == 1)
+            {
+                _fade = false;
+            }
+        }
+        else if (!_lerping && lerpValue > 0f)
+        {
+            lerpValue -= Time.deltaTime;
+            lerpValue = Mathf.Clamp01(lerpValue);
+            if (_lerpLeft)
+            {
+                _leftMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.35f), lerpValue);
+            }
+            else
+            {
+                _rightMaterial.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0.35f), lerpValue);
+
+            }
+
+            if (lerpValue == 0)
+            {
+                _fade = false;
+            }
         }
 
     }

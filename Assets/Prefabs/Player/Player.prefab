@@ -386,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1219371718550626
 GameObject:
   m_ObjectHideFlags: 1
@@ -4547,6 +4547,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12860facbde7ed43ba109bfe7710e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useParent: 0
+  _Button: {fileID: 0}
   _sprites:
   - {fileID: 21300000, guid: 3abc6213d636def40899148bf0f2c63b, type: 3}
   - {fileID: 21300002, guid: 3abc6213d636def40899148bf0f2c63b, type: 3}
@@ -4580,6 +4582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12860facbde7ed43ba109bfe7710e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useParent: 0
+  _Button: {fileID: 0}
   _sprites:
   - {fileID: 21300000, guid: 3abc6213d636def40899148bf0f2c63b, type: 3}
   - {fileID: 21300002, guid: 3abc6213d636def40899148bf0f2c63b, type: 3}
@@ -4642,6 +4646,10 @@ MonoBehaviour:
   _rightGrabButton: {fileID: 1098857674964596}
   _vacuumButton: {fileID: 1951787269124100}
   _callButton: {fileID: 1947385406014142}
+  _lerpLeft: 0
+  _lerping: 0
+  _leftHand: {fileID: 1326799869945536}
+  _rightHand: {fileID: 1219371718550626}
 --- !u!114 &114340996340281432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4740,6 +4748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12860facbde7ed43ba109bfe7710e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useParent: 0
+  _Button: {fileID: 0}
   _sprites:
   - {fileID: 21300000, guid: 710c607dfa07d7144a602eb5544a083d, type: 3}
   - {fileID: 21300002, guid: 710c607dfa07d7144a602eb5544a083d, type: 3}
@@ -4769,6 +4779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12860facbde7ed43ba109bfe7710e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useParent: 0
+  _Button: {fileID: 0}
   _sprites: []
   _spriteSpeed: 0
 --- !u!114 &114624702429693224
@@ -4862,6 +4874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12860facbde7ed43ba109bfe7710e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useParent: 0
+  _Button: {fileID: 0}
   _sprites:
   - {fileID: 21300000, guid: bd3cfff03660a92408d843af3a532a65, type: 3}
   - {fileID: 21300002, guid: bd3cfff03660a92408d843af3a532a65, type: 3}
@@ -4935,6 +4949,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12860facbde7ed43ba109bfe7710e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useParent: 0
+  _Button: {fileID: 0}
   _sprites: []
   _spriteSpeed: 0
 --- !u!120 &120231465246049572
@@ -5734,7 +5750,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 0b7b8280944471c4bac437ebb530f644, type: 3}
+  - {fileID: 2100000, guid: f0cf886193e624546ae1f3128d38862f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5806,7 +5822,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 392a423b01be3464baea60ff71fff234, type: 3}
+  - {fileID: 2100000, guid: f0cf886193e624546ae1f3128d38862f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
