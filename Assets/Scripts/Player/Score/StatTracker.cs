@@ -50,7 +50,11 @@ public class StatTracker : MonoBehaviour {
     private int _writtenYearlyLines;
     private int _writtenDailyLines;
 
+    private string _timestamp;
+
     public void Awake() {
+        _timestamp = GetFormattedTime();
+
         _yearlyEntries = new List<Entry>();
         _dailyEntries = new List<Entry>();
 
@@ -126,7 +130,7 @@ public class StatTracker : MonoBehaviour {
         _playerStats.Name = ScoreTracker.PlayerName;
         _playerStats.Age = ScoreTracker.PlayerAge;
         _playerStats.Date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
-        _playerStats.Time = GetFormattedTime();
+        _playerStats.Time = _timestamp;
         _playerStats.Playtime = (int)Time.time + "";
         _playerStats.Score = (ScoreTracker.ScoreLevel1 + ScoreTracker.ScoreLevel2).ToString();
         _playerStats.Feedback1 = ScoreTracker.Feedback1.ToString();

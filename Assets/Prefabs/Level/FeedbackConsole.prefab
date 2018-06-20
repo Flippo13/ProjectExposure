@@ -68,7 +68,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224122342569167504}
-  - component: {fileID: 114590795965452084}
   m_Layer: 5
   m_Name: InteractionPoints
   m_TagString: Untagged
@@ -204,7 +203,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224272271131599642}
-  - component: {fileID: 114240501572814908}
   m_Layer: 5
   m_Name: InteractionPoints
   m_TagString: Untagged
@@ -726,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114590795965452084}
+  sliderHandler: {fileID: 114283117541604974}
   value: 5
 --- !u!114 &114094630514356790
 MonoBehaviour:
@@ -739,7 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114590795965452084}
+  sliderHandler: {fileID: 114283117541604974}
   value: 3
 --- !u!114 &114174194676133272
 MonoBehaviour:
@@ -790,18 +788,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114240501572814908
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1455017316852030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77a2caf1852fb174d98691b94d227d89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  feedbackSlider: {fileID: 114443432535584818}
 --- !u!114 &114283117541604974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -813,7 +799,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a2caf1852fb174d98691b94d227d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feedbackSlider: {fileID: 114334837210196872}
 --- !u!114 &114294814072673742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -852,7 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114240501572814908}
+  sliderHandler: {fileID: 114418500865655104}
   value: 1
 --- !u!114 &114334837210196872
 MonoBehaviour:
@@ -913,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114590795965452084}
+  sliderHandler: {fileID: 114283117541604974}
   value: 1
 --- !u!114 &114349122747584220
 MonoBehaviour:
@@ -953,7 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114240501572814908}
+  sliderHandler: {fileID: 114418500865655104}
   value: 5
 --- !u!114 &114418500865655104
 MonoBehaviour:
@@ -966,7 +951,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a2caf1852fb174d98691b94d227d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feedbackSlider: {fileID: 114443432535584818}
 --- !u!114 &114443432535584818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1026,7 +1010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114240501572814908}
+  sliderHandler: {fileID: 114418500865655104}
   value: 4
 --- !u!114 &114538687420351846
 MonoBehaviour:
@@ -1066,7 +1050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114590795965452084}
+  sliderHandler: {fileID: 114283117541604974}
   value: 2
 --- !u!114 &114574113439694318
 MonoBehaviour:
@@ -1130,18 +1114,6 @@ MonoBehaviour:
   m_Text: 'Door dit spel weet ik meer over waterkrachtenergie?
 
 '
---- !u!114 &114590795965452084
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1178586357708132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77a2caf1852fb174d98691b94d227d89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  feedbackSlider: {fileID: 114334837210196872}
 --- !u!114 &114699554823842134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1153,7 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114240501572814908}
+  sliderHandler: {fileID: 114418500865655104}
   value: 3
 --- !u!114 &114706155454505708
 MonoBehaviour:
@@ -1166,7 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114240501572814908}
+  sliderHandler: {fileID: 114418500865655104}
   value: 2
 --- !u!114 &114707296494283456
 MonoBehaviour:
@@ -1227,7 +1199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662a24549d8040438d24f54784fe2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderHandler: {fileID: 114590795965452084}
+  sliderHandler: {fileID: 114283117541604974}
   value: 4
 --- !u!114 &114776589903423574
 MonoBehaviour:
@@ -1485,18 +1457,18 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1329087534950220}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 154.98}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -179.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224411337282500736}
   - {fileID: 224821355339851330}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 243.71854, y: 34.04}
+  m_AnchoredPosition: {x: 498.01, y: 2.657}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224211669689632642
