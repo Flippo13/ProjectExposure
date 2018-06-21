@@ -7,7 +7,7 @@
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0
 		[Enum(Expressions)] _Expression("Expression", Float) = 1
-		_EmissionStrenght("Emission Strenght", Range(0,1)) = 0.0
+		_EmissionStrenght("Emission Strenght", Range(0,5)) = 0.0
 
 	}
 		SubShader{

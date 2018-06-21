@@ -63,7 +63,8 @@
 			{
 				Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" }
 			Cull Front
-			CGPROGRAM
+			Blend SrcAlpha OneMinusSrcAlpha
+			CGPROGRAM	
 			#pragma vertex vert
 			#pragma fragment frag alpha:fade
 			#include "UnityCG.cginc"
@@ -106,7 +107,7 @@
 			{
 				fixed4 returnColor;
 				if (_InRange)
-					returnColor = fixed4(_OutlineColor.rgb, 1);
+					returnColor = fixed4(_OutlineColor.rgb, _OutlineColor.a);
 				else
 					returnColor = fixed4(0, 0, 0, 0);
 
