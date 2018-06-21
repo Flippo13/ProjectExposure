@@ -1719,6 +1719,7 @@ GameObject:
   - component: {fileID: 4196304731517586}
   - component: {fileID: 95357498043921674}
   - component: {fileID: 114847541426545672}
+  - component: {fileID: 114615573525247184}
   m_Layer: 2
   m_Name: Companion UV
   m_TagString: Companion
@@ -2212,7 +2213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241325418213258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 338.21, y: 36.09, z: 299.4}
+  m_LocalPosition: {x: 338.36, y: 35.04, z: 300.116}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4196304731517586}
@@ -3849,7 +3850,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5a5cc3021b0c0bb4a920c3368173dc0c, type: 2}
+  - {fileID: 2100000, guid: a4c28eeca44a4e94295672c6db80d28b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4024,7 +4025,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5a5cc3021b0c0bb4a920c3368173dc0c, type: 2}
+  - {fileID: 2100000, guid: a4c28eeca44a4e94295672c6db80d28b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4468,6 +4469,33 @@ MonoBehaviour:
   deformationStep: 0.05
   scaleFactor: 0.95
   _particleParent: {fileID: 1582274064138802}
+--- !u!114 &114615573525247184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855759058469876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64df6a4a1d8650041b8ae40acf839510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _faceMaterial: {fileID: 2100000, guid: a4c28eeca44a4e94295672c6db80d28b, type: 2}
+  _expressions:
+  - _expressionName: Default
+    _expression: 0
+  - _expressionName: Sad
+    _expression: 1
+  - _expressionName: Happy
+    _expression: 2
+  - _expressionName: Wink
+    _expression: 3
+  - _expressionName: Burp
+    _expression: 4
+  - _expressionName: Dizzy
+    _expression: 5
+  _bufferSize: 1024
+  _strenght: 0
 --- !u!114 &114662176903652410
 MonoBehaviour:
   m_ObjectHideFlags: 1
