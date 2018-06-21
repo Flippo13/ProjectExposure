@@ -8162,6 +8162,65 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 201743369}
   m_Mesh: {fileID: 4300004, guid: bd47ecc7a0dbd744bb087b5b84af7684, type: 3}
+--- !u!1 &201818238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1651163729192730, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 201818239}
+  - component: {fileID: 201818240}
+  m_Layer: 0
+  m_Name: Turbine Introduction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &201818239
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4135243143689316, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 201818238}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 196.19, y: -2.68, z: 29.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1268879337}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &201818240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114939529238737798, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 201818238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 1
+  animationTrigger: turbine_introduction
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Turbine 1 Introduction
+  reinforcementClip: 
+  reinforcementInterval: 10
+  trashAmount: 5
+  sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!1 &202221213
 GameObject:
   m_ObjectHideFlags: 0
@@ -10981,6 +11040,36 @@ Transform:
   m_PrefabParentObject: {fileID: 4287209049448786, guid: 98fe3cf97bc8fca478adf952825c8e33,
     type: 2}
   m_PrefabInternal: {fileID: 252574405}
+--- !u!1 &252805596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1648200997157498, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 252805597}
+  m_Layer: 0
+  m_Name: SideObjectives
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &252805597
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4764563742629622, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252805596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1383605787}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &253472084 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1226941445579378, guid: 0f6e8bb2cfb1047478462ee711324cf8,
@@ -36686,6 +36775,65 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.05
+--- !u!1 &852113653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1199412834968290, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 852113654}
+  - component: {fileID: 852113655}
+  m_Layer: 0
+  m_Name: Completion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &852113654
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4056623303307568, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 852113653}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 116.1, y: -8.139999, z: -65.53}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1268879337}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &852113655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114325371056671040, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 852113653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 1
+  animationTrigger: completion_1
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Completion Turbine 1
+  reinforcementClip: 
+  reinforcementInterval: 10
+  trashAmount: 5
+  sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!1 &855140538 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1911294779804632, guid: 676cb30ace8a20e47938acfd5dc764d2,
@@ -38373,6 +38521,65 @@ Transform:
   m_PrefabParentObject: {fileID: 4797741051549050, guid: 15dd1e916fbad154685c550282bb5313,
     type: 2}
   m_PrefabInternal: {fileID: 2019013083}
+--- !u!1 &923248568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1514774168346594, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 923248569}
+  - component: {fileID: 923248570}
+  m_Layer: 0
+  m_Name: Proceed to next Level
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &923248569
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4372203876965334, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 923248568}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 94.21, y: -9.33, z: -144.82}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1268879337}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &923248570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114265081637826660, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 923248568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 8
+  animationTrigger: proceed_to_next_level
+  instructionClip: 
+  reinforcementClip: 
+  reinforcementInterval: 10
+  trashAmount: 5
+  sceneTransition: {fileID: 1572702954}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!1001 &923772504
 Prefab:
   m_ObjectHideFlags: 0
@@ -46821,6 +47028,65 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7feccadadf0edf74e95e202ba5be18a0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1133662338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1894007212894918, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1133662339}
+  - component: {fileID: 1133662340}
+  m_Layer: 0
+  m_Name: Welcome
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1133662339
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4979070710155516, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1133662338}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 196.61, y: -2.61, z: 30.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1268879337}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1133662340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114370783133908574, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1133662338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 1
+  animationTrigger: welcome
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Welcome
+  reinforcementClip: 
+  reinforcementInterval: 10
+  trashAmount: 0
+  sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!1001 &1134212217
 Prefab:
   m_ObjectHideFlags: 0
@@ -52670,6 +52936,44 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 134427955}
   m_Script: {fileID: 11500000, guid: 90e27b50b6f3d814bbe64fcbb1e8d290, type: 3}
+--- !u!1 &1268879336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1478050131430708, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1268879337}
+  m_Layer: 0
+  m_Name: MainObjectives
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1268879337
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4433155184370468, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1268879336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -66.2, y: 0, z: -56.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1827167396}
+  - {fileID: 1133662339}
+  - {fileID: 201818239}
+  - {fileID: 1877541095}
+  - {fileID: 1700352403}
+  - {fileID: 1724199928}
+  - {fileID: 852113654}
+  - {fileID: 923248569}
+  m_Father: {fileID: 1383605787}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1272017891
 Prefab:
   m_ObjectHideFlags: 0
@@ -56742,11 +57046,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1382766160}
   m_Mesh: {fileID: 4300000, guid: bd47ecc7a0dbd744bb087b5b84af7684, type: 3}
---- !u!4 &1383605787 stripped
+--- !u!4 &1383605787
 Transform:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 4984129479999284, guid: 8af40ba4cba4ea54498dbbe7413f915b,
     type: 2}
-  m_PrefabInternal: {fileID: 1597087525}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2073420434}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 467.615, y: 10.040001, z: 2.5389404}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1268879337}
+  - {fileID: 252805597}
+  m_Father: {fileID: 590292800}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1384359601
 Prefab:
   m_ObjectHideFlags: 0
@@ -65941,175 +66256,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15dd1e916fbad154685c550282bb5313, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1597087525
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 590292800}
-    m_Modifications:
-    - target: {fileID: 4984129479999284, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 467.615
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984129479999284, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 10.040001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984129479999284, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 2.5389404
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984129479999284, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984129479999284, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984129479999284, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984129479999284, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984129479999284, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114654617502441608, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: tutorialArea
-      value: 
-      objectReference: {fileID: 1222776551}
-    - target: {fileID: 114265081637826660, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: sceneTransition
-      value: 
-      objectReference: {fileID: 1572702954}
-    - target: {fileID: 114575242412517654, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: turbineButton
-      value: 
-      objectReference: {fileID: 1716743484}
-    - target: {fileID: 114398040465026980, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: powerGrid
-      value: 
-      objectReference: {fileID: 603779168}
-    - target: {fileID: 4741056039550018, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 40.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 4741056039550018, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 204.134
-      objectReference: {fileID: 0}
-    - target: {fileID: 4741056039550018, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.131
-      objectReference: {fileID: 0}
-    - target: {fileID: 114532621008783964, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: instructionClip
-      value: event:/Companion/Voicelines/Level I - Act I/Turbine Journey
-      objectReference: {fileID: 0}
-    - target: {fileID: 114370783133908574, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: instructionClip
-      value: event:/Companion/Voicelines/Level I - Act I/Welcome
-      objectReference: {fileID: 0}
-    - target: {fileID: 114575242412517654, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: powerGrid
-      value: 
-      objectReference: {fileID: 603779168}
-    - target: {fileID: 114265081637826660, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: objectiveTask
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114325371056671040, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: objectiveTask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114932832922877580, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: objectiveTask
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114398040465026980, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: objectiveTask
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114575242412517654, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: objectiveTask
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114923620769281320, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: objectiveTask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114532621008783964, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: objectiveTask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114939529238737798, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: objectiveTask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114370783133908574, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: objectiveTask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4688173374544964, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -58.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4688173374544964, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -10.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062070624095978, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -7.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062070624095978, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 102.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 114932832922877580, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: animationTrigger
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114325371056671040, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: animationTrigger
-      value: completion_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114325371056671040, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-        type: 2}
-      propertyPath: instructionClip
-      value: event:/Companion/Voicelines/Level I - Act II/Completion
-      objectReference: {fileID: 0}
-    - target: {fileID: 4056623303307568, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -65.53
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 8af40ba4cba4ea54498dbbe7413f915b, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1597312025
 Prefab:
   m_ObjectHideFlags: 0
@@ -69555,6 +69701,65 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa471681d7c23e449996d8cba9eed91a, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1700352402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1535949073019100, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1700352403}
+  - component: {fileID: 1700352404}
+  m_Layer: 0
+  m_Name: Cable Attachment 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1700352403
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4062070624095978, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1700352402}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 102.58, y: -7.96, z: -66.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1268879337}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1700352404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114398040465026980, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1700352402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 5
+  animationTrigger: cable_attachment_1
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Cable Attachment 1
+  reinforcementClip: 
+  reinforcementInterval: 10
+  trashAmount: 5
+  sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 603779168}
+  turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!1 &1701585562
 GameObject:
   m_ObjectHideFlags: 0
@@ -70341,6 +70546,65 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.05
+--- !u!1 &1724199927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1507227700185880, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1724199928}
+  - component: {fileID: 1724199929}
+  m_Layer: 0
+  m_Name: Turn on Turbine 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1724199928
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4876349073280254, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1724199927}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 114.71, y: -7.65, z: -61.98}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1268879337}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1724199929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114575242412517654, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1724199927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 6
+  animationTrigger: turn_on_turbine_1
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Turn on Turbine 1
+  reinforcementClip: 
+  reinforcementInterval: 10
+  trashAmount: 5
+  sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 603779168}
+  turbineButton: {fileID: 1716743484}
+  tutorialArea: {fileID: 0}
 --- !u!1001 &1725866193
 Prefab:
   m_ObjectHideFlags: 0
@@ -75476,6 +75740,65 @@ Transform:
   m_PrefabParentObject: {fileID: 4684563774875278, guid: 6877764d29b40384daf84a843d076d17,
     type: 2}
   m_PrefabInternal: {fileID: 1825955258}
+--- !u!1 &1827167395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1382174889142734, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1827167396}
+  - component: {fileID: 1827167397}
+  m_Layer: 0
+  m_Name: Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1827167396
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4741056039550018, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1827167395}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 204.134, y: 0.131, z: 40.96}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1268879337}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1827167397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114654617502441608, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1827167395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 0
+  animationTrigger: 
+  instructionClip: 
+  reinforcementClip: 
+  reinforcementInterval: 10
+  trashAmount: 0
+  sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 1222776551}
 --- !u!1 &1827703388
 GameObject:
   m_ObjectHideFlags: 0
@@ -77023,6 +77346,65 @@ Transform:
   m_PrefabParentObject: {fileID: 4287209049448786, guid: 98fe3cf97bc8fca478adf952825c8e33,
     type: 2}
   m_PrefabInternal: {fileID: 1876061254}
+--- !u!1 &1877541094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1033520866197582, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1877541095}
+  - component: {fileID: 1877541096}
+  m_Layer: 0
+  m_Name: Turbine Arrival
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1877541095
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4688173374544964, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1877541094}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 118.42, y: -10.04, z: -58.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1268879337}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1877541096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114923620769281320, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1877541094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveType: 0
+  objectiveTask: 1
+  animationTrigger: turbine_arrival
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Turbine 1 Arrival
+  reinforcementClip: 
+  reinforcementInterval: 10
+  trashAmount: 5
+  sceneTransition: {fileID: 0}
+  dropdownZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turbine: {fileID: 0}
+  powerGrid: {fileID: 0}
+  turbineButton: {fileID: 0}
+  tutorialArea: {fileID: 0}
 --- !u!1001 &1879534310
 Prefab:
   m_ObjectHideFlags: 0
@@ -85620,6 +86002,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2243559, y: 0.70354366, z: 2.7163146}
   m_Center: {x: -0.14274836, y: 0.20763436, z: 0.038499583}
+--- !u!1 &2073420434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1022082736760574, guid: 8af40ba4cba4ea54498dbbe7413f915b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1383605787}
+  m_Layer: 0
+  m_Name: ObjectiveLog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &2073563994
 GameObject:
   m_ObjectHideFlags: 0

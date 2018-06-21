@@ -15,17 +15,8 @@ MonoBehaviour:
   - {fileID: 114174429433454912}
   - {fileID: 114627072366326390}
   EditorEvents:
-  - {fileID: 114941001107166618}
-  - {fileID: 114946497948502688}
-  - {fileID: 114666433412090718}
-  - {fileID: 114527712812770150}
   - {fileID: 114454669342158386}
-  - {fileID: 114982392457915948}
-  - {fileID: 114705345787031852}
-  - {fileID: 114261197695470194}
   - {fileID: 114298628678843022}
-  - {fileID: 114650044493318482}
-  - {fileID: 114532798940356200}
   - {fileID: 114510687919261038}
   - {fileID: 114335943707816608}
   - {fileID: 114992725343160516}
@@ -53,7 +44,6 @@ MonoBehaviour:
   - {fileID: 114175819139539074}
   - {fileID: 114809991326710412}
   - {fileID: 114372454402974206}
-  - {fileID: 114054063129281558}
   - {fileID: 114107145985004204}
   - {fileID: 114148186400230590}
   - {fileID: 114202187239206386}
@@ -61,10 +51,26 @@ MonoBehaviour:
   - {fileID: 114467102227676940}
   - {fileID: 114988995447497328}
   - {fileID: 114326468579245904}
-  - {fileID: 114917752483157516}
+  - {fileID: 114177878225323366}
+  - {fileID: 114728924817603824}
+  - {fileID: 114771935188955020}
+  - {fileID: 114827387671672494}
+  - {fileID: 114380625668688178}
+  - {fileID: 114591564803541230}
+  - {fileID: 114008653488085062}
+  - {fileID: 114116027619092280}
+  - {fileID: 114935300016925122}
+  - {fileID: 114591436157524780}
+  - {fileID: 114876002294023762}
+  - {fileID: 114987483185870202}
+  - {fileID: 114074370131146172}
+  - {fileID: 114967583169347560}
+  - {fileID: 114256911514719040}
+  - {fileID: 114605822980546968}
+  - {fileID: 114589217090562036}
   MasterBankRef: {fileID: 114627072366326390}
   StringsBankRef: {fileID: 114174429433454912}
-  stringsBankWriteTime: 636650418428484334
+  stringsBankWriteTime: 636651903463517557
   cacheVersion: 2
 --- !u!114 &114000891727680386
 MonoBehaviour:
@@ -85,6 +91,28 @@ MonoBehaviour:
   - Name: Desktop
     Value: 324096
   Exists: 1
+--- !u!114 &114008653488085062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 2/Possible Location 1
+  guid: 9c3ef419c23aa447a005afa73a5faa2c
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7168
 --- !u!114 &114012936765005404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +282,28 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1684
+--- !u!114 &114074370131146172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 2/Turbine 2 Introduction
+  guid: 4db47d4243abe24db10363dbb7077884
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6930
 --- !u!114 &114084055915466908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +364,29 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 7194
+  Length: 6616
+--- !u!114 &114116027619092280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 1/Welcome
+  guid: b69faa401323664fb385666904a18384
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 24489
 --- !u!114 &114123144452675086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +490,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4097
+  Length: 4936
 --- !u!114 &114149891107329202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,11 +611,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636650418428484334
+  lastModified: 636651903463517557
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 3326
+    Value: 3568
   Exists: 1
 --- !u!114 &114175819139539074
 MonoBehaviour:
@@ -567,6 +639,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1000
+--- !u!114 &114177878225323366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 1/Cable Attachment 1
+  guid: 01f98d5120dfdb4d9e97de0e251a4b36
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 20336
 --- !u!114 &114185421124125738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,7 +703,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 5345
+  Length: 6492
 --- !u!114 &114212766437186660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,6 +896,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 500
+--- !u!114 &114256911514719040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 2/Location Introduction 2
+  guid: a0723c4bdfe4e746b5ce0b5a298de39f
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 23488
 --- !u!114 &114261197695470194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,13 +1309,13 @@ MonoBehaviour:
   guid: c631208406459341bbf41626aaa291d6
   Banks:
   - {fileID: 114627072366326390}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 10255
+  Length: 9218
 --- !u!114 &114331436078617420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,6 +1461,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 500
+--- !u!114 &114380625668688178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 1/Completion Turbine 1
+  guid: 2d053d8a5903024b8b50772cb09ae2bf
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 8242
 --- !u!114 &114391642437034820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1577,7 +1715,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3564
+  Length: 4776
 --- !u!114 &114472972562110848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1935,6 +2073,94 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4108
+--- !u!114 &114589217090562036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 3/Completion
+  guid: cb276ad0c1f58f4294dee5dd1e039177
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5765
+--- !u!114 &114591436157524780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 2/Possible Location 2
+  guid: 0b1b6edbb231754f86779096f8192060
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3190
+--- !u!114 &114591564803541230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 1/Turbine 1 Arrival
+  guid: 8285fd15af95ec408933d20af2d5e1d2
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5164
+--- !u!114 &114605822980546968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 2/Location Overview
+  guid: b0bc8c7854226d4d9863ff8a59f692b8
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 14874
 --- !u!114 &114610820825827056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2012,11 +2238,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: D:\ProjectExposure\Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master
     Bank.bank
-  lastModified: 636650418428424292
+  lastModified: 636651903463477375
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 3262208
+    Value: 4563616
   Exists: 1
 --- !u!114 &114636641408126024
 MonoBehaviour:
@@ -2404,6 +2630,28 @@ MonoBehaviour:
   - Name: Desktop
     Value: 3048832
   Exists: 0
+--- !u!114 &114728924817603824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 2/Place Turbine
+  guid: 062dfe3269b0dc42bb3a17d231489db7
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8399
 --- !u!114 &114732792452366782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2447,6 +2695,28 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 760
+--- !u!114 &114771935188955020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 1/Turbine 1 Introduction
+  guid: 1160ac37c4a2a143a02a4a73f0c30096
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 8341
 --- !u!114 &114785522083050506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2573,6 +2843,28 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &114827387671672494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 1/Turn on Turbine 1
+  guid: 1815baefb592c743a9729e15837abe2b
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5696
 --- !u!114 &114834432162797692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2719,6 +3011,27 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6000
+--- !u!114 &114863628007443934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 2/Level Introduction
+  guid: a0723c4bdfe4e746b5ce0b5a298de39f
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6700
 --- !u!114 &114873268609008880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2741,6 +3054,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 482
+--- !u!114 &114876002294023762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 3/Assemble
+  guid: 1e2d5312867f5e43aa19ca6a3143bc28
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 13767
 --- !u!114 &114881357047894332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2999,6 +3334,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5512
+--- !u!114 &114935300016925122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 2/Possible Location 3
+  guid: e0c96ed78f3b364fb76a049566659f87
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6594
 --- !u!114 &114941001107166618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3126,7 +3483,29 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 10255
+  Length: 12464
+--- !u!114 &114967583169347560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 2/Location Introduction 1
+  guid: 7e4234f8afece548994c22a7b45adb30
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5504
 --- !u!114 &114968947821589414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3192,6 +3571,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3536
+--- !u!114 &114987483185870202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Turbine 3/Goodbye
+  guid: 3765e6c2db2bfd49baf8bdb298d68958
+  Banks:
+  - {fileID: 114627072366326390}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11708
 --- !u!114 &114988995447497328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3213,7 +3614,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 7894
+  Length: 5874
 --- !u!114 &114990709476782448
 MonoBehaviour:
   m_ObjectHideFlags: 0

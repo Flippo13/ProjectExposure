@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{15fd8582-95af-40ec-8933-d20af2d5e1d2}">
         <property name="name">
-            <value>Turbine Journey</value>
+            <value>Turbine 1 Arrival</value>
         </property>
         <property name="outputFormat">
             <value>1</value>
@@ -60,7 +60,7 @@
     <object class="MarkerTrack" id="{1e634d39-ae49-4d41-89e4-d4f25b4675e7}"/>
     <object class="GroupTrack" id="{f24bf652-0fae-4832-8445-94b9c2bca415}">
         <relationship name="modules">
-            <destination>{fab5d76f-1e33-40a2-aac3-c8dd285367ca}</destination>
+            <destination>{76c55618-76d3-48e5-bbf8-cfc880dfa9dc}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{e05bb252-3325-481e-97fe-8d054d0020e5}</destination>
@@ -68,7 +68,7 @@
     </object>
     <object class="Timeline" id="{5cddc0a8-0fe7-4213-8bbd-498662a73330}">
         <relationship name="modules">
-            <destination>{fab5d76f-1e33-40a2-aac3-c8dd285367ca}</destination>
+            <destination>{76c55618-76d3-48e5-bbf8-cfc880dfa9dc}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{269fcdec-82ad-4182-a009-21ce3faed041}">
@@ -88,12 +88,12 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{48a6c7d6-a76b-4504-8253-0be85e36881d}"/>
-    <object class="SingleSound" id="{fab5d76f-1e33-40a2-aac3-c8dd285367ca}">
+    <object class="SingleSound" id="{76c55618-76d3-48e5-bbf8-cfc880dfa9dc}">
         <property name="length">
-            <value>1.4352834467120181</value>
+            <value>5.1641723356009068</value>
         </property>
         <relationship name="audioFile">
-            <destination>{8402120e-9c3f-4282-ad1c-f6be19e2c59a}</destination>
+            <destination>{c683de91-5600-4648-bf23-5ea74e5172b5}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{e05bb252-3325-481e-97fe-8d054d0020e5}">
@@ -478,7 +478,6 @@
         <property name="dataType">
             <value>0</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="DataPluginParameter" id="{77d05c44-76b4-4b63-8d75-2f3a0dc2f79e}">
         <property name="name">
@@ -487,6 +486,5 @@
         <property name="dataType">
             <value>-2</value>
         </property>
-        <property name="value"/>
     </object>
 </objects>
