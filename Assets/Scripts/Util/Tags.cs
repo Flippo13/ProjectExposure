@@ -7,4 +7,5 @@
     public static string Vacuum = "Vacuum";
     public static string Hand = "Hand";
     public static string Boundary = "Boundary";
+    public static string Scanner = "Scanner";
 }

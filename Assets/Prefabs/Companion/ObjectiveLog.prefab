@@ -137,38 +137,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1612695741523894
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4607746086156350}
-  - component: {fileID: 114532621008783964}
-  m_Layer: 0
-  m_Name: Turbine Journey 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1613021850929796
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4217460246391450}
-  - component: {fileID: 114932832922877580}
-  m_Layer: 0
-  m_Name: Turbine Cleanup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1648200997157498
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,11 +191,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1199412834968290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 116.1, y: -8.139999, z: -62.97}
+  m_LocalPosition: {x: 116.1, y: -8.139999, z: -65.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4062070624095978
 Transform:
@@ -236,11 +204,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1535949073019100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 103.72, y: -7.96, z: -66.02}
+  m_LocalPosition: {x: 102.58, y: -7.96, z: -66.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4135243143689316
 Transform:
@@ -255,19 +223,6 @@ Transform:
   m_Father: {fileID: 4433155184370468}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4217460246391450
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1613021850929796}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 121.28, y: -7.99, z: -79.77}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4372203876965334
 Transform:
   m_ObjectHideFlags: 1
@@ -279,7 +234,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4433155184370468
 Transform:
@@ -294,28 +249,13 @@ Transform:
   - {fileID: 4741056039550018}
   - {fileID: 4979070710155516}
   - {fileID: 4135243143689316}
-  - {fileID: 4607746086156350}
   - {fileID: 4688173374544964}
   - {fileID: 4062070624095978}
-  - {fileID: 4217460246391450}
   - {fileID: 4876349073280254}
   - {fileID: 4056623303307568}
   - {fileID: 4372203876965334}
   m_Father: {fileID: 4984129479999284}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4607746086156350
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1612695741523894}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 182.88, y: -5.58, z: 12.83}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4688173374544964
 Transform:
@@ -324,11 +264,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033520866197582}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 118.42, y: -11.9, z: -51.43}
+  m_LocalPosition: {x: 118.42, y: -10.04, z: -58.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4741056039550018
 Transform:
@@ -337,7 +277,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382174889142734}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 196.61003, y: -2.6100006, z: 30.75999}
+  m_LocalPosition: {x: 204.134, y: 0.131, z: 40.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
@@ -367,7 +307,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433155184370468}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4979070710155516
 Transform:
@@ -409,8 +349,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 7
+  objectiveTask: 8
   animationTrigger: proceed_to_next_level
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
   instructionClip: 
   reinforcementClip: 
   reinforcementInterval: 10
@@ -436,9 +378,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 0
-  animationTrigger: 
-  instructionClip: 
+  objectiveTask: 1
+  animationTrigger: completion_1
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Completion Turbine 1
   reinforcementClip: 
   reinforcementInterval: 10
   trashAmount: 5
@@ -463,9 +407,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 0
+  objectiveTask: 1
   animationTrigger: welcome
-  instructionClip: event:/Companion/Voicelines/Level I - Act I/Turbine Introduction
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Welcome
   reinforcementClip: 
   reinforcementInterval: 10
   trashAmount: 0
@@ -490,36 +436,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 4
+  objectiveTask: 5
   animationTrigger: cable_attachment_1
-  instructionClip: event:/Companion/Voicelines/Level I - Act II/Cable Attachment 1
-  reinforcementClip: 
-  reinforcementInterval: 10
-  trashAmount: 5
-  sceneTransition: {fileID: 0}
-  dropdownZones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  turbine: {fileID: 0}
-  powerGrid: {fileID: 0}
-  turbineButton: {fileID: 0}
-  tutorialArea: {fileID: 0}
---- !u!114 &114532621008783964
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1612695741523894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectiveType: 0
-  objectiveTask: 0
-  animationTrigger: turbine_journey_1
-  instructionClip: event:/Companion/Voicelines/Level I - Act I/Turbine Journey 1
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Cable Attachment 1
   reinforcementClip: 
   reinforcementInterval: 10
   trashAmount: 5
@@ -544,9 +465,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 5
+  objectiveTask: 6
   animationTrigger: turn_on_turbine_1
-  instructionClip: event:/Companion/Voicelines/Level I - Act II/Turn on Turbine 1
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Turn on Turbine 1
   reinforcementClip: 
   reinforcementInterval: 10
   trashAmount: 5
@@ -573,6 +496,7 @@ MonoBehaviour:
   objectiveType: 0
   objectiveTask: 0
   animationTrigger: 
+  pointerPrefab: {fileID: 0}
   instructionClip: 
   reinforcementClip: 
   reinforcementInterval: 10
@@ -598,39 +522,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 0
+  objectiveTask: 1
   animationTrigger: turbine_arrival
-  instructionClip: event:/Companion/Voicelines/Level I - Act II/Turbine Arrival
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Turbine 1 Arrival
   reinforcementClip: 
   reinforcementInterval: 10
   trashAmount: 5
-  sceneTransition: {fileID: 0}
-  dropdownZones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  turbine: {fileID: 0}
-  powerGrid: {fileID: 0}
-  turbineButton: {fileID: 0}
-  tutorialArea: {fileID: 0}
---- !u!114 &114932832922877580
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1613021850929796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectiveType: 0
-  objectiveTask: 1
-  animationTrigger: 
-  instructionClip: 
-  reinforcementClip: 
-  reinforcementInterval: 10
-  trashAmount: 20
   sceneTransition: {fileID: 0}
   dropdownZones:
   - {fileID: 0}
@@ -652,9 +551,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveType: 0
-  objectiveTask: 0
+  objectiveTask: 1
   animationTrigger: turbine_introduction
-  instructionClip: event:/Companion/Voicelines/Level I - Act I/Turbine Introduction
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
+  instructionClip: event:/Companion/Voicelines/Turbine 1/Turbine 1 Introduction
   reinforcementClip: 
   reinforcementInterval: 10
   trashAmount: 5

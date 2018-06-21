@@ -11,6 +11,7 @@ public class ObjectiveEditor : Editor {
     SerializedProperty objectiveTypeProp;
     SerializedProperty objectiveTaskProp;
     SerializedProperty animationTriggerProp;
+    SerializedProperty pointerPrefabProp;
     SerializedProperty instructionClipProp;
     SerializedProperty reinforcementClipProp;
     SerializedProperty reinforcementIntervalProp;
@@ -30,6 +31,7 @@ public class ObjectiveEditor : Editor {
         objectiveTypeProp = serializedObject.FindProperty("objectiveType");
         objectiveTaskProp = serializedObject.FindProperty("objectiveTask");
         animationTriggerProp = serializedObject.FindProperty("animationTrigger");
+        pointerPrefabProp = serializedObject.FindProperty("pointerPrefab");
         instructionClipProp = serializedObject.FindProperty("instructionClip");
         reinforcementClipProp = serializedObject.FindProperty("reinforcementClip");
         reinforcementIntervalProp = serializedObject.FindProperty("reinforcementInterval");
@@ -117,6 +119,10 @@ public class ObjectiveEditor : Editor {
         }
 
         EditorGUILayout.PropertyField(animationTriggerProp, new GUIContent("Animation Trigger"));
+
+        if(task != ObjectiveTask.Tutorial) {
+            EditorGUILayout.PropertyField(pointerPrefabProp, new GUIContent("Pointer Prefab"));
+        }
 
         if(task != ObjectiveTask.Place) {
             //default properties

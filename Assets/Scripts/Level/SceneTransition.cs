@@ -8,13 +8,15 @@ public class SceneTransition : MonoBehaviour {
     public int nextSceneIndex;
     public Animator divingbellAnimator;
 
+    public bool debug;
+
     private AsyncOperation _nextScene;
 
     private Collider _collider;
 
     public void Start() {
         //doesnt work with awake
-        StartCoroutine(LoadYourAsyncScene());
+        if(!debug) StartCoroutine(LoadYourAsyncScene());
 
         _collider = GetComponent<Collider>();
         _collider.enabled = false;
@@ -41,7 +43,7 @@ public class SceneTransition : MonoBehaviour {
         if (SceneManager.GetActiveScene().buildIndex == 0) ScoreTracker.CompletedLevel1 = true;
         else ScoreTracker.CompletedLevel2 = true;
 
-        _nextScene.allowSceneActivation = true;
+        if(!debug) _nextScene.allowSceneActivation = true;
     }
 
     public void EnableCollider() {

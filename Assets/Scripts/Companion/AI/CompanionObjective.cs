@@ -10,6 +10,7 @@ public class CompanionObjective : MonoBehaviour {
     public ObjectiveType objectiveType;
     public ObjectiveTask objectiveTask;
     public string animationTrigger;
+    public GameObject pointerPrefab;
 
     [EventRef]
     public string instructionClip;
@@ -30,6 +31,7 @@ public class CompanionObjective : MonoBehaviour {
 
     //states
     private ObjectiveStatus _status;
+    private ObjectivePointer _objectivePointer;
     private bool _chosePosition;
     private bool _allowPlugIn;
     private bool _allowButtonPress;
@@ -109,14 +111,21 @@ public class CompanionObjective : MonoBehaviour {
                     break;
 
                 default:
-                    break;
+                    break;  
+            }
+
+            if (objectiveTask != ObjectiveTask.Tutorial) {
+                GameObject pointerInstance = Instantiate(pointerPrefab);
+                pointerInstance.transform.parent = transform;
+                pointerInstance.transform.position = transform.position; //put pointer on waypoint position
+
+                _objectivePointer = pointerInstance.GetComponent<ObjectivePointer>();
             }
 
         } else if(_status == ObjectiveStatus.Complete) { //completion events
 
-            switch (objectiveTask) {
-                default:
-                    break;
+            if (objectiveTask != ObjectiveTask.Tutorial) {
+                _objectivePointer.Disable();
             }
         }
     }

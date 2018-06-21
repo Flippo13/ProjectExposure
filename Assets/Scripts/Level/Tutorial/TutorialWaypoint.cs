@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TutorialWaypoint : MonoBehaviour {
 
+    public GameObject pointerPrefab;
+
     public TutorialButtons tutorialButton;
 
     [FMODUnity.EventRef]
@@ -12,14 +14,17 @@ public class TutorialWaypoint : MonoBehaviour {
     private bool _active;
     private TutorialArea _tutorialArea;
 
+    private ObjectivePointer _objectivePointer;
+
     public void Awake() {
-        _active = false;
+        _active = false;        
     }
 
     public void Update() {
         if (!_active) return;
 
-        if(CheckForButtonPress()) {
+        //if button condition is fulfilled and player is in waypoint
+        if(CheckForButtonPress() && (_objectivePointer == null || _objectivePointer.IsTriggered())) {
             _tutorialArea.ActivateNextWaypoint(); //this one gets disabled and the next one enabled
         }
     }
@@ -80,6 +85,8 @@ public class TutorialWaypoint : MonoBehaviour {
         _active = false;
 
         _tutorialArea.buttonsTutorial.SetButtonTutorial(tutorialButton, false); //disable tutorial
+
+        _objectivePointer.Disable();
     }
 
     public void Activate(TutorialArea tutorialArea) {
@@ -92,5 +99,16 @@ public class TutorialWaypoint : MonoBehaviour {
         _tutorialArea.companionAudio.StopAudioSource(AudioSourceType.Voice);
         _tutorialArea.companionAudio.SetClip(tutorialVoiceline, AudioSourceType.Voice);
         StartCoroutine(_tutorialArea.companionAudio.PlayAudioSourceWithHaptic(AudioSourceType.Voice)); //apply vibration
+
+        //acivate objective pointer for the current waypoint if possible
+        _objectivePointer = null;
+
+        if (tutorialButton != TutorialButtons.None) {
+            GameObject pointerInstance = Instantiate(pointerPrefab);
+            pointerInstance.transform.parent = transform;
+            pointerInstance.transform.position = transform.position; //put pointer on waypoint position
+
+            _objectivePointer = pointerInstance.GetComponent<ObjectivePointer>();
+        }
     }
 }
