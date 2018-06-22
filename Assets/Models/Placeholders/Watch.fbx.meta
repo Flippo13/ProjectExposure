@@ -1,23 +1,33 @@
 fileFormatVersion: 2
-guid: e75105b6bbf88fd488202fd29032e8fa
+guid: b98a67e28bdd65d4a994c46e249c8efe
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: watch2
-    100004: watchsurface2
+    100002: WatchScreen
+    100004: WatchStrap
     400000: //RootNode
-    400002: watch2
-    400004: watchsurface2
-    2100000: phong1
-    2100002: lambert1
-    2300000: watch2
-    2300002: watchsurface2
-    3300000: watch2
-    3300002: watchsurface2
-    4300000: watchsurface2
-    4300002: watch2
-  externalObjects: {}
+    400002: WatchScreen
+    400004: WatchStrap
+    2100000: WatchScreen_Material
+    2100002: Watch_Material
+    2300000: WatchScreen
+    2300002: WatchStrap
+    3300000: WatchScreen
+    3300002: WatchStrap
+    4300000: WatchScreen
+    4300002: WatchStrap
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WatchScreen_Material
+    second: {fileID: 2100000, guid: c51dcdd0aaa2f08418b2ca37fb7f6c20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Watch_Material
+    second: {fileID: 2100000, guid: 6a1f4accfd7306b44928ba7ec9bdbca7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
