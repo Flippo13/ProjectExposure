@@ -25,9 +25,6 @@ public class TurbineButton : MonoBehaviour {
 	void Update () {
             if (_turbineButtonPressed.Active)
                 _turbineButtonEvent.Invoke(); 
-        if (_buttonIsBeingPressed)
-        {
-        }
 	}
 
    private void OnCollisionEnter(Collision other)

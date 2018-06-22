@@ -7,18 +7,19 @@ public class FlockingFish : MonoBehaviour {
     public LayerMask fishLayer; 
     public float cohesionRange;
     public float seperationRange;
-    public float seperateFromPlayerRange; 
     public float maxSpeed;
     public float rotationSpeed;
 
     private FlockingGlobal _fishTank; 
     private new Transform transform;
     private SphereCollider _col; 
-    private List<Vector3> _listOfObjectsInRange = new List<Vector3>(); 
+    private List<Vector3> _listOfObjectsInRange = new List<Vector3>();
+    private Animator _anim;
 
     private Vector3 _calculatedCohesion;
     private Vector3 _calculatedSeperation;
     private float speed;
+    private float seperateFromPlayerRange; 
     private bool _swimmingFromPlayer;
     private Vector3 _goalPos;
     private Vector3 direction;
@@ -30,8 +31,10 @@ public class FlockingFish : MonoBehaviour {
         speed = Random.Range(0.1f, maxSpeed);
         transform = GetComponent<Transform>();
         _col = GetComponent<SphereCollider>();
-        _fishTank = GetComponentInParent<FlockingGlobal>(); 
-        StartCoroutine("CalculateDirectionWithDelay", 0.2f);
+        _anim = GetComponent<Animator>(); 
+        _fishTank = GetComponentInParent<FlockingGlobal>();
+        seperateFromPlayerRange = 3;
+        StartCoroutine("CalculateDirectionWithDelay", 0.3f);
 	}
 	
 	// Update is called once per frame
@@ -51,7 +54,7 @@ public class FlockingFish : MonoBehaviour {
 
         }
 
-        if (_goBack && !_swimmingFromPlayer)
+        if (_goBack && !_fishTank.playerEntered)
         {
             direction = _fishTank.fishTank.bounds.center - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
@@ -62,38 +65,18 @@ public class FlockingFish : MonoBehaviour {
         {
             if (Vector3.Distance(_fishTank.player.transform.position, transform.position) < seperateFromPlayerRange)
             {
-                direction = _fishTank.player.transform.position + transform.position;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
-                speed = 3;
+                direction = _fishTank.player.transform.position - transform.position;
+                rotationSpeed = 1; 
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-direction), rotationSpeed * Time.deltaTime);
+                speed = 2.2f;
                 _swimmingFromPlayer = true; 
             }
             else
             {
+                rotationSpeed = 0.4f;
                 _swimmingFromPlayer = false;
             }
         }
-
-        /*
-        if (Random.Range(0.0f, 10.0f) < 1)
-        {
-            Collider[] neighbours = Physics.OverlapSphere(transform.position, cohesionRange, fishLayer);
-            Debug.Log("Neighbours: " + neighbours.Length);
-            _calculatedCohesion = CalculateCohesion(neighbours) + (_fishTank.goal - transform.position);
-            _calculatedSeperation = CalculateSeperation(neighbours);
-            // Debug.Log("cohesion after: " + _calculatedCohesion);
-            //Debug.Log("seperation: " + _calculatedSeperation);
-
-
-
-            direction = (_calculatedCohesion + _calculatedSeperation) - transform.position;
-            //Debug.Log("direction: " + direction);
-
-            if (direction != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
-            }
-        }
-            */
 
         if (direction != Vector3.zero)
         {

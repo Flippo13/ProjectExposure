@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class PowerGrid : MonoBehaviour {
 
     private Renderer _rend; 
-    private bool _connected; 
+    private bool _connected;
 
+    public UnityEvent cableConntectedEvent; 
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +33,8 @@ public class PowerGrid : MonoBehaviour {
             _connected = true;
 
             other.GetComponent<Rigidbody>().isKinematic = true;
+
+            cableConntectedEvent.Invoke(); 
         }
                 
     }

@@ -47,6 +47,7 @@ public class CheckForTrashArea : MonoBehaviour {
                 //Do something with the score? 
                 trashCleared.Invoke(); 
             }
+            
             if (_areaChosen)
             {
                 areaChosen.Invoke();

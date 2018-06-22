@@ -26,6 +26,14 @@ public class TurbineButtonActivate : MonoBehaviour {
         }
     }
 
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.collider.tag == "TurbineButton")
+        {
+            Debug.Log("Button is no longer pressed");
+            _active = false;
+        }
+    }
     
 
     public bool Active
