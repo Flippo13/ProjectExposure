@@ -16,6 +16,10 @@ public class VacuumScript : MonoBehaviour {
     [FMODUnity.EventRef]
     private string _vacuumSound;
 
+    [SerializeField]
+    [FMODUnity.EventRef]
+    private string _addScoreSound;
+
     public float suckSpeed;
     public ObjectGrabber vacuumGrabber;
     public ObjectGrabber leftHandGrabber;
@@ -59,7 +63,8 @@ public class VacuumScript : MonoBehaviour {
             //apply to score tracker
             if (SceneManager.GetActiveScene().buildIndex == 0) ScoreTracker.ScoreLevel1 = _trashCount;
             else ScoreTracker.ScoreLevel2 = _trashCount;
-
+            // Play sound after each 
+            RuntimeManager.PlayOneShot(_addScoreSound);
             trashCounter.text = "" + _trashCount;
             _destroyedObjects.Add(other.transform);
         }

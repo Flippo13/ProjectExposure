@@ -59,18 +59,11 @@
     <object class="EventAutomatableProperties" id="{a5aac273-8bd5-42ad-a94a-79a670df75ed}"/>
     <object class="MarkerTrack" id="{0fac3f0e-bfa9-47c5-b8b6-af2048208186}"/>
     <object class="GroupTrack" id="{506f976a-941b-41b4-973a-243162a71a3a}">
-        <relationship name="modules">
-            <destination>{45d1743e-9959-4476-a48c-317a56306cbf}</destination>
-        </relationship>
         <relationship name="mixerGroup">
             <destination>{b9b19ac1-8b98-40f9-a93b-70e1bd62364a}</destination>
         </relationship>
     </object>
-    <object class="Timeline" id="{173d6099-04a3-4083-a986-4ddaf1aadf2d}">
-        <relationship name="modules">
-            <destination>{45d1743e-9959-4476-a48c-317a56306cbf}</destination>
-        </relationship>
-    </object>
+    <object class="Timeline" id="{173d6099-04a3-4083-a986-4ddaf1aadf2d}"/>
     <object class="EventMixerMaster" id="{36614454-5785-476c-a880-7e4ea137e7b5}">
         <relationship name="effectChain">
             <destination>{36f37f30-b9ce-45c8-9edf-f45c4de11ed0}</destination>
@@ -88,14 +81,6 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{18196aee-0b95-41cc-be0e-59daa2d087b1}"/>
-    <object class="SingleSound" id="{45d1743e-9959-4476-a48c-317a56306cbf}">
-        <property name="length">
-            <value>7.1683673469387754</value>
-        </property>
-        <relationship name="audioFile">
-            <destination>{63576726-edfc-416c-9fc7-564fc56bbea1}</destination>
-        </relationship>
-    </object>
     <object class="EventMixerGroup" id="{b9b19ac1-8b98-40f9-a93b-70e1bd62364a}">
         <property name="name">
             <value>Audio 1</value>
@@ -478,7 +463,6 @@
         <property name="dataType">
             <value>0</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="DataPluginParameter" id="{0b056db1-e74f-4e68-985c-4b863153bdb4}">
         <property name="name">
@@ -487,6 +471,5 @@
         <property name="dataType">
             <value>-2</value>
         </property>
-        <property name="value"/>
     </object>
 </objects>
