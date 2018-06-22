@@ -870,6 +870,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1814166635}
     m_Modifications:
+    - target: {fileID: 114061293398295936, guid: 287f47bea85a09441a5f89f733e95d64,
+        type: 2}
+      propertyPath: cableConntectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4588075589675188, guid: 287f47bea85a09441a5f89f733e95d64, type: 2}
       propertyPath: m_LocalPosition.x
       value: 76.6
@@ -901,6 +906,31 @@ Prefab:
     - target: {fileID: 4588075589675188, guid: 287f47bea85a09441a5f89f733e95d64, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061293398295936, guid: 287f47bea85a09441a5f89f733e95d64,
+        type: 2}
+      propertyPath: cableConntectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061293398295936, guid: 287f47bea85a09441a5f89f733e95d64,
+        type: 2}
+      propertyPath: cableConntectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061293398295936, guid: 287f47bea85a09441a5f89f733e95d64,
+        type: 2}
+      propertyPath: cableConntectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 626092185}
+    - target: {fileID: 114061293398295936, guid: 287f47bea85a09441a5f89f733e95d64,
+        type: 2}
+      propertyPath: cableConntectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CableConnected
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061293398295936, guid: 287f47bea85a09441a5f89f733e95d64,
+        type: 2}
+      propertyPath: cableConntectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 287f47bea85a09441a5f89f733e95d64, type: 2}
@@ -3458,6 +3488,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0f2b41e5c0da443a582626b584d543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cableConntectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!33 &1956865920
 MeshFilter:
   m_ObjectHideFlags: 0
