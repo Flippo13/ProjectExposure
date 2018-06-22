@@ -7,10 +7,12 @@ public class ObjectivePointer : MonoBehaviour {
     public SpriteRenderer arrowChild;
 
     private SpriteRenderer _spriteRenderer;
+    private Animator _arrowAnimator;
     private bool _triggered;
 
     public void Awake() {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _arrowAnimator = arrowChild.GetComponent<Animator>();
 
         _triggered = false;
     }
@@ -32,6 +34,7 @@ public class ObjectivePointer : MonoBehaviour {
     public void ResetPointer() {
         _spriteRenderer.enabled = true;
         arrowChild.enabled = true;
+        _arrowAnimator.enabled = true;
 
         _triggered = false;
     }
@@ -40,6 +43,7 @@ public class ObjectivePointer : MonoBehaviour {
         //disable the objective zone
         _spriteRenderer.enabled = false;
         arrowChild.enabled = false;
+        _arrowAnimator.enabled = false;
 
         _triggered = true;
     }
