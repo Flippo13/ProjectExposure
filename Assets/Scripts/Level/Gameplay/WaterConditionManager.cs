@@ -25,6 +25,9 @@ public class WaterConditionManager : MonoBehaviour {
     public Color dirtyWaterSkyboxTint;
     public Color cleanWaterSkyboxTint;
 
+    [Header("Dust Particles")]
+    public ParticleSystem[] dustParticles; 
+
     private ColorGradingModel.Settings _dirtyColorGrading;
     private ColorGradingModel.Settings _cleanColorGrading;
     private Color _currentFogColor;
@@ -69,6 +72,7 @@ public class WaterConditionManager : MonoBehaviour {
         InterpolatePP();
         InterpolateFogColor();
         InterpolateSkyboyTint();
+        InterpolateDustParticles(); 
     }
 
     private void InterpolatePP() {
@@ -108,5 +112,15 @@ public class WaterConditionManager : MonoBehaviour {
 
         RenderSettings.skybox.SetColor("_Tint", _currentSkyboxTint); //set the tint for the skybox
         DynamicGI.UpdateEnvironment(); //apply settings to the skybox
+    }
+
+
+    private void InterpolateDustParticles()
+    {
+        for (int i = 0; i < dustParticles.Length; i++)
+        {
+            var main = dustParticles[i].main; 
+            main.maxParticles = (int)Mathf.Lerp(dustParticles[i].main.maxParticles, 0, _incrementor); //needs to return as an interger value
+        }
     }
 }
