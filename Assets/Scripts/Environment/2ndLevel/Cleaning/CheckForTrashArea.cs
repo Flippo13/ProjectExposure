@@ -6,7 +6,7 @@ using UnityEngine;
 public class CheckForTrashArea : MonoBehaviour {
 
     public LayerMask trashLayer;
-    public int minTrashCleaned; 
+    public int minTrashLeft; 
     
     public bool turbineArea; 
     private BoxCollider _col;
@@ -39,10 +39,10 @@ public class CheckForTrashArea : MonoBehaviour {
     {
         if (_playerInArea)
         {
-            Collider[] trash = Physics.OverlapBox(transform.position, new Vector3(_col.size.x, _col.size.y, _col.size.z));
+            Collider[] trash = Physics.OverlapBox(transform.position, new Vector3(_col.size.x/2, _col.size.y/2, _col.size.z/2),Quaternion.identity,trashLayer);
             trashCount = trash.Length;
 
-            if (trashCount <= minTrashCleaned)
+            if (trashCount <= minTrashLeft)
             {
                 //Do something with the score? 
                 trashCleared.Invoke(); 
