@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
     <object class="MixerGroup" id="{b2e33b33-eb78-4842-aa01-c5f030c6d1e1}">
+        <property name="volume">
+            <value>10</value>
+        </property>
         <property name="name">
             <value>Companion</value>
         </property>
@@ -17,29 +20,8 @@
     <object class="MixerBusEffectChain" id="{0f4e8bbd-d210-4e37-b4c0-db474857ce4b}">
         <relationship name="effects">
             <destination>{d805a191-b24f-40f7-a91f-4234a8650ffb}</destination>
-            <destination>{bc44ad49-e664-4622-85e3-0df17381a02c}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{b1898061-56b9-4c2e-a94c-b6c5ffc3895c}"/>
     <object class="MixerBusFader" id="{d805a191-b24f-40f7-a91f-4234a8650ffb}"/>
-    <object class="MultibandEqEffect" id="{bc44ad49-e664-4622-85e3-0df17381a02c}">
-        <property name="filterTypeA">
-            <value>7</value>
-        </property>
-        <property name="filterTypeC">
-            <value>8</value>
-        </property>
-        <property name="frequencyA">
-            <value>187.428619</value>
-        </property>
-        <property name="frequencyC">
-            <value>2948.47095</value>
-        </property>
-        <property name="qualityA">
-            <value>0.413965493</value>
-        </property>
-        <property name="gainC">
-            <value>-30</value>
-        </property>
-    </object>
 </objects>

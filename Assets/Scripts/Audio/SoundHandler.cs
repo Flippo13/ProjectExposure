@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using FMODUnity;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundHandler : MonoBehaviour
 {
+    [SerializeField]
+    private float _minVelocity = 0.1f;
+    [SerializeField]
+    private float _velocityDivider = 8;
 
     private static SoundHandler _soundHandler = null;
 
+    [Header("Surface events")]
     public Surfaces[] _surfaceTypes = new Surfaces[9];
 
     [FMODUnity.EventRef]
@@ -13,6 +19,7 @@ public class SoundHandler : MonoBehaviour
 
     [FMODUnity.EventRef]
     public string _hardSandImpact;
+    private static bool _debug;
 
     [System.Serializable]
     public class Surfaces
@@ -34,20 +41,36 @@ public class SoundHandler : MonoBehaviour
     }
 
 
-    public static void PlayOneShot(SoundStrength strenght, SurfaceTypes surface, GameObject gameObject, bool terrain)
+    public static void PlayOneShot(SoundStrength strenght, SurfaceTypes surface, GameObject gameObject, float magnitude, Vector3 size, bool terrain)
     {
-        // Play initial impact
-        FMODUnity.RuntimeManager.PlayOneShotAttached(_soundHandler.getEvent(strenght, surface), gameObject);
+        float volume;
 
-        // If we hit the terrain, we should play some extra 'sand' impacts.
-        if (terrain)
-        {
-            if (strenght == SoundStrength.Hard)
-                FMODUnity.RuntimeManager.PlayOneShot(_soundHandler._softSandImpact, gameObject.transform.position);
-            else
-                // Currently just use softSand because I couldn't find hardsand sample.
-                FMODUnity.RuntimeManager.PlayOneShot(_soundHandler._softSandImpact, gameObject.transform.position);
-        }
+        // Depending the volume on the magnitude
+        volume = magnitude / _soundHandler._velocityDivider;
+        volume = volume * (size.normalized.x + size.normalized.y);
+
+        // Clamp to make sure we're not making it too loud
+        volume = Mathf.Clamp01(volume);
+
+        // If volume is barely audable, return.
+        if (volume < _soundHandler._minVelocity)
+            return;
+
+        // Debugging
+        if (_debug)
+            Debug.Log("Playing " + _soundHandler.getEvent(strenght, surface) + " with volume:" + volume);
+
+        // Create the FMOD instance
+        FMOD.Studio.EventInstance soundInstance = RuntimeManager.CreateInstance(_soundHandler.getEvent(strenght, surface));
+        soundInstance.setVolume(volume);
+        soundInstance.set3DAttributes((RuntimeUtils.To3DAttributes(gameObject.transform.position)));
+
+        // Start sound
+        soundInstance.start();
+        soundInstance.release();
+
+        //if(terrain)
+
     }
 
     private string getEvent(SoundStrength strenght, SurfaceTypes surface)

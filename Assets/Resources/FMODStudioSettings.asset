@@ -19,23 +19,25 @@ MonoBehaviour:
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
-  TargetAssetPath: 
+  TargetAssetPath: Assets\Audio\FMOD Project\ProjectExposure\Assets\
   SpeakerModeSettings:
   - Platform: 2
     Value: 3
+  - Platform: 1
+    Value: 7
   SampleRateSettings:
   - Platform: 2
     Value: 0
   LiveUpdateSettings:
   - Platform: 1
-    Value: 1
+    Value: 0
   - Platform: 2
     Value: 0
   OverlaySettings:
   - Platform: 1
-    Value: 0
+    Value: 1
   - Platform: 2
-    Value: 0
+    Value: 1
   LoggingSettings:
   - Platform: 1
     Value: 1
@@ -43,6 +45,8 @@ MonoBehaviour:
     Value: 0
   BankDirectorySettings:
   - Platform: 2
+    Value: Desktop
+  - Platform: 1
     Value: Desktop
   VirtualChannelSettings:
   - Platform: 1
