@@ -40,9 +40,6 @@ public class SceneTransition : MonoBehaviour {
 
     public void EnableTransition() {
         //go to next scene
-        if (SceneManager.GetActiveScene().buildIndex == 0) ScoreTracker.CompletedLevel1 = true;
-        else ScoreTracker.CompletedLevel2 = true;
-
         if(!debug) _nextScene.allowSceneActivation = true;
     }
 

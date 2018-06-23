@@ -10,8 +10,9 @@ public class ObjectiveEditor : Editor {
     //default props
     SerializedProperty objectiveTypeProp;
     SerializedProperty objectiveTaskProp;
-    SerializedProperty animationTriggerProp;
     SerializedProperty pointerPrefabProp;
+    SerializedProperty instructionAnimationTriggerProp;
+    SerializedProperty reinforcementAnimationTriggerProp;
     SerializedProperty instructionClipProp;
     SerializedProperty reinforcementClipProp;
     SerializedProperty reinforcementIntervalProp;
@@ -24,14 +25,16 @@ public class ObjectiveEditor : Editor {
     SerializedProperty powerGridProp;
     SerializedProperty turbineButtonProp;
     SerializedProperty tutorialAreaProp;
+    SerializedProperty turbinePiecesProp;
 
     private CompanionObjective _objective;
 
     public void OnEnable() {
         objectiveTypeProp = serializedObject.FindProperty("objectiveType");
         objectiveTaskProp = serializedObject.FindProperty("objectiveTask");
-        animationTriggerProp = serializedObject.FindProperty("animationTrigger");
         pointerPrefabProp = serializedObject.FindProperty("pointerPrefab");
+        instructionAnimationTriggerProp = serializedObject.FindProperty("instructionAnimationTrigger");
+        reinforcementAnimationTriggerProp = serializedObject.FindProperty("reinforcementAnimationTrigger");
         instructionClipProp = serializedObject.FindProperty("instructionClip");
         reinforcementClipProp = serializedObject.FindProperty("reinforcementClip");
         reinforcementIntervalProp = serializedObject.FindProperty("reinforcementInterval");
@@ -43,6 +46,7 @@ public class ObjectiveEditor : Editor {
         powerGridProp = serializedObject.FindProperty("powerGrid");
         turbineButtonProp = serializedObject.FindProperty("turbineButton");
         tutorialAreaProp = serializedObject.FindProperty("tutorialArea");
+        turbinePiecesProp = serializedObject.FindProperty("turbinePieces");
 
         _objective = (CompanionObjective)target;
     }
@@ -96,6 +100,12 @@ public class ObjectiveEditor : Editor {
                         break;
 
                     case ObjectiveTask.Assemble:
+                        //array
+                        EditorGUILayout.PropertyField(turbinePiecesProp, new GUIContent("Turbine Piece Positions"));
+
+                        for (int i = 0; i < turbinePiecesProp.arraySize; i++) {
+                            EditorGUILayout.PropertyField(turbinePiecesProp.GetArrayElementAtIndex(i), new GUIContent("Piece Pos " + (i + 1)));
+                        }
 
                         break;
 
@@ -118,14 +128,14 @@ public class ObjectiveEditor : Editor {
                 break;
         }
 
-        EditorGUILayout.PropertyField(animationTriggerProp, new GUIContent("Animation Trigger"));
-
         if(task != ObjectiveTask.Tutorial) {
             EditorGUILayout.PropertyField(pointerPrefabProp, new GUIContent("Pointer Prefab"));
         }
 
         if(task != ObjectiveTask.Place) {
             //default properties
+            EditorGUILayout.PropertyField(instructionAnimationTriggerProp, new GUIContent("Instuction Animation Trigger"));
+            EditorGUILayout.PropertyField(reinforcementAnimationTriggerProp, new GUIContent("Reinforcement Animation Trigger"));
             EditorGUILayout.PropertyField(instructionClipProp, new GUIContent("Instruction Clip"));
             EditorGUILayout.PropertyField(reinforcementClipProp, new GUIContent("Reinforcement Clip"));
             EditorGUILayout.PropertyField(reinforcementIntervalProp, new GUIContent("Reinforcement Interval"));

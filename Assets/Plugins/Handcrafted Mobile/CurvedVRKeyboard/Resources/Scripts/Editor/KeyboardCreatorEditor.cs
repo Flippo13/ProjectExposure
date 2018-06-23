@@ -63,7 +63,7 @@ namespace CurvedVRKeyboard {
 
         public override void OnInspectorGUI () {
             keyboardCreator = target as KeyboardCreator;
-            keyboardCreator.checkErrors();
+            //keyboardCreator.checkErrors();
             errorReporter = ErrorReporter.Instance;
 
             if(errorReporter.currentStatus == ErrorReporter.Status.None || !Application.isPlaying) {// (Playing and was static at start) or always when not playing

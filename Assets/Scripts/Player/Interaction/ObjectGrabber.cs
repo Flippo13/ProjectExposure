@@ -103,6 +103,10 @@ public class ObjectGrabber : OVRGrabber {
         return _grabbing;
     }
 
+    public bool IsHoldingObject() {
+        return _grabbing && m_grabbedObj != null;
+    }
+
     public void RemoveGrabCandidate(Transform grabbableTransform) {
         OVRGrabbable grabbable = grabbableTransform.GetComponent<OVRGrabbable>();
 

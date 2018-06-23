@@ -9,8 +9,9 @@ public class CompanionObjective : MonoBehaviour {
     //default information
     public ObjectiveType objectiveType;
     public ObjectiveTask objectiveTask;
-    public string animationTrigger;
     public GameObject pointerPrefab;
+    public string instructionAnimationTrigger;
+    public string reinforcementAnimationTrigger;
 
     [EventRef]
     public string instructionClip;
@@ -28,6 +29,7 @@ public class CompanionObjective : MonoBehaviour {
     public PowerGrid powerGrid;
     public TurbineButtonActivate turbineButton;
     public TutorialArea tutorialArea;
+    public TurbinePiecePosition[] turbinePieces;
 
     //states
     private ObjectiveStatus _status;
@@ -157,5 +159,16 @@ public class CompanionObjective : MonoBehaviour {
 
     public bool ConsoleButtonPressed() {
         return _allowButtonPress && turbineButton.Active;
+    }
+
+    public bool AssembledTurbine() {
+        bool completed = true; //need to be true initially
+
+        for (int i = 0; i < turbinePieces.Length; i++) {
+            //replace when felix pushed his changes
+            completed = completed && turbinePieces[i].Conntected;
+        }
+
+        return completed;
     }
 }

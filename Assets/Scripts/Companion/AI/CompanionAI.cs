@@ -16,6 +16,7 @@ public class CompanionAI : MonoBehaviour {
     public float stayDuration;
     public float idleInterval;
 
+    public bool moveInFrontOfPlayer;
     public bool debug;
 
     private CompanionState _aiState;
@@ -58,6 +59,19 @@ public class CompanionAI : MonoBehaviour {
     public void Update() {
         UpdateTracker();
         UpdateState();
+    }
+
+    public void TutorialCall() {
+        Debug.Log("Tutorial call invoked");
+
+        //call the companion
+        if (CheckForVacuumGrab()) {
+            //get the vacuum if the vacuum is lying around
+            _wasCalled = true;
+            SetState(CompanionState.GettingVacuum);
+        } else {
+            SetState(CompanionState.Returning);
+        }
     }
 
     private void SetState(CompanionState newState) {
@@ -111,24 +125,38 @@ public class CompanionAI : MonoBehaviour {
 
     //returns true, if an objective was found
     private bool CheckForObjectives() {
-        if (_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) return false; 
+        if (_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) return false; //an objective is already active
 
-        CompanionObjective mainObjective = _tracker.GetNextMainObjective();
+        if(_tracker.GetCurrentObjective() != null && !_tracker.GetCurrentObjective().IsCompleted()) { //decided for an objective to follow already but it wasnt completed (testing)
+            //set objective isnt in range
+            if (_tracker.GetObjectiveDistance(_tracker.GetCurrentObjective()) > objectiveScanRadius) return false;
+
+            //set objective is in range, so follow it
+            if(_tracker.GetCurrentObjective().objectiveType == ObjectiveType.Main) {
+                SetState(CompanionState.Traveling);
+            } else {
+                SetState(CompanionState.Roaming);
+            }
+
+            return true;
+        }
+
+        //looking for an entirely new objective
+        CompanionObjective mainObjective = _tracker.GetClostestMainObjective();
         CompanionObjective sideObjective = _tracker.GetClosestSideObjective();
 
         if (mainObjective != null && sideObjective != null) {   //main and side remaining
             float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
             float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
 
-            float closest = Mathf.Min(mainDistance, sideDistance);
-
-            if (closest == mainDistance && mainDistance < objectiveScanRadius) {
+            //prioritize main objective over side objective when both are in range
+            if (mainDistance < objectiveScanRadius) {
                 //if it is closer than the side objective and in scan radius
                 _tracker.SetCurrentObjective(mainObjective);
                 SetState(CompanionState.Traveling);
 
                 return true;
-            } else if (closest == sideDistance && sideDistance < objectiveScanRadius) {
+            } else if (sideDistance < objectiveScanRadius) {
                 //if it is closer than the main objective and in scan radius
                 _tracker.SetCurrentObjective(sideObjective);
                 SetState(CompanionState.Roaming);
@@ -206,8 +234,11 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Instructing:
                 _audio.StopAudioSource(AudioSourceType.Voice);
-                if (_audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice)) StartCoroutine(_audio.PlayAudioSourceWithHaptic(AudioSourceType.Voice));
-                _animation.SetAnimationTrigger(_tracker.GetCurrentObjective().animationTrigger);
+
+                if (_audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice)) {
+                    StartCoroutine(_audio.PlayAudioSourceWithHaptic(AudioSourceType.Voice));
+                    _animation.SetAnimationTrigger(_tracker.GetCurrentObjective().instructionAnimationTrigger);
+                }
 
                 break;
 
@@ -217,6 +248,7 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.HandingVacuum:
+                _timer = 0f;
                 _animation.SetAnimationTrigger("hand_over_vacuum_hand"); //start handing over animation
 
                 break;
@@ -313,8 +345,10 @@ public class CompanionAI : MonoBehaviour {
                     //move to the player without other priorities
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
+                    Vector3 frontDestination = companionDestination.transform.position + Camera.main.transform.parent.forward.normalized * interactionRadius;
 
-                    _navigator.SetDestination(destination);
+                    if(moveInFrontOfPlayer) _navigator.SetDestination(frontDestination);
+                    else _navigator.SetDestination(destination);
                 }
 
                 //close enough to the player
@@ -368,10 +402,12 @@ public class CompanionAI : MonoBehaviour {
                     //wait and reinforce the player for objective
                     _timer = 0f;
                     _audio.StopAudioSource(AudioSourceType.Voice);
-                    if(_audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice)) StartCoroutine(_audio.PlayAudioSourceWithHaptic(AudioSourceType.Voice));
-                }
 
-                if (CheckForIdleAnimation()) {
+                    if (_audio.SetClip(_tracker.GetCurrentObjective().reinforcementClip, AudioSourceType.Voice)) {
+                        StartCoroutine(_audio.PlayAudioSourceWithHaptic(AudioSourceType.Voice));
+                        _animation.SetAnimationTrigger(_tracker.GetCurrentObjective().reinforcementAnimationTrigger);
+                    }
+                } else if (CheckForIdleAnimation()) {
                     _animation.SetRandomIdle(); //play idle animation
                     _idleTimer = 0f;
                 }
@@ -432,7 +468,12 @@ public class CompanionAI : MonoBehaviour {
                     _animation.SetAnimationTrigger("hand_over_vacuum_hover");
                 } else if(!grabScanner.IsReachingForVacuum()) {
                     //put vacuum back
-                    _animation.SetAnimationTrigger("hand_over_vacuum_back");
+                    if(_timer >= 1.5f) _animation.SetAnimationTrigger("hand_over_vacuum_back");
+
+                    _timer = _timer + Time.deltaTime;
+                } else if(grabScanner.IsReachingForVacuum()) {
+                    //reset the timer when player is reaching out
+                    _timer = 0f;
                 }
 
                 break;

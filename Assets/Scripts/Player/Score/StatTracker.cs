@@ -13,7 +13,7 @@ public struct Entry {
     public string Time;
     public string Playtime;
     public string Score;
-    public string CompletedLevels;
+    public string CompletedTurbines;
     public string Feedback1;
     public string Feedback2;
 }
@@ -23,12 +23,12 @@ public class StatTracker : MonoBehaviour {
     FORMAT:
      
     Yearly Leaderboard (max. 50, display 10+ records) - Filename "TurbineTurmoil-Yearly-yyyy.csv":
-    Name, Age, Date, Time, Playtime (in seconds), Score, Completed Levels, Feedback 1, Feedback 2
+    Name, Age, Date, Time, Playtime (in seconds), Score, Completed Turbines, Feedback 1, Feedback 2
     Nico, 12, 17.06.2018, 20:05:12, 600, 1234, 1, 3, 3
     ...
 
     Daily Leaderboard (max. 500, display 5+ records) - Filename "TurbineTurmoil-Daily-dd-mm-yyyy.csv":
-    Name, Age, Date, Time, Playtime (in seconds), Score, Completed Levels, Feedback 1, Feedback 2
+    Name, Age, Date, Time, Playtime (in seconds), Score, Completed Turbines, Feedback 1, Feedback 2
     Nico, 12, 17.06.2018, 20:05:12, 600, 1234, 1, 3, 3
     ...
      */
@@ -53,6 +53,11 @@ public class StatTracker : MonoBehaviour {
     private string _timestamp;
 
     public void Awake() {
+        //check if stats folder exists and create a new one if it doesnt
+        if(!Directory.Exists("Stats/")) {
+            Directory.CreateDirectory("Stats/");
+        }
+
         _timestamp = GetFormattedTime();
 
         _yearlyEntries = new List<Entry>();
@@ -70,23 +75,8 @@ public class StatTracker : MonoBehaviour {
         _dailyEntries.Add(_playerStats);
     }
 
-    public void Update() {
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            DisplayLeaderboard();
-
-            //when exiting playmode (OnApplicationQuit did not work)
-            TrackData();
-
-            //write to files
-            WriteYearlyScore();
-            WriteDailyScore();
-
-            Debug.Log("Writing Data...");
-        }
-    }
-
-    private void OnDestroy() {
-        //when exiting playmode (OnApplicationQuit did not work)
+    public void OnDestroy() {
+        //when scene is unloaded (needed for restart button)
         TrackData();
 
         //write to files
@@ -94,6 +84,23 @@ public class StatTracker : MonoBehaviour {
         WriteDailyScore();
 
         Debug.Log("Writing Data...");
+    }
+
+    public void OnApplicationQuit() {
+        //when exiting playmode/application
+        TrackData();
+
+        //write to files
+        WriteYearlyScore();
+        WriteDailyScore();
+
+        Debug.Log("Writing Data...");
+    }
+
+    public void OnTriggerEnter(Collider other) {
+        if (other.tag != Tags.Player) return;
+
+        DisplayLeaderboard(); //refresh leaderboard when player is close
     }
 
     public void DisplayLeaderboard() {
@@ -132,17 +139,10 @@ public class StatTracker : MonoBehaviour {
         _playerStats.Date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
         _playerStats.Time = _timestamp;
         _playerStats.Playtime = (int)Time.time + "";
-        _playerStats.Score = (ScoreTracker.ScoreLevel1 + ScoreTracker.ScoreLevel2).ToString();
+        _playerStats.Score = ScoreTracker.Score.ToString();
+        _playerStats.CompletedTurbines = ScoreTracker.CompletedTurbines.ToString();
         _playerStats.Feedback1 = ScoreTracker.Feedback1.ToString();
         _playerStats.Feedback2 = ScoreTracker.Feedback2.ToString();
-
-        if (ScoreTracker.CompletedLevel1 && ScoreTracker.CompletedLevel2) {
-            _playerStats.CompletedLevels = "2";
-        } else if (ScoreTracker.CompletedLevel1) {
-            _playerStats.CompletedLevels = "1";
-        } else {
-            _playerStats.CompletedLevels = "0";
-        }
 
         //apply
         _yearlyEntries[_yearlyEntries.Count - 1] = _playerStats;
@@ -170,7 +170,7 @@ public class StatTracker : MonoBehaviour {
     private void WriteYearlyScore() {
         _writer = new StreamWriter(YEARLY); //creates new one automatically
 
-        string line = "Name,Age,Date,Time,Playtime (in Seconds),Score,Completed Levels,Feedback 1,Feedback 2";
+        string line = "Name,Age,Date,Time,Playtime (in Seconds),Score,Completed Turbines,Feedback 1,Feedback 2";
         _writer.WriteLine(line);
 
         _yearlyEntries = _yearlyEntries.OrderByDescending(o => o.Score).ToList(); //sort by score
@@ -180,7 +180,7 @@ public class StatTracker : MonoBehaviour {
             if (i >= _yearlyEntries.Count) break; //reached end of the entry list
 
             line = _yearlyEntries[i].Name + "," + _yearlyEntries[i].Age + "," + _yearlyEntries[i].Date + "," + _yearlyEntries[i].Time + ","
-                + _yearlyEntries[i].Playtime + "," + _yearlyEntries[i].Score + "," + _yearlyEntries[i].CompletedLevels + "," + _yearlyEntries[i].Feedback1 + ","
+                + _yearlyEntries[i].Playtime + "," + _yearlyEntries[i].Score + "," + _yearlyEntries[i].CompletedTurbines + "," + _yearlyEntries[i].Feedback1 + ","
                 + _yearlyEntries[i].Feedback2;
             _writer.WriteLine(line); //write the content
         }
@@ -191,7 +191,7 @@ public class StatTracker : MonoBehaviour {
     private void WriteDailyScore() {
         _writer = new StreamWriter(DAILY); //creates new one automatically
 
-        string line = "Name,Age,Date,Time,Playtime (in Seconds),Score,Completed Levels,Feedback 1,Feedback 2";
+        string line = "Name,Age,Date,Time,Playtime (in Seconds),Score,Completed Turbines,Feedback 1,Feedback 2";
         _writer.WriteLine(line);
 
         _dailyEntries = _dailyEntries.OrderByDescending(o => o.Score).ToList(); //sort by score
@@ -201,7 +201,7 @@ public class StatTracker : MonoBehaviour {
             if (i >= _dailyEntries.Count) break; //reached end of the entry list
 
             line = _dailyEntries[i].Name + "," + _dailyEntries[i].Age + "," + _dailyEntries[i].Date + "," + _dailyEntries[i].Time + ","
-                + _dailyEntries[i].Playtime + "," + _dailyEntries[i].Score + "," + _dailyEntries[i].CompletedLevels + "," + _dailyEntries[i].Feedback1 + "," 
+                + _dailyEntries[i].Playtime + "," + _dailyEntries[i].Score + "," + _dailyEntries[i].CompletedTurbines + "," + _dailyEntries[i].Feedback1 + "," 
                 + _dailyEntries[i].Feedback2;
             _writer.WriteLine(line); //write the content
         }
@@ -245,7 +245,7 @@ public class StatTracker : MonoBehaviour {
             newEntry.Time = content[3];
             newEntry.Playtime = content[4];
             newEntry.Score = content[5];
-            newEntry.CompletedLevels = content[6];
+            newEntry.CompletedTurbines = content[6];
             newEntry.Feedback1 = content[7];
             newEntry.Feedback2 = content[8];
 
@@ -293,7 +293,7 @@ public class StatTracker : MonoBehaviour {
             newEntry.Time = content[3];
             newEntry.Playtime = content[4];
             newEntry.Score = content[5];
-            newEntry.CompletedLevels = content[6];
+            newEntry.CompletedTurbines = content[6];
             newEntry.Feedback1 = content[7];
             newEntry.Feedback2 = content[8];
 

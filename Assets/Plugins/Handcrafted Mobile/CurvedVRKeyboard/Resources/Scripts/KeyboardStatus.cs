@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace CurvedVRKeyboard {
 
@@ -25,7 +25,11 @@ namespace CurvedVRKeyboard {
         private bool isLowercase = true;
         private const char BLANKSPACE = ' ';
         private const string TEXT = "text";
-        private Component textComponent;
+        private Text textComponent;
+
+        public void Awake() {
+            textComponent = targetGameObject.GetComponent<Text>();
+        }
 
 
         /// <summary>
@@ -68,24 +72,22 @@ namespace CurvedVRKeyboard {
         private void LowerUpperKeys () {
             KeyLetterEnum ToDisplay = isLowercase ? KeyLetterEnum.UpperCase : KeyLetterEnum.LowerCase;
             isLowercase = !isLowercase;
-            for(int i = 0;i < keys.Length;i++) {
+            for(int i = 0;i < keys.Length - 2;i++) {
                 keys[i].SetKeyText(ToDisplay);
             }
         }
 
         private void BackspaceKey () {
             if(output.Length >= 1) {
-                textComponent = targetGameObject.GetComponent(typeHolder.GetType());
-                textComponent.GetType().GetProperty(TEXT).SetValue(textComponent, output.Remove(output.Length - 1, 1), null);
-                output = output.Remove(output.Length - 1, 1);
+                textComponent.text = textComponent.text.Remove(output.Length - 1, 1);
+                output = textComponent.text;
             }
         }
 
         private void TypeKey ( char key ) {
             if(output.Length < maxOutputLength) {
-                textComponent = targetGameObject.GetComponent(typeHolder.GetType());
-                textComponent.GetType().GetProperty(TEXT).SetValue(textComponent, output + key.ToString(),null);
-                output = output + key.ToString();
+                textComponent.text = textComponent.text + key.ToString();
+                output = textComponent.text;
             }
                 
         }

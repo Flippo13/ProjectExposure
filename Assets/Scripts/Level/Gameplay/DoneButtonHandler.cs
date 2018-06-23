@@ -10,6 +10,9 @@ public class DoneButtonHandler : MonoBehaviour {
     public Text ageCaption;
     public Text inputField;
 
+    public GameObject nameLayout;
+    public GameObject ageLayout;
+
     public TutorialArea tutorialArea;
 
     private int _action;
@@ -21,11 +24,14 @@ public class DoneButtonHandler : MonoBehaviour {
         nameCaption.enabled = true;
         ageCaption.enabled = false;
 
+        nameLayout.SetActive(true);
+        ageLayout.SetActive(false);
+
         _started = false;
     }
 
     public void OnTriggerEnter(Collider other) {
-        if (other.tag != Tags.Hand || _started) return;
+        if (other.tag != Tags.Hand || _started || inputField.text == "") return;
 
         if(_action == 0) {
             //save name
@@ -37,6 +43,8 @@ public class DoneButtonHandler : MonoBehaviour {
             ageCaption.enabled = true;
 
             //change keyboard layout
+            nameLayout.SetActive(false);
+            ageLayout.SetActive(true);
         } else {
             //clear screen
             inputField.text = "";
@@ -50,6 +58,10 @@ public class DoneButtonHandler : MonoBehaviour {
             divingBellAnimator.SetTrigger("LevelEnter");
 
             _started = true;
+
+            //disable keyboard
+            nameLayout.SetActive(false);
+            ageLayout.SetActive(false);
         }
 
         _action++;

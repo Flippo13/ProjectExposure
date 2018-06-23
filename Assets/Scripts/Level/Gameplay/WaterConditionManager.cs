@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PostProcessing;
-using UnityEngine.SceneManagement;
 
 public class WaterConditionManager : MonoBehaviour {
 
@@ -45,7 +44,7 @@ public class WaterConditionManager : MonoBehaviour {
         _dirtyColorGrading = dirtyWaterPP.colorGrading.settings;
         _cleanColorGrading = cleanWaterPP.colorGrading.settings;
 
-        _totalTrashCount = trashHolder.GetComponentsInChildren<Collider>().Length; //count trash
+        _totalTrashCount = trashHolder.GetComponentsInChildren<BoxCollider>().Length; //count trashm might be slightly inaccurate
 
         _prevIncrementor = 0f;
         _incrementor = 0f;
@@ -55,17 +54,14 @@ public class WaterConditionManager : MonoBehaviour {
 
     public void Update() {
         //update incrementor when sucking trash
-        if (SceneManager.GetActiveScene().buildIndex == 0) _incrementor = (float)ScoreTracker.ScoreLevel1 / (float)_totalTrashCount; //cast to float to avoid integer division
-        else _incrementor = (float)ScoreTracker.ScoreLevel2 / (float)_totalTrashCount;
-
+        _incrementor = (float)ScoreTracker.Score / (float)_totalTrashCount; //cast to float to avoid integer division
         _incrementor = Mathf.Clamp01(_incrementor); //clamp
 
-        //avoid updating it everything, just whenever it needs to be changed (might still be quite performance heavy)
+        //avoid updating it every frame, just whenever it needs to be changed (might still be quite performance heavy)
         if(_incrementor > _prevIncrementor) {
             ApplyWaterCondition();
             _prevIncrementor = _incrementor;
         }
-        
     }
 
     private void ApplyWaterCondition() {
@@ -111,7 +107,7 @@ public class WaterConditionManager : MonoBehaviour {
         _currentSkyboxTint = Color.Lerp(dirtyWaterSkyboxTint, cleanWaterSkyboxTint, _incrementor); //interpolate color based on collected trash
 
         RenderSettings.skybox.SetColor("_Tint", _currentSkyboxTint); //set the tint for the skybox
-        DynamicGI.UpdateEnvironment(); //apply settings to the skybox
+        DynamicGI.UpdateEnvironment(); //apply settings to the skybox and global illumination
     }
 
 

@@ -6,6 +6,10 @@ namespace CurvedVRKeyboard {
         private Text letter;
 
         public static bool forceInit = true;
+
+        public bool isNumpad;
+        public int setPos;
+
         private int position;
 
         //------Click-------
@@ -31,6 +35,8 @@ namespace CurvedVRKeyboard {
         private const string MAIN_TEXURE_NAME_IN_SHADER = "_MainTex";
 
         private KeyboardStatus _status;
+
+        private Image _shiftToggle;
 
         public enum KeyMaterialEnum {
             Normal, Selected, Pressed
@@ -59,6 +65,20 @@ namespace CurvedVRKeyboard {
             if(letter == null || quadFront == null) {  // Check if initialized
                 letter = gameObject.GetComponentInChildren<Text>();
                 quadFront = transform.Find(QUAD_FRONT).GetComponent<Renderer>();
+
+                if (letter.text == "low" || letter.text == "UP") {
+                    _shiftToggle = GetComponentsInChildren<Image>()[1]; //dirty af
+
+                    _shiftToggle.enabled = false;
+
+                    Position = 19;
+                    SetKeyText(KeyLetterEnum.LowerCase);
+                }
+
+                if(isNumpad) {
+                    Position = setPos;
+                    SetKeyText(KeyLetterEnum.NonLetters);
+                }
             }
         }
 
@@ -125,7 +145,18 @@ namespace CurvedVRKeyboard {
                     value = allSpecials[Position];
                     break;
             }
-            if(!letter.text.Equals(value)) {
+
+            if(value == "low") {
+                _shiftToggle.enabled = true;
+                letter.enabled = true;
+                letter.text = value;
+                letter.enabled = false;
+            } else if(value == "UP") {
+                _shiftToggle.enabled = false;
+                letter.enabled = true;
+                letter.text = value;
+                letter.enabled = false;
+            } else if(!letter.text.Equals(value)) {
                 letter.text = value;
             }
         }

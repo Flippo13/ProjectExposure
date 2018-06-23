@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TutorialWaypoint : MonoBehaviour {
 
     public GameObject pointerPrefab;
-
     public TutorialButtons tutorialButton;
 
     [FMODUnity.EventRef]
@@ -13,11 +13,12 @@ public class TutorialWaypoint : MonoBehaviour {
 
     private bool _active;
     private TutorialArea _tutorialArea;
-
     private ObjectivePointer _objectivePointer;
 
+    private UnityEvent _callEvent;
+
     public void Awake() {
-        _active = false;        
+        _active = false;
     }
 
     public void Update() {
@@ -55,8 +56,9 @@ public class TutorialWaypoint : MonoBehaviour {
                 break;
 
             case TutorialButtons.CallCompanion:
-                //call companion while still remaining in the tutorial state?
+                //call companion while still remaining in the tutorial state
                 if (OVRInput.GetDown(OVRInput.Button.One)) {
+                    _callEvent.Invoke(); //should call the companion
                     return true;
                 }
 
@@ -109,6 +111,11 @@ public class TutorialWaypoint : MonoBehaviour {
             pointerInstance.transform.position = transform.position; //put pointer on waypoint position
 
             _objectivePointer = pointerInstance.GetComponent<ObjectivePointer>();
+        }
+
+        if(tutorialButton == TutorialButtons.CallCompanion) {
+            CompanionAI ai = _tutorialArea.companionAudio.gameObject.GetComponent<CompanionAI>(); //quite dirty
+            _callEvent.AddListener(ai.TutorialCall);
         }
     }
 }

@@ -67,7 +67,7 @@ namespace CurvedVRKeyboard {
         }
 
         public void ManageKeys() {
-            checkErrors();
+            //checkErrors();
 
             if (!errorReporter.IsErrorPresent()) {
                 if (centerPointDistance == -1f) {
@@ -84,10 +84,10 @@ namespace CurvedVRKeyboard {
                     allKeys[i].Position = i;
                     allKeys[i].Init();
                 }
-                space = allKeys[spaceKeyNumber];
+                //space = allKeys[spaceKeyNumber];
                 keys = allKeys.ToArray();
             }
-            space.ManipulateSpace(this, SpaceSprite);
+            //space.ManipulateSpace(this, SpaceSprite);
         }
 
         /// <summary>

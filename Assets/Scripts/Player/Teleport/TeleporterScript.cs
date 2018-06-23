@@ -59,7 +59,7 @@ public class TeleporterScript : MonoBehaviour {
     }
 
     public void Update() {
-        if (leftHandGrabber.IsGrabbing() || _boundatyDetector.InBoundary()) {
+        if (leftHandGrabber.IsHoldingObject() || _boundatyDetector.InBoundary()) {
             //released
             _triggerPressed = false;
             _allowTeleport = false;

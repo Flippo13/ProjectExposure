@@ -4463,6 +4463,7 @@ MonoBehaviour:
   vacuumArea: {fileID: 114464006897226516}
   trashCounter: {fileID: 114015997610388584}
   _vacuumSound: event:/Companion/Effects/Vacuum
+  _addScoreSound: 
   suckSpeed: 0.2
   vacuumGrabber: {fileID: 0}
   leftHandGrabber: {fileID: 0}
@@ -4597,6 +4598,7 @@ MonoBehaviour:
   objectiveScanRadius: 30
   stayDuration: 5
   idleInterval: 10
+  moveInFrontOfPlayer: 1
   debug: 0
 --- !u!114 &114928323724228590
 MonoBehaviour:
@@ -4632,9 +4634,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 200
-  m_Height: 1800
+  m_Height: 2400
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -826.8}
+  m_Center: {x: 0, y: 0, z: -1073.52}
 --- !u!136 &136241898843354078
 CapsuleCollider:
   m_ObjectHideFlags: 1

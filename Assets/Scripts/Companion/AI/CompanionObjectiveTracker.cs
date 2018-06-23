@@ -45,22 +45,27 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         else return null;
     }
 
-    //returns the next main objective that isnt completed, returns null if no objective was found
-    public CompanionObjective GetNextMainObjective() {
-        CompanionObjective mainObjective = null;
+    //returns the closest main objective that isnt completed, returns null if no objective was found
+    public CompanionObjective GetClostestMainObjective() {
+        CompanionObjective closestObjective = null;
+        float prevMagnitude = 0f;
 
-        //get the next uncompleted main objective
-        for(int i = 0; i < _mainObjectives.Count; i++) {
-            if(!_mainObjectives[i].IsCompleted()) {
-                mainObjective = _mainObjectives[i];
-                break;
+        //using sqrMagnitude for better performance, since we are only comparing them against each other
+        for (int i = 0; i < _mainObjectives.Count; i++) {
+            if (_mainObjectives[i].IsCompleted()) continue;
+
+            float magnitude = (_mainObjectives[i].transform.position - transform.position).sqrMagnitude;
+
+            if (closestObjective == null || magnitude < prevMagnitude) {
+                closestObjective = _mainObjectives[i];
+                prevMagnitude = magnitude;
             }
         }
 
-        return mainObjective;
+        return closestObjective;
     }
 
-    //returns the closest side objective in range that isnt completed, returns null if no objective was found
+    //returns the closest side objective that isnt completed, returns null if no objective was found
     public CompanionObjective GetClosestSideObjective() {
         CompanionObjective closestObjective = null;
         float prevMagnitude = 0f;
@@ -105,7 +110,10 @@ public class CompanionObjectiveTracker : MonoBehaviour {
 
             case ObjectiveTask.Cleanup:
                 //collected enough trash
-                if (trashCount - _startTrash >= _currentObjective.trashAmount) return false;
+                if (trashCount - _startTrash >= _currentObjective.trashAmount) {
+                    ScoreTracker.CompletedTurbines++;
+                    return false;
+                }
 
                 break;
 
@@ -117,7 +125,10 @@ public class CompanionObjectiveTracker : MonoBehaviour {
 
             case ObjectiveTask.Place:
                 //player dropped turbine
-                if (_currentObjective.DroppedTurbine()) return false;
+                if (_currentObjective.DroppedTurbine()) {
+                    ScoreTracker.CompletedTurbines++;
+                    return false;
+                }
 
                 break;
 
@@ -134,6 +145,10 @@ public class CompanionObjectiveTracker : MonoBehaviour {
                 break;
 
             case ObjectiveTask.Assemble:
+                if(_currentObjective.AssembledTurbine()) { //replace with real condition
+                    ScoreTracker.CompletedTurbines++;
+                    return false;
+                }
 
                 break;
 

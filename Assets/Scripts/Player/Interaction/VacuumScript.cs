@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class VacuumScript : MonoBehaviour {
 
@@ -61,8 +60,7 @@ public class VacuumScript : MonoBehaviour {
             _trashCount++;
 
             //apply to score tracker
-            if (SceneManager.GetActiveScene().buildIndex == 0) ScoreTracker.ScoreLevel1 = _trashCount;
-            else ScoreTracker.ScoreLevel2 = _trashCount;
+            ScoreTracker.Score = _trashCount;
             // Play sound after each 
             RuntimeManager.PlayOneShot(_addScoreSound);
             trashCounter.text = "" + _trashCount;
