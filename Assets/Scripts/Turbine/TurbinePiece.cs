@@ -52,10 +52,7 @@ public class TurbinePiece : MonoBehaviour {
 
                 if (_correctXRotation && _correctYRotation && _correctZRotation)
                 {
-                    connected = true;
-                    _turbinePosTransform.GetComponent<Renderer>().material.renderQueue = 1;
-                    _turbinePosTransform.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f); 
-                    grabbed = false;
+                   
                     Connected(); 
                     Debug.Log("Can Connect");
                 }
@@ -115,6 +112,12 @@ public class TurbinePiece : MonoBehaviour {
 
     public void Connected()
     {
+        _turbinePosTransform.GetComponent<Renderer>().material.renderQueue = 1;
+        _turbinePosTransform.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        grabbed = false;
+
+        _turbinePiecePosition.Conntected = true; 
+
         Destroy(this.gameObject); 
     }
 

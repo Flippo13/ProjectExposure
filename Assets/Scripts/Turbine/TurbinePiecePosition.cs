@@ -5,8 +5,8 @@ using UnityEngine;
 public class TurbinePiecePosition : MonoBehaviour {
 
 
-    private bool _inPlacementRange; 
-
+    private bool _inPlacementRange;
+    private bool _connected; 
 	// Use this for initialization
 	void Start () {
 		
@@ -28,6 +28,12 @@ public class TurbinePiecePosition : MonoBehaviour {
         {
             _inPlacementRange = true; 
         }
+    }
+
+    public bool Conntected
+    {
+        get { return _connected;  }
+        set { _connected = value; }
     }
 
 
