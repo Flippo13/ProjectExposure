@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114732288648557074}
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   EditorEvents:
   - {fileID: 114386386173897712}
   - {fileID: 114898175957588254}
@@ -29,51 +29,51 @@ MonoBehaviour:
   - {fileID: 114751461038470364}
   - {fileID: 114422716376855756}
   - {fileID: 114750811331177350}
-  - {fileID: 114993913630250930}
   - {fileID: 114697933353220870}
   - {fileID: 114152605696296190}
   - {fileID: 114368380693521536}
-  - {fileID: 114514793357488240}
-  - {fileID: 114254107799236602}
-  - {fileID: 114454828065902194}
   - {fileID: 114461245119076614}
-  - {fileID: 114715639629016754}
-  - {fileID: 114198685847370062}
   - {fileID: 114469084493339742}
-  - {fileID: 114057685543909840}
   - {fileID: 114778012259578602}
   - {fileID: 114826497613727668}
-  - {fileID: 114766415042813292}
-  - {fileID: 114536946367729216}
-  - {fileID: 114953136592641992}
-  - {fileID: 114598558167549446}
-  - {fileID: 114184169426097780}
-  - {fileID: 114206841960814766}
-  - {fileID: 114049002931514646}
-  - {fileID: 114550512206152528}
-  - {fileID: 114949144426292634}
-  - {fileID: 114608617965819256}
-  - {fileID: 114036184799656284}
-  - {fileID: 114468065797887124}
-  - {fileID: 114806473458108726}
-  - {fileID: 114457425518879286}
-  - {fileID: 114793667503640300}
-  - {fileID: 114490757008017300}
-  - {fileID: 114431880750610946}
-  - {fileID: 114092310040303040}
-  - {fileID: 114169367929457850}
-  - {fileID: 114534927511992078}
-  - {fileID: 114943753157895330}
-  - {fileID: 114386489246071572}
-  - {fileID: 114803343104932138}
-  - {fileID: 114025282966247192}
-  - {fileID: 114218226474635396}
-  - {fileID: 114073595566065546}
-  - {fileID: 114097626047076438}
-  MasterBankRef: {fileID: 114539447493348410}
+  - {fileID: 114023515107452490}
+  - {fileID: 114482918592958870}
+  - {fileID: 114619575463066242}
+  - {fileID: 114887517913000764}
+  - {fileID: 114120389849734592}
+  - {fileID: 114092347400832118}
+  - {fileID: 114617810075082048}
+  - {fileID: 114575660831951090}
+  - {fileID: 114965822760144920}
+  - {fileID: 114849219838072382}
+  - {fileID: 114505847571121894}
+  - {fileID: 114469794093156064}
+  MasterBankRef: {fileID: 114506566884052326}
   StringsBankRef: {fileID: 114732288648557074}
-  stringsBankWriteTime: 636652977900384712
+  stringsBankWriteTime: 636645699732661250
   cacheVersion: 2
+--- !u!114 &114023515107452490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level I - Act II/Cable Attachment 1
+  guid: 01f98d5120dfdb4d9e97de0e251a4b36
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 18339
 --- !u!114 &114025282966247192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/MediumMetal/MediumMetal_soft
   guid: 7f487158704d7e4d82b131e3c54a6596
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -272,6 +272,28 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1900
+--- !u!114 &114092347400832118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level I - Act II/Turbine Arrival
+  guid: 68d32e7882350e49b54227c5023191b8
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3500
 --- !u!114 &114097626047076438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +330,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Plastic/PlasticBarrel/PlasticBarrel_soft
   guid: 64222400a34ca94fb14315752875fd25
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -316,6 +338,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 936
+--- !u!114 &114120389849734592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Gameplay/Turbine
+  guid: 4653aa5c1f97df459e265fda02ba051b
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 9276
 --- !u!114 &114120760836358398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +396,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/SolidMetal/SolidMetal_soft
   guid: 78fe23e1a5f13a4785e804deaa181d1a
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -374,7 +418,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/SolidMetal/SolidMetal_hard
   guid: a6a98ca52b59c742a9207200573864d4
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -594,7 +638,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Dust/Dust
   guid: 566d277c7927304ab8176fc49ca31165
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -616,7 +660,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/MetalBox/MetalBox_soft
   guid: 55da53469b881a4ba47b63a16843974a
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -682,7 +726,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Plastic/PlasticBarrel/PlasticBarrel_hard
   guid: a90127a236bc9145a3fcc066ad08ca16
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -704,7 +748,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/MetalBox/MetalBox_hard
   guid: 279dd4a1c762c34fba4176d61f573110
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -769,7 +813,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Plastic/PlasticBox/PlasticBox_hard
   guid: 97a5fce9e55aca45b5d7a42084457dbb
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -857,7 +901,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Plastic/PlasticBox/PlasticBox_soft
   guid: c3021dbc87ebc840a20d86a885eaf69d
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -901,7 +945,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Cardboard/Cardboard_hard
   guid: d649759ab9b8c748b3b8bb66620af141
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -909,6 +953,50 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1000
+--- !u!114 &114469794093156064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Enviroment/Effects/Bubbles
+  guid: ef91c8b940aba34cb26343e5bd484341
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1715
+--- !u!114 &114482918592958870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level II - Act I/Place Turbine
+  guid: 062dfe3269b0dc42bb3a17d231489db7
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4600
 --- !u!114 &114490757008017300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,6 +1041,47 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4776
+--- !u!114 &114505847571121894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level II - Act I/Possible Location 3
+  guid: e0c96ed78f3b364fb76a049566659f87
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6811
+--- !u!114 &114506566884052326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\VR Project\Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636645699732636175
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 2143808
+  Exists: 1
 --- !u!114 &114514793357488240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,7 +1225,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Rubber/Rubber/RubberTire_hard
   guid: 7b6b8f98fc0f0b429430679df785a52d
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1123,6 +1252,28 @@ MonoBehaviour:
   - Name: Desktop
     Value: 3642784
   Exists: 1
+--- !u!114 &114575660831951090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level II - Act I/Possible Location 1
+  guid: 9c3ef419c23aa447a005afa73a5faa2c
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6510
 --- !u!114 &114578420614981676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,7 +1288,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/SoftMetal/SoftMetal_soft
   guid: 709f8dbca2ed824bb462c12d8cc29967
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1189,6 +1340,50 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 11708
+--- !u!114 &114617810075082048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level I - Act I/Turbine Journey 1
+  guid: 8285fd15af95ec408933d20af2d5e1d2
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7500
+--- !u!114 &114619575463066242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level I - Act I/Turbine Introduction
+  guid: 1160ac37c4a2a143a02a4a73f0c30096
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7000
 --- !u!114 &114633802915375158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,7 +1398,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/MetalBarrel/MetalBarrel_soft
   guid: 4a7f1d40e5d2074391c30c1ee7397ef1
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1247,7 +1442,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Effects/Ring
   guid: a36f03222fe7e340afd8cf8c85364bb0
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1289,11 +1484,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Audio\FMOD Project\ProjectExposure\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636652977900384712
+  lastModified: 636645699732661250
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 3662
+    Value: 2650
   Exists: 1
 --- !u!114 &114750811331177350
 MonoBehaviour:
@@ -1309,7 +1504,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/MediumMetal/MediumMetal_hard
   guid: 99111a094d5a6545b8f3f50396503144
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1331,7 +1526,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/SoftMetal/SoftMetal_hard
   guid: 823c2a7dfcd16d40b1d0a63b3350f310
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1375,7 +1570,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Cardboard/Cardboard_soft
   guid: fbe98be3dc7d5e42aa87fe54b71808cf
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1461,16 +1656,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: event:/Companion/Effects/Rotors
-  guid: feeb4fbf073a254bbdf5ea684b80668c
+  guid: 5eacc9d2d7377d45bcb409361cfc0a4d
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
+  Is3D: 1
+  IsOneShot: 1
   Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 2207
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &114828611858183068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,6 +1710,50 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5874
+--- !u!114 &114849219838072382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level I - Act I/Welcome
+  guid: b69faa401323664fb385666904a18384
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 38000
+--- !u!114 &114887517913000764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level I - Act II/Turn on Turbine 1
+  guid: 1815baefb592c743a9729e15837abe2b
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7600
 --- !u!114 &114890244394165650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1529,7 +1768,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Metal/MetalBarrel/MetalBarrel_hard
   guid: 42a893e3417d394a96dc3b008d6663bb
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1573,7 +1812,7 @@ MonoBehaviour:
   Path: event:/Enviroment/Impacts/Rubber/Rubber/RubberTire_soft
   guid: 30382c18d5f0c649a640cab6e4967365
   Banks:
-  - {fileID: 114539447493348410}
+  - {fileID: 114506566884052326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1713,6 +1952,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 7789
+--- !u!114 &114965822760144920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Companion/Voicelines/Level II - Act I/Level Introduction
+  guid: a0723c4bdfe4e746b5ce0b5a298de39f
+  Banks:
+  - {fileID: 114506566884052326}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6700
 --- !u!114 &114993913630250930
 MonoBehaviour:
   m_ObjectHideFlags: 0
