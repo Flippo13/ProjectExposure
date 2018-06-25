@@ -41,12 +41,17 @@ public class FlockingFish : MonoBehaviour {
 	void Update () {
 
         transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
+        _anim.speed = speed * 1.2f;
 
-        if (Vector3.Distance(transform.position, _fishTank.fishTank.bounds.center) >= _fishTank.fishTank.size.x/2
-           || Vector3.Distance(transform.position, _fishTank.fishTank.bounds.center) >= _fishTank.fishTank.size.y/2
-           || Vector3.Distance(transform.position, _fishTank.fishTank.bounds.center) >= _fishTank.fishTank.size.z/2)
+        if (transform.localPosition.x > _fishTank.fishTank.bounds.size.x
+            || transform.localPosition.y > _fishTank.fishTank.bounds.size.y
+            || transform.localPosition.z > _fishTank.fishTank.bounds.size.z )
         {
+            Debug.Log("X: " + Vector3.Distance(transform.position, _fishTank.fishTank.bounds.center));
+            Debug.Log("Y: " + Vector3.Distance(transform.position, _fishTank.fishTank.bounds.center));
+            Debug.Log("Z: " + Vector3.Distance(transform.position, _fishTank.fishTank.bounds.center));
             _goBack = true;
+            Debug.Log("Going back");
         }
         else
         {
@@ -58,7 +63,7 @@ public class FlockingFish : MonoBehaviour {
         {
             direction = _fishTank.fishTank.bounds.center - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
-            speed = Random.Range(0.4f, maxSpeed);
+            speed = Random.Range(0.3f, maxSpeed);
         }
 
         if (_fishTank.playerEntered && _fishTank.player != null)
@@ -97,72 +102,21 @@ public class FlockingFish : MonoBehaviour {
 
     private void CalculateDirection()
     {
-        if (Random.Range(0.0f, 7.0f) < 1 && !_goBack && !_swimmingFromPlayer)
+        if (Random.Range(0.0f, 6.0f) < 1 && !_goBack && !_swimmingFromPlayer)
         {
              Collider[] neighbours = Physics.OverlapSphere(transform.position, cohesionRange, fishLayer);
-            //Debug.Log("Neighbours: " + neighbours.Length); 
+            Debug.Log("Neighbours: " + neighbours.Length); 
             _calculatedCohesion = CalculateCohesion(neighbours) + (_fishTank.goal - transform.position);
             _calculatedSeperation = CalculateSeperation(neighbours);
-           // Debug.Log("cohesion after: " + _calculatedCohesion);
+            Debug.Log("cohesion after: " + _calculatedCohesion);
             //Debug.Log("seperation: " + _calculatedSeperation);
 
             direction = (_calculatedCohesion + _calculatedSeperation) - transform.position;
+            speed = Random.Range(0.3f, maxSpeed);
             //Debug.Log("direction: " + direction);
         }
     }
 
-
-        /*
-    private Vector3 CalculateCohesionV2()
-    {
-        Vector3 cohesion = Vector3.zero;
-        int neighbourCount = 0;
-        float gSpeed = 0;
-
-        GameObject[] neighbours = _fishTank.arrayOfFishies;
-
-        foreach (GameObject neighbour in neighbours)
-        {
-            if (neighbour != this.gameObject)
-            {
-                if (Vector3.Distance(neighbour.transform.position, transform.position) < cohesionRange)
-                {
-                    cohesion += neighbour.transform.position;
-                    neighbourCount++;
-                    gSpeed += neighbour.GetComponent<FlockingFish>().speed;
-                }
-            }
-        }
-
-        cohesion /= neighbourCount;
-        speed = gSpeed / neighbourCount;
-
-        return cohesion;
-    }
-    
-    private Vector3 CalculateSeperationV2()
-    {
-        Vector3 seperation = Vector3.zero;
-        float neighbourCount = 0;
-        GameObject[] neighbours = _fishTank.arrayOfFishies;
-
-        foreach (GameObject neighbour in neighbours)
-        {
-            if (neighbour != this.gameObject)
-            {
-                if (Vector3.Distance(neighbour.transform.position, transform.position) < seperationRange)
-                {
-                    seperation += neighbour.transform.position;
-                    neighbourCount++;
-                }
-            }
-        }
-
-        seperation /= neighbourCount;
-
-        return seperation;
-    }
-    */
 
     private Vector3 CalculateCohesion(Collider[] neighbours)
     {

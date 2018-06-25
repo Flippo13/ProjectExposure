@@ -25,7 +25,10 @@ public class WaterConditionManager : MonoBehaviour {
     public Color cleanWaterSkyboxTint;
 
     [Header("Dust Particles")]
-    public ParticleSystem[] dustParticles; 
+    public ParticleSystem[] dustParticles;
+
+    [Header("Disabled Fish Tankes")]
+    public FlockingGlobal[] fishTankes; 
 
     private ColorGradingModel.Settings _dirtyColorGrading;
     private ColorGradingModel.Settings _cleanColorGrading;
@@ -68,7 +71,8 @@ public class WaterConditionManager : MonoBehaviour {
         InterpolatePP();
         InterpolateFogColor();
         InterpolateSkyboyTint();
-        InterpolateDustParticles(); 
+        InterpolateDustParticles();
+        InterpolateFish();
     }
 
     private void InterpolatePP() {
@@ -117,6 +121,42 @@ public class WaterConditionManager : MonoBehaviour {
         {
             var main = dustParticles[i].main; 
             main.maxParticles = (int)Mathf.Lerp(dustParticles[i].main.maxParticles, 0, _incrementor); //needs to return as an interger value
+        }
+    }
+
+    private void InterpolateFish()
+    {
+        //These are the strangest for loops I have ever written
+        if (_incrementor >= 0.25f)
+        {
+            for (int i = 0; i < Mathf.RoundToInt(fishTankes.Length * 0.25f); i++)
+            {
+                fishTankes[i].enabled = true; 
+            }
+        }
+
+        if (_incrementor >= 0.5f)
+        {
+            for (int i = Mathf.RoundToInt(fishTankes.Length * 0.25f); i < fishTankes.Length * 0.5f; i++)
+            {
+                fishTankes[i].enabled = true; 
+            }
+        }
+
+        if (_incrementor >= 0.75f)
+        {
+            for (int i = Mathf.RoundToInt(fishTankes.Length * 0.5f); i < fishTankes.Length * 0.75f; i++)
+            {
+                fishTankes[i].enabled = true;
+            }
+        }
+
+        if (_incrementor >= 1)
+        {
+            for (int i = Mathf.RoundToInt(fishTankes.Length * 0.75f); i < fishTankes.Length; i++)
+            {
+                fishTankes[i].enabled = true;
+            }
         }
     }
 }
