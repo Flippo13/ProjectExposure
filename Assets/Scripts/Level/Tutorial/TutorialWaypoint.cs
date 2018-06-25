@@ -17,9 +17,11 @@ public class TutorialWaypoint : MonoBehaviour {
     private ObjectivePointer _objectivePointer;
 
     private UnityEvent _callEvent;
+    private bool _teleported;
 
     public void Awake() {
         _active = false;
+        _teleported = false;
 
         if(tutorialButton == TutorialButtons.CallCompanion) {
             _callEvent = new UnityEvent();
@@ -40,10 +42,10 @@ public class TutorialWaypoint : MonoBehaviour {
         switch(tutorialButton) {
             case TutorialButtons.Teleport:
                 if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > 0.5f) {
-                    return true;
+                    _teleported = true;
                 }
-                
-                break;
+
+                return _teleported;
 
             case TutorialButtons.RightGrab:
                 if (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > 0.5f && _tutorialArea.vacuum.vacuumGrabber.IsGrabbing() && _tutorialArea.vacuum.vacuumGrabber.InVacuumMode()) {

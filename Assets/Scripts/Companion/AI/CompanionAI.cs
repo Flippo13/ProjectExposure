@@ -15,7 +15,6 @@ public class CompanionAI : MonoBehaviour {
     public float stayDuration;
     public float idleInterval;
 
-    public bool moveInFrontOfPlayer;
     public bool debug;
 
     private CompanionState _aiState;
@@ -333,14 +332,12 @@ public class CompanionAI : MonoBehaviour {
                     //move to the player without other priorities
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
-                    Vector3 frontDestination = companionDestination.transform.position + Camera.main.transform.forward.normalized * interactionRadius;
 
-                    if (moveInFrontOfPlayer) _navigator.SetDestination(frontDestination);
-                    else _navigator.SetDestination(destination);
+                    _navigator.SetDestination(destination);
+                } else {
+                    //close enough to the player
+                    SetState(CompanionState.HandingVacuum);
                 }
-
-                //close enough to the player
-                if (_navigator.ReachedDestinaton()) SetState(CompanionState.HandingVacuum);
 
                 break;
 

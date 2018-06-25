@@ -25,7 +25,6 @@ public class VacuumScript : MonoBehaviour {
     public float deformationStep;
     public float scaleFactor;
 
-
     public GameObject _particleParent;
 
     private int _trashCount;
@@ -34,6 +33,7 @@ public class VacuumScript : MonoBehaviour {
     private Rigidbody _rigidbody;
     private Collider _collider;
     private VacuumState _state = VacuumState.CompanionBack;
+    private Renderer _renderer;
 
     private FMOD.Studio.EventInstance _vacuumInstance;
 
@@ -51,6 +51,8 @@ public class VacuumScript : MonoBehaviour {
         _rigidbody.useGravity = true;
 
         _vacuumInstance = RuntimeManager.CreateInstance(_vacuumSound);
+
+        _renderer = GetComponent<Renderer>();
     }
 
     public void OnTriggerEnter(Collider other) {
@@ -111,6 +113,8 @@ public class VacuumScript : MonoBehaviour {
                 _collider.isTrigger = true;
                 _rigidbody.isKinematic = true;
 
+                _renderer.material.SetFloat("_Outline", 3f);
+
                 break;
 
             case VacuumState.CompanionHand:
@@ -122,6 +126,8 @@ public class VacuumScript : MonoBehaviour {
                 _collider.isTrigger = true;
                 _rigidbody.isKinematic = true;
 
+                _renderer.material.SetFloat("_Outline", 3f);
+
                 break;
 
             case VacuumState.Player:
@@ -131,6 +137,8 @@ public class VacuumScript : MonoBehaviour {
                 _collider.isTrigger = true;
                 _rigidbody.isKinematic = true;
 
+                _renderer.material.SetFloat("_Outline", 0f);
+
                 break;
 
             case VacuumState.Free:
@@ -139,6 +147,8 @@ public class VacuumScript : MonoBehaviour {
 
                 _collider.isTrigger = false;
                 _rigidbody.isKinematic = false;
+
+                _renderer.material.SetFloat("_Outline", 3f);
 
                 break;
 
