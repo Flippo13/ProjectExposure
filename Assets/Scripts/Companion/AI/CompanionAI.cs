@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 //state machine of the robot containing its behaviour
 public class CompanionAI : MonoBehaviour {
@@ -47,13 +46,8 @@ public class CompanionAI : MonoBehaviour {
         _debug.Init();
         _debug.SetRendererStatus(debug);
 
-        if (SceneManager.GetActiveScene().buildIndex == 0) {
-            _inTutorial = true;
-            EnterState(CompanionState.Tutorial); //level 1
-        } else {
-            _inTutorial = false;
-            EnterState(CompanionState.Following);
-        }
+        _inTutorial = true;
+        EnterState(CompanionState.Tutorial);
     }
 
     public void Update() {
@@ -62,8 +56,6 @@ public class CompanionAI : MonoBehaviour {
     }
 
     public void TutorialCall() {
-        Debug.Log("Tutorial call invoked");
-
         //call the companion
         if (CheckForVacuumGrab()) {
             //get the vacuum if the vacuum is lying around
@@ -127,6 +119,7 @@ public class CompanionAI : MonoBehaviour {
     private bool CheckForObjectives() {
         if (_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) return false; //an objective is already active
 
+        /*
         if(_tracker.GetCurrentObjective() != null && !_tracker.GetCurrentObjective().IsCompleted()) { //decided for an objective to follow already but it wasnt completed (testing)
             //set objective isnt in range
             if (_tracker.GetObjectiveDistance(_tracker.GetCurrentObjective()) > objectiveScanRadius) return false;
@@ -139,7 +132,7 @@ public class CompanionAI : MonoBehaviour {
             }
 
             return true;
-        }
+        }*/
 
         //looking for an entirely new objective
         CompanionObjective mainObjective = _tracker.GetClostestMainObjective();

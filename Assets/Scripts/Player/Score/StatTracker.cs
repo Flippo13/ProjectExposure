@@ -73,17 +73,8 @@ public class StatTracker : MonoBehaviour {
         //add our tracked player
         _yearlyEntries.Add(_playerStats);
         _dailyEntries.Add(_playerStats);
-    }
 
-    public void OnDestroy() {
-        //when scene is unloaded (needed for restart button)
-        TrackData();
-
-        //write to files
-        WriteYearlyScore();
-        WriteDailyScore();
-
-        Debug.Log("Writing Data...");
+        ScoreTracker.Instance = this;
     }
 
     public void OnApplicationQuit() {
@@ -101,6 +92,17 @@ public class StatTracker : MonoBehaviour {
         if (other.tag != Tags.Player) return;
 
         DisplayLeaderboard(); //refresh leaderboard when player is close
+    }
+
+    public void SaveStats() {
+        //when scene is unloaded (needed for restart button)
+        TrackData();
+
+        //write to files
+        WriteYearlyScore();
+        WriteDailyScore();
+
+        Debug.Log("Writing Data...");
     }
 
     public void DisplayLeaderboard() {
@@ -133,12 +135,14 @@ public class StatTracker : MonoBehaviour {
     }
 
     public void TrackData() {
+        Debug.Log("Time: " + Mathf.Round(Time.time).ToString());
+
         //fill with data
         _playerStats.Name = ScoreTracker.PlayerName;
         _playerStats.Age = ScoreTracker.PlayerAge;
         _playerStats.Date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year;
         _playerStats.Time = _timestamp;
-        _playerStats.Playtime = (int)Time.time + "";
+        _playerStats.Playtime = Mathf.Round(Time.time).ToString();
         _playerStats.Score = ScoreTracker.Score.ToString();
         _playerStats.CompletedTurbines = ScoreTracker.CompletedTurbines.ToString();
         _playerStats.Feedback1 = ScoreTracker.Feedback1.ToString();

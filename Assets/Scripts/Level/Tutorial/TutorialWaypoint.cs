@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class TutorialWaypoint : MonoBehaviour {
 
     public GameObject pointerPrefab;
+    public bool forceGoingToPointer;
     public TutorialButtons tutorialButton;
 
     [FMODUnity.EventRef]
@@ -19,6 +20,10 @@ public class TutorialWaypoint : MonoBehaviour {
 
     public void Awake() {
         _active = false;
+
+        if(tutorialButton == TutorialButtons.CallCompanion) {
+            _callEvent = new UnityEvent();
+        }
     }
 
     public void Update() {
@@ -105,7 +110,7 @@ public class TutorialWaypoint : MonoBehaviour {
         //acivate objective pointer for the current waypoint if possible
         _objectivePointer = null;
 
-        if (tutorialButton != TutorialButtons.None) {
+        if (tutorialButton != TutorialButtons.None && forceGoingToPointer) {
             GameObject pointerInstance = Instantiate(pointerPrefab);
             pointerInstance.transform.parent = transform;
             pointerInstance.transform.position = transform.position; //put pointer on waypoint position

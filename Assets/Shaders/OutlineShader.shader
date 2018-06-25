@@ -2,7 +2,7 @@
 	Properties{
 		_Color("Color", Color) = (1,1,1,1)
 		_OutlineColor("Outline Color", Color) = (1,1,1,1)
-		_Outline("Outline Size", Range(0,0.1)) = 0.0
+		_Outline("Outline Size", Range(0,10)) = 0.0
 		_MainTex("Albedo map", 2D) = "white" {}
 		_MetallicSmoothness("Metallic/Smoothness", 2D) = "white" {}
 		_Smoothness("Smoothness", Range(0,1)) = 0.0

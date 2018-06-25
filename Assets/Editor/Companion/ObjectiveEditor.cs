@@ -10,7 +10,9 @@ public class ObjectiveEditor : Editor {
     //default props
     SerializedProperty objectiveTypeProp;
     SerializedProperty objectiveTaskProp;
+    SerializedProperty pointerPositionProp;
     SerializedProperty pointerPrefabProp;
+    SerializedProperty showPointerProp;
     SerializedProperty instructionAnimationTriggerProp;
     SerializedProperty reinforcementAnimationTriggerProp;
     SerializedProperty instructionClipProp;
@@ -32,7 +34,9 @@ public class ObjectiveEditor : Editor {
     public void OnEnable() {
         objectiveTypeProp = serializedObject.FindProperty("objectiveType");
         objectiveTaskProp = serializedObject.FindProperty("objectiveTask");
+        pointerPositionProp = serializedObject.FindProperty("pointerPosition");
         pointerPrefabProp = serializedObject.FindProperty("pointerPrefab");
+        showPointerProp = serializedObject.FindProperty("showPointer");
         instructionAnimationTriggerProp = serializedObject.FindProperty("instructionAnimationTrigger");
         reinforcementAnimationTriggerProp = serializedObject.FindProperty("reinforcementAnimationTrigger");
         instructionClipProp = serializedObject.FindProperty("instructionClip");
@@ -129,7 +133,9 @@ public class ObjectiveEditor : Editor {
         }
 
         if(task != ObjectiveTask.Tutorial) {
+            EditorGUILayout.PropertyField(pointerPositionProp, new GUIContent("Pointer Position"));
             EditorGUILayout.PropertyField(pointerPrefabProp, new GUIContent("Pointer Prefab"));
+            EditorGUILayout.PropertyField(showPointerProp, new GUIContent("Show Pointer"));
         }
 
         if(task != ObjectiveTask.Place) {

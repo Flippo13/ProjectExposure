@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrashPilePointer : MonoBehaviour {
 
     public GameObject pointerPrefab;
+    public Transform pointerPosition;
     public bool showPointer;
 
     private ObjectivePointer _objectivePointer;
@@ -12,7 +13,9 @@ public class TrashPilePointer : MonoBehaviour {
     public void Awake() {
         GameObject pointerInstance= Instantiate(pointerPrefab);
         pointerInstance.transform.parent = transform;
-        pointerInstance.transform.position = transform.position;
+
+        if(pointerPosition != null) pointerInstance.transform.position = pointerPosition.position;
+        else pointerInstance.transform.position = transform.position;
 
         _objectivePointer = pointerInstance.GetComponent<ObjectivePointer>();
 

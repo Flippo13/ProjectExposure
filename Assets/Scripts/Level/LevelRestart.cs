@@ -8,6 +8,7 @@ public class LevelRestart : MonoBehaviour {
     public void OnTriggerEnter(Collider other) {
         if (other.tag != Tags.Hand) return;
 
+        ScoreTracker.Instance.SaveStats(); //write stats to csv
         ResetStatics();
         ReloadLevel();
     }
@@ -23,5 +24,7 @@ public class LevelRestart : MonoBehaviour {
         ScoreTracker.Score = 0;
         ScoreTracker.Feedback1 = 0; //not answered
         ScoreTracker.Feedback2 = 0; //not answered
+
+        ScoreTracker.Instance = null; //reset instance
     }
 }
