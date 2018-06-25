@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 54366086592079034}
   m_Layer: 2
   m_Name: VacuumArea
-  m_TagString: Vacuum
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4414,11 +4414,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc9d353d977a02498e4771aa54d30ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearSpeed: 7
-  nearAcceleration: 15
+  nearSpeed: 5
+  nearAcceleration: 12
   farSpeed: 20
   farAcceleration: 50
-  switchRadius: 25
+  switchRadius: 35
 --- !u!114 &114374533646139580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4597,7 +4597,6 @@ MonoBehaviour:
   objectiveScanRadius: 30
   stayDuration: 5
   idleInterval: 10
-  moveInFrontOfPlayer: 1
   debug: 0
 --- !u!114 &114928323724228590
 MonoBehaviour:

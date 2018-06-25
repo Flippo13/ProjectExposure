@@ -48,7 +48,7 @@ public class DoneButtonHandler : MonoBehaviour {
             ageLayout.SetActive(true);
         } else {
             //clear screen and change input
-            inputField.text = "Welkom onderwater, " + ScoreTracker.PlayerName;
+            inputField.text = "Welkom onderwater, " + ScoreTracker.PlayerName + "!";
             nameCaption.enabled = false;
             ageCaption.enabled = false;
 
