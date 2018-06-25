@@ -26,7 +26,7 @@ public class CompanionObjective : MonoBehaviour {
     //task dependant information
     public int trashAmount;
     public SceneTransition sceneTransition;
-    public CheckForTrashArea[] dropdownZones = new CheckForTrashArea[3];
+    public TurbineLandingZone[] dropdownZones = new TurbineLandingZone[3];
     public Transform turbine;
     public PowerGrid powerGrid;
     public TurbineButtonActivate turbineButton;
@@ -84,7 +84,7 @@ public class CompanionObjective : MonoBehaviour {
         for(int i = 0; i < dropdownZones.Length; i++) {
 
             if(!status) {
-                dropdownZones[i].areaChosen.AddListener(PositionChosen); //adding my function as listener to check for activation
+                dropdownZones[i].areaChosenEvent.AddListener(PositionChosen); //adding my function as listener to check for activation
             }
 
             dropdownZones[i].enabled = status;
