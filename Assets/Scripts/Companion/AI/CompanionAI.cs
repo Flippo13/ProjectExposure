@@ -48,6 +48,7 @@ public class CompanionAI : MonoBehaviour {
 
         _inTutorial = true;
         EnterState(CompanionState.Tutorial);
+        InitTutorial();
     }
 
     public void Update() {
@@ -71,6 +72,15 @@ public class CompanionAI : MonoBehaviour {
         EnterState(newState);
     }
 
+    private void InitTutorial() {
+        //look for tutorial objective and activate it
+        _tracker.SetCurrentObjective(_tracker.GetTutorialObjective());
+        if (_tracker.GetCurrentObjective() != null) _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Active);
+
+        vacuum.SetVacuumState(VacuumState.Free); //unparent vacuum
+        vacuum.transform.position = _tracker.GetCurrentObjective().transform.position; //relocate vacuum gun to the tutorial objective location
+    }
+
     private bool InInterationRange() {
         Vector3 deltaVec = companionDestination.position - transform.position;
 
@@ -83,7 +93,7 @@ public class CompanionAI : MonoBehaviour {
 
     private bool CheckForVacuumHandOver() {
         //go into new state if player is reaching out for vacuum
-        if(grabScanner.IsReachingForVacuum() && vacuum.GetVacuumState() != VacuumState.Player && vacuum.GetVacuumState() != VacuumState.Free) {
+        if (grabScanner.IsReachingForVacuum() && vacuum.GetVacuumState() != VacuumState.Player && vacuum.GetVacuumState() != VacuumState.Free) {
             SetState(CompanionState.HandingVacuum);
 
             return true;
@@ -108,7 +118,7 @@ public class CompanionAI : MonoBehaviour {
             } else {
                 SetState(CompanionState.Returning);
             }
-            
+
             return true;
         }
 
@@ -118,21 +128,6 @@ public class CompanionAI : MonoBehaviour {
     //returns true, if an objective was found
     private bool CheckForObjectives() {
         if (_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) return false; //an objective is already active
-
-        /*
-        if(_tracker.GetCurrentObjective() != null && !_tracker.GetCurrentObjective().IsCompleted()) { //decided for an objective to follow already but it wasnt completed (testing)
-            //set objective isnt in range
-            if (_tracker.GetObjectiveDistance(_tracker.GetCurrentObjective()) > objectiveScanRadius) return false;
-
-            //set objective is in range, so follow it
-            if(_tracker.GetCurrentObjective().objectiveType == ObjectiveType.Main) {
-                SetState(CompanionState.Traveling);
-            } else {
-                SetState(CompanionState.Roaming);
-            }
-
-            return true;
-        }*/
 
         //looking for an entirely new objective
         CompanionObjective mainObjective = _tracker.GetClostestMainObjective();
@@ -176,7 +171,7 @@ public class CompanionAI : MonoBehaviour {
                 return true;
             }
         } else { //no objective remaining
-            if(debug) Debug.Log("No Main or Side Objectives found");
+            if (debug) Debug.Log("No Main or Side Objectives found");
         }
 
         //nothing in scan radius
@@ -194,15 +189,6 @@ public class CompanionAI : MonoBehaviour {
         if (debug) Debug.Log("Entering state " + state);
 
         switch (state) {
-            case CompanionState.Tutorial:
-                //look for tutorial objective and activate it
-                _tracker.SetCurrentObjective(_tracker.GetTutorialObjective());
-                if(_tracker.GetCurrentObjective() != null) _tracker.GetCurrentObjective().SetStatus(ObjectiveStatus.Active);
-
-                vacuum.SetVacuumState(VacuumState.Free); //unparent vacuum
-                vacuum.transform.position = _tracker.GetCurrentObjective().transform.position; //relocate vacuum gun to the tutorial objective location
-
-                break;
 
             case CompanionState.Traveling:
                 _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
@@ -246,13 +232,27 @@ public class CompanionAI : MonoBehaviour {
         }
 
         _aiState = state;
-        if(debug) _debug.ApplyState(_aiState);
+        if (debug) _debug.ApplyState(_aiState);
     }
 
     private void ExitState(CompanionState state) {
         if (debug) Debug.Log("Leaving state " + state);
 
         switch (state) {
+            case CompanionState.HandingVacuum:
+
+                VacuumState vacuumState = vacuum.GetVacuumState();
+
+                if (vacuumState == VacuumState.Player || vacuumState == VacuumState.Free) {
+                    //go back to hover idle when vacuum is grabbed or released
+                    _animation.SetAnimationTrigger("hand_over_vacuum_hover");
+                } else {
+                    //put vacuum back
+                    _animation.SetAnimationTrigger("hand_over_vacuum_back");
+                }
+
+                break;
+
             default:
                 break;
         }
@@ -335,7 +335,7 @@ public class CompanionAI : MonoBehaviour {
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
                     Vector3 frontDestination = companionDestination.transform.position + Camera.main.transform.forward.normalized * interactionRadius;
 
-                    if(moveInFrontOfPlayer) _navigator.SetDestination(frontDestination);
+                    if (moveInFrontOfPlayer) _navigator.SetDestination(frontDestination);
                     else _navigator.SetDestination(destination);
                 }
 
@@ -419,9 +419,9 @@ public class CompanionAI : MonoBehaviour {
 
                 if (deltaVecVacuum.magnitude <= 1f) {
                     vacuum.SetVacuumState(VacuumState.CompanionBack);
-                    
+
                     //return if he was called, following if not
-                    if(_wasCalled) {
+                    if (_wasCalled) {
                         SetState(CompanionState.Returning); //includes stay
                     } else {
                         SetState(CompanionState.Following);
@@ -436,20 +436,14 @@ public class CompanionAI : MonoBehaviour {
                 //check if the vacuum is grabbed or if the player didnt grab it (in animation)S
                 RotateTowardsPlayer();
 
-                if (_animation.VacuumHandDone()) {
+                if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free || _timer > 1.5f) {
                     SetState(CompanionState.Following); //go back to overall idle
-                } else if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
-                    //go back to hover idle when vacuum is grabbed or released
-                    _animation.SetAnimationTrigger("hand_over_vacuum_hover");
-                } else if(!grabScanner.IsReachingForVacuum()) {
-                    //put vacuum back
-                    if(_timer >= 1.5f) _animation.SetAnimationTrigger("hand_over_vacuum_back");
-
-                    _timer = _timer + Time.deltaTime;
-                } else if(grabScanner.IsReachingForVacuum()) {
+                } else if (grabScanner.IsReachingForVacuum()) {
                     //reset the timer when player is reaching out
                     _timer = 0f;
                 }
+
+                _timer = _timer + Time.deltaTime;
 
                 break;
 

@@ -135,8 +135,6 @@ public class StatTracker : MonoBehaviour {
     }
 
     public void TrackData() {
-        Debug.Log("Time: " + Mathf.Round(Time.time).ToString());
-
         //fill with data
         _playerStats.Name = ScoreTracker.PlayerName;
         _playerStats.Age = ScoreTracker.PlayerAge;

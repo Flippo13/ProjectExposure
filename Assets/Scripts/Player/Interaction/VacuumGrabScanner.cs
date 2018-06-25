@@ -11,13 +11,13 @@ public class VacuumGrabScanner : MonoBehaviour {
     }
 
     public void OnTriggerEnter(Collider other) {
-        if(other.tag == Tags.Hand) {
+        if(other.tag == Tags.Hand && other.GetComponent<ObjectGrabber>().isVacuumGrabber) {
             _reachesForVacuum = true;
         }
     }
 
     public void OnTriggerExit(Collider other) {
-        if(other.tag == Tags.Hand) {
+        if(other.tag == Tags.Hand && other.GetComponent<ObjectGrabber>().isVacuumGrabber) {
             _reachesForVacuum = false;
         }
     }
