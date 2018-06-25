@@ -10062,7 +10062,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveType: 0
   objectiveTask: 1
-  pointerPrefab: {fileID: 0}
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
   instructionAnimationTrigger: 
   reinforcementAnimationTrigger: 
   instructionClip: event:/Companion/Voicelines/Turbine 1/Turbine 1 Introduction
@@ -42689,7 +42690,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveType: 0
   objectiveTask: 1
-  pointerPrefab: {fileID: 0}
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
   instructionAnimationTrigger: 
   reinforcementAnimationTrigger: 
   instructionClip: event:/Companion/Voicelines/Turbine 1/Completion Turbine 1
@@ -43104,7 +43106,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4100259400169420, guid: 056bef30e01acd749a994dc39334eaad, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 345.263
+      value: 345.22
       objectReference: {fileID: 0}
     - target: {fileID: 4100259400169420, guid: 056bef30e01acd749a994dc39334eaad, type: 2}
       propertyPath: m_LocalPosition.y
@@ -43112,7 +43114,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4100259400169420, guid: 056bef30e01acd749a994dc39334eaad, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 315.96
+      value: 316.091
       objectReference: {fileID: 0}
     - target: {fileID: 4100259400169420, guid: 056bef30e01acd749a994dc39334eaad, type: 2}
       propertyPath: m_LocalRotation.x
@@ -44867,68 +44869,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4797741051549050, guid: 15dd1e916fbad154685c550282bb5313,
     type: 2}
   m_PrefabInternal: {fileID: 2019013083}
---- !u!1 &923248568
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1514774168346594, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 923248569}
-  - component: {fileID: 923248570}
-  m_Layer: 0
-  m_Name: Proceed to next Level
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &923248569
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4372203876965334, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 923248568}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 94.21, y: -9.33, z: -144.82}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1268879337}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &923248570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114265081637826660, guid: 8af40ba4cba4ea54498dbbe7413f915b,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 923248568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9114dfd35516674493bef22932988c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectiveType: 0
-  objectiveTask: 8
-  pointerPrefab: {fileID: 0}
-  instructionAnimationTrigger: 
-  reinforcementAnimationTrigger: 
-  instructionClip: 
-  reinforcementClip: 
-  reinforcementInterval: 10
-  trashAmount: 5
-  sceneTransition: {fileID: 1572702954}
-  dropdownZones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  turbine: {fileID: 0}
-  powerGrid: {fileID: 0}
-  turbineButton: {fileID: 0}
-  tutorialArea: {fileID: 0}
-  turbinePieces: []
 --- !u!1 &923688960
 GameObject:
   m_ObjectHideFlags: 0
@@ -53412,6 +53352,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 2b02de4a191a9734785bbcfd8de54b0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b02de4a191a9734785bbcfd8de54b0f, type: 3}
   m_IsPrefabParent: 0
@@ -53765,7 +53709,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveType: 0
   objectiveTask: 1
-  pointerPrefab: {fileID: 0}
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
   instructionAnimationTrigger: 
   reinforcementAnimationTrigger: 
   instructionClip: event:/Companion/Voicelines/Turbine 1/Welcome
@@ -58286,6 +58231,78 @@ Prefab:
       propertyPath: tutorialVoiceline
       value: event:/Companion/Voicelines/Tutorial/Outside 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4516008002713332, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 371.3728
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516008002713332, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -19.149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516008002713332, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -145.06172
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212021747209500, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212021747209500, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212021747209500, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395099996583754, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395099996583754, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395099996583754, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244987797928554, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244987797928554, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -8.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244987797928554, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860547178415560, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -5.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860547178415560, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -4.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860547178415560, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837389540579918, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -10.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837389540579918, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -8.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837389540579918, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f5e2deb7a3ddf4489259f53db5fb6c9, type: 2}
   m_IsPrefabParent: 0
@@ -60851,7 +60868,6 @@ Transform:
   - {fileID: 1700352403}
   - {fileID: 1724199928}
   - {fileID: 852113654}
-  - {fileID: 923248569}
   m_Father: {fileID: 1383605787}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64153,8 +64169,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1100559397104240, guid: 6738092d073071846b700215e3e13b50, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1494105129138854, guid: 6738092d073071846b700215e3e13b50, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718463493722270, guid: 6738092d073071846b700215e3e13b50, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651896178114202, guid: 6738092d073071846b700215e3e13b50,
+        type: 2}
+      propertyPath: tutorialArea
+      value: 
+      objectReference: {fileID: 1222776551}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6738092d073071846b700215e3e13b50, type: 2}
   m_IsPrefabParent: 0
@@ -75446,12 +75475,6 @@ Transform:
   m_Father: {fileID: 512411080}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -13.817, y: 90.00001, z: -90.00001}
---- !u!114 &1572702954 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114762576333067942, guid: f041fc36b29dca049990509f0b9d41be,
-    type: 2}
-  m_PrefabInternal: {fileID: 1134711564}
-  m_Script: {fileID: 11500000, guid: 03de3ff76254f3748b2811956152bc1f, type: 3}
 --- !u!1001 &1577967712
 Prefab:
   m_ObjectHideFlags: 0
@@ -81165,7 +81188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveType: 0
   objectiveTask: 5
-  pointerPrefab: {fileID: 0}
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
   instructionAnimationTrigger: 
   reinforcementAnimationTrigger: 
   instructionClip: event:/Companion/Voicelines/Turbine 1/Cable Attachment 1
@@ -82344,7 +82368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveType: 0
   objectiveTask: 6
-  pointerPrefab: {fileID: 0}
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
   instructionAnimationTrigger: 
   reinforcementAnimationTrigger: 
   instructionClip: event:/Companion/Voicelines/Turbine 1/Turn on Turbine 1
@@ -87657,7 +87682,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveType: 0
   objectiveTask: 0
-  pointerPrefab: {fileID: 0}
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
   instructionAnimationTrigger: 
   reinforcementAnimationTrigger: 
   instructionClip: 
@@ -89553,7 +89579,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveType: 0
   objectiveTask: 1
-  pointerPrefab: {fileID: 0}
+  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+    type: 2}
   instructionAnimationTrigger: 
   reinforcementAnimationTrigger: 
   instructionClip: event:/Companion/Voicelines/Turbine 1/Turbine 1 Arrival
