@@ -20,6 +20,9 @@ ModelImporter:
     100028: transform76
     100030: transform77
     100032: transform78
+    100034: ConstructionFenceWithGrid_LOD0
+    100036: ConstructionFenceWithGrid_LOD1
+    100038: ConstructionFenceWithGrid_LOD2
     400000: ConstructionFence
     400002: ConstructionFenceGrid
     400004: ConstructionFencePole
@@ -37,10 +40,24 @@ ModelImporter:
     400028: transform76
     400030: transform77
     400032: transform78
+    400034: ConstructionFenceWithGrid_LOD0
+    400036: ConstructionFenceWithGrid_LOD1
+    400038: ConstructionFenceWithGrid_LOD2
     2100000: lambert1
+    2100002: lambert13
     2300000: ConstructionFenceWithGrid
+    2300002: ConstructionFenceWithGrid_LOD0
+    2300004: ConstructionFenceWithGrid_LOD1
+    2300006: ConstructionFenceWithGrid_LOD2
     3300000: ConstructionFenceWithGrid
+    3300002: ConstructionFenceWithGrid_LOD0
+    3300004: ConstructionFenceWithGrid_LOD1
+    3300006: ConstructionFenceWithGrid_LOD2
     4300000: ConstructionFenceWithGrid
+    4300002: ConstructionFenceWithGrid_LOD0
+    4300004: ConstructionFenceWithGrid_LOD1
+    4300006: ConstructionFenceWithGrid_LOD2
+    20500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -71,7 +88,10 @@ ModelImporter:
     clipAnimations: []
     isReadable: 1
   meshes:
-    lODScreenPercentages: []
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.01
     globalScale: 1
     meshCompression: 0
     addColliders: 0

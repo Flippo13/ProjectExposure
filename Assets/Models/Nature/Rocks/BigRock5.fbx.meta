@@ -1,66 +1,33 @@
 fileFormatVersion: 2
-guid: b09e1a206dab3904abdd1784247b8e12
+guid: e20ecd906c7da9f48b766ee6cde8ba82
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: FlatRock1
-    100002: FlatRock2
-    100004: FlatRock3
-    100006: FlatRock4
-    100008: FlatRock5
-    100010: FlatRock6
-    100012: //RootNode
-    100014: RoundRock1
-    100016: RoundRock2
-    100018: RoundRock3
-    100020: SmallRock1
-    100022: SmallRock2
-    400000: FlatRock1
-    400002: FlatRock2
-    400004: FlatRock3
-    400006: FlatRock4
-    400008: FlatRock5
-    400010: FlatRock6
-    400012: //RootNode
-    400014: RoundRock1
-    400016: RoundRock2
-    400018: RoundRock3
-    400020: SmallRock1
-    400022: SmallRock2
-    2100000: PM3D_Rocks1
-    2300000: FlatRock1
-    2300002: FlatRock2
-    2300004: FlatRock3
-    2300006: FlatRock4
-    2300008: FlatRock5
-    2300010: FlatRock6
-    2300012: RoundRock1
-    2300014: RoundRock2
-    2300016: RoundRock3
-    2300018: SmallRock1
-    2300020: SmallRock2
-    3300000: FlatRock1
-    3300002: FlatRock2
-    3300004: FlatRock3
-    3300006: FlatRock4
-    3300008: FlatRock5
-    3300010: FlatRock6
-    3300012: RoundRock1
-    3300014: RoundRock2
-    3300016: RoundRock3
-    3300018: SmallRock1
-    3300020: SmallRock2
-    4300000: SmallRock1
-    4300002: SmallRock2
-    4300004: FlatRock2
-    4300006: FlatRock1
-    4300008: FlatRock6
-    4300010: FlatRock3
-    4300012: FlatRock4
-    4300014: FlatRock5
-    4300016: RoundRock1
-    4300018: RoundRock2
-    4300020: RoundRock3
+    100000: //RootNode
+    100002: BigRock5_LOD0
+    100004: BigRock5_LOD1
+    100006: BigRock5_LOD2
+    100008: BigRocks_FirstIteration
+    100010: null1
+    100012: transform6
+    400000: //RootNode
+    400002: BigRock5_LOD0
+    400004: BigRock5_LOD1
+    400006: BigRock5_LOD2
+    400008: BigRocks_FirstIteration
+    400010: null1
+    400012: transform6
+    2100000: BigRocks_FirstIteration1
+    2300000: BigRock5_LOD0
+    2300002: BigRock5_LOD1
+    2300004: BigRock5_LOD2
+    3300000: BigRock5_LOD0
+    3300002: BigRock5_LOD1
+    3300004: BigRock5_LOD2
+    4300000: BigRock5_LOD0
+    4300002: BigRock5_LOD1
+    4300004: BigRock5_LOD2
+    20500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -91,7 +58,10 @@ ModelImporter:
     clipAnimations: []
     isReadable: 1
   meshes:
-    lODScreenPercentages: []
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.01
     globalScale: 1
     meshCompression: 0
     addColliders: 0

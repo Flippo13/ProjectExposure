@@ -185,6 +185,9 @@ ModelImporter:
     100358: transform97
     100360: transform98
     100362: transform99
+    100364: ConstructionSiteClimbingThing2_LOD0
+    100366: ConstructionSiteClimbingThing2_LOD1
+    100368: ConstructionSiteClimbingThing2_LOD2
     400000: ConstructionSetPipe1
     400002: ConstructionSetPipe10
     400004: ConstructionSetPipe11
@@ -367,12 +370,26 @@ ModelImporter:
     400358: transform97
     400360: transform98
     400362: transform99
+    400364: ConstructionSiteClimbingThing2_LOD0
+    400366: ConstructionSiteClimbingThing2_LOD1
+    400368: ConstructionSiteClimbingThing2_LOD2
     2100000: lambert1
+    2100002: lambert15
     2300000: ConstructionSiteClimbingThing2
     2300002: //RootNode
+    2300004: ConstructionSiteClimbingThing2_LOD0
+    2300006: ConstructionSiteClimbingThing2_LOD1
+    2300008: ConstructionSiteClimbingThing2_LOD2
     3300000: ConstructionSiteClimbingThing2
     3300002: //RootNode
+    3300004: ConstructionSiteClimbingThing2_LOD0
+    3300006: ConstructionSiteClimbingThing2_LOD1
+    3300008: ConstructionSiteClimbingThing2_LOD2
     4300000: ConstructionSiteClimbingThing2
+    4300002: ConstructionSiteClimbingThing2_LOD0
+    4300004: ConstructionSiteClimbingThing2_LOD1
+    4300006: ConstructionSiteClimbingThing2_LOD2
+    20500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -403,7 +420,10 @@ ModelImporter:
     clipAnimations: []
     isReadable: 1
   meshes:
-    lODScreenPercentages: []
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.01
     globalScale: 1
     meshCompression: 0
     addColliders: 0
