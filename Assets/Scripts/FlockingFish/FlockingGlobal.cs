@@ -16,7 +16,7 @@ public class FlockingGlobal : MonoBehaviour {
     public Vector3 goal;
 
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
         fishTank = GetComponent<BoxCollider>();
         arrayOfFishies = new GameObject[fishCount];
 

@@ -9,9 +9,10 @@ public class TurbineDrop : MonoBehaviour {
     public float maxDropSpeed;
 
     public GameObject turbinePrefab;
-
+    public LayerMask terrainLayer; 
     private new Transform transform;
     private Collider _col;
+    private Rigidbody _turbineRB; 
     private bool _calledDown;
     private bool _landed;
     private Vector3 velocity = Vector3.zero;
@@ -19,13 +20,17 @@ public class TurbineDrop : MonoBehaviour {
     // Use this for initialization
     void Start () {
         transform = GetComponent<Transform>();
-        _col = GetComponent<Collider>(); 
+        _turbineRB = turbinePrefab.GetComponent<Rigidbody>(); 
+        _col = GetComponent<Collider>();
+
+        if (_turbineRB.useGravity)
+            _turbineRB.useGravity = false;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (_calledDown)
-            Drop(); 
+        Drop();
 	}
 
 
@@ -38,14 +43,14 @@ public class TurbineDrop : MonoBehaviour {
     private void Drop()
     {
         RaycastHit hit;
-
-        if (Physics.Raycast(transform.position,-transform.up, out hit))
+        Ray ray = new Ray(transform.position, -transform.up); 
+        if(Physics.Raycast(ray,out hit,float.PositiveInfinity,terrainLayer))
         {
+            Debug.Log("Going Down " + hit.collider);
             if (hit.collider.tag == "Terrain")
             {
                
                Vector3 dropPos = new Vector3(hit.point.x, hit.point.y + dropHeight, hit.point.z);
-
                 
                 transform.position = Vector3.SmoothDamp(transform.position, dropPos, ref velocity, dropTime, maxDropSpeed);
 
@@ -64,6 +69,7 @@ public class TurbineDrop : MonoBehaviour {
         if (turbinePrefab != null)
         {
             turbinePrefab.transform.parent = null;
+            _turbineRB.useGravity = true;
             Destroy(gameObject);
         }
     }

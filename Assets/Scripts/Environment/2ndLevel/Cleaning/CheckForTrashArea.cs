@@ -5,33 +5,29 @@ using UnityEngine;
 
 public class CheckForTrashArea : MonoBehaviour {
 
+
     public LayerMask trashLayer;
     public int minTrashLeft; 
     
-    public bool turbineArea; 
+   
+    private new Transform transform; 
     private BoxCollider _col;
-
-    public UnityEvent areaChosen;
+   
     public UnityEvent trashCleared; 
 
-    public bool _playerInArea;
     private int trashCount;
-    private float _playerInAreaTime;
-    public float _timeToChoose;
-    private bool _areaChosen;
+    private bool _playerInArea;
 
     // Use this for initialization
     void Start () {
+        transform = GetComponent<Transform>(); 
         _col = GetComponent<BoxCollider>();
         _col.isTrigger = true;
-
-        _playerInArea = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         CheckForTrash();
-        ChoosePosition(); 
     }
 
 
@@ -47,32 +43,10 @@ public class CheckForTrashArea : MonoBehaviour {
                 //Do something with the score? 
                 trashCleared.Invoke(); 
             }
-            
-            if (_areaChosen)
-            {
-                areaChosen.Invoke();
-                _areaChosen = false; 
-            }
+           
         }
     }
 
-
-    private void ChoosePosition()
-    {
-        if (_playerInArea && turbineArea)
-        {
-            _playerInAreaTime += 1 * Time.deltaTime;
-            //Debug.Log("Counting " + _playerInAreaTime);
-            if (_playerInAreaTime > _timeToChoose)
-            {
-                _areaChosen = true; 
-            }
-        }
-        else
-        {
-            _playerInAreaTime = 0; 
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {

@@ -13,12 +13,12 @@ public class FlockingFish : MonoBehaviour {
     private FlockingGlobal _fishTank; 
     private new Transform transform;
     private SphereCollider _col; 
-    private List<Vector3> _listOfObjectsInRange = new List<Vector3>();
     private Animator _anim;
 
     private Vector3 _calculatedCohesion;
     private Vector3 _calculatedSeperation;
     private float speed;
+    private float setRotSpeed; 
     private float seperateFromPlayerRange; 
     private bool _swimmingFromPlayer;
     private Vector3 _goalPos;
@@ -33,6 +33,7 @@ public class FlockingFish : MonoBehaviour {
         _col = GetComponent<SphereCollider>();
         _anim = GetComponent<Animator>(); 
         _fishTank = GetComponentInParent<FlockingGlobal>();
+        setRotSpeed = rotationSpeed; 
         seperateFromPlayerRange = 3;
         StartCoroutine("CalculateDirectionWithDelay", 0.3f);
 	}
@@ -47,11 +48,7 @@ public class FlockingFish : MonoBehaviour {
             || transform.localPosition.y > _fishTank.fishTank.bounds.size.y
             || transform.localPosition.z > _fishTank.fishTank.bounds.size.z )
         {
-            Debug.Log("X: " + Vector3.Distance(transform.position, _fishTank.fishTank.bounds.center));
-            Debug.Log("Y: " + Vector3.Distance(transform.position, _fishTank.fishTank.bounds.center));
-            Debug.Log("Z: " + Vector3.Distance(transform.position, _fishTank.fishTank.bounds.center));
             _goBack = true;
-            Debug.Log("Going back");
         }
         else
         {
@@ -78,7 +75,7 @@ public class FlockingFish : MonoBehaviour {
             }
             else
             {
-                rotationSpeed = 0.4f;
+                rotationSpeed = setRotSpeed; 
                 _swimmingFromPlayer = false;
             }
         }
@@ -102,17 +99,14 @@ public class FlockingFish : MonoBehaviour {
 
     private void CalculateDirection()
     {
-        if (Random.Range(0.0f, 6.0f) < 1 && !_goBack && !_swimmingFromPlayer)
+        if (Random.Range(0.0f, 7.0f) < 1 && !_goBack && !_swimmingFromPlayer)
         {
              Collider[] neighbours = Physics.OverlapSphere(transform.position, cohesionRange, fishLayer);
-            Debug.Log("Neighbours: " + neighbours.Length); 
             _calculatedCohesion = CalculateCohesion(neighbours) + (_fishTank.goal - transform.position);
             _calculatedSeperation = CalculateSeperation(neighbours);
-            Debug.Log("cohesion after: " + _calculatedCohesion);
             //Debug.Log("seperation: " + _calculatedSeperation);
 
             direction = (_calculatedCohesion + _calculatedSeperation) - transform.position;
-            speed = Random.Range(0.3f, maxSpeed);
             //Debug.Log("direction: " + direction);
         }
     }
@@ -166,49 +160,5 @@ public class FlockingFish : MonoBehaviour {
         seperation /= neighbourCount;
 
         return seperation; 
-    }
-
-
-    private Vector3 SeperateFromPlayer(GameObject player)
-    {
-        Vector3 seperateFromPlayer = Vector3.zero; 
-
-            if (Vector3.Distance(player.transform.position, transform.position) < seperateFromPlayerRange)
-            {
-                seperateFromPlayer -= this.transform.position - player.transform.position; 
-                //seperateModifier = 2;
-                speed = 3; 
-                Debug.Log("Found Player"); 
-            }
-            else
-            {
-               // seperateModifier = 1; 
-            }
-
-        return seperateFromPlayer; 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        if (other.tag == "Fish")
-        {
-            _listOfObjectsInRange.Add(other.transform.position);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Fish")
-        {
-            _listOfObjectsInRange.Remove(other.transform.position);
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-
-      //  Gizmos.DrawWireSphere(transform.position, cohesionRange); 
     }
 }
