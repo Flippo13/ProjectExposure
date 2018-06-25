@@ -8,7 +8,6 @@ public class CompanionAudio : MonoBehaviour {
 
     public Transform watchAnchor;
     public float talkingRadius;
-    public AudioClip notificationAudioClip;
 
     [EventRef]
     public string motorSound;
@@ -51,11 +50,7 @@ public class CompanionAudio : MonoBehaviour {
     public void Awake() {
         _audioTracks = new EventInstance[2];
 
-        if(notificationAudioClip == null) {
-            _notificationHapticsClip = new OVRHapticsClip(samples, samples.Length);
-        } else {
-            _notificationHapticsClip = new OVRHapticsClip(notificationAudioClip);
-        }
+        _notificationHapticsClip = new OVRHapticsClip(samples, samples.Length);
 
         _startedPlaying = false;
 

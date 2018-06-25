@@ -9,7 +9,9 @@ public class CompanionObjective : MonoBehaviour {
     //default information
     public ObjectiveType objectiveType;
     public ObjectiveTask objectiveTask;
+    public Transform pointerPosition;
     public GameObject pointerPrefab;
+    public bool showPointer;
     public string instructionAnimationTrigger;
     public string reinforcementAnimationTrigger;
 
@@ -116,17 +118,19 @@ public class CompanionObjective : MonoBehaviour {
                     break;  
             }
 
-            if (objectiveTask != ObjectiveTask.Tutorial) {
+            if (objectiveTask != ObjectiveTask.Tutorial && showPointer) {
                 GameObject pointerInstance = Instantiate(pointerPrefab);
                 pointerInstance.transform.parent = transform;
-                pointerInstance.transform.position = transform.position; //put pointer on waypoint position
+
+                if(pointerPosition != null) pointerInstance.transform.position = pointerPosition.position; //put pointer on waypoint position
+                else pointerInstance.transform.position = transform.position;
 
                 _objectivePointer = pointerInstance.GetComponent<ObjectivePointer>();
             }
 
         } else if(_status == ObjectiveStatus.Complete) { //completion events
 
-            if (objectiveTask != ObjectiveTask.Tutorial) {
+            if (objectiveTask != ObjectiveTask.Tutorial && showPointer) {
                 _objectivePointer.Disable();
             }
         }

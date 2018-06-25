@@ -21,7 +21,11 @@ GameObject:
   - component: {fileID: 4308278337699834}
   - component: {fileID: 33109308448008258}
   - component: {fileID: 23463129744341722}
-  m_Layer: 0
+  - component: {fileID: 65811912080252982}
+  - component: {fileID: 54807687861420812}
+  - component: {fileID: 114027485390178342}
+  - component: {fileID: 114117207585954730}
+  m_Layer: 9
   m_Name: trash_bucket1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +87,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716071326930952}
   m_Mesh: {fileID: 4300000, guid: a9776b3f0b9569b42808f3aa448cea99, type: 3}
+--- !u!54 &54807687861420812
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716071326930952}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 10
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65811912080252982
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716071326930952}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42331, y: 0.33277732, z: 0.42641905}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114027485390178342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716071326930952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02fe6a4ff0099e40970b2ae7e38af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surface: 6
+  _strength: 0
+--- !u!114 &114117207585954730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716071326930952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []

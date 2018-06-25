@@ -1,25 +1,37 @@
 fileFormatVersion: 2
-guid: be436eb4116e86744bcb31a491ae5cc9
+guid: 4929a1c75a92f214aa24e30a8682f320
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: ShipBow_LOD0
+    100004: ShipBow_LOD1
+    100006: ShipBow_LOD2
     400000: //RootNode
-    2100000: ShipBow_Material
+    400002: ShipBow_LOD0
+    400004: ShipBow_LOD1
+    400006: ShipBow_LOD2
+    2100000: Group2
+    2100002: Group6074
     2300000: //RootNode
+    2300002: ShipBow_LOD0
+    2300004: ShipBow_LOD1
+    2300006: ShipBow_LOD2
     3300000: //RootNode
+    3300002: ShipBow_LOD0
+    3300004: ShipBow_LOD1
+    3300006: ShipBow_LOD2
     4300000: ShipBow
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ShipBow_Material
-    second: {fileID: 2100000, guid: ffd71727d9d974d4298bd069277fa8a1, type: 2}
+    4300002: ShipBow_LOD0
+    4300004: ShipBow_LOD1
+    4300006: ShipBow_LOD2
+    20500000: //RootNode
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -44,7 +56,10 @@ ModelImporter:
     clipAnimations: []
     isReadable: 1
   meshes:
-    lODScreenPercentages: []
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.01
     globalScale: 1
     meshCompression: 0
     addColliders: 0

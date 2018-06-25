@@ -12,6 +12,7 @@ public class DoneButtonHandler : MonoBehaviour {
 
     public GameObject nameLayout;
     public GameObject ageLayout;
+    public GameObject backButton;
 
     public TutorialArea tutorialArea;
 
@@ -46,8 +47,8 @@ public class DoneButtonHandler : MonoBehaviour {
             nameLayout.SetActive(false);
             ageLayout.SetActive(true);
         } else {
-            //clear screen
-            inputField.text = "";
+            //clear screen and change input
+            inputField.text = "Welkom onderwater, " + ScoreTracker.PlayerName;
             nameCaption.enabled = false;
             ageCaption.enabled = false;
 
@@ -59,9 +60,11 @@ public class DoneButtonHandler : MonoBehaviour {
 
             _started = true;
 
-            //disable keyboard
+            //disable keyboard so nothing can be changed anymore afterwards
             nameLayout.SetActive(false);
             ageLayout.SetActive(false);
+            backButton.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         _action++;

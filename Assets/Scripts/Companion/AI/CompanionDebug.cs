@@ -26,7 +26,7 @@ public class CompanionDebug : MonoBehaviour {
 
         switch(state) {
 
-            case CompanionState.Staying:
+            case CompanionState.Returning:
                 _renderer.material = stayingMaterial;
 
                 break;
