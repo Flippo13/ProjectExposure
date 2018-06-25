@@ -93,7 +93,7 @@ public class TutorialWaypoint : MonoBehaviour {
 
         _tutorialArea.buttonsTutorial.SetButtonTutorial(tutorialButton, false); //disable tutorial
 
-        _objectivePointer.Disable();
+        if(_objectivePointer != null) _objectivePointer.Disable();
     }
 
     public void Activate(TutorialArea tutorialArea) {

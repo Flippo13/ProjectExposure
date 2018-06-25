@@ -204,11 +204,6 @@ public class CompanionAI : MonoBehaviour {
 
                 break;
 
-            case CompanionState.Staying:
-                _timer = 0f;
-
-                break;
-
             case CompanionState.Traveling:
                 _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
 
@@ -338,27 +333,14 @@ public class CompanionAI : MonoBehaviour {
                     //move to the player without other priorities
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
-                    Vector3 frontDestination = companionDestination.transform.position + Camera.main.transform.parent.forward.normalized * interactionRadius;
+                    Vector3 frontDestination = companionDestination.transform.position + Camera.main.transform.forward.normalized * interactionRadius;
 
                     if(moveInFrontOfPlayer) _navigator.SetDestination(frontDestination);
                     else _navigator.SetDestination(destination);
                 }
 
                 //close enough to the player
-                if (_navigator.ReachedDestinaton()) SetState(CompanionState.Staying);
-
-                break;
-
-            case CompanionState.Staying:
-                //staying at its position after getting called
-                RotateTowardsPlayer();
-                if (CheckForVacuumHandOver()) return;
-
-                if (_timer >= stayDuration) {
-                    SetState(CompanionState.Following);
-                }
-
-                _timer += Time.deltaTime;
+                if (_navigator.ReachedDestinaton()) SetState(CompanionState.HandingVacuum);
 
                 break;
 
