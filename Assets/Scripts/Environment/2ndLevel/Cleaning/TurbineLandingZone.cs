@@ -50,7 +50,7 @@ public class TurbineLandingZone : MonoBehaviour {
             }
             else
             {
-                Instantiate(foundationWithTurbinePrefab, new Vector3(transform.position.x, foundationTransform.position.y, transform.position.z), foundationTransform.rotation); 
+                Instantiate(foundationWithTurbinePrefab, new Vector3(transform.position.x, foundationTransform.position.y, transform.position.z), transform.rotation); 
                 areaChosenEvent.Invoke();
                 _areaChosen = true;
                 _playerInAreaTime = 0;
