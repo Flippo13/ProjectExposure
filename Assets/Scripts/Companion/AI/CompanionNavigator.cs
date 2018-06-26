@@ -30,6 +30,17 @@ public class CompanionNavigator : MonoBehaviour {
         }
     }
 
+    //returns 0 if agent is not rotating, otherwise returns the angle
+    public float GetRotationAngle(float treshold) {
+        float angle = Vector3.Angle(_navAgent.velocity.normalized, transform.forward);
+
+        if(Mathf.Abs(angle) < treshold) {
+            return 0;
+        }
+
+        return angle;
+    }
+
     //set destination for the navmesh agent
     public void SetDestination(Vector3 destination) {
         _navAgent.SetDestination(destination);

@@ -423,16 +423,15 @@ public class CompanionAI : MonoBehaviour {
                 //check if the vacuum is grabbed or if the player didnt grab it (in animation)S
                 RotateTowardsPlayer();
 
+                if (_animation.VacuumHandDone()) {
+                    SetState(CompanionState.Following); //go back to overall idle
+                    return;
+                }
+
                 if (grabScanner.IsReachingForVacuum()) {
                     //reset the timer when player is reaching out
                     _timer = 0f;
-                } else if (_timer > 1.5f) {
-                    if (_animation.VacuumHandDone()) {
-                        SetState(CompanionState.Following); //go back to overall idle
-                        return;
-                    }
-
-                    //still and issue!
+                } else if (_timer >= 1.5f) {
                     if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
                         //go back to hover idle when vacuum is grabbed or released
                         _animation.SetAnimationTrigger("hand_over_vacuum_hover");

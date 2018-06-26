@@ -27,6 +27,23 @@ public class CompanionAnimation : MonoBehaviour {
             SetMovingBool(false);
         } else if (_navigator.GetAgentVelocity().magnitude > 0 && !GetMovingBool()) {
             SetMovingBool(true);
+
+            //rotation
+            float rotationAngle = _navigator.GetRotationAngle(1f);
+
+            if(rotationAngle > 0f) {
+                //rotating right
+                rigAnimator.SetBool("turning_right", false);
+                rigAnimator.SetBool("turning_left", true);
+            } else if(rotationAngle < 0f) {
+                //rotating left
+                rigAnimator.SetBool("turning_left", false);
+                rigAnimator.SetBool("turning_right", true);
+            } else {
+                //not rotating
+                rigAnimator.SetBool("turning_left", false);
+                rigAnimator.SetBool("turning_right", false);
+            }
         }
     }
 

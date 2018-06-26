@@ -54,9 +54,7 @@ public class StatTracker : MonoBehaviour {
 
     public void Awake() {
         //check if stats folder exists and create a new one if it doesnt
-        if(!Directory.Exists("Stats/")) {
-            Directory.CreateDirectory("Stats/");
-        }
+        if(!Directory.Exists("Stats/")) Directory.CreateDirectory("Stats/");
 
         _timestamp = GetFormattedTime();
 
@@ -113,7 +111,7 @@ public class StatTracker : MonoBehaviour {
         string leaderboard = "";
         leaderboard += "Daily Highscores:" + Environment.NewLine;
 
-        _dailyEntries = _dailyEntries.OrderByDescending(o => o.Score).ToList(); //sort by score
+        _dailyEntries = _dailyEntries.OrderByDescending(o => int.Parse(o.Score)).ToList(); //sort by score
 
         for (int i = 0; i < 5; i++) { //max. 5 entries
             if (i >= _dailyEntries.Count) break;
@@ -123,7 +121,7 @@ public class StatTracker : MonoBehaviour {
 
         leaderboard += "Yearly Highscores:" + Environment.NewLine;
 
-        _yearlyEntries = _yearlyEntries.OrderByDescending(o => o.Score).ToList(); //sort by score
+        _yearlyEntries = _yearlyEntries.OrderByDescending(o => int.Parse(o.Score)).ToList(); //sort by score
 
         for (int i = 0; i < 10; i++) { //max 10. entries
             if (i >= _yearlyEntries.Count) break;
