@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4356610496599432}
   - component: {fileID: 205569643394008102}
+  - component: {fileID: 65725986730036014}
   m_Layer: 8
   m_Name: BigRock4
   m_TagString: Untagged
@@ -111,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625563835743096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.891556, y: 34.04857, z: 163.36415}
+  m_LocalPosition: {x: 316.33365, y: 31.886368, z: 274.3808}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4130682840412798}
@@ -259,6 +260,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1931427598378850}
   m_Mesh: {fileID: 4300002, guid: 31576f82716a256429edc37c8f3cc6b2, type: 3}
+--- !u!65 &65725986730036014
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1625563835743096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.0509834, y: 15.874882, z: 7.1219625}
+  m_Center: {x: -0.5313816, y: 7.9227552, z: 0.36826277}
 --- !u!205 &205569643394008102
 LODGroup:
   m_ObjectHideFlags: 1
