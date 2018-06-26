@@ -26,7 +26,7 @@ public class ProjectileScript : MonoBehaviour {
         _teleported = false;
     }
 
-    public void Update() {
+    public void FixedUpdate() {
         FollowPath();
     }
 
