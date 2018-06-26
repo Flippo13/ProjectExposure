@@ -8,6 +8,7 @@ public class TutorialWaypoint : MonoBehaviour {
     public GameObject pointerPrefab;
     public bool forceGoingToPointer;
     public TutorialButtons tutorialButton;
+    public string animationTrigger;
 
     [FMODUnity.EventRef]
     public string tutorialVoiceline;
@@ -111,6 +112,9 @@ public class TutorialWaypoint : MonoBehaviour {
 
         //acivate objective pointer for the current waypoint if possible
         _objectivePointer = null;
+
+        //play animation
+        _tutorialArea.gameObject.GetComponent<CompanionAnimation>().SetAnimationTrigger(animationTrigger);
 
         if (tutorialButton != TutorialButtons.None && forceGoingToPointer) {
             GameObject pointerInstance = Instantiate(pointerPrefab);

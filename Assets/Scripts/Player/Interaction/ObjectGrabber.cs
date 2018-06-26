@@ -17,6 +17,8 @@ public class ObjectGrabber : OVRGrabber {
     }
 
     public void OnTriggerEnter(Collider otherCollider) {
+        if (otherCollider.tag == Tags.VacuumArea) return;
+
         if (otherCollider.tag == Tags.Vacuum) {
             if (isVacuumGrabber) _vacuumMode = true;
             else return; //dont allow grabbing vacuum
@@ -33,6 +35,8 @@ public class ObjectGrabber : OVRGrabber {
     }
 
     public void OnTriggerExit(Collider otherCollider) {
+        if (otherCollider.tag == Tags.VacuumArea) return;
+
         if (otherCollider.tag == Tags.Vacuum && !isVacuumGrabber) return; //dont remove anything from the list
 
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();

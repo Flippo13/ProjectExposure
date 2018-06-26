@@ -8,4 +8,5 @@
     public static string Hand = "Hand";
     public static string Boundary = "Boundary";
     public static string Scanner = "Scanner";
+    public static string VacuumArea = "VacuumArea";
 }
