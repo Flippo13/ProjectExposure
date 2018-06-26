@@ -61,7 +61,7 @@ public class CompanionAI : MonoBehaviour {
             //get the vacuum if the vacuum is lying around
             _wasCalled = true;
             SetState(CompanionState.GettingVacuum);
-        } else if(vacuum.GetVacuumState() == VacuumState.CompanionBack || vacuum.GetVacuumState() == VacuumState.CompanionHand) {
+        } else if (vacuum.GetVacuumState() == VacuumState.CompanionBack || vacuum.GetVacuumState() == VacuumState.CompanionHand) {
             SetState(CompanionState.Returning);
         }
     }
@@ -115,7 +115,7 @@ public class CompanionAI : MonoBehaviour {
                 _wasCalled = true;
                 SetState(CompanionState.GettingVacuum);
                 return true;
-            } else if(vacuum.GetVacuumState() == VacuumState.CompanionBack || vacuum.GetVacuumState() == VacuumState.CompanionHand) {
+            } else if (vacuum.GetVacuumState() == VacuumState.CompanionBack || vacuum.GetVacuumState() == VacuumState.CompanionHand) {
                 //otherwise only get called when the vacuum 
                 SetState(CompanionState.Returning);
                 return true;
@@ -423,12 +423,16 @@ public class CompanionAI : MonoBehaviour {
                 //check if the vacuum is grabbed or if the player didnt grab it (in animation)S
                 RotateTowardsPlayer();
 
-                if (_timer > 1.5f) {
-                    if(_animation.VacuumHandDone()) {
+                if (grabScanner.IsReachingForVacuum()) {
+                    //reset the timer when player is reaching out
+                    _timer = 0f;
+                } else if (_timer > 1.5f) {
+                    if (_animation.VacuumHandDone()) {
                         SetState(CompanionState.Following); //go back to overall idle
                         return;
                     }
 
+                    //still and issue!
                     if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
                         //go back to hover idle when vacuum is grabbed or released
                         _animation.SetAnimationTrigger("hand_over_vacuum_hover");
@@ -438,9 +442,6 @@ public class CompanionAI : MonoBehaviour {
                         _animation.SetAnimationTrigger("hand_over_vacuum_back");
                         return;
                     }
-                } else if (grabScanner.IsReachingForVacuum()) {
-                    //reset the timer when player is reaching out
-                    _timer = 0f;
                 }
 
                 _timer = _timer + Time.deltaTime;
