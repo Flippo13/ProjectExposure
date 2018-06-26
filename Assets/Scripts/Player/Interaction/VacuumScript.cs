@@ -77,10 +77,10 @@ public class VacuumScript : MonoBehaviour {
             OVRHaptics.RightChannel.Preempt(new OVRHapticsClip(samples, 1)); //play the vibration clip
 
             MoveTrash();
-        } else if(_state == VacuumState.Player && !vacuumGrabber.IsGrabbing()) {
+        } else if(_state == VacuumState.Player && !vacuumGrabber.IsHoldingObject()) {
             //player released the vacuum 
             SetVacuumState(VacuumState.Free);
-        } else if(_state != VacuumState.Player && vacuumGrabber.InVacuumMode() && vacuumGrabber.IsGrabbing()) {
+        } else if(_state != VacuumState.Player && vacuumGrabber.InVacuumMode() && vacuumGrabber.IsHoldingObject()) {
             //player grabs vacuum whenever he wants
             SetVacuumState(VacuumState.Player);
         }

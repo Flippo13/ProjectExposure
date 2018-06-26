@@ -58,7 +58,7 @@ public class TeleporterScript : MonoBehaviour {
         _fade = Camera.main.GetComponent<TeleportFade>();
     }
 
-    public void Update() {
+    public void LateUpdate() {
         if (leftHandGrabber.IsHoldingObject() || _boundatyDetector.InBoundary()) {
             //released
             _triggerPressed = false;

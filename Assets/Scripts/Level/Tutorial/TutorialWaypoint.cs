@@ -8,6 +8,7 @@ public class TutorialWaypoint : MonoBehaviour {
     public GameObject pointerPrefab;
     public bool forceGoingToPointer;
     public TutorialButtons tutorialButton;
+    public string animationTrigger;
 
     [FMODUnity.EventRef]
     public string tutorialVoiceline;
@@ -16,16 +17,11 @@ public class TutorialWaypoint : MonoBehaviour {
     private TutorialArea _tutorialArea;
     private ObjectivePointer _objectivePointer;
 
-    private UnityEvent _callEvent;
     private bool _teleported;
 
     public void Awake() {
         _active = false;
         _teleported = false;
-
-        if(tutorialButton == TutorialButtons.CallCompanion) {
-            _callEvent = new UnityEvent();
-        }
     }
 
     public void Update() {
@@ -65,7 +61,7 @@ public class TutorialWaypoint : MonoBehaviour {
             case TutorialButtons.CallCompanion:
                 //call companion while still remaining in the tutorial state
                 if (OVRInput.GetDown(OVRInput.Button.One)) {
-                    _callEvent.Invoke(); //should call the companion
+                    _tutorialArea.companionAudio.gameObject.GetComponent<CompanionAI>().TutorialCall();
                     return true;
                 }
 
@@ -112,17 +108,15 @@ public class TutorialWaypoint : MonoBehaviour {
         //acivate objective pointer for the current waypoint if possible
         _objectivePointer = null;
 
+        //play animation
+        _tutorialArea.companionAudio.gameObject.GetComponent<CompanionAnimation>().SetAnimationTrigger(animationTrigger);
+
         if (tutorialButton != TutorialButtons.None && forceGoingToPointer) {
             GameObject pointerInstance = Instantiate(pointerPrefab);
             pointerInstance.transform.parent = transform;
             pointerInstance.transform.position = transform.position; //put pointer on waypoint position
 
             _objectivePointer = pointerInstance.GetComponent<ObjectivePointer>();
-        }
-
-        if(tutorialButton == TutorialButtons.CallCompanion) {
-            CompanionAI ai = _tutorialArea.companionAudio.gameObject.GetComponent<CompanionAI>(); //quite dirty
-            _callEvent.AddListener(ai.TutorialCall);
         }
     }
 }
