@@ -7,14 +7,15 @@ public class TurbineButton : MonoBehaviour {
 
     public SpringJoint springJoint;
     public Collider consoleMeshCol;
-    private Collider _col; 
-    [SerializeField]
-    private UnityEvent _turbineButtonEvent;
+    private Collider _col;
 
-    public TurbineButtonActivate _turbineButtonPressed;
+    public UnityEvent turbineButtonEvent;
+   
+    public TurbineButtonActivate turbineButtonStop;
 
-    private bool _buttonIsBeingPressed; 
+    private bool _buttonIsBeingPressed;
 
+    private bool _activate; 
 	// Use this for initialization
 	void Start () {
         _col = GetComponent<Collider>();
@@ -23,8 +24,10 @@ public class TurbineButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            if (_turbineButtonPressed.Active)
-                _turbineButtonEvent.Invoke(); 
+        if (turbineButtonStop.Active)
+        {
+            _activate = true;
+        }
 	}
 
    private void OnCollisionEnter(Collision other)
@@ -44,4 +47,8 @@ public class TurbineButton : MonoBehaviour {
         }
     }
 
+    public bool Activate
+    {
+        get { return _activate; }
+    }
 }

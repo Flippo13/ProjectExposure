@@ -9,10 +9,14 @@ public class TurbineLandingZone : MonoBehaviour {
 
     public UnityEvent areaChosenEvent;
     public float _timeToChoose;
-    
+
     private BoxCollider _col;
     private Transform foundationTransform;
     private new Transform transform;
+    private Turbine _turbine; 
+
+    private Console _console;
+    private PowerGrid _powerGrid;
 
     private float _playerInAreaTime;
     private bool _playerInArea;
@@ -20,7 +24,7 @@ public class TurbineLandingZone : MonoBehaviour {
     private bool _areaChosen;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
 
         transform = GetComponent<Transform>();
         _col = GetComponent<BoxCollider>();
@@ -33,9 +37,9 @@ public class TurbineLandingZone : MonoBehaviour {
 
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         ChoosePosition();
     }
 
@@ -50,8 +54,16 @@ public class TurbineLandingZone : MonoBehaviour {
             }
             else
             {
-                Instantiate(foundationWithTurbinePrefab, new Vector3(transform.position.x, foundationTransform.position.y, transform.position.z), transform.rotation); 
+                GameObject turbine =  Instantiate(foundationWithTurbinePrefab, new Vector3(transform.position.x, foundationTransform.position.y, transform.position.z), transform.rotation);
                 areaChosenEvent.Invoke();
+                _turbine = turbine.GetComponent<Turbine>();
+
+               // if (_powerGrid != null && _console != null)
+               // {
+              //      _powerGrid.cableConntectedEvent.AddListener(_turbine.CableConnected);
+              //      _console.turbineButtonEvent.AddListener(_turbine.Activate);
+              //  }
+
                 _areaChosen = true;
                 _playerInAreaTime = 0;
             }
@@ -76,5 +88,18 @@ public class TurbineLandingZone : MonoBehaviour {
         {
             _playerInArea = false;
         }
+    }
+
+
+    public Console Console
+    {
+        get { return _console;  }
+        set { _console = value; }
+    }
+
+    public PowerGrid PowerGrid
+    {
+        get { return _powerGrid;  }
+        set { _powerGrid = value; }
     }
 }

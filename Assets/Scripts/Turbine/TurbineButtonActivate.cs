@@ -21,7 +21,6 @@ public class TurbineButtonActivate : MonoBehaviour {
     {
         if (other.collider.tag == "TurbineButton")
         {
-            Debug.Log("Button is pressed");
             _active = true; 
         }
     }
@@ -30,7 +29,7 @@ public class TurbineButtonActivate : MonoBehaviour {
     {
         if (other.collider.tag == "TurbineButton")
         {
-            Debug.Log("Button is no longer pressed");
+
             _active = false;
         }
     }

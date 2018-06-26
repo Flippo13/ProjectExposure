@@ -13,7 +13,7 @@ public class CheckForTrashArea : MonoBehaviour {
     private new Transform transform; 
     private BoxCollider _col;
    
-    public UnityEvent trashCleared; 
+    public UnityEvent trashCleanedEvent; 
 
     private int trashCount;
     private bool _playerInArea;
@@ -41,7 +41,7 @@ public class CheckForTrashArea : MonoBehaviour {
             if (trashCount <= minTrashLeft)
             {
                 //Do something with the score? 
-                trashCleared.Invoke(); 
+                trashCleanedEvent.Invoke(); 
             }
            
         }

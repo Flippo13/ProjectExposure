@@ -49,7 +49,6 @@ public class TurbineDrop : MonoBehaviour {
             Debug.Log("Going Down " + hit.collider);
             if (hit.collider.tag == "Terrain")
             {
-               
                Vector3 dropPos = new Vector3(hit.point.x, hit.point.y + dropHeight, hit.point.z);
                 
                 transform.position = Vector3.SmoothDamp(transform.position, dropPos, ref velocity, dropTime, maxDropSpeed);
@@ -59,7 +58,6 @@ public class TurbineDrop : MonoBehaviour {
                     _calledDown = false; 
                     Landed(); 
                 }
-
             }
         }
     }
