@@ -19,6 +19,7 @@ public class Caustics : MonoBehaviour
 
     private Light _caustics;
     private int currentTexture;
+    private bool invert = false;
 
     private void Awake()
     {
@@ -34,10 +35,32 @@ public class Caustics : MonoBehaviour
 
     void ChangeSprite()
     {
-        _caustics.cookie = _causticTextures[currentTexture];
-        //Reset cycle if reached the end of the spritesheet
-        currentTexture++;
-        if (currentTexture == _causticTextures.Count)
-            currentTexture = 0;
+        //_caustics.cookie = _causticTextures[currentTexture];
+        //currentTexture++;
+        ////Reset cycle if reached the end of the spritesheet
+        //if (currentTexture == _causticTextures.Count)
+        //    currentTexture = 0;
+
+        if (!invert)
+        {
+            _caustics.cookie = _causticTextures[currentTexture];
+            currentTexture++;
+            if (currentTexture == _causticTextures.Count)
+            {
+                currentTexture = _causticTextures.Count - 1;
+                invert = true;
+            }
+        }
+        else
+        {
+            _caustics.cookie = _causticTextures[currentTexture];
+            currentTexture--;
+            if (currentTexture < 0)
+            {
+                currentTexture = 0;
+                invert = false;
+            }
+        }
+
     }
 }
