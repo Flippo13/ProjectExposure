@@ -906,59 +906,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &824633391
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 824633393}
-  - component: {fileID: 824633392}
-  m_Layer: 0
-  m_Name: TurbineManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &824633392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 824633391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7feafa69b78e0b344a0a973241425566, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turbine:
-  - turbine: {fileID: 626092185}
-    powerGrid: {fileID: 1607347917}
-    console: {fileID: 1072936295}
-    trashArea: {fileID: 698962863}
-    isBeingDropped: 0
-    turbineLandingZone: {fileID: 0}
-  - turbine: {fileID: 0}
-    powerGrid: {fileID: 240024249}
-    console: {fileID: 1668927986}
-    trashArea: {fileID: 0}
-    isBeingDropped: 1
-    turbineLandingZone: {fileID: 1026513995}
---- !u!4 &824633393
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 824633391}
-  m_LocalRotation: {x: -0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.759829, y: -18.80481, z: -32.630737}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &854352685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +992,83 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 854352685}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &890764568
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4896328601095274, guid: 37833e9b6010b1d46b6e595dcfa75700, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -30.759829
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896328601095274, guid: 37833e9b6010b1d46b6e595dcfa75700, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -18.80481
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896328601095274, guid: 37833e9b6010b1d46b6e595dcfa75700, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -32.630737
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896328601095274, guid: 37833e9b6010b1d46b6e595dcfa75700, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896328601095274, guid: 37833e9b6010b1d46b6e595dcfa75700, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896328601095274, guid: 37833e9b6010b1d46b6e595dcfa75700, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896328601095274, guid: 37833e9b6010b1d46b6e595dcfa75700, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896328601095274, guid: 37833e9b6010b1d46b6e595dcfa75700, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114382725933627618, guid: 37833e9b6010b1d46b6e595dcfa75700,
+        type: 2}
+      propertyPath: turbine.Array.data[0].turbine
+      value: 
+      objectReference: {fileID: 626092185}
+    - target: {fileID: 114382725933627618, guid: 37833e9b6010b1d46b6e595dcfa75700,
+        type: 2}
+      propertyPath: turbine.Array.data[0].powerGrid
+      value: 
+      objectReference: {fileID: 1607347917}
+    - target: {fileID: 114382725933627618, guid: 37833e9b6010b1d46b6e595dcfa75700,
+        type: 2}
+      propertyPath: turbine.Array.data[0].console
+      value: 
+      objectReference: {fileID: 1072936295}
+    - target: {fileID: 114382725933627618, guid: 37833e9b6010b1d46b6e595dcfa75700,
+        type: 2}
+      propertyPath: turbine.Array.data[0].trashArea
+      value: 
+      objectReference: {fileID: 698962863}
+    - target: {fileID: 114382725933627618, guid: 37833e9b6010b1d46b6e595dcfa75700,
+        type: 2}
+      propertyPath: turbine.Array.data[1].powerGrid
+      value: 
+      objectReference: {fileID: 240024249}
+    - target: {fileID: 114382725933627618, guid: 37833e9b6010b1d46b6e595dcfa75700,
+        type: 2}
+      propertyPath: turbine.Array.data[1].console
+      value: 
+      objectReference: {fileID: 1668927986}
+    - target: {fileID: 114382725933627618, guid: 37833e9b6010b1d46b6e595dcfa75700,
+        type: 2}
+      propertyPath: turbine.Array.data[1].turbineLandingZone
+      value: 
+      objectReference: {fileID: 1026513995}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 37833e9b6010b1d46b6e595dcfa75700, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &893460345
 GameObject:
   m_ObjectHideFlags: 0
