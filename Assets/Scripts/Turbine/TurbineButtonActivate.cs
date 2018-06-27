@@ -1,13 +1,17 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TurbineButtonActivate : MonoBehaviour {
 
-    private bool _active; 
+    private bool _active;
+    [SerializeField]
+    [EventRef]
+    private string _buttonPress;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -21,7 +25,8 @@ public class TurbineButtonActivate : MonoBehaviour {
     {
         if (other.collider.tag == "TurbineButton")
         {
-            _active = true; 
+            _active = true;
+            RuntimeManager.PlayOneShot(_buttonPress, transform.position);
         }
     }
 
