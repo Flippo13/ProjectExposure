@@ -11,9 +11,22 @@ public class SceneEntrance : MonoBehaviour {
 
     private bool _completedBegin;
 
+    private Animator _animator;
 
     public void Awake() {
         _completedBegin = false;
+
+        _animator = GetComponent<Animator>();
+    }
+
+    public void Update() {
+        if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Done") && isBeginning) {
+            gameObject.SetActive(false); //disable when animation is done
+        }
+
+        if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Move_down") && !isBeginning) {
+            divingBell.gameObject.SetActive(true);
+        }
     }
 
     public void SetParentStatus(string status) {

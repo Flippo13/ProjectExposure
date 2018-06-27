@@ -2118,6 +2118,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1633164647281852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4469126793542672}
+  m_Layer: 8
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1648682758572686
 GameObject:
   m_ObjectHideFlags: 1
@@ -3334,14 +3349,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574679313798174}
-  m_LocalRotation: {x: -0, y: 0.967725, z: -0, w: -0.25200874}
-  m_LocalPosition: {x: 612.8, y: 76.1, z: -2.8}
+  m_LocalRotation: {x: -0, y: 0.89509207, z: -0, w: -0.44588134}
+  m_LocalPosition: {x: 619.14, y: 75.8, z: -1.9}
   m_LocalScale: {x: 0.010000002, y: 0.01, z: 0.010000002}
   m_Children:
   - {fileID: 4643486730529286}
+  - {fileID: 4469126793542672}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 209.193, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 232.95898, z: 0}
 --- !u!4 &4119354715547320
 Transform:
   m_ObjectHideFlags: 1
@@ -3733,6 +3749,19 @@ Transform:
   m_Father: {fileID: 4497436245161544}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -4.9490004, y: 182.704, z: 58.357002}
+--- !u!4 &4469126793542672
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1633164647281852}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11100.83, y: 0, z: 17064.334}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4118927308691360}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4484893758796750
 Transform:
   m_ObjectHideFlags: 1
@@ -9085,8 +9114,6 @@ MonoBehaviour:
   divingBell: {fileID: 4643486730529286}
   isBeginning: 1
   sceneTransition: {fileID: 0}
-  _doorOpen: event:/Gameplay/Diving Bell/Door_open
-  _doorClose: event:/Gameplay/Diving Bell/Door_open
 --- !u!114 &114108758739023494
 MonoBehaviour:
   m_ObjectHideFlags: 1

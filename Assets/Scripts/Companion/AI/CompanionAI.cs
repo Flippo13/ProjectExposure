@@ -220,6 +220,8 @@ public class CompanionAI : MonoBehaviour {
                 _timer = float.MaxValue; //ensure to play the reinforcement once at the start
                 _idleTimer = 0f;
 
+                _tracker.GetCurrentObjective().SetPointerStatus(true); //enable the objective pointer
+
                 break;
 
             case CompanionState.Instructing:
@@ -258,6 +260,11 @@ public class CompanionAI : MonoBehaviour {
         if (debug) Debug.Log("Leaving state " + state);
 
         switch (state) {
+
+            case CompanionState.Waiting:
+                _tracker.GetCurrentObjective().SetPointerStatus(false); //disable the objective pointer
+
+                break;
 
             default:
                 break;

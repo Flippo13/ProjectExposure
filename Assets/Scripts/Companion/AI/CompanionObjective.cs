@@ -32,6 +32,7 @@ public class CompanionObjective : MonoBehaviour {
     public PowerGrid powerGrid;
     public TurbineButtonActivate turbineButton;
     public TutorialArea tutorialArea;
+    public Animator divingbellAnimator;
     public TurbinePiecePosition[] turbinePieces;
 
     //states
@@ -45,6 +46,16 @@ public class CompanionObjective : MonoBehaviour {
         _status = ObjectiveStatus.Incomplete;
 
         InitObjective();
+
+        if (showPointer) {
+            GameObject pointerInstance = Instantiate(pointerPrefab);
+            pointerInstance.transform.parent = transform;
+
+            if (pointerPosition != null) pointerInstance.transform.position = pointerPosition.position; //put pointer on waypoint position
+            else pointerInstance.transform.position = transform.position;
+
+            _objectivePointer = pointerInstance.GetComponent<ObjectivePointer>();
+        }
     }
 
     private void InitObjective() {
@@ -132,8 +143,27 @@ public class CompanionObjective : MonoBehaviour {
         } else if(_status == ObjectiveStatus.Complete) { //completion events
 
             if (objectiveTask != ObjectiveTask.Tutorial && showPointer) {
-                _objectivePointer.Disable();
+                if(_objectivePointer != null) _objectivePointer.Disable();
             }
+
+            switch (objectiveTask) {
+                case ObjectiveTask.Tutorial:
+                    divingbellAnimator.SetTrigger("LevelExit");
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void SetPointerStatus(bool status) {
+        if (_objectivePointer == null) return;
+
+        if(status) {
+            _objectivePointer.ResetPointer();
+        } else {
+            _objectivePointer.Disable();
         }
     }
 

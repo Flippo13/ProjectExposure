@@ -17,12 +17,20 @@ public class SceneTransition : MonoBehaviour {
     public void Start() {
         //doesnt work with awake
         if(!debug) StartCoroutine(LoadYourAsyncScene());
-
-        _collider = GetComponent<Collider>();
-        _collider.enabled = false;
     }
 
-    public void OnTriggerEnter(Collider other) {
+    public void Update() {
+        //dirty
+        if(ScoreTracker.CompletedTurbines >= 2) {
+            divingbellAnimator.SetTrigger("LevelEnter");
+        }
+
+        if(divingbellAnimator.GetCurrentAnimatorStateInfo(0).IsName("Arrived")) {
+            EnableTransition();
+        }
+    }
+
+    public void OnTriggerStay(Collider other) {
         if(other.tag == Tags.Player && divingbellAnimator != null) {
             divingbellAnimator.SetTrigger("LevelExit");
         }
@@ -41,9 +49,5 @@ public class SceneTransition : MonoBehaviour {
     public void EnableTransition() {
         //go to next scene
         if(!debug) _nextScene.allowSceneActivation = true;
-    }
-
-    public void EnableCollider() {
-        _collider.enabled = true;
     }
 }

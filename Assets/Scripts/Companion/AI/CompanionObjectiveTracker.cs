@@ -181,7 +181,6 @@ public class CompanionObjectiveTracker : MonoBehaviour {
                 break;
 
             case ObjectiveTask.NextLevel:
-                _currentObjective.sceneTransition.EnableCollider(); //activate the transition collider
                 return false;
 
             case ObjectiveTask.Event:

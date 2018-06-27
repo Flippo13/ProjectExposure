@@ -28,6 +28,7 @@ public class ObjectiveEditor : Editor {
     SerializedProperty powerGridProp;
     SerializedProperty turbineButtonProp;
     SerializedProperty tutorialAreaProp;
+    SerializedProperty divingbellAnimatorProp;
     SerializedProperty turbinePiecesProp;
 
     private CompanionObjective _objective;
@@ -52,6 +53,7 @@ public class ObjectiveEditor : Editor {
         powerGridProp = serializedObject.FindProperty("powerGrid");
         turbineButtonProp = serializedObject.FindProperty("turbineButton");
         tutorialAreaProp = serializedObject.FindProperty("tutorialArea");
+        divingbellAnimatorProp = serializedObject.FindProperty("divingbellAnimator");
         turbinePiecesProp = serializedObject.FindProperty("turbinePieces");
 
         _objective = (CompanionObjective)target;
@@ -73,6 +75,7 @@ public class ObjectiveEditor : Editor {
                 switch (task) {
                     case ObjectiveTask.Tutorial:
                         EditorGUILayout.PropertyField(tutorialAreaProp, new GUIContent("Tutorial Area"));
+                        EditorGUILayout.PropertyField(divingbellAnimatorProp, new GUIContent("Diving Bell Beginning Animator"));
 
                         break;
 

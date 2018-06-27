@@ -29,7 +29,7 @@ public class CompanionAnimation : MonoBehaviour {
             SetMovingBool(true);
 
             //rotation
-            float rotationAngle = _navigator.GetRotationAngle(1f);
+            float rotationAngle = _navigator.GetRotationAngle(0.5f);
 
             if(rotationAngle > 0f) {
                 //rotating right
