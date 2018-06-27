@@ -34,6 +34,7 @@ public class TurbineSocket : MonoBehaviour {
 
     public void LetGo()
     {
+        if (_hand != null)
         _hand.InterruptGrabbing();
     }
 }

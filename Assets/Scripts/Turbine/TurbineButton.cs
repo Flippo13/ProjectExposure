@@ -16,7 +16,6 @@ public class TurbineButton : MonoBehaviour
 
     public TurbineButtonActivate turbineButtonStop;
 
-    private bool _buttonIsBeingPressed;
 
     private bool _activate;
     // Use this for initialization
@@ -32,23 +31,6 @@ public class TurbineButton : MonoBehaviour
         if (turbineButtonStop.Active)
         {
             _activate = true;
-        }
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.collider.tag == "Player")
-        {
-            Debug.Log("Is being Pressed");
-            _buttonIsBeingPressed = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.collider.tag == "Player")
-        {
-            _buttonIsBeingPressed = false;
         }
     }
 
