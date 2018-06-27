@@ -11,13 +11,6 @@ public class SceneEntrance : MonoBehaviour {
 
     private bool _completedBegin;
 
-    [SerializeField]
-    [FMODUnity.EventRef]
-    private string _doorOpen;
-
-    [SerializeField]
-    [FMODUnity.EventRef]
-    private string _doorClose;
 
     public void Awake() {
         _completedBegin = false;
@@ -43,16 +36,5 @@ public class SceneEntrance : MonoBehaviour {
             }
             
         }
-    }
-
-    public void DoorSound(string open)
-    {
-        if (open == "true")
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(_doorOpen, transform.position);
-        }
-        else
-            FMODUnity.RuntimeManager.PlayOneShot(_doorClose, transform.position);
-
     }
 }

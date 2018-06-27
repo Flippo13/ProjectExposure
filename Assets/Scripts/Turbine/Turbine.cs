@@ -13,6 +13,9 @@ public class Turbine : MonoBehaviour
     private string _errorSound;
 
     [SerializeField]
+    private GameObject _soundOrigin;
+
+    [SerializeField]
     [EventRef]
     private string _turbineSound;
 
@@ -22,9 +25,13 @@ public class Turbine : MonoBehaviour
     private Animator _anim;
     private bool _trashCleaned;
     private bool _cableConnected;
+<<<<<<< HEAD
 
     private bool _isBeingCalledDown; 
 
+=======
+    private bool _activated = false;
+>>>>>>> d86bcd93ce1580cab150612a3a46e281a986d4be
     // Use this for initialization
     void Start()
     {
@@ -35,11 +42,12 @@ public class Turbine : MonoBehaviour
     {
         Debug.Log("Thank you for giving me a voice Daan! I do make a lot of noise though! ");
 
-        if (_trashCleaned && _cableConnected)
+        if (_trashCleaned && _cableConnected && !_activated)
         {
+            _activated = true;
             _anim.SetBool("enabled", true);
             RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
-            RuntimeManager.PlayOneShot(_turbineSound, transform.position);
+            RuntimeManager.PlayOneShot(_turbineSound, _soundOrigin.transform.position);
         }
         else if (_isBeingCalledDown && _cableConnected)
         {

@@ -4,12 +4,31 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: TallLights_LOD0
+    100004: TallLights_LOD1
+    100006: TallLights_LOD2
     400000: //RootNode
+    400002: TallLights_LOD0
+    400004: TallLights_LOD1
+    400006: TallLights_LOD2
     2100000: Lights_Material
     2100002: LightGkass_Material
+    2100004: LightGlass_Material
+    2100006: Lights_Material3
+    2100008: LightGlass_Material2
     2300000: //RootNode
+    2300002: TallLights_LOD0
+    2300004: TallLights_LOD1
+    2300006: TallLights_LOD2
     3300000: //RootNode
+    3300002: TallLights_LOD0
+    3300004: TallLights_LOD1
+    3300006: TallLights_LOD2
     4300000: TallLights
+    4300002: TallLights_LOD2
+    4300004: TallLights_LOD1
+    4300006: TallLights_LOD0
+    20500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -40,7 +59,10 @@ ModelImporter:
     clipAnimations: []
     isReadable: 1
   meshes:
-    lODScreenPercentages: []
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.01
     globalScale: 1
     meshCompression: 0
     addColliders: 0
