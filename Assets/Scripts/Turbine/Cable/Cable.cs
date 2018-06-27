@@ -55,8 +55,6 @@ public class Cable : MonoBehaviour {
         cableNodesList.Add(cableStart);
 
         distanceBetweenNodes = new float[nodeAmount + 1];
-        _maximumLength = (nodeAmount + 1) * desiredDistance;
-        Debug.Log("maximum distance: " + _maximumLength); 
 
         float nodeDistance = 1.0f / nodeAmount;
         for (int i = 1; i <= nodeAmount; i++)

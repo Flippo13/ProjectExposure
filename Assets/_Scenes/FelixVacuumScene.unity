@@ -1211,6 +1211,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114258872833472838, guid: 5ff5b4c60186e624381bada7eb4dadd1,
+        type: 2}
+      propertyPath: _timeToChoose
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ff5b4c60186e624381bada7eb4dadd1, type: 2}
   m_IsPrefabParent: 0
@@ -3827,6 +3832,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114258872833472838, guid: 5ff5b4c60186e624381bada7eb4dadd1,
+        type: 2}
+      propertyPath: _timeToChoose
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ff5b4c60186e624381bada7eb4dadd1, type: 2}
   m_IsPrefabParent: 0
@@ -4025,13 +4035,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1964567025}
+  - component: {fileID: 1964567026}
   m_Layer: 0
   m_Name: TurbineLandingZones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1964567025
 Transform:
   m_ObjectHideFlags: 0
@@ -4047,3 +4058,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1964567026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964567024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116788541233cae4ea282e279d8bd836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
