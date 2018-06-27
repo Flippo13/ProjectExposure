@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4885861498195626}
   - component: {fileID: 33127613108111742}
   - component: {fileID: 23981636177998508}
+  - component: {fileID: 65258275465705960}
   m_Layer: 8
   m_Name: FlatRock4_LOD0
   m_TagString: Untagged
@@ -85,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1820696765119886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 127.27562, y: 35.0839, z: 131.40652}
+  m_LocalPosition: {x: 247.17018, y: 22.848461, z: 221.79277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4885861498195626}
@@ -259,6 +260,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1127128654668630}
   m_Mesh: {fileID: 4300010, guid: bbe21c4e782b3a54689cf6236aeab430, type: 3}
+--- !u!65 &65258275465705960
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471974483726234}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.2889, y: 1.4299837, z: 5.6019125}
+  m_Center: {x: 0.000000059604645, y: 0, z: 0.00000011920929}
 --- !u!205 &205100879133424178
 LODGroup:
   m_ObjectHideFlags: 1

@@ -151,7 +151,12 @@ namespace CurvedVRKeyboard {
                     break;
             }
 
-            if(value == "low") {
+            if (isNumpad) {
+                Position = setPos;
+                value = allSpecials[Position];
+            }
+
+            if (value == "low") {
                 _shiftToggle.enabled = true;
                 letter.enabled = true;
                 letter.text = value;

@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4332049859143040}
   - component: {fileID: 33639887043367202}
   - component: {fileID: 23159316003173206}
+  - component: {fileID: 65696432989037132}
   m_Layer: 8
   m_Name: Stairs_LOD0
   m_TagString: Untagged
@@ -85,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1553260800557846}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 126.7868, y: 34.5411, z: 152.98926}
+  m_LocalPosition: {x: 247.17139, y: 24.200304, z: 229.62477}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4332049859143040}
@@ -259,6 +260,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1493392583538596}
   m_Mesh: {fileID: 4300002, guid: 5e95e47a150fa3148bd00f03a62cbb4e, type: 3}
+--- !u!65 &65696432989037132
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1493392583538596}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.8134575, y: 7.252004, z: 12.5162945}
+  m_Center: {x: 0.00000071525574, y: 3.509555, z: 0.8020189}
 --- !u!205 &205539176854028702
 LODGroup:
   m_ObjectHideFlags: 1

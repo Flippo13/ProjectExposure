@@ -192,23 +192,32 @@ public class CompanionAI : MonoBehaviour {
 
         switch (state) {
 
+            case CompanionState.Following:
+                _navigator.SetAgentStatus(true);
+
+                break;
+
             case CompanionState.Traveling:
+                _navigator.SetAgentStatus(true);
                 _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
 
                 break;
 
             case CompanionState.Roaming:
+                _navigator.SetAgentStatus(true);
                 _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
 
                 break;
 
             case CompanionState.Waiting:
+                _navigator.SetAgentStatus(false);
                 _timer = float.MaxValue; //ensure to play the reinforcement once at the start
                 _idleTimer = 0f;
 
                 break;
 
             case CompanionState.Instructing:
+                _navigator.SetAgentStatus(false);
                 _audio.StopAudioSource(AudioSourceType.Voice);
 
                 if (_audio.SetClip(_tracker.GetCurrentObjective().instructionClip, AudioSourceType.Voice)) {
@@ -219,12 +228,14 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.GettingVacuum:
+                _navigator.SetAgentStatus(true);
                 _animation.SetPlayingGrab(false); //reset grab animation
 
                 break;
 
             case CompanionState.HandingVacuum:
                 _timer = 0f;
+                _navigator.SetAgentStatus(false);
                 _animation.SetAnimationTrigger("hand_over_vacuum_hand"); //start handing over animation
 
                 break;

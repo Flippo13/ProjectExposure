@@ -31,6 +31,9 @@
         <relationship name="timeline">
             <destination>{f3cb7f88-fb99-4351-906e-e11ac66e6f7f}</destination>
         </relationship>
+        <relationship name="banks">
+            <destination>{8519fee4-4112-43a8-ad23-c7a96c06ce99}</destination>
+        </relationship>
     </object>
     <object class="EventMixer" id="{d763e7d0-794a-455e-a38e-4a4b11ea0339}">
         <relationship name="masterBus">
@@ -50,7 +53,7 @@
             <destination>{81488068-fbd2-472a-ba26-375db5f11f7c}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{8558a266-2c05-4155-8d6b-2af335260b96}</destination>
+            <destination>{b2e33b33-eb78-4842-aa01-c5f030c6d1e1}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{1d4d3991-fc56-41dc-a28a-7f071d921f16}"/>
@@ -296,7 +299,6 @@
         <property name="dataType">
             <value>0</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="DataPluginParameter" id="{f7039131-2553-49f2-b1b0-8bfd75055f35}">
         <property name="name">
@@ -305,6 +307,5 @@
         <property name="dataType">
             <value>-2</value>
         </property>
-        <property name="value"/>
     </object>
 </objects>
