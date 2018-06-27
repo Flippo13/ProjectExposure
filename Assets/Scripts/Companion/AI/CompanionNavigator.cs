@@ -50,6 +50,10 @@ public class CompanionNavigator : MonoBehaviour {
         return _navAgent.remainingDistance <= 0.1f;
     }
 
+    public void SetAgentStatus(bool status) {
+        _navAgent.enabled = status; 
+    }
+
     public Vector3 GetAgentVelocity() {
         return _navAgent.velocity;
     }
