@@ -19,6 +19,7 @@ public class Console : MonoBehaviour {
         if (_button.Activate)
         {
             turbineButtonEvent.Invoke();
+            _button.Activate = false; 
         }
     }
 

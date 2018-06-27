@@ -50,5 +50,6 @@ public class TurbineButton : MonoBehaviour {
     public bool Activate
     {
         get { return _activate; }
+        set { _activate = value; }
     }
 }
