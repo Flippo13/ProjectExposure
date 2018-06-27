@@ -8,15 +8,7 @@ public class TurbineManager : MonoBehaviour {
    
     private void Start()
     {
-        SetUpTurbine(); 
-
-
-    }
-
-
-    private void Update()
-    {
-
+        SetUpTurbine();
 
     }
 

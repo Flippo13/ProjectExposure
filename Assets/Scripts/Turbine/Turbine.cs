@@ -5,8 +5,9 @@ using UnityEngine;
 public class Turbine : MonoBehaviour {
 
     private Animator _anim;
-    private bool _trashCleaned;
-    private bool _cableConnected;
+    public TurbineLights[] _lights; 
+    private bool _trashCleaned = true;
+    private bool _cableConnected = true;
 
     // Use this for initialization
     void Start () {
@@ -18,12 +19,19 @@ public class Turbine : MonoBehaviour {
         Debug.Log("I still need to have an sound that shows that I work, give me my voice!!");
 
         if (_trashCleaned && _cableConnected)
-        _anim.SetBool("enabled", true);
-    /* else
-     * display "Turbine is not fixed" Image on Console
-    * 
-    * 
-    */
+        {
+            _anim.SetBool("enabled", true);
+            //and play an sound
+            for (int i = 0; i < _lights.Length; i++)
+            {
+                _lights[i].TurnOn(); 
+            }
+        }
+        /* else
+         * display "Turbine is not fixed" Image on Console
+        * 
+        * 
+        */
         else
             Debug.Log("Turbine is not fixed, display that on the console");
 
