@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Cable : MonoBehaviour {
 
     public GameObject cableStart;
@@ -16,7 +17,8 @@ public class Cable : MonoBehaviour {
     private List<GameObject> cableNodesList = new List<GameObject>();
     private List<GameObject> cylinders = new List<GameObject>();
     private float[] distanceBetweenNodes;
-    private float maximumLength;
+    private float _maximumLength;
+    private float _currentLength; 
    // private float currentLength; 
     public int nodeAmount; 
 
@@ -56,8 +58,8 @@ public class Cable : MonoBehaviour {
         _startPos = cableEnd.transform.position;
 
         distanceBetweenNodes = new float[nodeAmount + 1];
-        maximumLength = (nodeAmount + 1) * desiredDistance;
-        Debug.Log("maximum distance: " + maximumLength); 
+        _maximumLength = (nodeAmount + 1) * desiredDistance;
+        Debug.Log("maximum distance: " + _maximumLength); 
 
         float nodeDistance = 1.0f / nodeAmount;
         for (int i = 1; i <= nodeAmount; i++)
@@ -89,6 +91,13 @@ public class Cable : MonoBehaviour {
         for (int i = 0; i < distanceBetweenNodes.Length; i++)
         {
             distanceBetweenNodes[i] = Vector3.Distance(cableNodesList[i].transform.position, cableNodesList[i + 1].transform.position);
+
+            _currentLength += distanceBetweenNodes[i];
+        }
+
+        if (_currentLength >= _maximumLength)
+        {
+            _socket.LetGo(); 
         }
     }
 
