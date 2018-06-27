@@ -9,6 +9,7 @@ public class CompanionObjective : MonoBehaviour {
     //default information
     public ObjectiveType objectiveType;
     public ObjectiveTask objectiveTask;
+    public ObjectiveBranch objectiveBranch;
     public Transform pointerPosition;
     public GameObject pointerPrefab;
     public bool showPointer;

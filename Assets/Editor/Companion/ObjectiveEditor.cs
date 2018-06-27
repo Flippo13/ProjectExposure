@@ -10,6 +10,7 @@ public class ObjectiveEditor : Editor {
     //default props
     SerializedProperty objectiveTypeProp;
     SerializedProperty objectiveTaskProp;
+    SerializedProperty objectiveBranchProp;
     SerializedProperty pointerPositionProp;
     SerializedProperty pointerPrefabProp;
     SerializedProperty showPointerProp;
@@ -34,6 +35,7 @@ public class ObjectiveEditor : Editor {
     public void OnEnable() {
         objectiveTypeProp = serializedObject.FindProperty("objectiveType");
         objectiveTaskProp = serializedObject.FindProperty("objectiveTask");
+        objectiveBranchProp = serializedObject.FindProperty("objectiveBranch");
         pointerPositionProp = serializedObject.FindProperty("pointerPosition");
         pointerPrefabProp = serializedObject.FindProperty("pointerPrefab");
         showPointerProp = serializedObject.FindProperty("showPointer");
@@ -66,6 +68,7 @@ public class ObjectiveEditor : Editor {
         switch(type) {
             case ObjectiveType.Main:
                 EditorGUILayout.PropertyField(objectiveTaskProp, new GUIContent("Objective Task"));
+                EditorGUILayout.PropertyField(objectiveBranchProp, new GUIContent("Objective Branch"));
 
                 switch (task) {
                     case ObjectiveTask.Tutorial:

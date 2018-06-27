@@ -11,6 +11,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
     private List<CompanionObjective> _sideObjectives;
 
     private CompanionObjective _currentObjective;
+    private ObjectiveBranch _currentBranch;
 
     private int _startTrash;
 
@@ -29,6 +30,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         }
 
         _currentObjective = _mainObjectives[0];
+        _currentBranch = ObjectiveBranch.TutorialTurbine; //initial branch to play
     }
 
     public void SetCurrentObjective(CompanionObjective objective) {
@@ -45,24 +47,50 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         else return null;
     }
 
-    //returns the closest main objective that isnt completed, returns null if no objective was found
-    public CompanionObjective GetClostestMainObjective() {
-        CompanionObjective closestObjective = null;
-        float prevMagnitude = 0f;
+    //returns the next main objective that isnt completed and is part of the branch, returns null if no objective was found
+    public CompanionObjective GetNextObjectiveInBranch() {
+        CompanionObjective nextObjective = null;
+          
+        for(int i = 0; i < _mainObjectives.Count; i++) {
+            CompanionObjective currentObjective = _mainObjectives[i];
+            if (currentObjective.IsCompleted()) continue; //skip completed objectives
 
-        //using sqrMagnitude for better performance, since we are only comparing them against each other
-        for (int i = 0; i < _mainObjectives.Count; i++) {
-            if (_mainObjectives[i].IsCompleted()) continue;
+            //uncompleted tasks remaining
+            if(_currentBranch != currentObjective.objectiveBranch) {
+                //branch needs to change since all objectives in this branch are completed
+                SetCurrentBranch(i);
+
+                if (_currentBranch == ObjectiveBranch.None) Debug.Log("No more main objective branches found");
+                else Debug.Log("Switched branch: " + _currentBranch);
+            }
+
+            //get next objective from active branch
+            if(_currentBranch == currentObjective.objectiveBranch) {
+                nextObjective = _mainObjectives[i];
+                break;
+            }
+        }
+
+        return nextObjective;
+    }
+
+    private void SetCurrentBranch(int index) {
+        ObjectiveBranch closestBranch = ObjectiveBranch.None;
+        float prevMagnitude = float.MaxValue;
+
+        for (int i = index; i < _mainObjectives.Count; i++) {
+            if (_mainObjectives[i].IsCompleted() || _mainObjectives[i].objectiveBranch == closestBranch || _mainObjectives[i].objectiveBranch == _currentBranch) continue;
 
             float magnitude = (_mainObjectives[i].transform.position - transform.position).sqrMagnitude;
 
-            if (closestObjective == null || magnitude < prevMagnitude) {
-                closestObjective = _mainObjectives[i];
+            //checking for different branches that are closer
+            if (magnitude < prevMagnitude) {
+                closestBranch = _mainObjectives[i].objectiveBranch;
                 prevMagnitude = magnitude;
             }
         }
 
-        return closestObjective;
+        _currentBranch = closestBranch; //assign found branch
     }
 
     //returns the closest side objective that isnt completed, returns null if no objective was found

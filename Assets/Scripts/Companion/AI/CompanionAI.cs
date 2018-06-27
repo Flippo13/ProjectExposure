@@ -50,7 +50,7 @@ public class CompanionAI : MonoBehaviour {
         InitTutorial();
     }
 
-    public void LateUpdate() {
+    public void FixedUpdate() {
         UpdateTracker();
         UpdateState();
     }
@@ -132,7 +132,7 @@ public class CompanionAI : MonoBehaviour {
         if (_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) return false; //an objective is already active
 
         //looking for an entirely new objective
-        CompanionObjective mainObjective = _tracker.GetClostestMainObjective();
+        CompanionObjective mainObjective = _tracker.GetNextObjectiveInBranch();
         CompanionObjective sideObjective = _tracker.GetClosestSideObjective();
 
         if (mainObjective != null && sideObjective != null) {   //main and side remaining
