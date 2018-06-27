@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4049516971026548}
   - component: {fileID: 33046020547500374}
   - component: {fileID: 23739311467535688}
+  - component: {fileID: 65171244865547646}
   m_Layer: 8
   m_Name: Low_Poly_Rock_4_LOD0
   m_TagString: Untagged
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1597530774172878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 96.74191, y: 33.343815, z: 157.62138}
+  m_LocalPosition: {x: 243.28804, y: 24.380346, z: 235.83656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4049516971026548}
@@ -259,6 +260,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338643250193244}
   m_Mesh: {fileID: 4300002, guid: 84dce84a8532b4e4886042e273623bb1, type: 3}
+--- !u!65 &65171244865547646
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1465633052731120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.0459676, y: 3.5100052, z: 4.5085125}
+  m_Center: {x: 0.00000047683716, y: 1.6200956, z: -0.00000023841858}
 --- !u!205 &205770165008153402
 LODGroup:
   m_ObjectHideFlags: 1

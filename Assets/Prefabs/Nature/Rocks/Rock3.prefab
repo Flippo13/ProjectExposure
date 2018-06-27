@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4843566436539014}
   - component: {fileID: 33516462225087010}
   - component: {fileID: 23133192949592838}
+  - component: {fileID: 65243765296569286}
   m_Layer: 8
   m_Name: Rock3_LOD0
   m_TagString: Untagged
@@ -111,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1824746067810644}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.67203, y: 39.985085, z: 136.7}
+  m_LocalPosition: {x: 247.5818, y: 23.21785, z: 229.39078}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4843566436539014}
@@ -259,6 +260,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1123579639038132}
   m_Mesh: {fileID: 4300002, guid: 32b5bb29502145d468889fe3a7dba5a0, type: 3}
+--- !u!65 &65243765296569286
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123579639038132}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.6646733, y: 1.8832831, z: 2.8253179}
+  m_Center: {x: -0.00000011920929, y: 0.47909912, z: 0.00000029802322}
 --- !u!205 &205731304603649494
 LODGroup:
   m_ObjectHideFlags: 1

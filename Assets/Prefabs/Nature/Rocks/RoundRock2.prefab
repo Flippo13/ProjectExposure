@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4393513677377812}
   - component: {fileID: 33152568142091508}
   - component: {fileID: 23150936788943950}
+  - component: {fileID: 65644225928162478}
   m_Layer: 8
   m_Name: RoundRock2_LOD0
   m_TagString: Untagged
@@ -85,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1871851849647164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.75622, y: 34.406204, z: 158.23344}
+  m_LocalPosition: {x: 244.79872, y: 22.780487, z: 229.94894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4393513677377812}
@@ -259,6 +260,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1897664093748816}
   m_Mesh: {fileID: 4300004, guid: 9da29c90835550b429a55d3d78481b57, type: 3}
+--- !u!65 &65644225928162478
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1235943672538362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1537826, y: 3.9957802, z: 2.5626106}
+  m_Center: {x: 0.13430265, y: 1.9978901, z: -0.19844311}
 --- !u!205 &205510124957791696
 LODGroup:
   m_ObjectHideFlags: 1
