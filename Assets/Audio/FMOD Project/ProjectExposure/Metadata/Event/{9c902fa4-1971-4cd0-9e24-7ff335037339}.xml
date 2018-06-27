@@ -5,7 +5,7 @@
             <value>Diving Bell 2</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="folder">
             <destination>{c2600be5-3a68-4652-9db0-a67e3f2ae639}</destination>
@@ -113,7 +113,6 @@
     <object class="MixerBusEffectChain" id="{6846a60b-58dc-4d4e-b8bc-1136e077a289}">
         <relationship name="effects">
             <destination>{c43ecca7-1849-478a-a38c-b78ffaf110d6}</destination>
-            <destination>{febb635e-e20f-4d16-bbde-32b77d268159}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{d4ef38dd-6d60-4e72-b974-ad56c1f0bd3f}"/>
@@ -126,7 +125,6 @@
     </object>
     <object class="MixerBusPanner" id="{0d42ccdd-90d6-476a-8a7c-9793acbc4386}"/>
     <object class="MixerBusFader" id="{c43ecca7-1849-478a-a38c-b78ffaf110d6}"/>
-    <object class="SpatialiserEffect" id="{febb635e-e20f-4d16-bbde-32b77d268159}"/>
     <object class="MixerBusFader" id="{df05f437-a0bc-4299-b32e-8c0ec3ed4fbf}"/>
     <object class="PluginEffect" id="{e3c86c9f-fdda-4f6b-90be-4f99c64a958f}">
         <relationship name="plugin">

@@ -50,7 +50,7 @@ public class CompanionAI : MonoBehaviour {
         InitTutorial();
     }
 
-    public void Update() {
+    public void LateUpdate() {
         UpdateTracker();
         UpdateState();
     }
@@ -193,6 +193,11 @@ public class CompanionAI : MonoBehaviour {
         switch (state) {
 
             case CompanionState.Following:
+                _navigator.SetAgentStatus(true);
+
+                break;
+
+            case CompanionState.Returning:
                 _navigator.SetAgentStatus(true);
 
                 break;
