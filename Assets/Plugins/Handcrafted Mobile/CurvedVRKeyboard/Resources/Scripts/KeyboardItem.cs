@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using FMODUnity;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace CurvedVRKeyboard {
     public class KeyboardItem : KeyboardComponent {
         private Text letter;
 
+        [SerializeField]
+        [EventRef]
+        private string _buttonPress;
         public static bool forceInit = true;
 
         public bool isNumpad;
@@ -100,6 +104,7 @@ namespace CurvedVRKeyboard {
         public void Click() {
             clicked = true;
             ChangeDisplayedMaterial(keyPressedMaterial);
+            FMODUnity.RuntimeManager.PlayOneShot(_buttonPress, transform.position);
         }
 
         /// <summary>
