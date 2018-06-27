@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114036714414076480}
   - component: {fileID: 135754213915236784}
   m_Layer: 2
-  m_Name: AssemblyPointer 5
+  m_Name: VacuumPointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ Transform:
   m_GameObject: {fileID: 1439362937798896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4982384048282076}
   m_Father: {fileID: 0}
@@ -113,7 +113,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 20
   m_Center: {x: 0, y: -4.1, z: 0}
 --- !u!212 &212068221871915372
 SpriteRenderer:

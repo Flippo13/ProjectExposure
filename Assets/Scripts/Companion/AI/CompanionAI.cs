@@ -153,6 +153,7 @@ public class CompanionAI : MonoBehaviour {
 
                 return true;
             }
+
         } else if (mainObjective == null && sideObjective != null) { //only side objectives remaining
             float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
 
@@ -444,19 +445,19 @@ public class CompanionAI : MonoBehaviour {
                     return;
                 }
 
+                if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
+                    //go back to hover idle when vacuum is grabbed or released
+                    _animation.SetAnimationTrigger("hand_over_vacuum_hover");
+                    return;
+                }
+
                 if (grabScanner.IsReachingForVacuum()) {
                     //reset the timer when player is reaching out
                     _timer = 0f;
-                } else if (_timer >= 1.5f) {
-                    if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
-                        //go back to hover idle when vacuum is grabbed or released
-                        _animation.SetAnimationTrigger("hand_over_vacuum_hover");
-                        return;
-                    } else {
-                        //put vacuum back
-                        _animation.SetAnimationTrigger("hand_over_vacuum_back");
-                        return;
-                    }
+                } else if (_timer >= 1.5f && vacuum.GetVacuumState() != VacuumState.Player && vacuum.GetVacuumState() != VacuumState.Free) {
+                    //put vacuum back
+                    _animation.SetAnimationTrigger("hand_over_vacuum_back");
+                    return;
                 }
 
                 _timer = _timer + Time.deltaTime;
