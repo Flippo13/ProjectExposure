@@ -6,8 +6,8 @@ public class Turbine : MonoBehaviour {
 
     private Animator _anim;
     public TurbineLights[] _lights; 
-    private bool _trashCleaned = true;
-    private bool _cableConnected = true;
+    private bool _trashCleaned ;
+    private bool _cableConnected ;
 
     // Use this for initialization
     void Start () {
