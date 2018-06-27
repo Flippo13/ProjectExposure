@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class Cable : MonoBehaviour {
 
+    [Header("Cable Components")]
     public GameObject cableStart;
     public GameObject cableEnd;
     public GameObject cableNode;
+
 
     private GameObject cylinder;
     private TurbineSocket _socket; 
@@ -17,12 +19,13 @@ public class Cable : MonoBehaviour {
     private List<GameObject> cableNodesList = new List<GameObject>();
     private List<GameObject> cylinders = new List<GameObject>();
     private float[] distanceBetweenNodes;
-    private float _maximumLength;
     private float _currentLength; 
    // private float currentLength; 
     public int nodeAmount; 
 
     //Info for the Hookes Law Formula F = -K*(|x| - d) (x/|x|) - bv 
+    [Header("Cable Info")]
+    public float _maximumLength;
     public float springConstant = 0.7f;
     public float desiredDistance;
     public float damping;
