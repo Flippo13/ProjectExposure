@@ -25,13 +25,9 @@ public class Turbine : MonoBehaviour
     private Animator _anim;
     private bool _trashCleaned;
     private bool _cableConnected;
-<<<<<<< HEAD
 
     private bool _isBeingCalledDown; 
-
-=======
     private bool _activated = false;
->>>>>>> d86bcd93ce1580cab150612a3a46e281a986d4be
     // Use this for initialization
     void Start()
     {

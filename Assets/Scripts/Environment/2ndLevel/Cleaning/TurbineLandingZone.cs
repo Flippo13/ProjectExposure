@@ -6,6 +6,7 @@ using UnityEngine;
 public class TurbineLandingZone : MonoBehaviour {
 
     public GameObject foundationWithTurbinePrefab;
+
     public Console console;
     public PowerGrid powerGrid; 
 
