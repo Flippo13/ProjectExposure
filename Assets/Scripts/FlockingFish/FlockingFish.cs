@@ -12,7 +12,6 @@ public class FlockingFish : MonoBehaviour {
 
     private FlockingGlobal _fishTank; 
     private new Transform transform;
-    private SphereCollider _col; 
     private Animator _anim;
 
     private Vector3 _calculatedCohesion;
@@ -30,7 +29,6 @@ public class FlockingFish : MonoBehaviour {
     void Start () {
         speed = Random.Range(0.1f, maxSpeed);
         transform = GetComponent<Transform>();
-        _col = GetComponent<SphereCollider>();
         _anim = GetComponent<Animator>(); 
         _fishTank = GetComponentInParent<FlockingGlobal>();
         setRotSpeed = rotationSpeed; 
@@ -104,10 +102,8 @@ public class FlockingFish : MonoBehaviour {
              Collider[] neighbours = Physics.OverlapSphere(transform.position, cohesionRange, fishLayer);
             _calculatedCohesion = CalculateCohesion(neighbours) + (_fishTank.goal - transform.position);
             _calculatedSeperation = CalculateSeperation(neighbours);
-            //Debug.Log("seperation: " + _calculatedSeperation);
 
             direction = (_calculatedCohesion + _calculatedSeperation) - transform.position;
-            //Debug.Log("direction: " + direction);
         }
     }
 
@@ -139,9 +135,6 @@ public class FlockingFish : MonoBehaviour {
     {
         Vector3 seperation = Vector3.zero;
         float neighbourCount = 0;
-
-        //array full off fish that are in range
-        // Collider[] neighbours = Physics.OverlapSphere(transform.position, seperationRange, fishLayer);
 
         for (int i = 0; i < neighbours.Length; i++)
         {

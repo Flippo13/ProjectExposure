@@ -10,6 +10,7 @@ public class TurbineLandingZone : MonoBehaviour {
     public Console console;
     public PowerGrid powerGrid; 
 
+    [HideInInspector]
     public UnityEvent areaChosenEvent;
     public float _timeToChoose;
 
@@ -24,19 +25,22 @@ public class TurbineLandingZone : MonoBehaviour {
     [SerializeField]
     private bool _areaChosen;
 
+    private bool _turbineSpawned;
+
+    private TurbineDropCheck _turbineDropCheck; 
+    
     // Use this for initialization
     void Start() {
-
         transform = GetComponent<Transform>();
         _col = GetComponent<BoxCollider>();
         _col.isTrigger = true;
         foundationTransform = foundationWithTurbinePrefab.GetComponent<Transform>();
-
+        _turbineDropCheck = GetComponentInParent<TurbineDropCheck>(); 
         foundationTransform.position = new Vector3(transform.position.x, foundationTransform.position.y, transform.position.z);
 
         _playerInArea = false;
-
-
+        _areaChosen = false; 
+        _turbineSpawned = false; 
     }
 
     // Update is called once per frame
@@ -47,7 +51,7 @@ public class TurbineLandingZone : MonoBehaviour {
 
     private void ChoosePosition()
     {
-        if (_playerInArea && !_areaChosen)
+        if (_playerInArea && !_areaChosen && !_turbineSpawned)
         {
             if (_playerInAreaTime < _timeToChoose)
             {
@@ -61,6 +65,7 @@ public class TurbineLandingZone : MonoBehaviour {
                 _areaChosen = true;
                 _playerInAreaTime = 0;
                 SetUpTurbine(_turbine);
+                _turbineSpawned = true; 
             }
         }
     }
@@ -72,6 +77,9 @@ public class TurbineLandingZone : MonoBehaviour {
         turbine.Button = console.gameObject; 
         console.turbineButtonEvent.AddListener(turbine.Activate);
         powerGrid.cableConntectedEvent.AddListener(turbine.CableConnected);
+
+
+        _turbineDropCheck.TurbineDropping(); 
     }
 
 
@@ -80,8 +88,6 @@ public class TurbineLandingZone : MonoBehaviour {
         if (other.tag == "Player")
         {
             _playerInArea = true;
-            Debug.Log("Player ");
-
         }
     }
 

@@ -17,7 +17,7 @@ public class Cable : MonoBehaviour {
     private LineRenderer _lineRenderer;
 
     private List<GameObject> cableNodesList = new List<GameObject>();
-    private List<GameObject> cylinders = new List<GameObject>();
+
     private float[] distanceBetweenNodes;
     private float _currentLength; 
    // private float currentLength; 
@@ -29,11 +29,6 @@ public class Cable : MonoBehaviour {
     public float springConstant = 0.7f;
     public float desiredDistance;
     public float damping;
-
-    //Cable info
-    private Vector3 nodeStartPos; 
-
-    private Vector3 _startPos; 
 
     // Use this for initialization
     void Awake () {
@@ -58,7 +53,6 @@ public class Cable : MonoBehaviour {
     private void SetUpCable()
     {
         cableNodesList.Add(cableStart);
-        _startPos = cableEnd.transform.position;
 
         distanceBetweenNodes = new float[nodeAmount + 1];
         _maximumLength = (nodeAmount + 1) * desiredDistance;

@@ -11,7 +11,6 @@ public class TurbineDrop : MonoBehaviour {
     public GameObject turbinePrefab;
     public LayerMask terrainLayer; 
     private new Transform transform;
-    private Collider _col;
     private Rigidbody _turbineRB; 
     private bool _calledDown;
     private bool _landed;
@@ -21,7 +20,6 @@ public class TurbineDrop : MonoBehaviour {
     void Start () {
         transform = GetComponent<Transform>();
         _turbineRB = turbinePrefab.GetComponent<Rigidbody>(); 
-        _col = GetComponent<Collider>();
 
         if (_turbineRB.useGravity)
             _turbineRB.useGravity = false;
@@ -32,12 +30,6 @@ public class TurbineDrop : MonoBehaviour {
 	void Update () {
         Drop();
 	}
-
-
-    public void CallDown()
-    {
-        _calledDown = true; 
-    }
 
 
     private void Drop()
@@ -55,7 +47,6 @@ public class TurbineDrop : MonoBehaviour {
 
                 if (transform.position.y <= dropPos.y + 2)
                 {
-                    _calledDown = false; 
                     Landed(); 
                 }
             }
