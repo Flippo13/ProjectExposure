@@ -18,8 +18,8 @@ public class Console : MonoBehaviour {
 	void Update () {
         if (_button.Activate)
         {
-            turbineButtonEvent.Invoke();
             _button.Activate = false; 
+            turbineButtonEvent.Invoke();
         }
     }
 

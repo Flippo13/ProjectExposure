@@ -16,7 +16,7 @@ public class TurbineManager : MonoBehaviour {
     {
         for (int i = 0; i < turbine.Length; i++)
         {
-            if (turbine[i].turbine != null && turbine[i].console != null && turbine[i].powerGrid != null && turbine[i].trashArea != null && !turbine[i].isBeingDropped)
+            if (turbine[i].turbine != null && turbine[i].console != null && turbine[i].powerGrid != null && turbine[i].trashArea != null)
             {
                 turbine[i].powerGrid.cableConntectedEvent.AddListener(turbine[i].turbine.CableConnected);
                 turbine[i].console.turbineButtonEvent.AddListener(turbine[i].turbine.Activate);
@@ -29,12 +29,6 @@ public class TurbineManager : MonoBehaviour {
                 Debug.Log("Is turbine console null? " + (turbine[i].console == null));
                 Debug.Log("Is turbine powerGrid null? " + (turbine[i].powerGrid == null));
                 Debug.Log("Is turbine trashArea null? " + (turbine[i].trashArea == null));
-            }
-
-            if (turbine[i].isBeingDropped && turbine[i].turbineLandingZone != null)
-            {
-                turbine[i].turbineLandingZone.Console = turbine[i].console;
-                turbine[i].turbineLandingZone.PowerGrid = turbine[i].powerGrid; 
             }
         }
     }

@@ -9,6 +9,4 @@ public class TurbineSetUp {
     public PowerGrid powerGrid;
     public Console console;
     public CheckForTrashArea trashArea;
-    public bool isBeingDropped;
-    public TurbineLandingZone turbineLandingZone; 
 }

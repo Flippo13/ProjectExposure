@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Turbine : MonoBehaviour
 {
-
     [SerializeField]
     [EventRef]
     private string _activateSound;
@@ -24,6 +23,8 @@ public class Turbine : MonoBehaviour
     private bool _trashCleaned;
     private bool _cableConnected;
 
+    private bool _isBeingCalledDown; 
+
     // Use this for initialization
     void Start()
     {
@@ -32,7 +33,7 @@ public class Turbine : MonoBehaviour
 
     public void Activate()
     {
-        Debug.Log("I still need to have an sound that shows that I work, give me my voice!!");
+        Debug.Log("Thank you for giving me a voice Daan! I do make a lot of noise though! ");
 
         if (_trashCleaned && _cableConnected)
         {
@@ -40,6 +41,13 @@ public class Turbine : MonoBehaviour
             RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
             RuntimeManager.PlayOneShot(_turbineSound, transform.position);
         }
+        else if (_isBeingCalledDown && _cableConnected)
+        {
+            _anim.SetBool("enabled", true);
+            RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
+            RuntimeManager.PlayOneShot(_turbineSound, transform.position);
+        }
+
         /* else
          * display "Turbine is not fixed" Image on Console
         * 
@@ -54,6 +62,19 @@ public class Turbine : MonoBehaviour
 
     }
 
+
+    public bool CalledDown
+    {
+       get { return _isBeingCalledDown; }
+        set { _isBeingCalledDown = value; }
+    }
+
+
+    public GameObject Button
+    {
+        get { return _button; }
+        set { _button = value; }
+    }
 
     public void CableConnected()
     {

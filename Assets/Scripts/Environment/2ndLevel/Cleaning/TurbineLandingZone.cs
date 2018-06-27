@@ -6,6 +6,8 @@ using UnityEngine;
 public class TurbineLandingZone : MonoBehaviour {
 
     public GameObject foundationWithTurbinePrefab;
+    public Console console;
+    public PowerGrid powerGrid; 
 
     public UnityEvent areaChosenEvent;
     public float _timeToChoose;
@@ -15,12 +17,10 @@ public class TurbineLandingZone : MonoBehaviour {
     private new Transform transform;
     private Turbine _turbine; 
 
-    private Console _console;
-    private PowerGrid _powerGrid;
-
     private float _playerInAreaTime;
     private bool _playerInArea;
     private int trashCount;
+    [SerializeField]
     private bool _areaChosen;
 
     // Use this for initialization
@@ -56,18 +56,21 @@ public class TurbineLandingZone : MonoBehaviour {
             {
                 GameObject turbine =  Instantiate(foundationWithTurbinePrefab, new Vector3(transform.position.x, foundationTransform.position.y, transform.position.z), transform.rotation);
                 areaChosenEvent.Invoke();
-                _turbine = turbine.GetComponent<Turbine>();
-
-               // if (_powerGrid != null && _console != null)
-               // {
-              //      _powerGrid.cableConntectedEvent.AddListener(_turbine.CableConnected);
-              //      _console.turbineButtonEvent.AddListener(_turbine.Activate);
-              //  }
-
+                _turbine = turbine.GetComponentInChildren<Turbine>();
                 _areaChosen = true;
                 _playerInAreaTime = 0;
+                SetUpTurbine(_turbine);
             }
         }
+    }
+
+
+    private void SetUpTurbine(Turbine turbine)
+    {
+        turbine.CalledDown = true;
+        turbine.Button = console.gameObject; 
+        console.turbineButtonEvent.AddListener(turbine.Activate);
+        powerGrid.cableConntectedEvent.AddListener(turbine.CableConnected);
     }
 
 
@@ -88,18 +91,5 @@ public class TurbineLandingZone : MonoBehaviour {
         {
             _playerInArea = false;
         }
-    }
-
-
-    public Console Console
-    {
-        get { return _console;  }
-        set { _console = value; }
-    }
-
-    public PowerGrid PowerGrid
-    {
-        get { return _powerGrid;  }
-        set { _powerGrid = value; }
     }
 }
