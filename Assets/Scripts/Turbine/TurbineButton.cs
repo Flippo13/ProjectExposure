@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events; 
 
 public class TurbineButton : MonoBehaviour {
+
+    [SerializeField]
+    [EventRef]
+    private string _buttonPress;
 
     public SpringJoint springJoint;
     public Collider consoleMeshCol;
@@ -35,7 +40,8 @@ public class TurbineButton : MonoBehaviour {
         if (other.collider.tag == "Player")
         {
             Debug.Log("Is being Pressed");
-            _buttonIsBeingPressed = true; 
+            _buttonIsBeingPressed = true;
+            RuntimeManager.PlayOneShot(_buttonPress, transform.position);
         }
    }
 

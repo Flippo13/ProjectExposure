@@ -64,7 +64,7 @@ public class VacuumScript : MonoBehaviour {
             //apply to score tracker
             ScoreTracker.Score = _trashCount;
             // Play sound after each 
-            RuntimeManager.PlayOneShot(_addScoreSound);
+            RuntimeManager.PlayOneShot(_addScoreSound, transform.position);
             trashCounter.text = "" + _trashCount;
             _destroyedObjects.Add(other.transform);
         }
