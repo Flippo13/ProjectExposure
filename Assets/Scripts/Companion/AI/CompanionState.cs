@@ -39,6 +39,14 @@ public enum ObjectiveType {
     Side //Side objective
 }
 
+public enum ObjectiveBranch {
+    None,
+    TutorialTurbine,
+    PlacingTurbine,
+    AssembleTurbine,
+    Completion
+}
+
 public enum VacuumState {
     CompanionBack, //companion carries vacuum on his back
     CompanionHand, //companion hold vacuum in his left hand
