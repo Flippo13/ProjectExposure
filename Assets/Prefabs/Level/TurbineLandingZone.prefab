@@ -9,67 +9,68 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1921624519978708}
+  m_RootGameObject: {fileID: 1407389623473126}
   m_IsPrefabParent: 1
---- !u!1 &1921624519978708
+--- !u!1 &1407389623473126
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4621171073065016}
-  - component: {fileID: 65089824779446524}
-  - component: {fileID: 114447064015750052}
+  - component: {fileID: 4350519380466436}
+  - component: {fileID: 65268736321015036}
+  - component: {fileID: 114258872833472838}
   m_Layer: 2
-  m_Name: TrashArea
+  m_Name: TurbineLandingZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4621171073065016
+--- !u!4 &4350519380466436
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1921624519978708}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -60.23, y: 13.12, z: 1.93}
+  m_GameObject: {fileID: 1407389623473126}
+  m_LocalRotation: {x: 0, y: -0.6323674, z: 0, w: 0.77466863}
+  m_LocalPosition: {x: 0.8481597, y: 1.36, z: -34.482113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -78.45, z: 0}
---- !u!65 &65089824779446524
+--- !u!65 &65268736321015036
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1921624519978708}
+  m_GameObject: {fileID: 1407389623473126}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 22.95, y: 1.3, z: 22.84}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114447064015750052
+--- !u!114 &114258872833472838
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1921624519978708}
+  m_GameObject: {fileID: 1407389623473126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94b63b2727694d499d63e2b24e164ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e814a0dc4521b74db22685a3f16bdd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  minTrashLeft: 0
-  trashCleanedEvent:
+  foundationWithTurbinePrefab: {fileID: 0}
+  console: {fileID: 0}
+  powerGrid: {fileID: 0}
+  areaChosenEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _timeToChoose: 0
+  _areaChosen: 0
