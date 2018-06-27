@@ -1,18 +1,20 @@
 fileFormatVersion: 2
-guid: 6cbef0026f11a154fbdf3624bbfa6fff
+guid: 09d85e6df58d407479c5346b4639537f
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: lambert1
-    2100002: Lights_Material
-    2100004: LightGkass_Material
-    2100006: LightGlass_Material
+    2100000: BridgeRailing_Material
     2300000: //RootNode
     3300000: //RootNode
-    4300000: HangingLight
-  externalObjects: {}
+    4300000: SingleRailing
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BridgeRailing_Material
+    second: {fileID: 2100000, guid: 213994c2db2b5ef47ba0273913d42b9c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
