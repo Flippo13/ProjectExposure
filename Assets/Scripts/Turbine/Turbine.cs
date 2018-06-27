@@ -14,6 +14,9 @@ public class Turbine : MonoBehaviour
     private string _errorSound;
 
     [SerializeField]
+    private GameObject _soundOrigin;
+
+    [SerializeField]
     [EventRef]
     private string _turbineSound;
 
@@ -23,7 +26,7 @@ public class Turbine : MonoBehaviour
     private Animator _anim;
     private bool _trashCleaned;
     private bool _cableConnected;
-
+    private bool _activated = false;
     // Use this for initialization
     void Start()
     {
@@ -34,11 +37,12 @@ public class Turbine : MonoBehaviour
     {
         Debug.Log("I still need to have an sound that shows that I work, give me my voice!!");
 
-        if (_trashCleaned && _cableConnected)
+        if (_trashCleaned && _cableConnected && !_activated)
         {
+            _activated = true;
             _anim.SetBool("enabled", true);
             RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
-            RuntimeManager.PlayOneShot(_turbineSound, transform.position);
+            RuntimeManager.PlayOneShot(_turbineSound, _soundOrigin.transform.position);
         }
         /* else
          * display "Turbine is not fixed" Image on Console
