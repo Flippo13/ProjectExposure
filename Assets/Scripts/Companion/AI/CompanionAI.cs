@@ -50,7 +50,7 @@ public class CompanionAI : MonoBehaviour {
         InitTutorial();
     }
 
-    public void FixedUpdate() {
+    public void Update() {
         UpdateTracker();
         UpdateState();
     }
@@ -361,7 +361,8 @@ public class CompanionAI : MonoBehaviour {
 
                 if (CheckForCompanionCall()) return;
 
-                if (_navigator.ReachedDestinaton()) SetState(CompanionState.Waiting);
+                float distance = Vector3.Distance(transform.position, _tracker.GetCurrentObjective().transform.position);
+                if (distance < 0.8f) SetState(CompanionState.Waiting);
 
                 break;
 
@@ -371,7 +372,8 @@ public class CompanionAI : MonoBehaviour {
 
                 if (CheckForCompanionCall()) return;
 
-                if (_navigator.ReachedDestinaton()) SetState(CompanionState.Waiting);
+                float distance1 = Vector3.Distance(transform.position, _tracker.GetCurrentObjective().transform.position);
+                if (distance1 < 0.8f) SetState(CompanionState.Waiting);
 
                 break;
 
