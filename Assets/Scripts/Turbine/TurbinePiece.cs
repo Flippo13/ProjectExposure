@@ -54,9 +54,8 @@ public class TurbinePiece : MonoBehaviour {
                 _correctZRotation = AxisIsOne(transform.forward, false, false, true);
             }
 
-            if (_correctXRotation && _correctYRotation && _correctZRotation)
+            if (_correctXRotation && _correctYRotation && _correctZRotation && _turbinePiecePosition.InPlacementRange)
             {
-
                 Connected();
                 Debug.Log("Can Connect");
             }
@@ -95,9 +94,11 @@ public class TurbinePiece : MonoBehaviour {
         float dotOfAxisToY = Vector3.Dot(turbinePieceAxis, _turbinePosTransform.up); 
         float dotOfAxisToZ = Vector3.Dot(turbinePieceAxis, _turbinePosTransform.forward);
 
+        Debug.Log("Angles " );
+
         if (compareToX && 1 <= dotOfAxisToX + offset || -1 >= dotOfAxisToX - offset)
             return true;
-        else if (compareToY && 1 <= dotOfAxisToY + offset || -1 >= dotOfAxisToY - offset && compareToY)
+        else if (compareToY && 1 <= dotOfAxisToY + offset || -1 >= dotOfAxisToY - offset)
             return true; 
         else if (compareToZ && 1 <= dotOfAxisToZ + offset || -1 >= dotOfAxisToZ - offset)
             return true;
