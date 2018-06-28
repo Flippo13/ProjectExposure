@@ -11,7 +11,12 @@ public class Caustics : MonoBehaviour
     private float _minimumLight = 2;
 
     [SerializeField]
-    private float _sinMultiplier = 2;
+    private float _maximumLight = 2;
+
+    [SerializeField]
+    private float _sinMultiplier = 1;
+
+    float strenght;
 
     [SerializeField]
     private List<Texture2D> _causticTextures;
@@ -29,7 +34,9 @@ public class Caustics : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _caustics.intensity = Mathf.Sin(Time.time * (1 + _sinMultiplier)) + _minimumLight;
+        strenght = Mathf.PingPong(Time.time * _sinMultiplier, _maximumLight - 1);
+        _caustics.intensity = strenght + _minimumLight;
+
     }
 
 
