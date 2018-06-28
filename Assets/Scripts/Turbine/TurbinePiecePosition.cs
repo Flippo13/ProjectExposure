@@ -26,11 +26,21 @@ public class TurbinePiecePosition : MonoBehaviour {
     {
         if (other.tag == Tags.TurbinePiece)
         {
+         Debug.Log("You are in Range"); 
             _inPlacementRange = true; 
         }
     }
 
-    public bool Conntected
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == Tags.TurbinePiece)
+        {
+            Debug.Log("You are  not in Range");
+            _inPlacementRange = false;
+        }
+    }
+
+    public bool Connected
     {
         get { return _connected;  }
         set { _connected = value; }

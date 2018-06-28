@@ -15,7 +15,6 @@ public class TurbinePiece : MonoBehaviour {
 
     public float offset; 
 
-    private Renderer rend;
     private new Transform transform;
     private Transform _turbinePosTransform;
     private TurbinePiecePosition _turbinePiecePosition; 
@@ -25,21 +24,19 @@ public class TurbinePiece : MonoBehaviour {
     private bool _correctZRotation; 
     // Use this for initialization
 	void Start () {
-        rend = GetComponent<Renderer>();
         transform = GetComponent<Transform>();
         _turbinePosTransform = turbinePiecePosition.GetComponent<Transform>();
         _turbinePiecePosition = _turbinePosTransform.GetComponent<TurbinePiecePosition>(); 
 		if(this.tag == "TurbinePiecePosition")
         {
-            rend.material.color = new Color(0.3f, 0.8f,0.4f, 0.21f);
             connected = false; 
         }
 
        
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Update()
+    {
         //CheckRotation(); 
         if (this.tag != "TurbinePiecePosition" && grabbed && _turbinePiecePosition.InPlacementRange)
         {
@@ -48,14 +45,20 @@ public class TurbinePiece : MonoBehaviour {
                 _correctXRotation = AxisIsOne(transform.right, true, false, true);
                 _correctYRotation = AxisIsOne(transform.up, false, true, true);
                 _correctZRotation = AxisIsOne(transform.forward, true, false, true);
+            }
 
+            else if (piece == Piece.TurbineFoundation)
+            {
+                _correctXRotation = AxisIsOne(transform.right, true, false, false);
+                _correctYRotation = AxisIsOne(transform.up, false, true, false);
+                _correctZRotation = AxisIsOne(transform.forward, false, false, true);
+            }
 
-                if (_correctXRotation && _correctYRotation && _correctZRotation)
-                {
-                   
-                    Connected(); 
-                    Debug.Log("Can Connect");
-                }
+            if (_correctXRotation && _correctYRotation && _correctZRotation)
+            {
+
+                Connected();
+                Debug.Log("Can Connect");
             }
         }
     }
@@ -106,19 +109,18 @@ public class TurbinePiece : MonoBehaviour {
 
     public void Activate()
     {
-        rend.material.color = new Color(0.3f, 0.8f, 0.4f, 1.0f);
         connected = true; 
     }
 
     public void Connected()
     {
-        _turbinePosTransform.GetComponent<Renderer>().material.renderQueue = 1;
-        _turbinePosTransform.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        // _turbinePosTransform.GetComponent<Renderer>().material.renderQueue = 1;
+        // _turbinePosTransform.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         grabbed = false;
 
-        _turbinePiecePosition.Conntected = true; 
+        _turbinePiecePosition.Connected = true;
 
-        Destroy(this.gameObject); 
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

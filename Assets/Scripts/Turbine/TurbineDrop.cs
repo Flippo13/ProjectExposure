@@ -20,9 +20,9 @@ public class TurbineDrop : MonoBehaviour {
     void Start () {
         transform = GetComponent<Transform>();
         _turbineRB = turbinePrefab.GetComponent<Rigidbody>(); 
-
-        if (_turbineRB.useGravity)
-            _turbineRB.useGravity = false;
+       
+         _turbineRB.useGravity = false;
+        _turbineRB.isKinematic = true; 
 
 	}
 	
@@ -59,6 +59,7 @@ public class TurbineDrop : MonoBehaviour {
         {
             turbinePrefab.transform.parent = null;
             _turbineRB.useGravity = true;
+            _turbineRB.isKinematic = false; 
             Destroy(gameObject);
         }
     }

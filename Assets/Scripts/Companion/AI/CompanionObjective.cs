@@ -201,7 +201,7 @@ public class CompanionObjective : MonoBehaviour {
 
         for (int i = 0; i < turbinePieces.Length; i++) {
             //replace when felix pushed his changes
-            completed = completed && turbinePieces[i].Conntected;
+            completed = completed && turbinePieces[i].Connected;
         }
 
         return completed;
