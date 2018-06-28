@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33469985917081532}
   - component: {fileID: 23492669753278884}
   - component: {fileID: 65123686292996458}
+  - component: {fileID: 54115651439927798}
+  - component: {fileID: 114192907575837570}
   m_Layer: 8
   m_Name: starfish3
   m_TagString: Untagged
@@ -35,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492692619600012}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 345.94174, y: 26.34836, z: 182.42934}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalRotation: {x: -0.085331194, y: -0, z: -0, w: 0.9963527}
+  m_LocalPosition: {x: 331.21603, y: 41.49, z: 301.4344}
+  m_LocalScale: {x: 0.0043534148, y: 0.0043534143, z: 0.0043534143}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -9.790001, y: 0, z: 0}
 --- !u!23 &23492669753278884
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -84,6 +86,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492692619600012}
   m_Mesh: {fileID: 4300100, guid: 37139e3226563d34dbd1e053e700bf39, type: 3}
+--- !u!54 &54115651439927798
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1492692619600012}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65123686292996458
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -96,3 +113,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 84.49997, y: 9.01231, z: 85.074005}
   m_Center: {x: 0.0039024353, y: -0.00000023841858, z: 0.0000076293945}
+--- !u!114 &114192907575837570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1492692619600012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
