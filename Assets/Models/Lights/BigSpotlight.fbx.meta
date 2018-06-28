@@ -29,7 +29,17 @@ ModelImporter:
     4300004: BigSpotlight_LOD1
     4300006: BigSpotlight_LOD0
     20500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightGlass_Material
+    second: {fileID: 2100000, guid: 8550a3109658bf246b6e78a7182b7190, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lights_Material2
+    second: {fileID: 2100000, guid: 8550a3109658bf246b6e78a7182b7190, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

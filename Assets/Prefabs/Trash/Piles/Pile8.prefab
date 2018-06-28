@@ -53,6 +53,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1197970991267412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4658043553125964}
+  m_Layer: 2
+  m_Name: PointerPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1219959754703182
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,8 +349,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1982210804521176}
-  m_LocalRotation: {x: -0.73820215, y: -0, z: -0, w: 0.6745796}
-  m_LocalPosition: {x: -62.336792, y: -20.871086, z: -91.161606}
+  m_LocalRotation: {x: -0.63930196, y: 0.36910084, z: 0.3372895, w: 0.58420324}
+  m_LocalPosition: {x: 88.247375, y: -3.0299988, z: 32.940002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4790970261617196}
@@ -351,9 +366,10 @@ Transform:
   - {fileID: 4293893598707890}
   - {fileID: 4763299871505262}
   - {fileID: 4502127256035444}
+  - {fileID: 4658043553125964}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -95.157, y: 0, z: 59.999992}
 --- !u!4 &4201215640129858
 Transform:
   m_ObjectHideFlags: 1
@@ -432,6 +448,19 @@ Transform:
   m_Father: {fileID: 4091476310190754}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -18.432001, y: 161.171, z: -19.975}
+--- !u!4 &4658043553125964
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1197970991267412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.53, y: 0.31, z: 2.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4091476310190754}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4684753344892654
 Transform:
   m_ObjectHideFlags: 1
@@ -1529,8 +1558,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cc5cebf109d2f43a40131734479fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+  pointerPrefab: {fileID: 1439362937798896, guid: 5224c7b5a64baba4fb471dbc4ae56440,
     type: 2}
+  pointerPosition: {fileID: 4658043553125964}
   showPointer: 1
 --- !u!114 &114319414172856232
 MonoBehaviour:
