@@ -55,6 +55,7 @@ public class CompanionObjective : MonoBehaviour {
             else pointerInstance.transform.position = transform.position;
 
             _objectivePointer = pointerInstance.GetComponent<ObjectivePointer>();
+            _objectivePointer.Disable();
         }
     }
 
