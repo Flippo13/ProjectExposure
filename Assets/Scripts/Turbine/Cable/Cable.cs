@@ -81,7 +81,9 @@ public class Cable : MonoBehaviour {
             cableNodesList[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
             cableNodesList[i + 1].GetComponent<Rigidbody>().AddForce(-force, ForceMode.Force);
         }
-              
+
+
+        _currentLength = 0;
 
         for (int i = 0; i < distanceBetweenNodes.Length; i++)
         {
