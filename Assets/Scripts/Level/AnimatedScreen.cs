@@ -1,13 +1,16 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatedScreen : MonoBehaviour {
-    [SerializeField]
-    private List<Sprite> _sprites = new List<Sprite>();
+public class AnimatedScreen : MonoBehaviour
+{
 
     [SerializeField]
+    private List<Sprite> _sprites = new List<Sprite>();
+    [SerializeField]
     private float _spriteSpeed;
+
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
@@ -15,8 +18,8 @@ public class AnimatedScreen : MonoBehaviour {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         _spriteRenderer.sprite = _sprites[(int)(Time.time * _spriteSpeed) % _sprites.Count];
     }
 }
