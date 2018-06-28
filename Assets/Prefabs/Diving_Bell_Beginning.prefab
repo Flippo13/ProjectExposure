@@ -1860,6 +1860,7 @@ GameObject:
   - component: {fileID: 95841363104986882}
   - component: {fileID: 114106589234231932}
   - component: {fileID: 114982832254175176}
+  - component: {fileID: 114364138691546818}
   m_Layer: 8
   m_Name: Diving_Bell_Beginning
   m_TagString: Untagged
@@ -8812,7 +8813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 6
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -8990,7 +8991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -9162,7 +9163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -9382,7 +9383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 3
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -9472,7 +9473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -9506,7 +9507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 5
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -9524,7 +9525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -9732,7 +9733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10057,7 +10058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10194,7 +10195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10212,7 +10213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10238,6 +10239,21 @@ MonoBehaviour:
   ageLayout: {fileID: 1516383049466008}
   backButton: {fileID: 1570147971457690}
   tutorialArea: {fileID: 0}
+--- !u!114 &114364138691546818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574679313798174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd5316f6bfadf24c8967c04c77c41f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _doorOpen: event:/Gameplay/Diving Bell/Door_open
+  _doorClose: 
+  _divingBellMove: event:/Gameplay/Diving Bell/Moving
+  _landSound: event:/Gameplay/Diving Bell/Moving_end
 --- !u!114 &114377663391255152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10249,7 +10265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10353,7 +10369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10371,7 +10387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 7
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10422,7 +10438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 9
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10473,7 +10489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 4
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10525,7 +10541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10565,7 +10581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Back Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10686,7 +10702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -10737,7 +10753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11099,7 +11115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11133,7 +11149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11356,7 +11372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11449,7 +11465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 8
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11488,7 +11504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11506,7 +11522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11698,7 +11714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 1
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11716,7 +11732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11788,7 +11804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11843,7 +11859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11937,7 +11953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11955,7 +11971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 1
   setPos: 2
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -11973,7 +11989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -12127,7 +12143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -12178,7 +12194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -12229,7 +12245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -12247,7 +12263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -12265,7 +12281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
@@ -12527,7 +12543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39606fc591beb2419630fcecf0fb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPress: event:/Gameplay/Keyboard/Button
+  _buttonPress: event:/Gameplay/Keyboard/Normal Button
   isNumpad: 0
   setPos: 0
   keyNormalMaterial: {fileID: 2100000, guid: bb7654ca046610943934aa8af4730ef9, type: 2}
