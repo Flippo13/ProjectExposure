@@ -1,19 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //state machine of the robot containing its behaviour
 public class CompanionAI : MonoBehaviour {
 
-    public Transform companionDestination;
+    public CompanionDestination companionDestination;
     public VacuumScript vacuum;
     public VacuumGrabScanner grabScanner;
 
     public float interactionRadius;
-    public float objectiveScanRadius;
     public float playerSeperationRadius;
 
     public float idleInterval;
+    public float followDuration;
 
     public bool debug;
 
@@ -45,9 +43,15 @@ public class CompanionAI : MonoBehaviour {
         _debug.Init();
         _debug.SetRendererStatus(debug);
 
-        _inTutorial = true;
-        EnterState(CompanionState.Tutorial);
-        InitTutorial();
+        if (debug) {
+            //skip tutorial in debug
+            EnterState(CompanionState.Following);
+        } else {
+            //set up tutorial
+            _inTutorial = true;
+            EnterState(CompanionState.Tutorial);
+            InitTutorial();
+        }
     }
 
     public void Update() {
@@ -81,13 +85,13 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private bool InInteractionRange() {
-        Vector3 deltaVec = companionDestination.position - transform.position;
+        float distance = Vector3.Distance(companionDestination.GetPosition(), transform.position);
 
-        return deltaVec.magnitude <= interactionRadius; //returns true, if the companion is in the interaction range of the player
+        return distance <= interactionRadius; //returns true, if the companion is in the interaction range of the player
     }
 
-    private bool InPlayerRange() {
-        float distance = Vector3.Distance(companionDestination.position, transform.position);
+    private bool InSeperationRange() {
+        float distance = Vector3.Distance(companionDestination.GetPosition(), transform.position);
 
         return distance <= playerSeperationRadius; //returns true, if the companion is in the max seperation range of the player
     }
@@ -108,7 +112,7 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private bool CheckForVacuumGrab() {
-        Vector3 deltaVec = companionDestination.position - vacuum.transform.position;
+        Vector3 deltaVec = companionDestination.GetPosition() - vacuum.transform.position;
 
         return deltaVec.magnitude > interactionRadius && vacuum.GetVacuumState() == VacuumState.Free; //returns true, if the player is not close to the vacuum and the vacuum is lying around
     }
@@ -141,24 +145,18 @@ public class CompanionAI : MonoBehaviour {
         CompanionObjective mainObjective = _tracker.GetNextObjectiveInBranch();
 
         if (mainObjective != null) { //only main objectives remaining
-            float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
+            _tracker.SetCurrentObjective(mainObjective);
 
-            if (mainDistance < objectiveScanRadius) {
-                _tracker.SetCurrentObjective(mainObjective);
-                SetState(CompanionState.Traveling);
-
-                return true;
-            }
+            return true;
         }
 
-        //nothing in scan radius
         return false;
     }
 
     private void RotateTowardsPlayer() {
         //rotate the companion towards the player over the y axis (not smooth but snap)
 
-        Vector3 targetPos = new Vector3(companionDestination.position.x, transform.position.y, companionDestination.position.z); //only rotate over y
+        Vector3 targetPos = new Vector3(companionDestination.GetPosition().x, transform.position.y, companionDestination.GetPosition().z); //only rotate over y
         transform.LookAt(targetPos);
     }
 
@@ -274,7 +272,8 @@ public class CompanionAI : MonoBehaviour {
                     return;
                 }
 
-                _navigator.CheckForSpeedAdjustment(companionDestination.position); //adjust speed based on the distance between player and companion
+                CheckForObjectives();
+                _navigator.CheckForSpeedAdjustment(companionDestination.GetPosition()); //adjust speed based on the distance between player and companion
 
                 if (CheckForCompanionCall()) return;
 
@@ -285,19 +284,25 @@ public class CompanionAI : MonoBehaviour {
                     return;
                 }
 
-                if(_timer >= 5.0f) {
-                    SetState(CompanionState.Traveling); //try going to the objective when player is idle for too long
-                    return;
+                if(InSeperationRange()) {
+                    _timer += Time.deltaTime;
+
+                    if (_timer >= followDuration) {
+                        SetState(CompanionState.Traveling);  //try going to the objective when player is idle for too long
+                        return;
+                    }
                 }
 
-                if (!CheckForObjectives() && !InInteractionRange()) { //if there is no objective in range and the player is out of range
+                if (!InInteractionRange()) { //if there is no objective in range and the player is out of range
                     //move to the player
-                    Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
-                    Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius; //player pos plus an offset
+                    Vector3 deltaVecPlayer = transform.position - companionDestination.GetPosition();
+                    Vector3 destination = companionDestination.GetPosition() + deltaVecPlayer.normalized * interactionRadius; //player pos plus an offset
+
+                    if (debug) destination = companionDestination.GetDestinationPosition(interactionRadius); //experimental companion walking in front of the player
 
                     _navigator.SetDestination(destination);
                     _idleTimer = 0f; //reset timer
-                } else if (InInteractionRange()) {
+                } else {
                     //next to the player
                     RotateTowardsPlayer();
                     if (CheckForVacuumHandOver()) return;
@@ -310,18 +315,18 @@ public class CompanionAI : MonoBehaviour {
                     _idleTimer += Time.deltaTime;
                 }
 
-                _timer += Time.deltaTime;
-
                 break;
 
             case CompanionState.Returning:
                 //returning to the player when called
-                _navigator.CheckForSpeedAdjustment(companionDestination.position);
+                _navigator.CheckForSpeedAdjustment(companionDestination.GetPosition());
 
                 if (!InInteractionRange()) {
                     //move to the player without other priorities
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
+
+                    if (debug) destination = companionDestination.GetDestinationPosition(interactionRadius);//experimental companion walking in front of the player
 
                     _navigator.SetDestination(destination);
                 } else {
@@ -333,12 +338,12 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Traveling:
                 //travel to main objective
-                _navigator.CheckForSpeedAdjustment(companionDestination.position);
+                _navigator.CheckForSpeedAdjustment(companionDestination.GetPosition());
 
                 if (CheckForCompanionCall()) return;
 
-                if(InPlayerRange() || _navigator.InRange(_tracker.GetCurrentObjective().transform.position, 0.8f)) {
-                    //player is inside of the maximum seperation range
+                if(!InSeperationRange() || _navigator.InRange(_tracker.GetCurrentObjective().transform.position, 0.8f)) {
+                    //player is not in the seperation range anymore
                     SetState(CompanionState.Waiting);
                 }
 
@@ -349,16 +354,6 @@ public class CompanionAI : MonoBehaviour {
                 RotateTowardsPlayer();
 
                 if (CheckForCompanionCall()) return;
-
-                if (!_navigator.InRange(_tracker.GetCurrentObjective().transform.position, 0.8f) && InPlayerRange()) {
-                    //companion is in the player max seperation range and companion is not close to the objective, so move towards the objective
-                    SetState(CompanionState.Traveling);
-                    return;
-                } else if(!InPlayerRange()) {
-                    //companion is not in the player range anymore, so move towards the player
-                    SetState(CompanionState.Following);
-                    return;
-                }
 
                 if (InInteractionRange()) {
                     //if the player is close enough, start instructing
@@ -376,6 +371,18 @@ public class CompanionAI : MonoBehaviour {
                 } else if (CheckForIdleAnimation()) {
                     _animation.SetRandomIdle(); //play idle animation
                     _idleTimer = 0f;
+                }
+
+                if(!_navigator.InRange(companionDestination.GetPosition(), playerSeperationRadius * 1.2f)) {
+                    //player is not in range of the seperation randius anymore
+                    SetState(CompanionState.Following);
+                    return;
+                }
+
+                if (_navigator.InRange(companionDestination.GetPosition(), playerSeperationRadius * 0.7f) && !_navigator.InRange(_tracker.GetCurrentObjective().transform.position, 0.8f)) {
+                    //player comes closer, so travel to objective
+                    SetState(CompanionState.Traveling);
+                    return;
                 }
 
                 _idleTimer += Time.deltaTime;
@@ -401,7 +408,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.GettingVacuum:
                 //pick up or catch the vacuum gun
-                _navigator.CheckForSpeedAdjustment(companionDestination.position);
+                _navigator.CheckForSpeedAdjustment(companionDestination.GetPosition());
 
                 Vector3 vacuumPos = vacuum.transform.position;
                 Vector3 deltaVecVacuum = vacuumPos - transform.position;

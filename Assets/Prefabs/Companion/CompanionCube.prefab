@@ -4710,10 +4710,11 @@ MonoBehaviour:
   companionDestination: {fileID: 0}
   vacuum: {fileID: 114501937503582846}
   grabScanner: {fileID: 114893047438587668}
-  interactionRadius: 3
-  objectiveScanRadius: 40
-  idleInterval: 10
-  debug: 0
+  interactionRadius: 2.5
+  playerSeperationRadius: 20
+  idleInterval: 8
+  followDuration: 10
+  debug: 1
 --- !u!114 &114928323724228590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6020,7 +6021,7 @@ NavMeshAgent:
   m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

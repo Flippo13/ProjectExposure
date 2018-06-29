@@ -22,6 +22,18 @@ public class BoundaryDetector : MonoBehaviour {
         _inBoundary = false;
     }
 
+    public void OnCollisionEnter(Collision other) {
+        if (other.gameObject.tag != Tags.Boundary) return;
+
+        _inBoundary = true;
+    }
+
+    public void OnCollisionExit(Collision other) {
+        if (other.gameObject.tag != Tags.Boundary) return;
+
+        _inBoundary = false;
+    }
+
     public bool InBoundary() {
         return _inBoundary;
     }
