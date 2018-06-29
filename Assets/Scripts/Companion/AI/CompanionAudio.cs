@@ -55,7 +55,7 @@ public class CompanionAudio : MonoBehaviour {
         _startedPlaying = false;
 
         SetClip(motorSound, AudioSourceType.Effects);
-        //PlayAudioSource(AudioSourceType.Effects);
+        PlayAudioSource(AudioSourceType.Effects);
     }
 
     public void Update() {

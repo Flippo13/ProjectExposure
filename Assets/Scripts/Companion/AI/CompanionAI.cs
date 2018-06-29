@@ -11,8 +11,8 @@ public class CompanionAI : MonoBehaviour {
 
     public float interactionRadius;
     public float objectiveScanRadius;
+    public float playerSeperationRadius;
 
-    public float stayDuration;
     public float idleInterval;
 
     public bool debug;
@@ -80,10 +80,16 @@ public class CompanionAI : MonoBehaviour {
         vacuum.transform.position = _tracker.GetCurrentObjective().transform.position; //relocate vacuum gun to the tutorial objective location
     }
 
-    private bool InInterationRange() {
+    private bool InInteractionRange() {
         Vector3 deltaVec = companionDestination.position - transform.position;
 
         return deltaVec.magnitude <= interactionRadius; //returns true, if the companion is in the interaction range of the player
+    }
+
+    private bool InPlayerRange() {
+        float distance = Vector3.Distance(companionDestination.position, transform.position);
+
+        return distance <= playerSeperationRadius; //returns true, if the companion is in the max seperation range of the player
     }
 
     private bool CheckForIdleAnimation() {
@@ -133,38 +139,8 @@ public class CompanionAI : MonoBehaviour {
 
         //looking for an entirely new objective
         CompanionObjective mainObjective = _tracker.GetNextObjectiveInBranch();
-        CompanionObjective sideObjective = _tracker.GetClosestSideObjective();
 
-        if (mainObjective != null && sideObjective != null) {   //main and side remaining
-            float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
-            float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
-
-            //prioritize main objective over side objective when both are in range
-            if (mainDistance < objectiveScanRadius) {
-                //if it is closer than the side objective and in scan radius
-                _tracker.SetCurrentObjective(mainObjective);
-                SetState(CompanionState.Traveling);
-
-                return true;
-            } else if (sideDistance < objectiveScanRadius) {
-                //if it is closer than the main objective and in scan radius
-                _tracker.SetCurrentObjective(sideObjective);
-                SetState(CompanionState.Roaming);
-
-                return true;
-            }
-
-        } else if (mainObjective == null && sideObjective != null) { //only side objectives remaining
-            float sideDistance = _tracker.GetObjectiveDistance(sideObjective);
-
-            if (sideDistance < objectiveScanRadius) {
-                _tracker.SetCurrentObjective(sideObjective);
-                SetState(CompanionState.Roaming);
-
-                return true;
-            }
-
-        } else if (sideObjective == null && mainObjective != null) { //only main objectives remaining
+        if (mainObjective != null) { //only main objectives remaining
             float mainDistance = _tracker.GetObjectiveDistance(mainObjective);
 
             if (mainDistance < objectiveScanRadius) {
@@ -173,8 +149,6 @@ public class CompanionAI : MonoBehaviour {
 
                 return true;
             }
-        } else { //no objective remaining
-            if (debug) Debug.Log("No Main or Side Objectives found");
         }
 
         //nothing in scan radius
@@ -195,6 +169,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Following:
                 _navigator.SetAgentStatus(true);
+                _timer = 0f;
 
                 break;
 
@@ -204,12 +179,6 @@ public class CompanionAI : MonoBehaviour {
                 break;
 
             case CompanionState.Traveling:
-                _navigator.SetAgentStatus(true);
-                _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
-
-                break;
-
-            case CompanionState.Roaming:
                 _navigator.SetAgentStatus(true);
                 _navigator.SetDestination(_tracker.GetCurrentObjective().transform.position);
 
@@ -316,14 +285,19 @@ public class CompanionAI : MonoBehaviour {
                     return;
                 }
 
-                if (!CheckForObjectives() && !InInterationRange()) { //if there is no objective in range and the player is out of range
+                if(_timer >= 5.0f) {
+                    SetState(CompanionState.Traveling); //try going to the objective when player is idle for too long
+                    return;
+                }
+
+                if (!CheckForObjectives() && !InInteractionRange()) { //if there is no objective in range and the player is out of range
                     //move to the player
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius; //player pos plus an offset
 
                     _navigator.SetDestination(destination);
                     _idleTimer = 0f; //reset timer
-                } else if (InInterationRange()) {
+                } else if (InInteractionRange()) {
                     //next to the player
                     RotateTowardsPlayer();
                     if (CheckForVacuumHandOver()) return;
@@ -336,13 +310,15 @@ public class CompanionAI : MonoBehaviour {
                     _idleTimer += Time.deltaTime;
                 }
 
+                _timer += Time.deltaTime;
+
                 break;
 
             case CompanionState.Returning:
                 //returning to the player when called
                 _navigator.CheckForSpeedAdjustment(companionDestination.position);
 
-                if (!InInterationRange()) {
+                if (!InInteractionRange()) {
                     //move to the player without other priorities
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
@@ -361,19 +337,12 @@ public class CompanionAI : MonoBehaviour {
 
                 if (CheckForCompanionCall()) return;
 
-                float distance = Vector3.Distance(transform.position, _tracker.GetCurrentObjective().transform.position);
-                if (distance < 0.8f) SetState(CompanionState.Waiting);
+                if(InPlayerRange()) {
+                    //player is inside of the maximum seperation range
+                    SetState(CompanionState.Waiting);
+                }
 
-                break;
-
-            case CompanionState.Roaming:
-                //roam to side objective
-                _navigator.CheckForSpeedAdjustment(companionDestination.position);
-
-                if (CheckForCompanionCall()) return;
-
-                float distance1 = Vector3.Distance(transform.position, _tracker.GetCurrentObjective().transform.position);
-                if (distance1 < 0.8f) SetState(CompanionState.Waiting);
+                if (_navigator.InRange(_tracker.GetCurrentObjective().transform.position, 0.8f)) SetState(CompanionState.Waiting);
 
                 break;
 
@@ -383,9 +352,20 @@ public class CompanionAI : MonoBehaviour {
 
                 if (CheckForCompanionCall()) return;
 
-                if (InInterationRange()) {
+                if (!_navigator.InRange(_tracker.GetCurrentObjective().transform.position, 0.8f) && InPlayerRange()) {
+                    //companion is in the player max seperation range and companion is not close to the objective, so move towards the objective
+                    SetState(CompanionState.Traveling);
+                    return;
+                } else if(!InPlayerRange()) {
+                    //companion is not in the player range anymore, so move towards the player
+                    SetState(CompanionState.Following);
+                    return;
+                }
+
+                if (InInteractionRange()) {
                     //if the player is close enough, start instructing
                     SetState(CompanionState.Instructing);
+                    return;
                 } else if (_timer >= _tracker.GetCurrentObjective().reinforcementInterval) {
                     //wait and reinforce the player for objective
                     _timer = 0f;

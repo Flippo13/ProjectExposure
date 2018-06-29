@@ -121,7 +121,7 @@ public class TurbinePiece : MonoBehaviour {
 
         _turbinePiecePosition.Connected = true;
 
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

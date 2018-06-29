@@ -46,8 +46,10 @@ public class CompanionNavigator : MonoBehaviour {
         _navAgent.SetDestination(destination);
     }
 
-    public bool ReachedDestinaton() {
-        return _navAgent.remainingDistance <= 0.1f;
+    public bool InRange(Vector3 destination, float range) {
+        float distance = Vector3.Distance(transform.position, destination);
+
+        return distance < range;
     }
 
     public void SetAgentStatus(bool status) {

@@ -3,7 +3,6 @@
     Following, //companion follows the player around
     Returning, //companion returns to the player and delivers the vacuum gun
     Traveling, //companion travels to a task
-    Roaming, //companion roams around the areas and draws attention
     Waiting, //companion waits for the player do so something and provides reinforcement
     Instructing, //compansion tells the player about something
     GettingVacuum, //companion catches or picks up the vacuum
