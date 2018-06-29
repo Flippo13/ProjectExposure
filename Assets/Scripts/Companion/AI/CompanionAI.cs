@@ -337,12 +337,10 @@ public class CompanionAI : MonoBehaviour {
 
                 if (CheckForCompanionCall()) return;
 
-                if(InPlayerRange()) {
+                if(InPlayerRange() || _navigator.InRange(_tracker.GetCurrentObjective().transform.position, 0.8f)) {
                     //player is inside of the maximum seperation range
                     SetState(CompanionState.Waiting);
                 }
-
-                if (_navigator.InRange(_tracker.GetCurrentObjective().transform.position, 0.8f)) SetState(CompanionState.Waiting);
 
                 break;
 
