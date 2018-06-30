@@ -12,11 +12,11 @@ public class VacuumScript : MonoBehaviour {
     public Text trashCounter; 
 
     [SerializeField]
-    [FMODUnity.EventRef]
+    [EventRef]
     private string _vacuumSound;
 
     [SerializeField]
-    [FMODUnity.EventRef]
+    [EventRef]
     private string _addScoreSound;
 
     public float suckSpeed;

@@ -16,8 +16,21 @@ public class TutorialArea : MonoBehaviour {
     private int _activeWaypointIndex;
     private TutorialWaypoint _activeWaypoint;
 
+    private CompanionAI _ai;
+    private TutorialWaypoint _callWaypoint;
+
     public void Awake() {
         _waypoints = waypointHolder.GetComponentsInChildren<TutorialWaypoint>();
+        _callWaypoint = _waypoints[_waypoints.Length - 1]; //last one should be the call
+
+        _ai = companionAudio.GetComponent<CompanionAI>();
+    }
+
+    public void Update() {
+        if (!_completed) return;
+
+        //only check when tutorial is over
+        _ai.CheckForCallInstruction(this, _callWaypoint);
     }
 
     public void StartTutorial() {
@@ -35,13 +48,13 @@ public class TutorialArea : MonoBehaviour {
     }
 
     public void ActivateNextWaypoint() {
+        if(_activeWaypoint.IsActive()) _activeWaypoint.Deactivate();
         if (_completed) return;
 
-        _activeWaypoint.Deactivate();
         _activeWaypointIndex++;
 
-        if(_activeWaypointIndex >= _waypoints.Length) {
-            //completed all waypoints, so tutorial is done
+        if(_activeWaypointIndex >= _waypoints.Length - 1) {
+            //completed all waypoints until show buttons, so tutorial is done
             _completed = true;
             return;
         }

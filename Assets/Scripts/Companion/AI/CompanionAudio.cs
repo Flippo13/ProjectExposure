@@ -9,16 +9,23 @@ public class CompanionAudio : MonoBehaviour {
     public Transform watchAnchor;
     public float talkingRadius;
 
+    public AudioClip callFeedbackAudio;
+
+    [EventRef]
+    public string callFeedbackEvent;
+
     [EventRef]
     public string motorSound;
 
     private EventInstance[] _audioTracks;
+    private EventInstance _callFeedbackInstance;
     private OVRHapticsClip _notificationHapticsClip;
+    private OVRHapticsClip _callHapticsClip;
 
     private bool _startedPlaying;
 
     //notification samples
-    private byte[] samples = {
+    private byte[] notificationSamples = {
             255, 255, 255, 255, 255,
             255, 255, 255, 255, 255,
             255, 255, 255, 255, 255,
@@ -50,7 +57,10 @@ public class CompanionAudio : MonoBehaviour {
     public void Awake() {
         _audioTracks = new EventInstance[2];
 
-        _notificationHapticsClip = new OVRHapticsClip(samples, samples.Length);
+        _notificationHapticsClip = new OVRHapticsClip(notificationSamples, notificationSamples.Length);
+
+        if (callFeedbackAudio != null) _callHapticsClip = new OVRHapticsClip(callFeedbackAudio);
+        if (callFeedbackEvent != "") _callFeedbackInstance = RuntimeManager.CreateInstance(callFeedbackEvent);
 
         _startedPlaying = false;
 
@@ -74,6 +84,12 @@ public class CompanionAudio : MonoBehaviour {
             //in range
             _audioTracks[(int)AudioSourceType.Voice].set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
         }
+    }
+
+    public void PlayCallFeedback() {
+        //play sound and vibration at the same time in a seperate channel
+        if (callFeedbackEvent != "") _callFeedbackInstance.start();
+        if (callFeedbackAudio != null) OVRHaptics.RightChannel.Preempt(_callHapticsClip);
     }
 
     //play notification vibration on left controller

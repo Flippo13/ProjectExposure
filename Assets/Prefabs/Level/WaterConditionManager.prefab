@@ -33,7 +33,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020086867527988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 378.75345, y: 42.404636, z: 332.8395}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -56,15 +56,17 @@ MonoBehaviour:
   dirtyWaterPP: {fileID: 11400000, guid: 19b10e2fee05804449e43db4095ff7d6, type: 2}
   cleanWaterPP: {fileID: 11400000, guid: 84b3dea0e1c70724f8fcc9cb599360ce, type: 2}
   currentWaterPP: {fileID: 11400000, guid: 0c2d42d9525bebd479a91607acfea531, type: 2}
-  dirtyWaterFogColor: {r: 0.49803922, g: 0.59607846, b: 0.43529412, a: 0.30980393}
+  dirtyWaterFogColor: {r: 0.45490196, g: 0.50980395, b: 0.3019608, a: 0.30980393}
   cleanWaterFogColor: {r: 0.33333334, g: 0.59607846, b: 0.67058825, a: 0.30980393}
-  dirtyWaterSkyboxTint: {r: 0.45882353, g: 0.47058824, b: 0.27450982, a: 0.5019608}
+  dirtyWaterSkyboxTint: {r: 0.4117647, g: 0.42352942, b: 0.23529412, a: 0.5019608}
   cleanWaterSkyboxTint: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
-  dustParticles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  dirtyKelpColor: {r: 1, g: 0.6862745, b: 0.74509805, a: 1}
+  dirtyKelp2Color: {r: 0.9843137, g: 0.8784314, b: 0.94509804, a: 1}
+  dirtyGroundFoliageColor: {r: 0.8980392, g: 0.6313726, b: 0.8235294, a: 1}
+  kelpHolder: {fileID: 0}
+  plantHolder: {fileID: 0}
+  dustParticles: []
+  fishTankes:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

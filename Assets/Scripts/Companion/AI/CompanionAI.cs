@@ -28,6 +28,7 @@ public class CompanionAI : MonoBehaviour {
     private float _idleTimer;
     private bool _wasCalled;
     private bool _inTutorial;
+    private bool _instructedCall;
 
     public void Start() {
         //get all relevant components
@@ -39,6 +40,7 @@ public class CompanionAI : MonoBehaviour {
         _debug = GetComponent<CompanionDebug>();
 
         _wasCalled = false;
+        _instructedCall = false;
 
         _debug.Init();
         _debug.SetRendererStatus(debug);
@@ -59,14 +61,15 @@ public class CompanionAI : MonoBehaviour {
         UpdateState();
     }
 
-    public void TutorialCall() {
-        //call the companion
-        if (CheckForVacuumGrab()) {
-            //get the vacuum if the vacuum is lying around
-            _wasCalled = true;
-            SetState(CompanionState.GettingVacuum);
-        } else if (vacuum.GetVacuumState() == VacuumState.CompanionBack || vacuum.GetVacuumState() == VacuumState.CompanionHand) {
-            SetState(CompanionState.Returning);
+    public void CheckForCallInstruction(TutorialArea tutorialArea, TutorialWaypoint tutorialWaypoint) {
+        if (_instructedCall) return;
+
+        //instruct
+        if (CheckForVacuumGrab() && _audio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED && _audio.GetStartedPlaying()) {
+            //show tutorial and play voiceline
+            tutorialWaypoint.Activate(tutorialArea);
+
+            _instructedCall = true;
         }
     }
 
@@ -123,10 +126,18 @@ public class CompanionAI : MonoBehaviour {
             if (CheckForVacuumGrab()) {
                 //get the vacuum if the vacuum is lying around
                 _wasCalled = true;
+
+                //audio and vibration feedback
+                _audio.PlayCallFeedback();
+
                 SetState(CompanionState.GettingVacuum);
                 return true;
             } else if (vacuum.GetVacuumState() == VacuumState.CompanionBack || vacuum.GetVacuumState() == VacuumState.CompanionHand) {
-                //otherwise only get called when the vacuum 
+                //otherwise only get called when the vacuum is on the companion
+
+                //audio and vibration feedback
+                _audio.PlayCallFeedback();
+
                 SetState(CompanionState.Returning);
                 return true;
             } else {
@@ -439,19 +450,15 @@ public class CompanionAI : MonoBehaviour {
                     return;
                 }
 
-                if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
-                    //go back to hover idle when vacuum is grabbed or released
-                    _animation.SetAnimationTrigger("hand_over_vacuum_hover");
-                    return;
-                }
-
                 if (grabScanner.IsReachingForVacuum()) {
                     //reset the timer when player is reaching out
                     _timer = 0f;
                 } else if (_timer >= 1.5f && vacuum.GetVacuumState() != VacuumState.Player && vacuum.GetVacuumState() != VacuumState.Free) {
                     //put vacuum back
                     _animation.SetAnimationTrigger("hand_over_vacuum_back");
-                    return;
+                } else if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
+                    //go back to hover idle when vacuum is grabbed or released
+                    _animation.SetAnimationTrigger("hand_over_vacuum_hover");
                 }
 
                 _timer = _timer + Time.deltaTime;

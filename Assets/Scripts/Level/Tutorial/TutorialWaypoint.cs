@@ -58,23 +58,6 @@ public class TutorialWaypoint : MonoBehaviour {
 
                 break;
 
-            case TutorialButtons.CallCompanion:
-                //call companion while still remaining in the tutorial state
-                if (OVRInput.GetDown(OVRInput.Button.One)) {
-                    _tutorialArea.companionAudio.gameObject.GetComponent<CompanionAI>().TutorialCall();
-                    return true;
-                }
-
-                break;
-
-            case TutorialButtons.FullTutorial:
-                //might bug out cause the full button tutorial will activate itself
-                if (OVRInput.GetDown(OVRInput.Button.Three)) {
-                    return true;
-                }
-
-                break;
-
             default:
                 if(_tutorialArea.companionAudio.GetStartedPlaying() && _tutorialArea.companionAudio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED) {
                     //if the voiceline is over
@@ -105,11 +88,11 @@ public class TutorialWaypoint : MonoBehaviour {
         _tutorialArea.companionAudio.SetClip(tutorialVoiceline, AudioSourceType.Voice);
         StartCoroutine(_tutorialArea.companionAudio.PlayAudioSourceWithHaptic(AudioSourceType.Voice)); //apply vibration
 
-        //acivate objective pointer for the current waypoint if possible
-        _objectivePointer = null;
-
         //play animation
         _tutorialArea.companionAudio.gameObject.GetComponent<CompanionAnimation>().SetAnimationTrigger(animationTrigger);
+
+        //activate objective pointer for the current waypoint if possible
+        _objectivePointer = null;
 
         if (tutorialButton != TutorialButtons.None && forceGoingToPointer) {
             GameObject pointerInstance = Instantiate(pointerPrefab);
@@ -118,5 +101,9 @@ public class TutorialWaypoint : MonoBehaviour {
 
             _objectivePointer = pointerInstance.GetComponent<ObjectivePointer>();
         }
+    }
+
+    public bool IsActive() {
+        return _active;
     }
 }

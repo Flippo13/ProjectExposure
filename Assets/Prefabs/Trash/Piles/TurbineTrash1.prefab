@@ -1681,8 +1681,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1700336356068160}
-  m_LocalRotation: {x: -0, y: -0.5756369, z: -0, w: 0.8177054}
-  m_LocalPosition: {x: -136.81, y: -7.75, z: -169.85}
+  m_LocalRotation: {x: -0, y: -0.64722306, z: -0, w: 0.76230067}
+  m_LocalPosition: {x: 100.59, y: 3.290001, z: 68.84999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4437049991011908}
@@ -1739,7 +1739,7 @@ Transform:
   - {fileID: 4048795619700876}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -70.288, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -80.665, z: 0}
 --- !u!4 &4830496380044130
 Transform:
   m_ObjectHideFlags: 1
@@ -6850,9 +6850,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cc5cebf109d2f43a40131734479fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointerPrefab: {fileID: 1439362937798896, guid: 79cb554c038ac534bbf18a23f47472a3,
+  pointerPrefab: {fileID: 1439362937798896, guid: 5224c7b5a64baba4fb471dbc4ae56440,
     type: 2}
-  showPointer: 1
+  pointerPosition: {fileID: 0}
+  showPointer: 0
 --- !u!114 &114950874973890784
 MonoBehaviour:
   m_ObjectHideFlags: 1
