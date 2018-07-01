@@ -5006,8 +5006,10 @@ MonoBehaviour:
   grabScanner: {fileID: 114893047438587668}
   interactionRadius: 2.5
   playerSeperationRadius: 20
-  idleInterval: 8
-  followDuration: 10
+  idleAnimInterval: 7
+  followTimeout: 12
+  handOverTimeout: 1.2
+  emergencyTimeout: 20
   debug: 1
 --- !u!114 &114928323724228590
 MonoBehaviour:

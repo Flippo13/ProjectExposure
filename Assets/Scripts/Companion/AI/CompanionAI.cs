@@ -10,8 +10,10 @@ public class CompanionAI : MonoBehaviour {
     public float interactionRadius;
     public float playerSeperationRadius;
 
-    public float idleInterval;
-    public float followDuration;
+    public float idleAnimInterval;
+    public float followTimeout;
+    public float handOverTimeout;
+    public float emergencyTimeout;
 
     public bool debug;
 
@@ -100,7 +102,7 @@ public class CompanionAI : MonoBehaviour {
     }
 
     private bool CheckForIdleAnimation() {
-        return _idleTimer >= idleInterval && !_animation.IsPlayingIdle();
+        return _idleTimer >= idleAnimInterval && !_animation.IsPlayingIdle();
     }
 
     private bool CheckForVacuumHandOver() {
@@ -184,6 +186,7 @@ public class CompanionAI : MonoBehaviour {
 
             case CompanionState.Returning:
                 _navigator.SetAgentStatus(true);
+                _timer = 0f;
 
                 break;
 
@@ -216,6 +219,7 @@ public class CompanionAI : MonoBehaviour {
             case CompanionState.GettingVacuum:
                 _navigator.SetAgentStatus(true);
                 _animation.SetPlayingGrab(false); //reset grab animation
+                _timer = 0f;
 
                 break;
 
@@ -298,7 +302,7 @@ public class CompanionAI : MonoBehaviour {
                 if(InSeperationRange()) {
                     _timer += Time.deltaTime;
 
-                    if (_timer >= followDuration) {
+                    if (_timer >= followTimeout) {
                         SetState(CompanionState.Traveling);  //try going to the objective when player is idle for too long
                         return;
                     }
@@ -344,6 +348,8 @@ public class CompanionAI : MonoBehaviour {
                     //close enough to the player
                     SetState(CompanionState.HandingVacuum);
                 }
+
+                _timer += Time.deltaTime;
 
                 break;
 
@@ -422,22 +428,28 @@ public class CompanionAI : MonoBehaviour {
                 _navigator.CheckForSpeedAdjustment(companionDestination.GetPosition());
 
                 Vector3 vacuumPos = vacuum.transform.position;
-                Vector3 deltaVecVacuum = vacuumPos - transform.position;
 
-                _navigator.SetDestination(vacuumPos);
+                _navigator.SetDestination(vacuumPos); //change in case it has altered
 
-                if (deltaVecVacuum.magnitude <= 1f) {
+                if (_timer >= emergencyTimeout) {
+                    //companion couldnt get the vacuum for a long time, so teleport it to the companion
+                    vacuum.transform.position = transform.position;
+                }
+
+                if (_navigator.InRange(vacuumPos, 1f)) {
                     vacuum.SetVacuumState(VacuumState.CompanionBack);
 
                     //return if he was called, following if not
                     if (_wasCalled) {
-                        SetState(CompanionState.Returning); //includes stay
+                        SetState(CompanionState.Returning);
                     } else {
                         SetState(CompanionState.Following);
                     }
-                } else if (deltaVecVacuum.magnitude <= 4f) {
+                } else if (_navigator.InRange(vacuumPos, 4f)) {
                     _animation.SetGrabbingVaccumTrigger(); //play animation
                 }
+
+                _timer += Time.deltaTime;
 
                 break;
 
@@ -453,7 +465,7 @@ public class CompanionAI : MonoBehaviour {
                 if (grabScanner.IsReachingForVacuum()) {
                     //reset the timer when player is reaching out
                     _timer = 0f;
-                } else if (_timer >= 1.5f && vacuum.GetVacuumState() != VacuumState.Player && vacuum.GetVacuumState() != VacuumState.Free) {
+                } else if (_timer >= handOverTimeout && vacuum.GetVacuumState() != VacuumState.Player && vacuum.GetVacuumState() != VacuumState.Free) {
                     //put vacuum back
                     _animation.SetAnimationTrigger("hand_over_vacuum_back");
                 } else if (vacuum.GetVacuumState() == VacuumState.Player || vacuum.GetVacuumState() == VacuumState.Free) {
