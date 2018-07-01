@@ -43,7 +43,9 @@ public class CompanionNavigator : MonoBehaviour {
 
     //set destination for the navmesh agent
     public void SetDestination(Vector3 destination) {
-        _navAgent.SetDestination(destination);
+        bool result = _navAgent.SetDestination(destination);
+
+        if (!result) Debug.Log("No valid NavMesh destination: " + destination);
     }
 
     public bool InRange(Vector3 destination, float range) {
