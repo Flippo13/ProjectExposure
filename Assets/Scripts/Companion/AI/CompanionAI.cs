@@ -427,14 +427,14 @@ public class CompanionAI : MonoBehaviour {
                 //pick up or catch the vacuum gun
                 _navigator.CheckForSpeedAdjustment(companionDestination.GetPosition());
 
-                Vector3 vacuumPos = vacuum.transform.position;
-
-                _navigator.SetDestination(vacuumPos); //change in case it has altered
-
                 if (_timer >= emergencyTimeout) {
                     //companion couldnt get the vacuum for a long time, so teleport it to the companion
                     vacuum.transform.position = transform.position;
                 }
+
+                Vector3 vacuumPos = vacuum.transform.position;
+
+                _navigator.SetDestination(vacuumPos); //change in case it has altered             
 
                 if (_navigator.InRange(vacuumPos, 1f)) {
                     vacuum.SetVacuumState(VacuumState.CompanionBack);
