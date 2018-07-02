@@ -9,4 +9,5 @@ public class TurbineSetUp {
     public PowerGrid powerGrid;
     public Console console;
     public CheckForTrashArea trashArea;
+    public TurbineLights[] lights; 
 }

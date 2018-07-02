@@ -53,6 +53,8 @@ public class TurbinePiecePosition : MonoBehaviour {
 
     public void SetConnectedMaterial(Color newColor)
     {
+        Debug.Log("Renderer " + this.gameObject.name + " " + _rend[0] + newColor); 
+
         for (int i = 0; i < _rend.Length; i++)
         {
             _rend[i].material.SetColor("_Color", newColor);

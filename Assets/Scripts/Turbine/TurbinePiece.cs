@@ -29,12 +29,8 @@ public class TurbinePiece : MonoBehaviour {
 	void Start () {
         transform = GetComponent<Transform>();
         _turbinePosTransform = turbinePiecePosition.GetComponent<Transform>();
-        _turbinePiecePosition = _turbinePosTransform.GetComponent<TurbinePiecePosition>(); 
-
-		if(this.tag == "TurbinePiecePosition")
-        {
-            connected = false; 
-        }
+        _turbinePiecePosition = turbinePiecePosition.GetComponent<TurbinePiecePosition>();
+        Debug.Log("Piece" + _turbinePiecePosition);
 
         _turbinePiecePosition.SetConnectedMaterial(notConnectedColor); 
 	}

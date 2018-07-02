@@ -26,7 +26,10 @@ public class Turbine : MonoBehaviour
     private bool _trashCleaned = true;
     private bool _cableConnected = true;
 
-    private bool _isBeingCalledDown; 
+    [SerializeField]
+    private TurbineLights[] _lights;
+
+    private bool _isBeingCalledDown;
     private bool _activated = false;
     // Use this for initialization
     void Start()
@@ -38,7 +41,7 @@ public class Turbine : MonoBehaviour
     {
         Debug.Log("Thank you for giving me a voice Daan! I do make a lot of noise though! ");
 
-        if (_trashCleaned && _cableConnected && !_activated)
+        if (_trashCleaned && !_activated)
         {
             _activated = true;
             _anim.SetBool("enabled", true);
@@ -52,6 +55,13 @@ public class Turbine : MonoBehaviour
             RuntimeManager.PlayOneShot(_turbineSound, transform.position);
         }
 
+        if (_cableConnected)
+        {
+            for (int i = 0; i < _lights.Length; i++)
+            {
+                _lights[i].TurnOn(); 
+            }
+        }
         /* else
          * display "Turbine is not fixed" Image on Console
         * 
@@ -69,7 +79,7 @@ public class Turbine : MonoBehaviour
 
     public bool CalledDown
     {
-       get { return _isBeingCalledDown; }
+        get { return _isBeingCalledDown; }
         set { _isBeingCalledDown = value; }
     }
 
@@ -88,5 +98,11 @@ public class Turbine : MonoBehaviour
     public void TrashCleaned()
     {
         _trashCleaned = true;
+    }
+
+    public TurbineLights[] Lights
+    {
+        get { return _lights;  }
+        set { _lights = value; }
     }
 }
