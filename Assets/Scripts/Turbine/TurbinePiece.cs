@@ -7,9 +7,10 @@ public class TurbinePiece : MonoBehaviour {
     public enum Piece {TrubineBlade, TurbineFoundation};
     public Piece piece;
 
+    public Color canConnectedColor;
+    public Color notConnectedColor; 
+
     public GameObject turbinePiecePosition; 
-
-
 
     public bool connected;
 
@@ -18,27 +19,30 @@ public class TurbinePiece : MonoBehaviour {
     private new Transform transform;
     private Transform _turbinePosTransform;
     private TurbinePiecePosition _turbinePiecePosition; 
-    public bool grabbed;
     private bool _correctXRotation; 
     private bool _correctYRotation;
-    private bool _correctZRotation; 
+    private bool _correctZRotation;
+
+    private ObjectGrabber _hand; 
+
     // Use this for initialization
 	void Start () {
         transform = GetComponent<Transform>();
         _turbinePosTransform = turbinePiecePosition.GetComponent<Transform>();
         _turbinePiecePosition = _turbinePosTransform.GetComponent<TurbinePiecePosition>(); 
+
 		if(this.tag == "TurbinePiecePosition")
         {
             connected = false; 
         }
 
-       
+        _turbinePiecePosition.SetConnectedMaterial(notConnectedColor); 
 	}
 
     void Update()
     {
         //CheckRotation(); 
-        if (this.tag != "TurbinePiecePosition" && grabbed && _turbinePiecePosition.InPlacementRange)
+        if (this.tag != "TurbinePiecePosition" && _hand.IsHoldingObject() && _turbinePiecePosition.InPlacementRange)
         {
             if (piece == Piece.TrubineBlade)
             {
@@ -56,45 +60,27 @@ public class TurbinePiece : MonoBehaviour {
 
             if (_correctXRotation && _correctYRotation && _correctZRotation && _turbinePiecePosition.InPlacementRange)
             {
+                _turbinePiecePosition.SetConnectedMaterial(canConnectedColor);
+
+                if (!_hand.IsHoldingObject())
                 Connected();
-                Debug.Log("Can Connect");
+            }
+            else
+            {
+                _turbinePiecePosition.SetConnectedMaterial(notConnectedColor);
+
             }
         }
     }
 
 
-    private void CheckRotation()
-    {
-        /*
-        float dotOfXtoY = Vector3.Dot(transform.right, _turbinePosTransform.transform.up);
-        float dotOfXtoX = Vector3.Dot(transform.right, _turbinePosTransform.transform.right);
-        float dotOfXtoZ = Vector3.Dot(transform.right, _turbinePosTransform.transform.forward);
-
-        float dotOfYtoY = Vector3.Dot(transform.up, _turbinePosTransform.transform.up);
-        float dotOfYtoX = Vector3.Dot(transform.up, _turbinePosTransform.transform.right);
-        float dotOfYtoZ = Vector3.Dot(transform.up, _turbinePosTransform.transform.forward);
-
-        float dotOfZtoY = Vector3.Dot(transform.forward, _turbinePosTransform.transform.up);
-        float dotOfZtoX = Vector3.Dot(transform.forward, _turbinePosTransform.transform.right);
-        float dotOfZtoZ = Vector3.Dot(transform.forward, _turbinePosTransform.transform.forward);
-
-        Debug.Log("Y to Y: " + dotOfYtoY);
-        Debug.Log("Y to X: " + dotOfYtoX);
-        Debug.Log("Y to Z: " + dotOfYtoZ);
-
-        Debug.Log("Y +- other Y: " + (1 <= dotOfYtoY + offset || -1 >= dotOfYtoY - offset));
-        Debug.Log("Y +- other X: " + (1 <= dotOfYtoX + offset || -1 >= dotOfYtoX - offset));
-        Debug.Log("Y +- other Z: " + (1 <= dotOfYtoZ + offset || -1 >= dotOfYtoZ - offset));
-        */
-    }
+    
 
     private bool AxisIsOne(Vector3 turbinePieceAxis, bool compareToX, bool compareToY, bool compareToZ)
     {
         float dotOfAxisToX = Vector3.Dot(turbinePieceAxis, _turbinePosTransform.right);
         float dotOfAxisToY = Vector3.Dot(turbinePieceAxis, _turbinePosTransform.up); 
         float dotOfAxisToZ = Vector3.Dot(turbinePieceAxis, _turbinePosTransform.forward);
-
-        Debug.Log("Angles " );
 
         if (compareToX && 1 <= dotOfAxisToX + offset || -1 >= dotOfAxisToX - offset)
             return true;
@@ -117,18 +103,21 @@ public class TurbinePiece : MonoBehaviour {
     {
         // _turbinePosTransform.GetComponent<Renderer>().material.renderQueue = 1;
         // _turbinePosTransform.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-        grabbed = false;
+      
 
         _turbinePiecePosition.Connected = true;
-
-        //Destroy(this.gameObject);
+        _hand.InterruptGrabbing();
+        _hand = null;
+        _turbinePiecePosition.Connect(); 
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<ObjectGrabber>())
         {
-            grabbed = true; 
+            
+            _hand = other.GetComponent<ObjectGrabber>(); 
         }
     }
 

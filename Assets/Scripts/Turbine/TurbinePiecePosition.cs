@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class TurbinePiecePosition : MonoBehaviour {
 
-
     private bool _inPlacementRange;
-    private bool _connected; 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private bool _connected;
+
+    private new Transform transform; 
+
+    private Renderer[] _rend; 
+
+    void Start()
+    {
+        transform = GetComponent<Transform>();
+        Debug.Log("Dede" + transform.childCount); 
+        _rend = new Renderer[transform.childCount];
+
+        if (transform.childCount == 0)
+        {
+            _rend[0] = GetComponent<Renderer>();
+        }
+        else
+        {
+            _rend = GetComponentsInChildren<Renderer>();
+        }
+    }
 
     public bool InPlacementRange
     {
@@ -26,7 +36,7 @@ public class TurbinePiecePosition : MonoBehaviour {
     {
         if (other.tag == Tags.TurbinePiece)
         {
-         Debug.Log("You are in Range"); 
+            Debug.Log("You are in Range"); 
             _inPlacementRange = true; 
         }
     }
@@ -40,11 +50,32 @@ public class TurbinePiecePosition : MonoBehaviour {
         }
     }
 
+    public void SetConnectedMaterial(Color newColor)
+    {
+        for (int i = 0; i < _rend.Length; i++)
+        {
+            _rend[i].material.color = newColor;
+        }
+    }
+
+    public void Connect()
+    {
+        for (int i = 0; i < _rend.Length; i++)
+        {
+            _rend[i].material.color = Color.white;
+            _rend[i].material.SetColor("_EmissionColor", Color.black); 
+        }
+    }
+
     public bool Connected
     {
         get { return _connected;  }
         set { _connected = value; }
     }
 
+    public Renderer[] Rend
+    {
+        get { return _rend; }
+    }
 
 }
