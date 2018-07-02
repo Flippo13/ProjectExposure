@@ -67,10 +67,11 @@ public class CompanionAI : MonoBehaviour {
     public void CheckForCallInstruction(TutorialArea tutorialArea, TutorialWaypoint tutorialWaypoint) {
         if (_instructedCall) return;
 
-        //instruct
-        if (CheckForVacuumGrab() && _audio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED && !_audio.GetStartedPlaying()) {
+        //instruct when vacuum can be picked up
+        if (CheckForVacuumGrab()) {
             //show tutorial and play voiceline
             tutorialWaypoint.Activate(tutorialArea);
+            if(debug) Debug.Log("Activating call instruction");
 
             _instructedCall = true;
         }
@@ -303,7 +304,8 @@ public class CompanionAI : MonoBehaviour {
                 if(InSeperationRange()) {
                     _timer += Time.deltaTime;
 
-                    if (_timer >= followTimeout) {
+                    //if the idle timeout was reached or the player is in range of the objective
+                    if (_timer >= followTimeout || _navigator.InRange(_tracker.GetCurrentObjective().transform.position, companionDestination.GetPosition(), playerSeperationRadius)) {
                         SetState(CompanionState.Traveling);  //try going to the objective when player is idle for too long
                         return;
                     }
@@ -339,8 +341,6 @@ public class CompanionAI : MonoBehaviour {
                     //move to the player without other priorities
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
-
-                    if (debug) destination = companionDestination.GetDestinationPosition(interactionRadius);//experimental companion walking in front of the player
 
                     _navigator.SetDestination(destination);
                 } else {
