@@ -117,6 +117,7 @@
         <relationship name="effects">
             <destination>{b9dd8edf-a3b4-4e31-a8f8-6a7548c558c4}</destination>
             <destination>{03df58ec-58dd-4282-a643-f5715af00426}</destination>
+            <destination>{5dbc120f-5ac9-45d9-8a76-7298d6f16b0c}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{c0ccdef0-6233-49dc-aef8-cf587aac058f}"/>
@@ -132,6 +133,11 @@
     <object class="PluginEffect" id="{03df58ec-58dd-4282-a643-f5715af00426}">
         <relationship name="plugin">
             <destination>{779088db-f703-44d6-ad7f-86ad3bbe3b24}</destination>
+        </relationship>
+    </object>
+    <object class="ThreeEQEffect" id="{5dbc120f-5ac9-45d9-8a76-7298d6f16b0c}">
+        <relationship name="automators">
+            <destination>{0a025940-a368-4a66-ad5d-3f11339ddc6e}</destination>
         </relationship>
     </object>
     <object class="MixerBusFader" id="{d84e9264-89d7-47bd-a72b-e30bfd29c8f0}"/>
@@ -160,6 +166,14 @@
             <destination>{1616ffa7-9bf3-40ef-8a1a-12c2d8bbc0e6}</destination>
             <destination>{ed664263-db6e-401a-8bfd-8624fcb85ce4}</destination>
             <destination>{cb521279-9783-4a0f-9855-734a0d5e56c1}</destination>
+        </relationship>
+    </object>
+    <object class="Automator" id="{0a025940-a368-4a66-ad5d-3f11339ddc6e}">
+        <property name="nameOfPropertyBeingAutomated">
+            <value>lowGain</value>
+        </property>
+        <relationship name="automationCurves">
+            <destination>{dc185d9c-9e56-4f38-ad5b-d7b0e43d7434}</destination>
         </relationship>
     </object>
     <object class="Plugin" id="{c4ec9bee-a9a1-43d2-b7b3-24c8b4fd9a2c}">
@@ -337,6 +351,15 @@
             <value>-2</value>
         </property>
     </object>
+    <object class="AutomationCurve" id="{dc185d9c-9e56-4f38-ad5b-d7b0e43d7434}">
+        <relationship name="parameter">
+            <destination>{6eadd02f-f980-4bfa-a76d-5480c69e8717}</destination>
+        </relationship>
+        <relationship name="automationPoints">
+            <destination>{b0454c79-4d5a-484a-84e7-e3ded24b9c99}</destination>
+            <destination>{40ddd0fd-de10-4fad-8405-fdb9e9b58680}</destination>
+        </relationship>
+    </object>
     <object class="BoolPluginParameter" id="{a6ebf1d1-af6a-407e-8ef9-b2a35df3bd38}">
         <property name="name">
             <value>DirectBinaural</value>
@@ -488,6 +511,22 @@
         </property>
         <property name="dataType">
             <value>-2</value>
+        </property>
+    </object>
+    <object class="AutomationPoint" id="{b0454c79-4d5a-484a-84e7-e3ded24b9c99}">
+        <property name="position">
+            <value>0</value>
+        </property>
+        <property name="value">
+            <value>0</value>
+        </property>
+    </object>
+    <object class="AutomationPoint" id="{40ddd0fd-de10-4fad-8405-fdb9e9b58680}">
+        <property name="position">
+            <value>1</value>
+        </property>
+        <property name="value">
+            <value>-52</value>
         </property>
     </object>
 </objects>

@@ -134,6 +134,7 @@
         <relationship name="effects">
             <destination>{1dfa7d2d-ef8f-47fa-88ad-109ac66b8992}</destination>
             <destination>{b877861b-0c5a-4f17-930b-52178717073e}</destination>
+            <destination>{b8ccec81-a2a4-4e86-9dd2-d2ea577d420c}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{2bf36fdf-5480-4bc4-b968-90164c6c016a}"/>
@@ -149,6 +150,11 @@
         <relationship name="plugin">
             <destination>{66883feb-c733-4a1e-8e38-21e67160e7d5}</destination>
         </relationship>
+    </object>
+    <object class="GainEffect" id="{b8ccec81-a2a4-4e86-9dd2-d2ea577d420c}">
+        <property name="gain">
+            <value>2.5</value>
+        </property>
     </object>
     <object class="MixerBusFader" id="{2d984a4c-56e7-42f9-8fe2-a6bb632e11ed}"/>
     <object class="Plugin" id="{66883feb-c733-4a1e-8e38-21e67160e7d5}">
@@ -317,7 +323,6 @@
         <property name="dataType">
             <value>0</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="DataPluginParameter" id="{a1a61e3f-4c0c-4d21-96f8-c788c57fff01}">
         <property name="name">
@@ -326,6 +331,5 @@
         <property name="dataType">
             <value>-2</value>
         </property>
-        <property name="value"/>
     </object>
 </objects>

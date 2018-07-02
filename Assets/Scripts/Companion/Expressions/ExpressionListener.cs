@@ -33,9 +33,16 @@ public class ExpressionListener : MonoBehaviour
         fft.setParameterInt((int)FMOD.DSP_FFT.WINDOWSIZE, _bufferSize);
 
         // Probably should set this to a different channel, currently using the master channel group
+        //FMOD.ChannelGroup channelGroup;
+        //FMODUnity.RuntimeManager.LowlevelSystem.getMasterChannelGroup(out channelGroup);
+        //channelGroup.addDSP(FMOD.CHANNELCONTROL_DSP_INDEX.HEAD, fft);
+
+        // Probably should set this to a different channel, currently using the master channel group
         FMOD.ChannelGroup channelGroup;
         FMODUnity.RuntimeManager.LowlevelSystem.getMasterChannelGroup(out channelGroup);
-        channelGroup.addDSP(FMOD.CHANNELCONTROL_DSP_INDEX.HEAD, fft);
+        FMOD.Channel channel;
+        channelGroup.getChannel(1, out channel);
+        channel.addDSP(FMOD.CHANNELCONTROL_DSP_INDEX.HEAD, fft);
     }
 
     public void ChangeExpression(string expressionName)
@@ -57,25 +64,25 @@ public class ExpressionListener : MonoBehaviour
         return null;
     }
 
-    //void Update()
-    //{
-    //    IntPtr unmanagedData;
-    //    uint length;
-    //    fft.getParameterData((int)FMOD.DSP_FFT.SPECTRUMDATA, out unmanagedData, out length);
-    //    FMOD.DSP_PARAMETER_FFT fftData = (FMOD.DSP_PARAMETER_FFT)Marshal.PtrToStructure(unmanagedData, typeof(FMOD.DSP_PARAMETER_FFT));
-    //    var spectrum = fftData.spectrum;
+    void Update()
+    {
+        IntPtr unmanagedData;
+        uint length;
+        fft.getParameterData((int)FMOD.DSP_FFT.SPECTRUMDATA, out unmanagedData, out length);
+        FMOD.DSP_PARAMETER_FFT fftData = (FMOD.DSP_PARAMETER_FFT)Marshal.PtrToStructure(unmanagedData, typeof(FMOD.DSP_PARAMETER_FFT));
+        var spectrum = fftData.spectrum;
 
-    //    if (fftData.numchannels > 0)
-    //    {
-    //        for (int i = 0; i < 1; ++i)
-    //        {
-    //            _faceMaterial.SetFloat("_EmissionStrenght", _strenght / Mathf.Abs(lin2dB(spectrum[0][i])));
-    //        }
-    //    }
-    //}
+        if (fftData.numchannels > 0)
+        {
+            for (int i = 0; i < 1; ++i)
+            {
+                _faceMaterial.SetFloat("_EmissionStrenght", _strenght / Mathf.Abs(lin2dB(spectrum[0][i])));
+            }
+        }
+    }
 
-    //float lin2dB(float linear)
-    //{
-    //    return Mathf.Clamp(Mathf.Log10(linear) * 20.0f, -80.0f, 0.0f);
-    //}
+    float lin2dB(float linear)
+    {
+        return Mathf.Clamp(Mathf.Log10(linear) * 20.0f, -80.0f, 0.0f);
+    }
 }
