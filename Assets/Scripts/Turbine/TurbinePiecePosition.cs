@@ -14,15 +14,15 @@ public class TurbinePiecePosition : MonoBehaviour {
     void Start()
     {
         transform = GetComponent<Transform>();
-        Debug.Log("Dede" + transform.childCount); 
-        _rend = new Renderer[transform.childCount];
 
         if (transform.childCount == 0)
         {
+            _rend = new Renderer[1];
             _rend[0] = GetComponent<Renderer>();
         }
         else
         {
+            _rend = new Renderer[transform.childCount];
             _rend = GetComponentsInChildren<Renderer>();
         }
     }
@@ -32,37 +32,40 @@ public class TurbinePiecePosition : MonoBehaviour {
         get { return _inPlacementRange; }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == Tags.TurbinePiece)
         {
-            Debug.Log("You are in Range"); 
             _inPlacementRange = true; 
         }
     }
+
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == Tags.TurbinePiece)
         {
-            Debug.Log("You are  not in Range");
             _inPlacementRange = false;
         }
     }
+
 
     public void SetConnectedMaterial(Color newColor)
     {
         for (int i = 0; i < _rend.Length; i++)
         {
-            _rend[i].material.color = newColor;
+            _rend[i].material.SetColor("_Color", newColor);
+            _rend[i].material.SetColor("_EmissionColor", newColor);
         }
     }
+
 
     public void Connect()
     {
         for (int i = 0; i < _rend.Length; i++)
         {
-            _rend[i].material.color = Color.white;
+            _rend[i].material.SetColor("_Color",Color.white);
             _rend[i].material.SetColor("_EmissionColor", Color.black); 
         }
     }

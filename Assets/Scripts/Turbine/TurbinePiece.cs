@@ -42,7 +42,7 @@ public class TurbinePiece : MonoBehaviour {
     void Update()
     {
         //CheckRotation(); 
-        if (this.tag != "TurbinePiecePosition" && _hand.IsHoldingObject() && _turbinePiecePosition.InPlacementRange)
+        if (this.tag != "TurbinePiecePosition" && _turbinePiecePosition.InPlacementRange)
         {
             if (piece == Piece.TrubineBlade)
             {
@@ -58,7 +58,7 @@ public class TurbinePiece : MonoBehaviour {
                 _correctZRotation = AxisIsOne(transform.forward, false, false, true);
             }
 
-            if (_correctXRotation && _correctYRotation && _correctZRotation && _turbinePiecePosition.InPlacementRange)
+            if (_correctXRotation && _correctYRotation && _correctZRotation)
             {
                 _turbinePiecePosition.SetConnectedMaterial(canConnectedColor);
 
@@ -106,7 +106,6 @@ public class TurbinePiece : MonoBehaviour {
       
 
         _turbinePiecePosition.Connected = true;
-        _hand.InterruptGrabbing();
         _hand = null;
         _turbinePiecePosition.Connect(); 
         Destroy(this.gameObject);
@@ -114,7 +113,7 @@ public class TurbinePiece : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ObjectGrabber>())
+        if (other.GetComponent<ObjectGrabber>() && _hand == null)
         {
             
             _hand = other.GetComponent<ObjectGrabber>(); 
