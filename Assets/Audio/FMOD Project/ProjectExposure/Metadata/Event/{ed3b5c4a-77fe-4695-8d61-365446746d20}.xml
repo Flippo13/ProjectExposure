@@ -60,7 +60,7 @@
     <object class="MarkerTrack" id="{6b2c8e50-7911-4fab-9a17-f6410efc6e76}"/>
     <object class="GroupTrack" id="{79018df9-7abb-4eda-9219-44fe2bd7c336}">
         <relationship name="modules">
-            <destination>{30a72de0-7110-4b1b-b635-6dbc200eaa35}</destination>
+            <destination>{82c1d019-a185-4c1c-b4fd-6581685187f6}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{a32e1b64-d211-4b02-9208-e692ed70931e}</destination>
@@ -68,7 +68,7 @@
     </object>
     <object class="Timeline" id="{2b885ad6-b690-4539-8f0f-7106bd7a5297}">
         <relationship name="modules">
-            <destination>{30a72de0-7110-4b1b-b635-6dbc200eaa35}</destination>
+            <destination>{82c1d019-a185-4c1c-b4fd-6581685187f6}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{196354b8-9936-4867-bbdc-8304ffa20067}">
@@ -88,12 +88,15 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{a2bd3d9d-7695-4b50-8b72-2e5dbbae9adb}"/>
-    <object class="SingleSound" id="{30a72de0-7110-4b1b-b635-6dbc200eaa35}">
+    <object class="SingleSound" id="{82c1d019-a185-4c1c-b4fd-6581685187f6}">
         <property name="length">
-            <value>4.9362131519274373</value>
+            <value>8.3414166666666674</value>
+        </property>
+        <property name="volume">
+            <value>3</value>
         </property>
         <relationship name="audioFile">
-            <destination>{f7444a61-3503-42cc-9416-f47f4af2e536}</destination>
+            <destination>{79c8c511-0511-453d-9c1e-a516c23ed1d3}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{a32e1b64-d211-4b02-9208-e692ed70931e}">
@@ -325,7 +328,6 @@
         <property name="dataType">
             <value>0</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="DataPluginParameter" id="{4531e8d0-1d73-4861-9371-5b06e59790f7}">
         <property name="name">
@@ -334,7 +336,6 @@
         <property name="dataType">
             <value>-2</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="BoolPluginParameter" id="{2c1c6840-75eb-4b4a-89ed-d25e6bac2b3d}">
         <property name="name">

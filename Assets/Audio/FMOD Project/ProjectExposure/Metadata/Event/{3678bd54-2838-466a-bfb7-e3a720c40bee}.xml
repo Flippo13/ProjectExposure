@@ -60,7 +60,7 @@
     <object class="MarkerTrack" id="{75792764-233a-450a-8820-25490a460b69}"/>
     <object class="GroupTrack" id="{ab538bf1-fd2f-46e7-93da-e4351f0e0d94}">
         <relationship name="modules">
-            <destination>{a67ebc01-5701-47eb-8876-dc429e8cef11}</destination>
+            <destination>{fc4b7fe9-7908-44d3-8a6e-0d6ca7bf88f1}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{c53fcdad-ab64-4ef6-b9cd-ebe601f9404c}</destination>
@@ -68,7 +68,7 @@
     </object>
     <object class="Timeline" id="{e8ca1429-5ca6-42a0-94b7-57993afc5f3c}">
         <relationship name="modules">
-            <destination>{a67ebc01-5701-47eb-8876-dc429e8cef11}</destination>
+            <destination>{fc4b7fe9-7908-44d3-8a6e-0d6ca7bf88f1}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{e5ac79a2-cabc-41ec-ac6f-46c801445de9}">
@@ -88,9 +88,12 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{6008e8ec-132d-4c78-b0c0-35adce631506}"/>
-    <object class="SingleSound" id="{a67ebc01-5701-47eb-8876-dc429e8cef11}">
+    <object class="SingleSound" id="{fc4b7fe9-7908-44d3-8a6e-0d6ca7bf88f1}">
         <property name="length">
             <value>6.4920634920634921</value>
+        </property>
+        <property name="volume">
+            <value>3</value>
         </property>
         <relationship name="audioFile">
             <destination>{925a71ea-1c23-4741-88a2-97fca704b853}</destination>
@@ -325,7 +328,6 @@
         <property name="dataType">
             <value>0</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="DataPluginParameter" id="{f8151c4a-5e52-47b9-9f37-532e2f223a19}">
         <property name="name">
@@ -334,7 +336,6 @@
         <property name="dataType">
             <value>-2</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="BoolPluginParameter" id="{c0e442ce-6fce-480b-8c8d-0fa3aa0d6abd}">
         <property name="name">

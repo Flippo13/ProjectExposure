@@ -60,7 +60,7 @@
     <object class="MarkerTrack" id="{ac3e6265-fb89-4956-869e-8544f424922e}"/>
     <object class="GroupTrack" id="{d76f1973-4936-46e8-b127-1bffca81b322}">
         <relationship name="modules">
-            <destination>{f4160765-7ee6-479e-9e6c-4fb9f2abb07c}</destination>
+            <destination>{4709ccf3-ba08-424d-8fef-eac3f00af825}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{5e23b721-e4b2-4106-9dea-a5574a3598aa}</destination>
@@ -68,7 +68,7 @@
     </object>
     <object class="Timeline" id="{935a42dc-9426-4858-8c9a-c2d69fa0f262}">
         <relationship name="modules">
-            <destination>{f4160765-7ee6-479e-9e6c-4fb9f2abb07c}</destination>
+            <destination>{4709ccf3-ba08-424d-8fef-eac3f00af825}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{717eb39f-f806-4506-87cb-ad986fa7a9d3}">
@@ -88,9 +88,12 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{bbdbab29-4470-4a7e-80b5-8c3150b4fe82}"/>
-    <object class="SingleSound" id="{f4160765-7ee6-479e-9e6c-4fb9f2abb07c}">
+    <object class="SingleSound" id="{4709ccf3-ba08-424d-8fef-eac3f00af825}">
         <property name="length">
             <value>9.2182766439909294</value>
+        </property>
+        <property name="volume">
+            <value>-2.5</value>
         </property>
         <relationship name="audioFile">
             <destination>{727d8c79-3cf7-496d-9c19-a317642e3c6c}</destination>
@@ -325,7 +328,6 @@
         <property name="dataType">
             <value>0</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="DataPluginParameter" id="{ae078079-7c4a-4a0e-89da-3be4c24ef477}">
         <property name="name">
@@ -334,7 +336,6 @@
         <property name="dataType">
             <value>-2</value>
         </property>
-        <property name="value"/>
     </object>
     <object class="BoolPluginParameter" id="{ad136a89-d1a3-4159-9dbd-e40c4824b570}">
         <property name="name">
