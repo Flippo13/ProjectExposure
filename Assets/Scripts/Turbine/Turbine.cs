@@ -23,8 +23,8 @@ public class Turbine : MonoBehaviour
     private GameObject _button;
 
     private Animator _anim;
-    private bool _trashCleaned = true;
-    private bool _cableConnected = true;
+    private bool _trashCleaned;
+    private bool _cableConnected;
 
     [SerializeField]
     private TurbineLights[] _lights;
