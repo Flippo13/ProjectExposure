@@ -50,7 +50,7 @@ public class TutorialArea : MonoBehaviour {
     }
 
     public void ActivateNextWaypoint() {
-        if(_activeWaypoint.IsActive()) _activeWaypoint.Deactivate();
+        if (_activeWaypoint.IsActive()) _activeWaypoint.Deactivate();
         if (_completed) return;
 
         _activeWaypointIndex++;
@@ -62,11 +62,8 @@ public class TutorialArea : MonoBehaviour {
         }
 
         //assign new active waypoint if possible
+        _activeWaypoint = _waypoints[_activeWaypointIndex];
         _activeWaypoint.Activate(this);
-    }
-
-    public void Activate(TutorialWaypoint newActiveWaypoint) {
-        _activeWaypoint = newActiveWaypoint;
     }
 
     public void SetBoundaryStatus(bool status) {

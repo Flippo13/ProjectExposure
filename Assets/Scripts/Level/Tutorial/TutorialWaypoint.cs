@@ -59,6 +59,14 @@ public class TutorialWaypoint : MonoBehaviour {
 
                 break;
 
+            case TutorialButtons.CallCompanion:
+                if (_tutorialArea.companionAudio.GetStartedPlaying() && _tutorialArea.companionAudio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED) {
+                    //if the voiceline is over
+                    Deactivate();
+                    return true;
+                }
+                break;
+
             default:
                 if(_tutorialArea.companionAudio.GetStartedPlaying() && _tutorialArea.companionAudio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED) {
                     //if the voiceline is over
@@ -85,9 +93,6 @@ public class TutorialWaypoint : MonoBehaviour {
 
         _tutorialArea = tutorialArea; //set reference when activated
         _tutorialArea.buttonsTutorial.SetButtonTutorial(tutorialButton, true); //enable tutorial
-
-        //register in tutorial area
-        _tutorialArea.Activate(this);
 
         // set clip and play voiceline
         _tutorialArea.companionAudio.StopAudioSource(AudioSourceType.Voice);
