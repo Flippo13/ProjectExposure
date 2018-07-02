@@ -29,6 +29,7 @@ public class TutorialWaypoint : MonoBehaviour {
 
         //if button condition is fulfilled and player is in waypoint
         if(CheckForButtonPress() && (_objectivePointer == null || _objectivePointer.IsTriggered())) {
+            Debug.Log("Activate  next waypoint called");
             _tutorialArea.ActivateNextWaypoint(); //this one gets disabled and the next one enabled
         }
     }
@@ -74,6 +75,8 @@ public class TutorialWaypoint : MonoBehaviour {
 
         _tutorialArea.buttonsTutorial.SetButtonTutorial(tutorialButton, false); //disable tutorial
 
+        Debug.Log("Deactivate button tutorial");
+
         if(_objectivePointer != null) _objectivePointer.Disable();
     }
 
@@ -82,6 +85,9 @@ public class TutorialWaypoint : MonoBehaviour {
 
         _tutorialArea = tutorialArea; //set reference when activated
         _tutorialArea.buttonsTutorial.SetButtonTutorial(tutorialButton, true); //enable tutorial
+
+        //register in tutorial area
+        _tutorialArea.Activate(this);
 
         // set clip and play voiceline
         _tutorialArea.companionAudio.StopAudioSource(AudioSourceType.Voice);

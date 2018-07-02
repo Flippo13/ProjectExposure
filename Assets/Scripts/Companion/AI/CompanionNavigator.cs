@@ -54,6 +54,12 @@ public class CompanionNavigator : MonoBehaviour {
         return distance < range;
     }
 
+    public bool InRange(Vector3 posA, Vector3 posB, float range) {
+        float distance = Vector3.Distance(posA, posB);
+
+        return distance < range;
+    }
+
     public void SetAgentStatus(bool status) {
         _navAgent.enabled = status; 
     }
