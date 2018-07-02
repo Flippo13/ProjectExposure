@@ -68,7 +68,7 @@ public class CompanionAI : MonoBehaviour {
         if (_instructedCall) return;
 
         //instruct
-        if (CheckForVacuumGrab() && _audio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED && _audio.GetStartedPlaying()) {
+        if (CheckForVacuumGrab() && _audio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED && !_audio.GetStartedPlaying()) {
             //show tutorial and play voiceline
             tutorialWaypoint.Activate(tutorialArea);
 
