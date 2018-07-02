@@ -16,6 +16,7 @@ public class CompanionAI : MonoBehaviour {
     public float emergencyTimeout;
 
     public bool debug;
+    public bool skipTutorial;
 
     private CompanionState _aiState;
 
@@ -47,7 +48,7 @@ public class CompanionAI : MonoBehaviour {
         _debug.Init();
         _debug.SetRendererStatus(debug);
 
-        if (debug) {
+        if (skipTutorial) {
             //skip tutorial in debug
             EnterState(CompanionState.Following);
         } else {
@@ -312,8 +313,6 @@ public class CompanionAI : MonoBehaviour {
                     //move to the player
                     Vector3 deltaVecPlayer = transform.position - companionDestination.GetPosition();
                     Vector3 destination = companionDestination.GetPosition() + deltaVecPlayer.normalized * interactionRadius; //player pos plus an offset
-
-                    if (debug) destination = companionDestination.GetDestinationPosition(interactionRadius); //experimental companion walking in front of the player
 
                     _navigator.SetDestination(destination);
                     _idleTimer = 0f; //reset timer

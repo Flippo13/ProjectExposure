@@ -39,15 +39,13 @@ public class TutorialSprite : MonoBehaviour
         _lineRenderer.SetPosition(1, _parent.transform.parent.position);
         _buttonMaterial = _Button.GetComponent<Renderer>().material;
     }
-    void Update()
+
+    private void LateUpdate()
     {
-        if (useParent)
-        {
+        if (useParent) {
             Vector3 deltaVec = Camera.main.transform.position - transform.parent.position;
             transform.parent.rotation = Quaternion.LookRotation(deltaVec);
-        }
-        else
-        {
+        } else {
             Vector3 deltaVec = Camera.main.transform.position - transform.position;
             transform.rotation = Quaternion.LookRotation(deltaVec);
         }
@@ -57,10 +55,7 @@ public class TutorialSprite : MonoBehaviour
 
         // Animate sprite
         _spriteRenderer.sprite = _sprites[(int)(Time.time * _spriteSpeed) % _sprites.Count];
-    }
 
-    private void LateUpdate()
-    {
         // Ping pong the button so it pops out
         _pingPongFloat = Mathf.PingPong(Time.time * 3, 1);
         _buttonColor = Color.Lerp(_baseColor, _highlightedColor, _pingPongFloat);
