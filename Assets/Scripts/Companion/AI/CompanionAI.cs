@@ -68,7 +68,7 @@ public class CompanionAI : MonoBehaviour {
         if (_instructedCall) return;
 
         //instruct when vacuum can be picked up
-        if (CheckForVacuumGrab() && _audio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.STOPPED && !_audio.GetStartedPlaying()) {
+        if (CheckForVacuumGrab()) {
             //show tutorial and play voiceline
             tutorialWaypoint.Activate(tutorialArea);
             if(debug) Debug.Log("Activating call instruction");
@@ -341,8 +341,6 @@ public class CompanionAI : MonoBehaviour {
                     //move to the player without other priorities
                     Vector3 deltaVecPlayer = transform.position - companionDestination.transform.position;
                     Vector3 destination = companionDestination.transform.position + deltaVecPlayer.normalized * interactionRadius;
-
-                    if (debug) destination = companionDestination.GetDestinationPosition(interactionRadius);//experimental companion walking in front of the player
 
                     _navigator.SetDestination(destination);
                 } else {
