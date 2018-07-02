@@ -21,6 +21,7 @@ ModelImporter:
     2100002: LightGlass_Material
     2100004: Lights_Material4
     2100006: LightGlass_Material3
+    2100008: Lights2_Material
     2300000: Spotlights
     2300002: //RootNode
     2300004: Spotlights 1
@@ -43,7 +44,17 @@ ModelImporter:
     4300010: TallLights2_LOD0
     4300012: Spotlights
     20500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightGlass_Material
+    second: {fileID: 2100000, guid: 62c08973238974c42aab72e8d4f22d3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lights2_Material
+    second: {fileID: 2100000, guid: 449f8f44a12803c4a95ff23a864ab9dc, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

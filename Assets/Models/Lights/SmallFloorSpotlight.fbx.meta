@@ -26,7 +26,12 @@ ModelImporter:
     4300004: SmallFloorSpotlight_LOD1
     4300006: SmallFloorSpotlight_LOD0
     20500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert4
+    second: {fileID: 2100000, guid: 8f43249eee285d94abd5973320bb8715, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

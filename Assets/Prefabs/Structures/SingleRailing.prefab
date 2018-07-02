@@ -9,44 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1349342852640802}
+  m_RootGameObject: {fileID: 1117079138705544}
   m_IsPrefabParent: 1
---- !u!1 &1349342852640802
+--- !u!1 &1117079138705544
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4980118446421228}
-  - component: {fileID: 33751851292207230}
-  - component: {fileID: 23396930922681030}
-  m_Layer: 8
+  - component: {fileID: 4065147987252700}
+  - component: {fileID: 33959356118696358}
+  - component: {fileID: 23324283015448992}
+  - component: {fileID: 65526183882870536}
+  - component: {fileID: 65016554419713046}
+  - component: {fileID: 65317407512555688}
+  - component: {fileID: 65604728264732694}
+  m_Layer: 0
   m_Name: SingleRailing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4980118446421228
+--- !u!4 &4065147987252700
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1349342852640802}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 324.43875, y: 33.247, z: 265.32}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_GameObject: {fileID: 1117079138705544}
+  m_LocalRotation: {x: -2.3283067e-10, y: 0.58582354, z: -4.6566134e-10, w: 0.8104387}
+  m_LocalPosition: {x: 352.561, y: 35.354, z: 276.887}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23396930922681030
+  m_LocalEulerAnglesHint: {x: 0, y: 71.722, z: 0}
+--- !u!23 &23324283015448992
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1349342852640802}
+  m_GameObject: {fileID: 1117079138705544}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -76,10 +80,58 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33751851292207230
+--- !u!33 &33959356118696358
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1349342852640802}
+  m_GameObject: {fileID: 1117079138705544}
   m_Mesh: {fileID: 4300000, guid: 09d85e6df58d407479c5346b4639537f, type: 3}
+--- !u!65 &65016554419713046
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117079138705544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06151292, y: 1.1862502, z: 0.10318062}
+  m_Center: {x: -0.92, y: 0.5125737, z: -0.032996032}
+--- !u!65 &65317407512555688
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117079138705544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06151292, y: 1.1862502, z: 0.10318062}
+  m_Center: {x: -1.88, y: 0.5125737, z: -0.032996032}
+--- !u!65 &65526183882870536
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117079138705544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06151292, y: 1.1862502, z: 0.10318062}
+  m_Center: {x: 0.03791181, y: 0.5125737, z: -0.032996032}
+--- !u!65 &65604728264732694
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117079138705544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7831786, y: 0.047093976, z: 0.10318062}
+  m_Center: {x: -0.90276843, y: 1.0821519, z: -0.03299628}

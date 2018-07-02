@@ -15,6 +15,8 @@ ModelImporter:
     2100002: lambert1
     2100004: LightGlass_Material1
     2100006: lambert6
+    2100008: lambert20
+    2100010: Lights2_Material
     2300000: //RootNode
     2300002: FloorSpotlight2_LOD0
     2300004: FloorSpotlight2_LOD1
@@ -28,7 +30,22 @@ ModelImporter:
     4300004: FloorSpotlight2_LOD1
     4300006: FloorSpotlight2_LOD0
     20500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightGlass_Material
+    second: {fileID: 2100000, guid: 62c08973238974c42aab72e8d4f22d3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lights2_Material
+    second: {fileID: 2100000, guid: 449f8f44a12803c4a95ff23a864ab9dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert20
+    second: {fileID: 2100000, guid: 449f8f44a12803c4a95ff23a864ab9dc, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
