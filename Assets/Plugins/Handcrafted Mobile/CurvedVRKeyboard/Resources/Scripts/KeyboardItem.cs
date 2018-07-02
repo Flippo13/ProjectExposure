@@ -141,13 +141,13 @@ namespace CurvedVRKeyboard {
             string value = "";
             switch(letterType) {
                 case KeyLetterEnum.LowerCase:
-                    value = allLettersLowercase[Position];
+                    try { value = allLettersLowercase[Position]; } catch { }
                     break;
                 case KeyLetterEnum.UpperCase:
-                    value = allLettersUppercase[Position];
+                    try { value = allLettersUppercase[Position]; } catch { }
                     break;
                 case KeyLetterEnum.NonLetters:
-                    value = allSpecials[Position];
+                    try { value = allSpecials[Position]; } catch { }
                     break;
             }
 

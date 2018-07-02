@@ -7,6 +7,9 @@ public class CompanionAI : MonoBehaviour {
     public VacuumScript vacuum;
     public VacuumGrabScanner grabScanner;
 
+    public GameObject pointerPrefab;
+    public Transform pointerPosition;
+
     public float interactionRadius;
     public float playerSeperationRadius;
 
@@ -27,6 +30,9 @@ public class CompanionAI : MonoBehaviour {
     private CompanionObjectiveTracker _tracker;
     private CompanionDebug _debug;
 
+    private GameObject _pointerInstance;
+    private ObjectivePointer _objectivePointer;
+
     private float _timer;
     private float _idleTimer;
     private bool _wasCalled;
@@ -41,6 +47,12 @@ public class CompanionAI : MonoBehaviour {
         _animation = GetComponent<CompanionAnimation>();
         _tracker = GetComponent<CompanionObjectiveTracker>();
         _debug = GetComponent<CompanionDebug>();
+
+        _pointerInstance = Instantiate(pointerPrefab);
+        _objectivePointer = _pointerInstance.GetComponent<ObjectivePointer>();
+
+        _objectivePointer.Disable();
+        _pointerInstance.SetActive(false);
 
         _wasCalled = false;
         _instructedCall = false;
@@ -203,7 +215,10 @@ public class CompanionAI : MonoBehaviour {
                 _timer = float.MaxValue; //ensure to play the reinforcement once at the start
                 _idleTimer = 0f;
 
-                _tracker.GetCurrentObjective().SetPointerStatus(true); //enable the objective pointer
+                //enable the objective pointer
+                _objectivePointer.ResetPointer();
+                _pointerInstance.SetActive(true);
+                _pointerInstance.transform.position = pointerPosition.position;
 
                 break;
 
@@ -246,7 +261,9 @@ public class CompanionAI : MonoBehaviour {
         switch (state) {
 
             case CompanionState.Waiting:
-                _tracker.GetCurrentObjective().SetPointerStatus(false); //disable the objective pointer
+                //disable the objective pointer
+                _objectivePointer.Disable();
+                _pointerInstance.SetActive(false);
 
                 break;
 

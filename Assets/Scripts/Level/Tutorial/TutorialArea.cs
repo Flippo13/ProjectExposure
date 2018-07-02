@@ -24,6 +24,8 @@ public class TutorialArea : MonoBehaviour {
         _callWaypoint = _waypoints[_waypoints.Length - 1]; //last one should be the call
 
         _ai = companionAudio.GetComponent<CompanionAI>();
+
+        if (_ai.skipTutorial) _completed = true;
     }
 
     public void Update() {
