@@ -28,9 +28,10 @@ public class CompanionAnimation : MonoBehaviour {
         } else if (_navigator.GetAgentVelocity().magnitude > 0 && !GetMovingBool()) {
             SetMovingBool(true);
 
+            /*
             //rotation
             float rotationAngle = _navigator.GetRotationAngle(0.5f);
-
+            
             if(rotationAngle > 0f) {
                 //rotating right
                 rigAnimator.SetBool("turning_right", false);
@@ -44,6 +45,7 @@ public class CompanionAnimation : MonoBehaviour {
                 rigAnimator.SetBool("turning_left", false);
                 rigAnimator.SetBool("turning_right", false);
             }
+            */
         }
     }
 
