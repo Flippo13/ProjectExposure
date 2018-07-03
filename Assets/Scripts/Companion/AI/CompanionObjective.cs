@@ -30,7 +30,7 @@ public class CompanionObjective : MonoBehaviour {
     public TurbineLandingZone[] dropdownZones = new TurbineLandingZone[3];
     public Transform turbine;
     public PowerGrid powerGrid;
-    public TurbineButton turbineButton;
+    public Turbine turbineButton;
     public TutorialArea tutorialArea;
     public Animator divingbellAnimator;
     public TurbinePiecePosition[] turbinePieces;
@@ -194,7 +194,7 @@ public class CompanionObjective : MonoBehaviour {
     }
 
     public bool ConsoleButtonPressed() {
-        return _allowButtonPress && turbineButton.Activate;
+        return _allowButtonPress && turbineButton.Activated;
     }
 
     public bool AssembledTurbine() {

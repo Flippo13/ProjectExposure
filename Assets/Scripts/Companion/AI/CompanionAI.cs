@@ -322,7 +322,8 @@ public class CompanionAI : MonoBehaviour {
                     _timer += Time.deltaTime;
 
                     //if the idle timeout was reached or the player is in range of the objective
-                    if (_timer >= followTimeout || _navigator.InRange(_tracker.GetCurrentObjective().transform.position, companionDestination.GetPosition(), playerSeperationRadius)) {
+                    if ((_timer >= followTimeout || _navigator.InRange(_tracker.GetCurrentObjective().transform.position, companionDestination.GetPosition(), playerSeperationRadius))
+                        && !_tracker.GetCurrentObjective().IsActive()) {
                         SetState(CompanionState.Traveling);  //try going to the objective when player is idle for too long
                         return;
                     }

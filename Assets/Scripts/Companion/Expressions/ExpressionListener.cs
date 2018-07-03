@@ -46,12 +46,12 @@ public class ExpressionListener : MonoBehaviour {
 
     private float GetSinWave(float speed) {
         _timer += Time.deltaTime * speed;
-        return Mathf.Clamp01(Mathf.Sin(_timer));
+        return Mathf.Clamp(Mathf.Sin(_timer), 0.1f, 1f);
     }
 
     private void SetEmissionStrength() {
-        if (_companionAudio.GetPlaybackState(AudioSourceType.Voice) == FMOD.Studio.PLAYBACK_STATE.PLAYING) {
-            _faceMaterial.SetFloat("_EmissionStrenght", GetSinWave(2f) * _strength);
+        if (_companionAudio.GetStartedPlaying() && _companionAudio.GetPlaybackState(AudioSourceType.Voice) != FMOD.Studio.PLAYBACK_STATE.STOPPED) {
+            _faceMaterial.SetFloat("_EmissionStrenght", GetSinWave(30f) * _strength);
         } else {
             _faceMaterial.SetFloat("_EmissionStrenght", 0.5f * _strength);
         }
@@ -59,7 +59,7 @@ public class ExpressionListener : MonoBehaviour {
 
     void Update() {
         //Probably should set this to a different channel, currently using the master channel group
-
+        SetEmissionStrength();
     }
 
     float lin2dB(float linear) {
