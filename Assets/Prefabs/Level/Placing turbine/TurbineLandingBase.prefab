@@ -398,8 +398,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1072713586854758}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 376.72, y: 52.15, z: 110.89}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 335.6726, y: 151.7, z: 104.71951}
   m_LocalScale: {x: 0.03554668, y: 0.035546687, z: 0.035546687}
   m_Children:
   - {fileID: 4139336407547130}
@@ -407,7 +407,7 @@ Transform:
   - {fileID: 4405786743115260}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4617292107633036
 Transform:
   m_ObjectHideFlags: 1
@@ -1131,7 +1131,7 @@ MonoBehaviour:
   dropHeight: 30
   dropTime: 30
   maxDropSpeed: 20
-  turbinePrefab: {fileID: 0}
+  turbinePrefab: {fileID: 1550554262258092}
   terrainLayer:
     serializedVersion: 2
     m_Bits: 4096
