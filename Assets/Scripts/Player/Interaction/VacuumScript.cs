@@ -25,7 +25,7 @@ public class VacuumScript : MonoBehaviour {
     public float deformationStep;
     public float scaleFactor;
 
-    public GameObject _particleParent;
+    public GameObject particleParent;
 
     private int _trashCount;
 
@@ -90,10 +90,7 @@ public class VacuumScript : MonoBehaviour {
             _soundPlayed = false;
 
             // Disable Particles
-            for (int i = 0; i < _particleParent.transform.childCount; i++)
-            {
-                _particleParent.transform.GetChild(i).gameObject.SetActive(false);
-            }
+            if (particleParent.activeSelf) particleParent.SetActive(false);
         } 
     }
 
@@ -163,10 +160,7 @@ public class VacuumScript : MonoBehaviour {
             _soundPlayed = true;
 
             // Enable Particles
-            for (int i = 0; i < _particleParent.transform.childCount; i++)
-            {
-                _particleParent.transform.GetChild(i).gameObject.SetActive(true);
-            }
+            if(!particleParent.activeSelf) particleParent.SetActive(true);
         }
 
         //update sound pos
