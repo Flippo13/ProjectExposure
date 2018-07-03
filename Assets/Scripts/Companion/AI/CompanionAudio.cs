@@ -70,6 +70,8 @@ public class CompanionAudio : MonoBehaviour {
 
     public void Update() {
         AdjustVoiceLineSource();
+
+        _audioTracks[(int)AudioSourceType.Effects].set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
     }
 
     private void AdjustVoiceLineSource() {
@@ -138,12 +140,6 @@ public class CompanionAudio : MonoBehaviour {
 
     public void ResetStartedPlaying() {
         _startedPlaying = false;
-    }
-
-    public FMOD.ChannelGroup GetChannelGroup() {
-        FMOD.ChannelGroup group;
-        _audioTracks[(int)AudioSourceType.Voice].getChannelGroup(out group);
-        return group;
     }
 
 }
