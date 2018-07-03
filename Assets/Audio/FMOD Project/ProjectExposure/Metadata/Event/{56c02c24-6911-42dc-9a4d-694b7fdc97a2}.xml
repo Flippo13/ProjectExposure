@@ -60,7 +60,7 @@
     <object class="MarkerTrack" id="{5b303ed9-62c4-40e8-b9f0-e71af307e808}"/>
     <object class="GroupTrack" id="{d0ec9c80-2911-40df-b669-1a386d437eff}">
         <relationship name="modules">
-            <destination>{6b366753-6112-46f8-abc9-9e2071ca5995}</destination>
+            <destination>{01e31534-c038-4210-a0b4-3ce846759a7d}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{92d6bd79-2f09-428e-ab2f-df4ae0c17c97}</destination>
@@ -68,7 +68,7 @@
     </object>
     <object class="Timeline" id="{387a0f52-19ea-4685-a22b-ce44bc13f6af}">
         <relationship name="modules">
-            <destination>{6b366753-6112-46f8-abc9-9e2071ca5995}</destination>
+            <destination>{01e31534-c038-4210-a0b4-3ce846759a7d}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{809f0e1b-8ac4-4683-a5f6-203258de2e4c}">
@@ -88,15 +88,12 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{41dcfabb-4ce8-479c-baf2-e77efd6c8eb9}"/>
-    <object class="SingleSound" id="{6b366753-6112-46f8-abc9-9e2071ca5995}">
+    <object class="SingleSound" id="{01e31534-c038-4210-a0b4-3ce846759a7d}">
         <property name="length">
-            <value>8.3414166666666674</value>
-        </property>
-        <property name="volume">
-            <value>3</value>
+            <value>7.3123958333333334</value>
         </property>
         <relationship name="audioFile">
-            <destination>{87a1949c-02b7-4b32-bae4-ba7f4f057e4d}</destination>
+            <destination>{a614d24a-3c54-431f-96a2-e2ff25781160}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{92d6bd79-2f09-428e-ab2f-df4ae0c17c97}">
@@ -117,7 +114,6 @@
         <relationship name="effects">
             <destination>{078b59bd-6fa5-4e1a-9d4f-6e822a849b0a}</destination>
             <destination>{83f58532-ca03-43f2-bd0f-08ab57c9db30}</destination>
-            <destination>{00c8a927-f353-43d7-8d78-0fc29b2fc673}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{9cd636cc-381f-488f-9ce9-3b04a50875db}"/>
@@ -133,11 +129,6 @@
     <object class="PluginEffect" id="{83f58532-ca03-43f2-bd0f-08ab57c9db30}">
         <relationship name="plugin">
             <destination>{c03bbd83-2e58-43af-9187-39a7ee074a88}</destination>
-        </relationship>
-    </object>
-    <object class="ThreeEQEffect" id="{00c8a927-f353-43d7-8d78-0fc29b2fc673}">
-        <relationship name="automators">
-            <destination>{6e20c6ed-7fed-4930-a675-a1ef63290a9e}</destination>
         </relationship>
     </object>
     <object class="MixerBusFader" id="{d6018275-ff4e-438e-9180-f5d9f09127dc}"/>
@@ -166,14 +157,6 @@
             <destination>{ef9d6b9b-0a36-43ef-a688-7ff4117f0550}</destination>
             <destination>{386f6005-9a6b-441d-9132-96a606af4650}</destination>
             <destination>{7f2fd290-9720-44df-b887-3ba225f324b7}</destination>
-        </relationship>
-    </object>
-    <object class="Automator" id="{6e20c6ed-7fed-4930-a675-a1ef63290a9e}">
-        <property name="nameOfPropertyBeingAutomated">
-            <value>lowGain</value>
-        </property>
-        <relationship name="automationCurves">
-            <destination>{5e60665e-6178-42fb-9f81-a15b3649e438}</destination>
         </relationship>
     </object>
     <object class="Plugin" id="{0e34781d-6d35-4926-b792-f4afaf7cb175}">
@@ -351,15 +334,6 @@
             <value>-2</value>
         </property>
     </object>
-    <object class="AutomationCurve" id="{5e60665e-6178-42fb-9f81-a15b3649e438}">
-        <relationship name="parameter">
-            <destination>{6eadd02f-f980-4bfa-a76d-5480c69e8717}</destination>
-        </relationship>
-        <relationship name="automationPoints">
-            <destination>{e0a82ef4-c590-44e7-8050-a0fdae36f733}</destination>
-            <destination>{6fb5784e-6c7b-4531-9ca9-800f8b352a8c}</destination>
-        </relationship>
-    </object>
     <object class="BoolPluginParameter" id="{e127b137-7daa-4387-a293-2ac3b0a458b9}">
         <property name="name">
             <value>DirectBinaural</value>
@@ -511,22 +485,6 @@
         </property>
         <property name="dataType">
             <value>-2</value>
-        </property>
-    </object>
-    <object class="AutomationPoint" id="{e0a82ef4-c590-44e7-8050-a0fdae36f733}">
-        <property name="position">
-            <value>0</value>
-        </property>
-        <property name="value">
-            <value>0</value>
-        </property>
-    </object>
-    <object class="AutomationPoint" id="{6fb5784e-6c7b-4531-9ca9-800f8b352a8c}">
-        <property name="position">
-            <value>1</value>
-        </property>
-        <property name="value">
-            <value>-52</value>
         </property>
     </object>
 </objects>
