@@ -33,7 +33,7 @@ public class CompanionObjective : MonoBehaviour {
     public Turbine turbineButton;
     public TutorialArea tutorialArea;
     public Animator divingbellAnimator;
-    public TurbinePiecePosition[] turbinePieces;
+    public TurbinePiecePosition[] turbinePieces = new TurbinePiecePosition[5];
 
     //states
     private ObjectiveStatus _status;

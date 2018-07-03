@@ -17,6 +17,7 @@ public class CheckForTrashArea : MonoBehaviour {
 
     private int trashCount;
     private bool _playerInArea;
+    private bool _eventSend;
 
     // Use this for initialization
     void Start () {
@@ -33,15 +34,17 @@ public class CheckForTrashArea : MonoBehaviour {
 
     private void CheckForTrash()
     {
-        if (_playerInArea)
+        if (_playerInArea && !_eventSend)
         {
             Collider[] trash = Physics.OverlapBox(transform.position, new Vector3(_col.size.x/2, _col.size.y/2, _col.size.z/2),Quaternion.identity,trashLayer);
             trashCount = trash.Length;
-
+            Debug.Log(" trash left " + trashCount);
             if (trashCount <= minTrashLeft)
             {
                 //Do something with the score? 
-                trashCleanedEvent.Invoke(); 
+                Debug.Log("Trash is Clean");
+                trashCleanedEvent.Invoke();
+                _eventSend = true; 
             }
            
         }

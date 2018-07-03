@@ -130,7 +130,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
             case ObjectiveTask.Cleanup:
                 //collected enough trash
                 if (trashCount - _startTrash >= _currentObjective.trashAmount) {
-                    ScoreTracker.CompletedTurbines++;
+                    //ScoreTracker.CompletedTurbines++;
                     return false;
                 }
 
@@ -145,7 +145,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
             case ObjectiveTask.Place:
                 //player dropped turbine
                 if (_currentObjective.DroppedTurbine()) {
-                    ScoreTracker.CompletedTurbines++;
+                    //ScoreTracker.CompletedTurbines++;
                     return false;
                 }
 
@@ -159,7 +159,10 @@ public class CompanionObjectiveTracker : MonoBehaviour {
 
             case ObjectiveTask.PowerOn:
                 //player has pressed the console button to reactivate the turbine
-                if (_currentObjective.ConsoleButtonPressed()) return false;
+                if (_currentObjective.ConsoleButtonPressed()) {
+                    ScoreTracker.CompletedTurbines++;
+                    return false;
+                }
 
                 break;
 

@@ -34,7 +34,7 @@ public class SceneEntrance : MonoBehaviour {
             if(isBeginning) {
                 //parent to the diving bell
                 player.parent = divingBell;
-            } else if(!isBeginning && _completedBegin) {
+            } else if(!isBeginning) {
                 sceneTransition.EnableTransition(); //go to next level
             }
             
@@ -44,7 +44,8 @@ public class SceneEntrance : MonoBehaviour {
                 player.parent = null;
 
                 _completedBegin = true;
-            } else if (!isBeginning && _completedBegin) {
+            } else if (!isBeginning) {
+                Debug.Log("Parent player");
                 player.parent = divingBell;
             }
             
