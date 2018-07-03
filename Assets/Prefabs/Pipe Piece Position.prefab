@@ -28,7 +28,7 @@ GameObject:
   m_TagString: TurbinePiecePosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4028451401836746
 Transform:
@@ -95,7 +95,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.48800457, y: 0.17831664, z: 0.16958986}
+  m_Size: {x: 0.72, y: 0.36, z: 0.34}
   m_Center: {x: 0.9964885, y: 3.108593, z: -0.017368602}
 --- !u!114 &114806899602553676
 MonoBehaviour:
@@ -108,3 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ede49aa2de7c404ea95b5db805ffddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  piece: 0
+  notConnectedColor: {r: 0, g: 0, b: 0, a: 0}
+  connectedColor: {r: 0, g: 0, b: 0, a: 0}

@@ -4,6 +4,6 @@ using UnityEngine;
 
 namespace TurbinePieceType {
 
-    public enum PieceType { TurbineBlade, TurbinePipe };
+    public enum PieceType {TurbinePipe, TurbineLongPipe, TurbineRingPipe };
 
 }

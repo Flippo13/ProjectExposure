@@ -31,7 +31,7 @@ GameObject:
   m_TagString: TurbinePart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4288974193041160
 Transform:
@@ -61,7 +61,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 419eee587b88e45489d76f70323720a5, type: 2}
+  - {fileID: 2100000, guid: a3cb5e88cc102a34a90ba1a6281d9b31, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,7 +113,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.48800457, y: 0.17831664, z: 0.16958986}
+  m_Size: {x: 0.94, y: 0.39, z: 0.43}
   m_Center: {x: 0.9964885, y: 3.108593, z: -0.017368602}
 --- !u!65 &65830631216474244
 BoxCollider:
@@ -138,12 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1a17455c1c65843bca1638b737e056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piece: 0
-  canConnectedColor: {r: 0.12724805, g: 1, b: 0, a: 0}
-  notConnectedColor: {r: 1, g: 0, b: 0, a: 0}
-  turbinePiecePosition: {fileID: 0}
-  connected: 0
+  piece: 1
   offset: 0.03
+  turbinePiecePosition: {fileID: 0}
 --- !u!114 &114513896248514958
 MonoBehaviour:
   m_ObjectHideFlags: 1
