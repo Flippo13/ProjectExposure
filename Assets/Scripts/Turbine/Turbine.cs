@@ -23,8 +23,8 @@ public class Turbine : MonoBehaviour
     private GameObject _button;
 
     private Animator _anim;
-    private bool _trashCleaned = true;
-    private bool _cableConnected = true;
+    private bool _trashCleaned;
+    private bool _cableConnected;
 
     [SerializeField]
     private TurbineLights[] _lights;
@@ -41,6 +41,17 @@ public class Turbine : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        if (_cableConnected && _activated)
+        {
+            for (int i = 0; i < _lights.Length; i++)
+            {
+                _lights[i].TurnOn();
+            }
+        }
     }
 
     public void Activate()
@@ -69,14 +80,6 @@ public class Turbine : MonoBehaviour
         {
             Debug.Log("Turbine is not fixed, display that on the console");
             RuntimeManager.PlayOneShot(_errorSound, _button.transform.position);
-        }
-
-        if (_cableConnected)
-        {
-            for (int i = 0; i < _lights.Length; i++)
-            {
-                _lights[i].TurnOn(); 
-            }
         }
     }
 

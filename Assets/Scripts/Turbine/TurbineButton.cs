@@ -30,6 +30,7 @@ public class TurbineButton : MonoBehaviour
     {
         if (turbineButtonStop.Active)
         {
+            Debug.Log("Go");
             _activate = true;
         }
     }

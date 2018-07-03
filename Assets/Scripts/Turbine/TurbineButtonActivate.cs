@@ -34,7 +34,6 @@ public class TurbineButtonActivate : MonoBehaviour {
     {
         if (other.collider.tag == "TurbineButton")
         {
-
             _active = false;
         }
     }

@@ -8,7 +8,8 @@ public class TurbineLandingZone : MonoBehaviour {
     public GameObject foundationWithTurbinePrefab;
 
     public Console console;
-    public PowerGrid powerGrid; 
+    public PowerGrid powerGrid;
+    public TurbineLights[] lights; 
 
     [HideInInspector]
     public UnityEvent areaChosenEvent;
@@ -74,7 +75,8 @@ public class TurbineLandingZone : MonoBehaviour {
     private void SetUpTurbine(Turbine turbine)
     {
         turbine.CalledDown = true;
-        turbine.Button = console.gameObject; 
+        turbine.Button = console.gameObject;
+        turbine.Lights = lights; 
         console.turbineButtonEvent.AddListener(turbine.Activate);
         powerGrid.cableConntectedEvent.AddListener(turbine.CableConnected);
         Debug.Log("I still get called!"); 
