@@ -29,7 +29,7 @@ public class TurbinePiece : MonoBehaviour {
         //CheckRotation(); 
         if (turbinePiecePosition != null)
         {
-            if (_hand != null && _hand.IsHoldingObject() && turbinePiecePosition.InPlacementRange)
+            if (_hand != null && turbinePiecePosition.InPlacementRange)
             {
                 if (piece == PieceType.TurbineBlade)
                 {
@@ -47,13 +47,17 @@ public class TurbinePiece : MonoBehaviour {
 
                 if (_correctXRotation && _correctYRotation && _correctZRotation)
                 {
-
-                    if (!_hand.IsHoldingObject())
+                    Debug.Log("Stuff here " + _hand.IsHoldingObject());
+                    turbinePiecePosition.CanConnectMaterial(); 
+                    if (!_hand.IsHoldingObject()) {
                         Connected();
+                        Debug.Log("Stuff man");
+                    }
                 }
                 else
                 {
                     //Something something
+                    turbinePiecePosition.NotConnectedMaterial();
                 }
             }
         }
@@ -81,6 +85,7 @@ public class TurbinePiece : MonoBehaviour {
     public void Connected()
     {
         turbinePiecePosition.Connected = true;
+        _hand.InterruptGrabbing(); 
         _hand = null;
         turbinePiecePosition.Connect(); 
         Destroy(this.gameObject);
