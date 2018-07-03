@@ -19,8 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4344047594715264}
-  m_Layer: 0
-  m_Name: Sign
+  - component: {fileID: 65794625202769294}
+  m_Layer: 8
+  m_Name: Sign_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +37,7 @@ GameObject:
   - component: {fileID: 4751380966709836}
   - component: {fileID: 33257132371926894}
   - component: {fileID: 23768673069451098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +54,7 @@ GameObject:
   - component: {fileID: 4958873983925094}
   - component: {fileID: 33183255008655484}
   - component: {fileID: 23607175134257366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377053769033104}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 243.99823, y: 28.46, z: 196.70676}
+  m_LocalPosition: {x: 239.71, y: 28.46, z: 192.1}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4958873983925094}
@@ -185,3 +186,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1534020096155652}
   m_Mesh: {fileID: 4300000, guid: fb1a740a458cae34f9c3bd4b29b70b1e, type: 3}
+--- !u!65 &65794625202769294
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377053769033104}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
