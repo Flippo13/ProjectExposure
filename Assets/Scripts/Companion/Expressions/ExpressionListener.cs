@@ -67,7 +67,7 @@ public class ExpressionListener : MonoBehaviour {
                 }
             }
         } else {
-            _faceMaterial.SetFloat("_EmissionStrenght", 5);
+            _faceMaterial.SetFloat("_EmissionStrenght", 3);
         }
     }
 
