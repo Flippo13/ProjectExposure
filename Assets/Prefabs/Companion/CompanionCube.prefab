@@ -4445,7 +4445,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241325418213258}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6082,7 +6082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc9d353d977a02498e4771aa54d30ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearSpeed: 5
+  nearSpeed: 7
   nearAcceleration: 12
   farSpeed: 15
   farAcceleration: 40
@@ -6272,7 +6272,7 @@ MonoBehaviour:
   followTimeout: 8
   handOverTimeout: 1
   emergencyTimeout: 15
-  debug: 1
+  debug: 0
   skipTutorial: 0
 --- !u!114 &114928323724228590
 MonoBehaviour:
@@ -7575,12 +7575,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 1241325418213258}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.2
+  m_Radius: 0.5
   m_Speed: 10
   m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.2
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

@@ -63,14 +63,14 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         return nextObjective;
     }
 
-    public void FindNewBranch() {
+    public void FindNewBranch(Vector3 playerPos) {
         ObjectiveBranch closestBranch = ObjectiveBranch.None;
         float prevMagnitude = float.MaxValue;
 
         for (int i = 0; i < _mainObjectives.Count; i++) {
             if (_mainObjectives[i].IsCompleted() || _mainObjectives[i].objectiveBranch == closestBranch || _mainObjectives[i].objectiveBranch == _currentBranch) continue;
 
-            float magnitude = (_mainObjectives[i].transform.position - transform.position).sqrMagnitude;
+            float magnitude = (_mainObjectives[i].transform.position - playerPos).sqrMagnitude;
 
             Debug.Log("Distance to branch " + _mainObjectives[i].objectiveBranch + ": " + magnitude);
 

@@ -184,10 +184,10 @@ public class CompanionAI : MonoBehaviour {
     public IEnumerator LookForBranchWithDelay() {
         _searchingBranch = true;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
 
         //looking for an entirely new objective
-        _tracker.FindNewBranch();
+        _tracker.FindNewBranch(companionDestination.GetPosition());
         CompanionObjective mainObjective = _tracker.GetNextObjectiveInBranch();
 
         if (mainObjective != null) { //only main objectives remaining
