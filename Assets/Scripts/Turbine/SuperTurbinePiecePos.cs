@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class SuperTurbinePiecePos : MonoBehaviour {
 
-    public Color notConnectedColor;
-    public Color connectedColor; 
+
+    public TurbinePiecePosition[] turbinePiecesPosition; 
+
+    [SerializeField]
+    private Color notConnectedColor;
+    [SerializeField]
+    private Color connectedColor;
+
+    void Start()
+    {
+        SetColor(); 
+    }
 
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void SetColor()
+    {
+        for (int i = 0; i < turbinePiecesPosition.Length; i++)
+        {
+            turbinePiecesPosition[i].notConnectedColor = notConnectedColor;
+            turbinePiecesPosition[i].connectedColor = connectedColor;
+        }
+    }
 }

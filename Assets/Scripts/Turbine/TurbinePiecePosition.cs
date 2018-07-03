@@ -1,15 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TurbinePieceType; 
 
-public class TurbinePiecePosition : SuperTurbinePiecePos {
+public class TurbinePiecePosition : MonoBehaviour {
+
+    public PieceType piece; 
 
     private bool _inPlacementRange;
     private bool _connected;
+    private bool _canConnect; 
 
     private new Transform transform; 
 
-    private Renderer[] _rend; 
+    private Renderer[] _rend;
+
+    [HideInInspector]
+    public Color notConnectedColor;
+    [HideInInspector]
+    public Color connectedColor; 
+
 
     void Start()
     {
@@ -25,7 +35,14 @@ public class TurbinePiecePosition : SuperTurbinePiecePos {
             _rend = new Renderer[transform.childCount];
             _rend = GetComponentsInChildren<Renderer>();
         }
+        NotConnectedMaterial(); 
     }
+
+    private void Update()
+    {
+
+    }
+
 
     public bool InPlacementRange
     {
@@ -33,33 +50,25 @@ public class TurbinePiecePosition : SuperTurbinePiecePos {
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == Tags.TurbinePiece)
-        {
-            _inPlacementRange = true; 
-        }
-    }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == Tags.TurbinePiece)
-        {
-            _inPlacementRange = false;
-        }
-    }
-
-
-    public void SetConnectedMaterial(Color newColor)
+    public void NotConnectedMaterial()
     {
         for (int i = 0; i < _rend.Length; i++)
         {
-            _rend[i].material.SetColor("_Color", newColor);
-            _rend[i].material.SetColor("_EmissionColor", newColor);
+            _rend[i].material.SetColor("_Color", notConnectedColor);
+            _rend[i].material.SetColor("_EmissionColor", notConnectedColor);
         }
     }
 
+    public void CanConnectMaterial()
+    {
+        for (int i = 0; i < _rend.Length; i++)
+        {
+            _rend[i].material.SetColor("_Color", connectedColor);
+            _rend[i].material.SetColor("_EmissionColor", connectedColor);
+        }
+    }
 
     public void Connect()
     {
@@ -77,9 +86,25 @@ public class TurbinePiecePosition : SuperTurbinePiecePos {
         set { _connected = value; }
     }
 
-    public Renderer[] Rend
+
+    private void OnTriggerEnter(Collider other)
     {
-        get { return _rend; }
+        if (other.tag == Tags.TurbinePiece)
+        {
+            _inPlacementRange = true; 
+            if (other.GetComponent<TurbinePiece>().piece == piece)
+            {
+                other.GetComponent<TurbinePiece>().SetTurbinePiecePosition(this, this.transform); 
+            }
+        }
     }
 
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == Tags.TurbinePiece)
+        {
+            _inPlacementRange = false;
+        }
+    }
 }

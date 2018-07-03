@@ -1,66 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TurbinePieceType; 
 
 public class TurbinePiece : MonoBehaviour {
 
-    public enum Piece {TrubineBlade, TurbineFoundation};
-    public Piece piece;
+    public PieceType piece; 
 
-    public Color canConnectedColor;
-    public Color notConnectedColor; 
-
-    public GameObject turbinePiecePosition; 
     public float offset; 
+    [HideInInspector]
+    public TurbinePiecePosition turbinePiecePosition; 
 
     private new Transform transform;
-    private Transform _turbinePosTransform;
-    private TurbinePiecePosition _turbinePiecePosition; 
     private bool _correctXRotation; 
     private bool _correctYRotation;
     private bool _correctZRotation;
 
-    private ObjectGrabber _hand; 
+    private ObjectGrabber _hand;
+    private Transform _turbinePosTransform;
 
     // Use this for initialization
-	void Start () {
+    void Start () {
         transform = GetComponent<Transform>();
-        _turbinePosTransform = turbinePiecePosition.GetComponent<Transform>();
-        _turbinePiecePosition = turbinePiecePosition.GetComponent<TurbinePiecePosition>();
-        Debug.Log("Piece" + _turbinePiecePosition);
-
-        _turbinePiecePosition.SetConnectedMaterial(notConnectedColor); 
 	}
 
     void Update()
     {
         //CheckRotation(); 
-        if (_hand != null && _turbinePiecePosition.InPlacementRange)
+        if (turbinePiecePosition != null)
         {
-            if (piece == Piece.TrubineBlade)
+            if (_hand != null && _hand.IsHoldingObject() && turbinePiecePosition.InPlacementRange)
             {
-                _correctXRotation = AxisIsOne(transform.right, true, false, true);
-                _correctYRotation = AxisIsOne(transform.up, false, true, false);
-                _correctZRotation = AxisIsOne(transform.forward, true, false, true);
-            }
+                if (piece == PieceType.TurbineBlade)
+                {
+                    _correctXRotation = AxisIsOne(transform.right, true, false, true);
+                    _correctYRotation = AxisIsOne(transform.up, false, true, false);
+                    _correctZRotation = AxisIsOne(transform.forward, true, false, true);
+                }
 
-            else if (piece == Piece.TurbineFoundation)
-            {
-                _correctXRotation = AxisIsOne(transform.right, true, false, false);
-                _correctYRotation = AxisIsOne(transform.up, false, true, false);
-                _correctZRotation = AxisIsOne(transform.forward, false, false, true);
-            }
+                else if (piece == PieceType.TurbinePipe)
+                {
+                    _correctXRotation = AxisIsOne(transform.right, true, false, false);
+                    _correctYRotation = AxisIsOne(transform.up, false, true, false);
+                    _correctZRotation = AxisIsOne(transform.forward, false, false, true);
+                }
 
-            if (_correctXRotation && _correctYRotation && _correctZRotation)
-            {
-                _turbinePiecePosition.SetConnectedMaterial(canConnectedColor);
+                if (_correctXRotation && _correctYRotation && _correctZRotation)
+                {
 
-                if (!_hand.IsHoldingObject())
-                    Connected();
-            }
-            else
-            {
-                _turbinePiecePosition.SetConnectedMaterial(notConnectedColor);
+                    if (!_hand.IsHoldingObject())
+                        Connected();
+                }
+                else
+                {
+                    //Something something
+                }
             }
         }
     }
@@ -86,11 +80,16 @@ public class TurbinePiece : MonoBehaviour {
 
     public void Connected()
     {
-        
-        _turbinePiecePosition.Connected = true;
+        turbinePiecePosition.Connected = true;
         _hand = null;
-        _turbinePiecePosition.Connect(); 
+        turbinePiecePosition.Connect(); 
         Destroy(this.gameObject);
+    }
+
+    public void SetTurbinePiecePosition(TurbinePiecePosition piecePosition, Transform pieceTransform)
+    {
+        turbinePiecePosition = piecePosition;
+        _turbinePosTransform = pieceTransform; 
     }
 
     private void OnTriggerEnter(Collider other)
