@@ -140,4 +140,10 @@ public class CompanionAudio : MonoBehaviour {
         _startedPlaying = false;
     }
 
+    public FMOD.ChannelGroup GetChannelGroup() {
+        FMOD.ChannelGroup group;
+        _audioTracks[(int)AudioSourceType.Voice].getChannelGroup(out group);
+        return group;
+    }
+
 }

@@ -18,6 +18,8 @@ public class ExpressionListener : MonoBehaviour
 
     FMOD.DSP fft;
 
+    private CompanionAudio _companionAudio;
+
     [Serializable]
     public class Expression
     {
@@ -27,22 +29,22 @@ public class ExpressionListener : MonoBehaviour
 
     private void Awake()
     {
+        _companionAudio = transform.parent.GetComponent<CompanionAudio>();
+
         // Create a DSP listener so we can detect peaks
         FMODUnity.RuntimeManager.LowlevelSystem.createDSPByType(FMOD.DSP_TYPE.FFT, out fft);
         fft.setParameterInt((int)FMOD.DSP_FFT.WINDOWTYPE, (int)FMOD.DSP_FFT_WINDOW.HANNING);
         fft.setParameterInt((int)FMOD.DSP_FFT.WINDOWSIZE, _bufferSize);
 
+        //Probably should set this to a different channel, currently using the master channel group
+        _companionAudio.GetChannelGroup().addDSP(FMOD.CHANNELCONTROL_DSP_INDEX.HEAD, fft);
+
         // Probably should set this to a different channel, currently using the master channel group
         //FMOD.ChannelGroup channelGroup;
         //FMODUnity.RuntimeManager.LowlevelSystem.getMasterChannelGroup(out channelGroup);
-        //channelGroup.addDSP(FMOD.CHANNELCONTROL_DSP_INDEX.HEAD, fft);
-
-        // Probably should set this to a different channel, currently using the master channel group
-        FMOD.ChannelGroup channelGroup;
-        FMODUnity.RuntimeManager.LowlevelSystem.getMasterChannelGroup(out channelGroup);
-        FMOD.Channel channel;
-        channelGroup.getChannel(1, out channel);
-        channel.addDSP(FMOD.CHANNELCONTROL_DSP_INDEX.HEAD, fft);
+        //FMOD.Channel channel;
+        //channelGroup.getChannel(1, out channel);
+        //channel.addDSP(FMOD.CHANNELCONTROL_DSP_INDEX.HEAD, fft);
     }
 
     public void ChangeExpression(string expressionName)
@@ -66,6 +68,9 @@ public class ExpressionListener : MonoBehaviour
 
     void Update()
     {
+        //Probably should set this to a different channel, currently using the master channel group
+        _companionAudio.GetChannelGroup().addDSP(FMOD.CHANNELCONTROL_DSP_INDEX.HEAD, fft);
+
         IntPtr unmanagedData;
         uint length;
         fft.getParameterData((int)FMOD.DSP_FFT.SPECTRUMDATA, out unmanagedData, out length);
