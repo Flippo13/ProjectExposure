@@ -5,6 +5,8 @@ using UnityEngine;
 public class TurbineLights : MonoBehaviour {
 
 
+    public Color turnedOnColor; 
+
     public float lightIntensityWhenOn; 
 
     private Light _light; 
@@ -17,7 +19,8 @@ public class TurbineLights : MonoBehaviour {
     
     public void TurnOn()
     {
-        _light.intensity = lightIntensityWhenOn; 
+        _light.intensity = lightIntensityWhenOn;
+        _light.color = turnedOnColor;
     }
 
 }

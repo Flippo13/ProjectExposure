@@ -77,7 +77,7 @@ public class TurbineLandingZone : MonoBehaviour {
         turbine.Button = console.gameObject; 
         console.turbineButtonEvent.AddListener(turbine.Activate);
         powerGrid.cableConntectedEvent.AddListener(turbine.CableConnected);
-
+        Debug.Log("I still get called!"); 
 
         _turbineDropCheck.TurbineDropping(); 
     }

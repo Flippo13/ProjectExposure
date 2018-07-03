@@ -21,7 +21,8 @@ public class TurbineManager : MonoBehaviour {
                 turbine[i].powerGrid.cableConntectedEvent.AddListener(turbine[i].turbine.CableConnected);
                 turbine[i].console.turbineButtonEvent.AddListener(turbine[i].turbine.Activate);
                 turbine[i].trashArea.trashCleanedEvent.AddListener(turbine[i].turbine.TrashCleaned);
-                turbine[i].turbine.Lights = turbine[i].lights; 
+                turbine[i].turbine.Lights = turbine[i].lights;
+                turbine[i].turbine.Pieces = turbine[i].turbinePiecePositions; 
             }
             else
             {
