@@ -15,9 +15,9 @@ public class TurbinePiecePosition : MonoBehaviour {
 
     private Renderer[] _rend;
 
-    [HideInInspector]
+   // [HideInInspector]
     public Color notConnectedColor;
-    [HideInInspector]
+   // [HideInInspector]
     public Color connectedColor; 
 
 
@@ -35,7 +35,6 @@ public class TurbinePiecePosition : MonoBehaviour {
             _rend = new Renderer[transform.childCount];
             _rend = GetComponentsInChildren<Renderer>();
         }
-        NotConnectedMaterial(); 
     }
 
     private void Update()
@@ -48,9 +47,6 @@ public class TurbinePiecePosition : MonoBehaviour {
     {
         get { return _inPlacementRange; }
     }
-
-
-
 
     public void NotConnectedMaterial()
     {
@@ -91,9 +87,9 @@ public class TurbinePiecePosition : MonoBehaviour {
     {
         if (other.tag == Tags.TurbinePiece)
         {
-            _inPlacementRange = true; 
             if (other.GetComponent<TurbinePiece>().piece == piece)
             {
+                _inPlacementRange = true; 
                 other.GetComponent<TurbinePiece>().SetTurbinePiecePosition(this, this.transform); 
             }
         }

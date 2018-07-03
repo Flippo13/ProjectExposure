@@ -27,35 +27,32 @@ public class TurbinePiece : MonoBehaviour {
     void Update()
     {
         //CheckRotation(); 
+
+        /*
+        if (_hand != null && !_hand.IsHoldingObject()) {
+            _hand.InterruptGrabbing();
+            _hand = null; 
+        }*/
+
         if (turbinePiecePosition != null)
         {
             if (_hand != null && turbinePiecePosition.InPlacementRange)
             {
-                if (piece == PieceType.TurbineBlade)
+                if (piece == PieceType.TurbinePipe || piece == PieceType.TurbineLongPipe || piece == PieceType.TurbineRingPipe)
                 {
                     _correctXRotation = AxisIsOne(transform.right, true, false, true);
-                    _correctYRotation = AxisIsOne(transform.up, false, true, false);
                     _correctZRotation = AxisIsOne(transform.forward, true, false, true);
+                    Debug.Log( _correctXRotation + "  " + _correctZRotation);
                 }
 
-                else if (piece == PieceType.TurbinePipe)
-                {
-                    _correctXRotation = AxisIsOne(transform.right, true, false, true);
-                    _correctYRotation = AxisIsOne(transform.up, false, true, false);
-                    _correctZRotation = AxisIsOne(transform.forward, true, false, true);
-                }
-
-                if (_correctXRotation && _correctYRotation && _correctZRotation)
-                {
+                if (_correctXRotation && _correctZRotation) {
                     Debug.Log("Stuff here " + _hand.IsHoldingObject());
-                    turbinePiecePosition.CanConnectMaterial(); 
+                    turbinePiecePosition.CanConnectMaterial();
                     if (!_hand.IsHoldingObject()) {
-                        Connected();
                         Debug.Log("Stuff man");
+                        Connected();
                     }
-                }
-                else
-                {
+                } else {
                     //Something something
                     turbinePiecePosition.NotConnectedMaterial();
                 }
@@ -72,7 +69,7 @@ public class TurbinePiece : MonoBehaviour {
 
         if (compareToX && 1 <= dotOfAxisToX + offset || -1 >= dotOfAxisToX - offset)
             return true;
-        else if (compareToY && 1 <= dotOfAxisToY + offset || -1 >= dotOfAxisToY - offset)
+        else if (compareToY && 1 <= dotOfAxisToY + offset)
             return true; 
         else if (compareToZ && 1 <= dotOfAxisToZ + offset || -1 >= dotOfAxisToZ - offset)
             return true;
@@ -81,11 +78,11 @@ public class TurbinePiece : MonoBehaviour {
         
     }
 
-
     public void Connected()
     {
+        _hand.InterruptGrabbing();
+        _hand.RemoveGrabCandidate(transform);
         turbinePiecePosition.Connected = true;
-        _hand.InterruptGrabbing(); 
         _hand = null;
         turbinePiecePosition.Connect(); 
         Destroy(this.gameObject);
@@ -99,7 +96,7 @@ public class TurbinePiece : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ObjectGrabber>())
+        if (other.GetComponent<ObjectGrabber>() && _hand == null)
         {
             _hand = other.GetComponent<ObjectGrabber>();
 
