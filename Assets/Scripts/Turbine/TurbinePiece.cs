@@ -40,9 +40,9 @@ public class TurbinePiece : MonoBehaviour {
 
                 else if (piece == PieceType.TurbinePipe)
                 {
-                    _correctXRotation = AxisIsOne(transform.right, true, false, false);
+                    _correctXRotation = AxisIsOne(transform.right, true, false, true);
                     _correctYRotation = AxisIsOne(transform.up, false, true, false);
-                    _correctZRotation = AxisIsOne(transform.forward, false, false, true);
+                    _correctZRotation = AxisIsOne(transform.forward, true, false, true);
                 }
 
                 if (_correctXRotation && _correctYRotation && _correctZRotation)
