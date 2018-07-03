@@ -5693,7 +5693,7 @@ MonoBehaviour:
   vacuumArea: {fileID: 114464006897226516}
   trashCounter: {fileID: 114015997610388584}
   _vacuumSound: event:/Companion/Effects/Vacuum
-  _addScoreSound: 
+  _addScoreSound: event:/Gameplay/Vacuum/Score
   suckSpeed: 0.2
   vacuumGrabber: {fileID: 0}
   leftHandGrabber: {fileID: 0}
@@ -5726,7 +5726,7 @@ MonoBehaviour:
   - _expressionName: Dizzy
     _expression: 5
   _bufferSize: 1024
-  _strenght: 0
+  _strength: 30
 --- !u!114 &114662176903652410
 MonoBehaviour:
   m_ObjectHideFlags: 1
