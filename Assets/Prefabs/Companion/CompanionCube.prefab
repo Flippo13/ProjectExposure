@@ -1698,7 +1698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1658950450068758
 GameObject:
   m_ObjectHideFlags: 1
@@ -6018,9 +6018,7 @@ MonoBehaviour:
   - _expressionName: Dizzy
     _expression: 5
   _bufferSize: 1024
-  _strength: 15
-  minSpeed: 10
-  maxSpeed: 20
+  _strength: 0
 --- !u!114 &114662176903652410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6125,11 +6123,11 @@ MonoBehaviour:
   interactionRadius: 2.5
   playerSeperationRadius: 20
   idleAnimInterval: 7
-  followTimeout: 10
-  handOverTimeout: 1.2
-  emergencyTimeout: 20
-  debug: 0
-  skipTutorial: 0
+  followTimeout: 8
+  handOverTimeout: 1
+  emergencyTimeout: 15
+  debug: 1
+  skipTutorial: 1
 --- !u!114 &114928323724228590
 MonoBehaviour:
   m_ObjectHideFlags: 1

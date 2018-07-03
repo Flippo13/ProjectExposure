@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 //state machine of the robot containing its behaviour
 public class CompanionAI : MonoBehaviour {
@@ -38,6 +39,7 @@ public class CompanionAI : MonoBehaviour {
     private bool _wasCalled;
     private bool _inTutorial;
     private bool _instructedCall;
+    private bool _searchingBranch;
 
     public void Start() {
         //get all relevant components
@@ -56,6 +58,7 @@ public class CompanionAI : MonoBehaviour {
 
         _wasCalled = false;
         _instructedCall = false;
+        _searchingBranch = false;
 
         _debug.Init();
         _debug.SetRendererStatus(debug);
@@ -165,19 +168,35 @@ public class CompanionAI : MonoBehaviour {
     }
 
     //returns true, if an objective was found
-    private bool CheckForObjectives() {
-        if (_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) return false; //an objective is already active
+    public void CheckForObjectives() {
+        if (_tracker.GetCurrentObjective() != null && _tracker.GetCurrentObjective().IsActive()) return; //an objective is already active
 
         //looking for an entirely new objective
         CompanionObjective mainObjective = _tracker.GetNextObjectiveInBranch();
 
         if (mainObjective != null) { //only main objectives remaining
             _tracker.SetCurrentObjective(mainObjective);
+        } else if(mainObjective == null && !_searchingBranch) {
+            LookForBranchWithDelay();
+        }
+    }
 
-            return true;
+    public IEnumerator LookForBranchWithDelay() {
+        _searchingBranch = true;
+
+        yield return new WaitForSeconds(2f);
+
+        //looking for an entirely new objective
+        _tracker.FindNewBranch();
+        CompanionObjective mainObjective = _tracker.GetNextObjectiveInBranch();
+
+        if (mainObjective != null) { //only main objectives remaining
+            _tracker.SetCurrentObjective(mainObjective);
+        } else {
+            Debug.Log("Couldnt find objectives in new branch");
         }
 
-        return false;
+        _searchingBranch = false;
     }
 
     private void RotateTowardsPlayer() {

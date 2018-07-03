@@ -24,7 +24,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
         CompanionObjective[] allObjectives = objectiveLog.GetComponentsInChildren<CompanionObjective>();
 
         //sorting out objectives
-        for(int i = 0; i < allObjectives.Length; i++) {
+        for (int i = 0; i < allObjectives.Length; i++) {
             if (allObjectives[i].objectiveType == ObjectiveType.Main) _mainObjectives.Add(allObjectives[i]);
             else if (allObjectives[i].objectiveType == ObjectiveType.Side) _sideObjectives.Add(allObjectives[i]);
         }
@@ -50,38 +50,29 @@ public class CompanionObjectiveTracker : MonoBehaviour {
     //returns the next main objective that isnt completed and is part of the branch, returns null if no objective was found
     public CompanionObjective GetNextObjectiveInBranch() {
         CompanionObjective nextObjective = null;
-          
-        for(int i = 0; i < _mainObjectives.Count; i++) {
+
+        for (int i = 0; i < _mainObjectives.Count; i++) {
             CompanionObjective currentObjective = _mainObjectives[i];
-            if (currentObjective.IsCompleted()) continue; //skip completed objectives
-
-            //uncompleted tasks remaining
-            if(_currentBranch != currentObjective.objectiveBranch) {
-                //branch needs to change since all objectives in this branch are completed
-                SetCurrentBranch(i);
-
-                if (_currentBranch == ObjectiveBranch.None) Debug.Log("No more main objective branches found");
-                else Debug.Log("Switched branch: " + _currentBranch);
-            }
-
-            //get next objective from active branch
-            if(_currentBranch == currentObjective.objectiveBranch) {
-                nextObjective = _mainObjectives[i];
-                break;
-            }
+            if (currentObjective.IsCompleted() || _currentBranch != currentObjective.objectiveBranch) continue; //skip completed objectives
+            
+            //set next objective
+            nextObjective = _mainObjectives[i];
+            break;
         }
 
         return nextObjective;
     }
 
-    private void SetCurrentBranch(int index) {
+    public void FindNewBranch() {
         ObjectiveBranch closestBranch = ObjectiveBranch.None;
         float prevMagnitude = float.MaxValue;
 
-        for (int i = index; i < _mainObjectives.Count; i++) {
+        for (int i = 0; i < _mainObjectives.Count; i++) {
             if (_mainObjectives[i].IsCompleted() || _mainObjectives[i].objectiveBranch == closestBranch || _mainObjectives[i].objectiveBranch == _currentBranch) continue;
 
             float magnitude = (_mainObjectives[i].transform.position - transform.position).sqrMagnitude;
+
+            Debug.Log("Distance to branch " + _mainObjectives[i].objectiveBranch + ": " + magnitude);
 
             //checking for different branches that are closer
             if (magnitude < prevMagnitude) {
@@ -90,7 +81,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
             }
         }
 
-        _currentBranch = closestBranch; //assign found branch
+        if(closestBranch != ObjectiveBranch.None) _currentBranch = closestBranch; //assign found branch
     }
 
     //returns the closest side objective that isnt completed, returns null if no objective was found
@@ -104,7 +95,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
 
             float magnitude = (_sideObjectives[i].transform.position - transform.position).sqrMagnitude;
 
-            if(closestObjective == null || magnitude < prevMagnitude) {
+            if (closestObjective == null || magnitude < prevMagnitude) {
                 closestObjective = _sideObjectives[i];
                 prevMagnitude = magnitude;
             }
@@ -173,7 +164,7 @@ public class CompanionObjectiveTracker : MonoBehaviour {
                 break;
 
             case ObjectiveTask.Assemble:
-                if(_currentObjective.AssembledTurbine()) { //replace with real condition
+                if (_currentObjective.AssembledTurbine()) { //replace with real condition
                     ScoreTracker.CompletedTurbines++;
                     return false;
                 }
