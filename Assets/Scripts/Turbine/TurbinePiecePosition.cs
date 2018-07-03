@@ -72,6 +72,7 @@ public class TurbinePiecePosition : MonoBehaviour {
         {
             _rend[i].material.SetColor("_Color",Color.white);
             _rend[i].material.SetColor("_EmissionColor", Color.black);
+            _rend[i].material.renderQueue = 1; 
             _connected = true; 
         }
     }
