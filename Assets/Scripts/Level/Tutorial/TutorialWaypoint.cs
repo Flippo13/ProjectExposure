@@ -29,7 +29,6 @@ public class TutorialWaypoint : MonoBehaviour {
 
         //if button condition is fulfilled and player is in waypoint
         if(CheckForButtonPress() && (_objectivePointer == null || _objectivePointer.IsTriggered())) {
-            Debug.Log("Activate  next waypoint called");
             _tutorialArea.ActivateNextWaypoint(); //this one gets disabled and the next one enabled
         }
     }
@@ -82,8 +81,6 @@ public class TutorialWaypoint : MonoBehaviour {
         _active = false;
 
         _tutorialArea.buttonsTutorial.SetButtonTutorial(tutorialButton, false); //disable tutorial
-
-        Debug.Log("Deactivate button tutorial");
 
         if(_objectivePointer != null) _objectivePointer.Disable();
     }

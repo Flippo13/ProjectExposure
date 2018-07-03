@@ -13,7 +13,10 @@ public class ExpressionListener : MonoBehaviour {
     [SerializeField]
     private int _bufferSize = 1024;
     [SerializeField]
-    private int _strength;
+    private float _strength;
+
+    public float minSpeed;
+    public float maxSpeed;
 
     private CompanionAudio _companionAudio;
     private float _timer;
@@ -51,7 +54,8 @@ public class ExpressionListener : MonoBehaviour {
 
     private void SetEmissionStrength() {
         if (_companionAudio.GetStartedPlaying() && _companionAudio.GetPlaybackState(AudioSourceType.Voice) != FMOD.Studio.PLAYBACK_STATE.STOPPED) {
-            _faceMaterial.SetFloat("_EmissionStrenght", GetSinWave(30f) * _strength);
+            float speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
+            _faceMaterial.SetFloat("_EmissionStrenght", GetSinWave(speed) * _strength);
         } else {
             _faceMaterial.SetFloat("_EmissionStrenght", 0.5f * _strength);
         }

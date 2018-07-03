@@ -4,11 +4,11 @@ using UnityEngine.UI;
 namespace CurvedVRKeyboard {
 
     [SelectionBase]
-    public class KeyboardStatus: KeyboardComponent {
+    public class KeyboardStatus : KeyboardComponent {
 
         //-----------SET IN UNITY --------------
         [SerializeField]
-        public string  output;
+        public string output;
         [SerializeField]
         public int maxOutputLength;
         [SerializeField]
@@ -36,7 +36,7 @@ namespace CurvedVRKeyboard {
         /// Handles click on keyboarditem
         /// </summary>
         /// <param name="clicked">keyboard item clicked</param>
-        public void HandleClick ( KeyboardItem clicked ) {
+        public void HandleClick(KeyboardItem clicked) {
             string value = clicked.GetValue();
 
             if (value.Equals(QEH) || value.Equals(ABC)) { // special signs pressed
@@ -57,11 +57,11 @@ namespace CurvedVRKeyboard {
         /// <summary>
         /// Displays special signs
         /// </summary>
-        private void ChangeSpecialLetters () {
+        private void ChangeSpecialLetters() {
             KeyLetterEnum ToDisplay = areLettersActive ? KeyLetterEnum.NonLetters : KeyLetterEnum.LowerCase;
-            areLettersActive =!areLettersActive;
+            areLettersActive = !areLettersActive;
             isLowercase = true;
-            for(int i = 0;i < keys.Length;i++) {
+            for (int i = 0; i < keys.Length; i++) {
                 keys[i].SetKeyText(ToDisplay);
             }
         }
@@ -69,34 +69,32 @@ namespace CurvedVRKeyboard {
         /// <summary>
         /// Changes between lower and upper keys
         /// </summary>
-        private void LowerUpperKeys () {
+        private void LowerUpperKeys() {
             KeyLetterEnum ToDisplay = isLowercase ? KeyLetterEnum.UpperCase : KeyLetterEnum.LowerCase;
             isLowercase = !isLowercase;
-            for(int i = 0;i < keys.Length - 2;i++) {
+            for (int i = 0; i < keys.Length - 2; i++) {
                 keys[i].SetKeyText(ToDisplay);
             }
         }
 
-        private void BackspaceKey () {
-            if(output.Length >= 1) {
+        private void BackspaceKey() {
+            if (output.Length >= 1) {
                 textComponent.text = textComponent.text.Remove(output.Length - 1, 1);
                 output = textComponent.text;
             }
         }
 
-        private void TypeKey ( char key ) {
-            if(output.Length < maxOutputLength) {
-                textComponent.text = textComponent.text + key.ToString();
-                output = textComponent.text;
-            }
-                
+        private void TypeKey(char key) {
+            textComponent.text = textComponent.text + key.ToString();
+            output = textComponent.text;
+
         }
 
-        public void SetKeys ( KeyboardItem[] keys ) {
+        public void SetKeys(KeyboardItem[] keys) {
             this.keys = keys;
         }
 
-        public void setOutput (ref string stringRef) {
+        public void setOutput(ref string stringRef) {
             output = stringRef;
         }
     }
