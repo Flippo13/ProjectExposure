@@ -56,9 +56,9 @@ public class Turbine : MonoBehaviour
 
     public void Activate()
     {
-
         if (_trashCleaned && !_activated)
         {
+            Debug.Log("Start Turbine");
             _activated = true;
             _anim.SetBool("enabled", true);
             RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
@@ -133,6 +133,11 @@ public class Turbine : MonoBehaviour
         set { _turbinePieces = value; }
     }
     
+    public bool Activated {
+        get { return _activated; }
+    }
+
+
     public bool Landed
     {
         get { return _landed; }
