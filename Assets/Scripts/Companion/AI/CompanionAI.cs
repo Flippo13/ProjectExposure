@@ -177,7 +177,7 @@ public class CompanionAI : MonoBehaviour {
         if (mainObjective != null) { //only main objectives remaining
             _tracker.SetCurrentObjective(mainObjective);
         } else if(mainObjective == null && !_searchingBranch) {
-            LookForBranchWithDelay();
+            StartCoroutine(LookForBranchWithDelay());
         }
     }
 
