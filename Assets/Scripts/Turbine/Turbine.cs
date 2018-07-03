@@ -26,6 +26,8 @@ public class Turbine : MonoBehaviour
     private bool _trashCleaned;
     private bool _cableConnected;
 
+    public bool assembleTurbine; 
+
     [SerializeField]
     private TurbineLights[] _lights;
 
@@ -41,6 +43,7 @@ public class Turbine : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
+
     }
 
     void Update()
@@ -56,7 +59,7 @@ public class Turbine : MonoBehaviour
 
     public void Activate()
     {
-        if (_trashCleaned && !_activated)
+        if (!assembleTurbine && _trashCleaned && !_activated)
         {
             Debug.Log("Start Turbine");
             _activated = true;
@@ -67,12 +70,14 @@ public class Turbine : MonoBehaviour
         else if (_isBeingCalledDown && !_activated)
         {
             _anim.SetBool("enabled", true);
+            _activated = true;
             RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
             RuntimeManager.PlayOneShot(_turbineSound, transform.position);
         }
-        else if (PiecesConnected() != 0 && PiecesConnected() == _turbinePieces.Length && !_activated)
+        else if (_trashCleaned && PiecesConnected() != 0 && PiecesConnected() == _turbinePieces.Length && !_activated)
         {
             _anim.SetBool("enabled", true);
+            _activated = true;
             RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
             RuntimeManager.PlayOneShot(_turbineSound, transform.position);
         }
