@@ -23,14 +23,20 @@ public class Turbine : MonoBehaviour
     private GameObject _button;
 
     private Animator _anim;
-    private bool _trashCleaned;
-    private bool _cableConnected;
+    private bool _trashCleaned = true;
+    private bool _cableConnected = true;
 
     [SerializeField]
     private TurbineLights[] _lights;
 
+    private TurbinePiecePosition[] _turbinePieces; 
+
     private bool _isBeingCalledDown;
     private bool _activated = false;
+    private bool _piecesConnected;
+    private bool _landed;
+    private int _pieceIsConnected;
+
     // Use this for initialization
     void Start()
     {
@@ -39,7 +45,6 @@ public class Turbine : MonoBehaviour
 
     public void Activate()
     {
-        Debug.Log("Thank you for giving me a voice Daan! I do make a lot of noise though! ");
 
         if (_trashCleaned && !_activated)
         {
@@ -48,11 +53,22 @@ public class Turbine : MonoBehaviour
             RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
             RuntimeManager.PlayOneShot(_turbineSound, _soundOrigin.transform.position);
         }
-        else if (_isBeingCalledDown && _cableConnected)
+        else if (_isBeingCalledDown && !_activated)
         {
             _anim.SetBool("enabled", true);
             RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
             RuntimeManager.PlayOneShot(_turbineSound, transform.position);
+        }
+        else if (PiecesConnected() == _turbinePieces.Length && !_activated)
+        {
+            _anim.SetBool("enabled", true);
+            RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
+            RuntimeManager.PlayOneShot(_turbineSound, transform.position);
+        }
+        else
+        {
+            Debug.Log("Turbine is not fixed, display that on the console");
+            RuntimeManager.PlayOneShot(_errorSound, _button.transform.position);
         }
 
         if (_cableConnected)
@@ -62,19 +78,21 @@ public class Turbine : MonoBehaviour
                 _lights[i].TurnOn(); 
             }
         }
-        /* else
-         * display "Turbine is not fixed" Image on Console
-        * 
-        * 
-        */
-        else
-        {
-            Debug.Log("Turbine is not fixed, display that on the console");
-            RuntimeManager.PlayOneShot(_errorSound, _button.transform.position);
-        }
-
-
     }
+
+    private int PiecesConnected()
+    {
+        _pieceIsConnected = 0;
+        for (int i = 0; i < _turbinePieces.Length; i++)
+        {
+            if(_turbinePieces[i].Connected)
+            {
+                _pieceIsConnected++; 
+            }
+        }
+        return _pieceIsConnected; 
+    }
+
 
 
     public bool CalledDown
@@ -105,4 +123,17 @@ public class Turbine : MonoBehaviour
         get { return _lights;  }
         set { _lights = value; }
     }
+
+    public TurbinePiecePosition[] Pieces
+    {
+        get { return _turbinePieces; }
+        set { _turbinePieces = value; }
+    }
+    
+    public bool Landed
+    {
+        get { return _landed; }
+        set { _landed = value; }
+    }
+
 }

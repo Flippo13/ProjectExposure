@@ -38,17 +38,13 @@ public class TurbineDrop : MonoBehaviour {
         Ray ray = new Ray(transform.position, -transform.up); 
         if(Physics.Raycast(ray,out hit,float.PositiveInfinity,terrainLayer))
         {
-            Debug.Log("Going Down " + hit.collider);
-            if (hit.collider.tag == "Terrain")
-            {
-               Vector3 dropPos = new Vector3(hit.point.x, hit.point.y + dropHeight, hit.point.z);
+            Vector3 dropPos = new Vector3(hit.point.x, hit.point.y + dropHeight, hit.point.z);
                 
-                transform.position = Vector3.SmoothDamp(transform.position, dropPos, ref velocity, dropTime, maxDropSpeed);
+            transform.position = Vector3.SmoothDamp(transform.position, dropPos, ref velocity, dropTime, maxDropSpeed);
 
-                if (transform.position.y <= dropPos.y + 2)
-                {
-                    Landed(); 
-                }
+            if (transform.position.y <= dropPos.y + 2)
+            {
+                Landed(); 
             }
         }
     }
@@ -59,7 +55,8 @@ public class TurbineDrop : MonoBehaviour {
         {
             turbinePrefab.transform.parent = null;
             _turbineRB.useGravity = true;
-            _turbineRB.isKinematic = false; 
+            _turbineRB.isKinematic = false;
+            turbinePrefab.GetComponent<Turbine>().Landed = true; 
             Destroy(gameObject);
         }
     }

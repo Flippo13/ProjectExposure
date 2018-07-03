@@ -11,9 +11,6 @@ public class TurbinePiece : MonoBehaviour {
     public Color notConnectedColor; 
 
     public GameObject turbinePiecePosition; 
-
-    public bool connected;
-
     public float offset; 
 
     private new Transform transform;
@@ -38,12 +35,12 @@ public class TurbinePiece : MonoBehaviour {
     void Update()
     {
         //CheckRotation(); 
-        if (this.tag != "TurbinePiecePosition" && _turbinePiecePosition.InPlacementRange)
+        if (_hand != null && _turbinePiecePosition.InPlacementRange)
         {
             if (piece == Piece.TrubineBlade)
             {
                 _correctXRotation = AxisIsOne(transform.right, true, false, true);
-                _correctYRotation = AxisIsOne(transform.up, false, true, true);
+                _correctYRotation = AxisIsOne(transform.up, false, true, false);
                 _correctZRotation = AxisIsOne(transform.forward, true, false, true);
             }
 
@@ -59,18 +56,15 @@ public class TurbinePiece : MonoBehaviour {
                 _turbinePiecePosition.SetConnectedMaterial(canConnectedColor);
 
                 if (!_hand.IsHoldingObject())
-                Connected();
+                    Connected();
             }
             else
             {
                 _turbinePiecePosition.SetConnectedMaterial(notConnectedColor);
-
             }
         }
     }
 
-
-    
 
     private bool AxisIsOne(Vector3 turbinePieceAxis, bool compareToX, bool compareToY, bool compareToZ)
     {
@@ -90,17 +84,9 @@ public class TurbinePiece : MonoBehaviour {
     }
 
 
-    public void Activate()
-    {
-        connected = true; 
-    }
-
     public void Connected()
     {
-        // _turbinePosTransform.GetComponent<Renderer>().material.renderQueue = 1;
-        // _turbinePosTransform.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-      
-
+        
         _turbinePiecePosition.Connected = true;
         _hand = null;
         _turbinePiecePosition.Connect(); 
@@ -109,10 +95,11 @@ public class TurbinePiece : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ObjectGrabber>() && _hand == null)
+        if (other.GetComponent<ObjectGrabber>())
         {
-            
-            _hand = other.GetComponent<ObjectGrabber>(); 
+            _hand = other.GetComponent<ObjectGrabber>();
+
+            Debug.Log("Hand is now: " + _hand.name);
         }
     }
 
