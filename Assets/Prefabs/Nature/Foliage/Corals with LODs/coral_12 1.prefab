@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33653613252698872}
   - component: {fileID: 23513831487515302}
   - component: {fileID: 65698505795214994}
+  - component: {fileID: 65259533893179860}
   m_Layer: 8
   m_Name: Coral_12_LOD0
   m_TagString: Untagged
@@ -85,16 +86,16 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1853925676410106}
-  m_LocalRotation: {x: -0.08852249, y: -0, z: -0, w: 0.9960742}
-  m_LocalPosition: {x: 346.58572, y: 36.34, z: 299.78}
-  m_LocalScale: {x: 2.2137568, y: 2.2137575, z: 2.2137575}
+  m_LocalRotation: {x: 0.077781394, y: 0.49047834, z: -0.21757188, w: 0.84026396}
+  m_LocalPosition: {x: 14.886593, y: -4.776271, z: 6.368537}
+  m_LocalScale: {x: 0.48144996, y: 0.48145008, z: 0.48145008}
   m_Children:
   - {fileID: 4310983634683176}
   - {fileID: 4574878559782224}
   - {fileID: 4710347266353240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -10.157001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.088, y: -45.184002, z: -8.148001}
 --- !u!4 &4310983634683176
 Transform:
   m_ObjectHideFlags: 1
@@ -260,6 +261,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101436188808334}
   m_Mesh: {fileID: 4300000, guid: 66ffca9e81f51cf418a765a341e32c55, type: 3}
+--- !u!65 &65259533893179860
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1101436188808334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.235689, y: 1.4432449, z: 1.8749502}
+  m_Center: {x: 0, y: 0.72162247, z: 0}
 --- !u!65 &65698505795214994
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -284,11 +297,11 @@ LODGroup:
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LODs:
-  - screenRelativeHeight: 0.563313
+  - screenRelativeHeight: 0.96594447
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23513831487515302}
-  - screenRelativeHeight: 0.20741211
+  - screenRelativeHeight: 0.32701653
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23963065329615794}

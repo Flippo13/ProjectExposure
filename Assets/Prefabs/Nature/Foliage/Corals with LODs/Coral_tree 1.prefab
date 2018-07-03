@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 4085852971584336}
   - component: {fileID: 33205871156376414}
   - component: {fileID: 23272936646502428}
+  - component: {fileID: 65577547988532860}
   m_Layer: 8
   m_Name: Coral_tree_LOD0
   m_TagString: Untagged
@@ -110,16 +111,16 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1062614584801314}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 292.15, y: 41.6, z: 259.71}
-  m_LocalScale: {x: 4.7657814, y: 4.7657804, z: 4.7657804}
+  m_LocalRotation: {x: 0.050765008, y: 0.6508217, z: 0.079653665, w: -0.7533322}
+  m_LocalPosition: {x: 22.641651, y: -4.03752, z: 14.545134}
+  m_LocalScale: {x: 1.5052497, y: 1.5052466, z: 1.5052493}
   m_Children:
   - {fileID: 4085852971584336}
   - {fileID: 4153300877439100}
   - {fileID: 4629764640372032}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.3830001, y: 173.59702, z: -3.9510002}
 --- !u!4 &4629764640372032
 Transform:
   m_ObjectHideFlags: 1
@@ -259,6 +260,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1587419083820106}
   m_Mesh: {fileID: 4300002, guid: dad58e78b28700b4b8f402a259a4cda5, type: 3}
+--- !u!65 &65577547988532860
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1934235802543908}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.561008, y: 4.654246, z: 1.9936706}
+  m_Center: {x: -0.06999963, y: 2.327123, z: -0.031850107}
 --- !u!205 &205649045188149084
 LODGroup:
   m_ObjectHideFlags: 1
@@ -271,11 +284,11 @@ LODGroup:
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LODs:
-  - screenRelativeHeight: 0.6894246
+  - screenRelativeHeight: 0.9511029
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23272936646502428}
-  - screenRelativeHeight: 0.276276
+  - screenRelativeHeight: 0.7240781
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23976392064454236}

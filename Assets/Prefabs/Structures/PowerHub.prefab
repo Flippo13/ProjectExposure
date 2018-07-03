@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4262970965934964
 Transform:
   m_ObjectHideFlags: 1
@@ -159,8 +159,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1384083295693654}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 472.61, y: -0.669, z: -133.85}
+  m_LocalRotation: {x: -0, y: -0.9870092, z: -0, w: -0.16066355}
+  m_LocalPosition: {x: 617.682, y: 9.2, z: -43.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4566668055301942}
@@ -169,7 +169,7 @@ Transform:
   - {fileID: 4262970965934964}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -198.491, z: 0}
 --- !u!23 &23050055607225290
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -399,6 +399,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0f2b41e5c0da443a582626b584d543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cableConntectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114956824355231974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -410,6 +415,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0f2b41e5c0da443a582626b584d543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cableConntectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!205 &205793480055116380
 LODGroup:
   m_ObjectHideFlags: 1
@@ -422,7 +432,7 @@ LODGroup:
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LODs:
-  - screenRelativeHeight: 0.25
+  - screenRelativeHeight: 0.5505077
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23656760114005702}
