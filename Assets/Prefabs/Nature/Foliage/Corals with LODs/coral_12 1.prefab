@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33653613252698872}
   - component: {fileID: 23513831487515302}
   - component: {fileID: 65698505795214994}
-  - component: {fileID: 65259533893179860}
   m_Layer: 8
   m_Name: Coral_12_LOD0
   m_TagString: Untagged
@@ -261,18 +260,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101436188808334}
   m_Mesh: {fileID: 4300000, guid: 66ffca9e81f51cf418a765a341e32c55, type: 3}
---- !u!65 &65259533893179860
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1101436188808334}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.235689, y: 1.4432449, z: 1.8749502}
-  m_Center: {x: 0, y: 0.72162247, z: 0}
 --- !u!65 &65698505795214994
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -301,7 +288,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23513831487515302}
-  - screenRelativeHeight: 0.32701653
+  - screenRelativeHeight: 0.40828207
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23963065329615794}
