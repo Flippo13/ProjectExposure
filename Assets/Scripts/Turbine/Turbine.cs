@@ -74,7 +74,7 @@ public class Turbine : MonoBehaviour
             RuntimeManager.PlayOneShot(_activateSound, _button.transform.position);
             RuntimeManager.PlayOneShot(_turbineSound, transform.position);
         }
-        else if (_trashCleaned && PiecesConnected() != 0 && PiecesConnected() == _turbinePieces.Length && !_activated)
+        else if (_trashCleaned && PiecesConnected() == _turbinePieces.Length && !_activated)
         {
             _anim.SetBool("enabled", true);
             _activated = true;

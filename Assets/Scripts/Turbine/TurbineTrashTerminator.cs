@@ -16,8 +16,10 @@ public class TurbineTrashTerminator : MonoBehaviour {
 
 
 
-    private void OnCollisonEnter(Collider other)
+    public void OnCollisionEnter(Collision other)
     {
+        if(other.gameObject.tag == Tags.Hand || other.gameObject.tag == Tags.Player) return;
+
         if (other.gameObject.layer == Layers.Suckable)
         {
             Destroy(other.gameObject); 
